@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 
 import {ValidateService} from './services/validate.service';
-import { AuthService } from './services/auth.service';
+import {AuthService} from './services/auth.service';
+import {UserService} from './services/user.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
@@ -41,7 +42,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ValidateService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

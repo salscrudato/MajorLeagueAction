@@ -20,3 +20,12 @@
 		<p>JWT Tokens etc</p>
 	</div>
 </div>
+
+<div>
+	<h3>Current Usernames</h3>
+	<ul>
+	<li *ngFor="let user of users">
+      {{ user.username }}
+    </li>
+	</ul>
+</div>
