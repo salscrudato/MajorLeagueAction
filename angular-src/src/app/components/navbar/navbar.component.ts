@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +12,7 @@ export class NavbarComponent implements OnInit {
 	login: string;
 	register: string;
 
-  constructor() { 
+  constructor(private authService:AuthService) {
   	this.login = 'Login';
   	this.register = 'Register';
   	var arr = [1,5,3,6,2,100,30];
@@ -29,6 +32,10 @@ export class NavbarComponent implements OnInit {
   		}
   	}
   	console.log(arr);
+  }
+
+  onLogoutClick(){
+    this.authService.logout();
   }
 
   ngOnInit() {

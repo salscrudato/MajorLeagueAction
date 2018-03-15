@@ -16,13 +16,15 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'menu', component: MenuComponent}
 ]
 
 @NgModule({
@@ -34,6 +36,7 @@ const appRoutes: Routes = [
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

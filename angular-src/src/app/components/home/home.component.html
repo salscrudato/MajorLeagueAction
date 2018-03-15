@@ -1,23 +1,24 @@
 <div class ="jumbotron text-center">
-	<h1>Sal's Auth App</h1>
-	<p class="lead">Welcome to my custom MEAN application</p>
+	<h1>Wareka Deli and Caterers</h1>
+	<p class="lead">Create an Account or Login to order online!</p>
 	<div>
-		<a class="btn btn-primary" [routerLink]="['/register']">Register</a><a class="btn btn-secondary" [routerLink]="['/login']">Login</a>
+		<button type="button" [routerLink]="['/register']" class="btn btn-primary">Register</button>
+		<button type="button" [routerLink]="['/login']" class="btn btn-secondary">Login</button>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-md-4">
-		<h3>Express Backend</h3>
-		<p>Node.js/Express server with Mongoose noSQL database</p>
+		<h3>Catering</h3>
+		<p>For catering inquiries, please contact (XXX) XXX-XXXX</p>
 	</div>
 	<div class="col-md-4">
-		<h3>Angular Front End</h3>
-		<p>Angular blah blah blah</p>
+		<h3>Cooking For You Since '62</h3>
+		<p>Family owned and operated, the Warekas have been serving the community for over 40 years.  Our experience and expertise allow us to make some of the best dishes in town.</p>
 	</div>
 	<div class="col-md-4">
-		<h3>Tokens</h3>
-		<p>JWT Tokens etc</p>
+		<h3>Deli</h3>
+		<p>Our deli, located at 1 Market Street in Elmwood Park, NJ is open Monday through Saturday from 8am to 2pm.</p>
 	</div>
 </div>
 
@@ -28,4 +29,13 @@
       {{ user.username }}
     </li>
 	</ul>
+</div>
+
+<div class="row">
+<div *ngFor="let user of users" class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">{{user.username}}</div>
+  <div class="card-body">
+    <h4 class="card-title">{{user.password}}</h4>
+    <p class="card-text">{{user.email}}</p>
+  </div>
 </div>
