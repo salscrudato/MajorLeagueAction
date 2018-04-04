@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  users:any;
+
+  constructor(
+    private userService:UserService
+  ) {
+
+    //could replace with getting menu items
+    this.userService.getAllUsers().subscribe(data =>{
+      this.users = data;
+    });
+
+  }
 
   ngOnInit() {
   }

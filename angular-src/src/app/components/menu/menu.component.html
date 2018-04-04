@@ -1,3 +1,8 @@
-<p>
-  menu works!
-</p>
+<div class="row">
+<div *ngFor="let user of users" class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">{{user.username}}</div>
+  <div class="card-body">
+    <h4 class="card-title">{{user.password}}</h4>
+    <p class="card-text">{{user.email}}</p>
+  </div>
+</div>
