@@ -13,9 +13,8 @@ export class NavbarComponent implements OnInit {
 	register: string;
 
   constructor(private authService:AuthService) {
-  	this.login = 'Login';
-  	this.register = 'Register';
-  	var arr = [1,5,3,6,2,100,30];
+    console.log(authService.loggedIn());
+  	//var arr = [1,5,3,6,2,100,30];
   	//console.log(arr);
   	//this.bubbleSort(arr);
   }

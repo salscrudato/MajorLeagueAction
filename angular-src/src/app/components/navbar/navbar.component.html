@@ -1,16 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Sal Scrudato</a>
+  <a class="navbar-brand" href="#">MLBets</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li><a class="nav-link" [routerLink]="['/menu']">Menu Cards</a></li>
+      <li><a class="nav-link" [routerLink]="['/menu']">MLB</a></li>
     </ul>
     <ul class="navbar-nav mr-right">
-      <li><a class="nav-link" [routerLink]="['/login']">{{login}}</a></li>
-      <li><a class="nav-link" [routerLink]="['/register']">{{register}}</a></li>
-      <li><a class="nav-link" (click)="onLogoutClick()" href="#">Logout</a></li>
+      <li><a class="nav-link" [routerLink]="['/profile']" *ngIf="authService.loggedIn()">Profile</a></li>
+      <li><a class="nav-link" [routerLink]="['/dashboard']" *ngIf="authService.loggedIn()">Dashboard</a></li>
+      <li><a class="nav-link" [routerLink]="['/login']" *ngIf="!authService.loggedIn()">Login</a></li>
+      <li><a class="nav-link" [routerLink]="['/register']" *ngIf="!authService.loggedIn()">Register</a></li>
+      <li><a class="nav-link" (click)="onLogoutClick()" *ngIf="authService.loggedIn()" href="#">Logout</a></li>
     </ul>
   </div>
 </nav>

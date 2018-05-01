@@ -9,6 +9,7 @@ const config = require('./config/database');
 //Connect to mongodb, assume I can change the config file to connect
 //to hosted db
 mongoose.connect(config.database);
+console.log(config.database);
 
 //On connect to db
 mongoose.connection.on('connected', function(){
@@ -23,6 +24,7 @@ mongoose.connection.on('error', function(err){
 const app = express();
 
 const users = require('./routes/users');
+const odds = require('./routes/odds');
 
 const port = 3000;
 
@@ -42,9 +44,14 @@ require('./config/passport')(passport);
 
 //If we use app.use('',users); we don't need to go to /users/register, etc
 app.use('/users', users);
+app.use('/odds', odds);
 
 app.get('/', function(req, res){
 	res.send('invalid endpoints');
+});
+
+app.get('*', (req,res) => {
+	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.listen(port, function(){

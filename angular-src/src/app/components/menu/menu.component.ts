@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
+import {OddsService} from '../../services/odds.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,15 +9,19 @@ import {UserService} from '../../services/user.service';
 })
 export class MenuComponent implements OnInit {
 
-  users:any;
+  odds:any;
 
   constructor(
-    private userService:UserService
+    private userService:UserService,
+    private oddsService:OddsService
   ) {
 
-    //could replace with getting menu items
-    this.userService.getAllUsers().subscribe(data =>{
-      this.users = data;
+    //this.userService.getAllUsers().subscribe(data =>{
+    //  this.users = data;
+    //});
+
+    this.oddsService.getMLBOdds().subscribe(data =>{
+      this.odds = data;
     });
 
   }
