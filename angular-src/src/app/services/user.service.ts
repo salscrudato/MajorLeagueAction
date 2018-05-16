@@ -11,7 +11,8 @@ export class UserService {
   getAllUsers(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/allProfiles', {headers: headers})
+    //return this.http.get('http://localhost:3000/users/allProfiles', {headers: headers})
+    return this.http.get('users/allProfiles', {headers: headers})
       .map(res => res.json());
   }
 
