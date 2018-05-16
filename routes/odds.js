@@ -40,7 +40,6 @@ class Action {
       odds, homeTeam, awayTeam) {
         this.id = id;
         this.details = details;
-        this.homeImagePath = '/assets/images/mets.png';
         this.matchDate = matchTime.substr(0,10);
         this.matchTime = matchTime.substr(11,matchTime.length-3);
         this.homeTeam = homeTeam;
@@ -58,7 +57,61 @@ class Action {
           case "Minnesota Twins":
             this.homeImagePath = '/assets/images/twins.png';
             break;
+          case "Baltimore Orioles":
+            this.homeImagePath = '/assets/images/orioles.png';
+            break;
+          case "Pittsburgh Pirates":
+            this.homeImagePath = '/assets/images/pirates.png';
+            break;
+          case "Detroit Tigers":
+            this.homeImagePath = '/assets/images/tigers.png';
+            break;
+          case "Kansas City Royals":
+            this.homeImagePath = '/assets/images/royals.png';
+            break;
+          case "Seattle Mariners":
+            this.homeImagePath = '/assets/images/mariners.png';
+            break;
+          case "Arizona Diamondbacks":
+            this.homeImagePath = '/assets/images/diamondbacks.png';
+            break;
+          case "San Francisco Giants":
+            this.homeImagePath = '/assets/images/giants.png';
+            break;
+          default:
+            this.homeImagePath = '/assets/images/mlb.png';
        }
+       switch (this.awayTeam){
+         case "New York Mets":
+           this.awayImagePath = '/assets/images/mets.png';
+           break;
+         case "Minnesota Twins":
+           this.awayImagePath = '/assets/images/twins.png';
+           break;
+         case "Baltimore Orioles":
+           this.awayImagePath = '/assets/images/orioles.png';
+           break;
+         case "Pittsburgh Pirates":
+           this.awayImagePath = '/assets/images/pirates.png';
+           break;
+         case "Detroit Tigers":
+           this.awayImagePath = '/assets/images/tigers.png';
+           break;
+         case "Kansas City Royals":
+           this.awayImagePath = '/assets/images/royals.png';
+           break;
+         case "Seattle Mariners":
+           this.awayImagePath = '/assets/images/mariners.png';
+           break;
+         case "Arizona Diamondbacks":
+           this.awayImagePath = '/assets/images/diamondbacks.png';
+           break;
+         case "San Francisco Giants":
+           this.awayImagePath = '/assets/images/giants.png';
+           break;
+         default:
+           this.awayImagePath = '/assets/images/mlb.png';
+      }
     }
 }
 
