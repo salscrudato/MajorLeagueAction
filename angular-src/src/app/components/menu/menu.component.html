@@ -1,8 +1,16 @@
-<div class="row">
-<div *ngFor="let odd of odds" class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-  <div class="card-header">{{odd.Details}}</div>
+<div class="row mt-3">
+<div *ngFor="let action of actions" class="card mr-4 ml-4 mb-3" style="width: 18rem;">
+<div class = "row">
+  <img class="w-50 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
+  <img class="w-50 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
+</div>
   <div class="card-body">
-    <h4 class="card-title"></h4>
-    <p class="card-text"></p>
+    <h5 class="card-title">{{action.details}}</h5>
+    <p class="card-text">Date: {{action.matchDate}}</p>
+    <p class="card-text">Time: {{action.matchTime}}</p>
+    <p class="card-text">{{action.homeTeam}}  {{action.homeTeamML}}</p>
+    <p class="card-text">{{action.awayTeam}}  {{action.awayTeamML}}</p>
+    <a class="btn btn-primary" (click)="comingSoon()">Place Bet</a>
   </div>
+</div>
 </div>
