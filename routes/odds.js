@@ -78,6 +78,21 @@ class Action {
           case "San Francisco Giants":
             this.homeImagePath = '/assets/images/giants.png';
             break;
+          case "Tampa Bay Rays":
+            this.homeImagePath = '/assets/images/rays.png';
+            break;
+          case "Texas Rangers":
+            this.homeImagePath = '/assets/images/rangers.png';
+            break;
+          case "Milwaukee Brewers":
+            this.homeImagePath = '/assets/images/brewers.png';
+            break;
+          case "New York Yankees":
+            this.homeImagePath = '/assets/images/yankees.png';
+            break;
+          case "Washington Nationals":
+            this.homeImagePath = '/assets/images/nationals.png';
+            break;
           default:
             this.homeImagePath = '/assets/images/mlb.png';
        }
@@ -109,7 +124,22 @@ class Action {
          case "San Francisco Giants":
            this.awayImagePath = '/assets/images/giants.png';
            break;
-         default:
+          case "Tampa Bay Rays":
+           this.awayImagePath = '/assets/images/rays.png';
+           break;
+         case "Texas Rangers":
+           this.awayImagePath = '/assets/images/rangers.png';
+           break;
+        case "Milwaukee Brewers":
+           this.awayImagePath = '/assets/images/brewers.png';
+           break;
+        case "New York Yankees":
+           this.awayImagePath = '/assets/images/yankees.png';
+           break;
+        case "Washington Nationals":
+           this.awayImagePath = '/assets/images/nationals.png';
+           break;
+        default:
            this.awayImagePath = '/assets/images/mlb.png';
       }
     }
