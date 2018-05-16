@@ -93,6 +93,33 @@ class Action {
           case "Washington Nationals":
             this.homeImagePath = '/assets/images/nationals.png';
             break;
+          case "Houston Astros":
+            this.homeImagePath = '/assets/images/astros.png';
+            break;
+          case "Los Angeles Dodgers":
+            this.homeImagePath = '/assets/images/dodgers.png';
+            break;
+          case "Atlanta Braves":
+              this.homeImagePath = '/assets/images/braves.png';
+              break;
+          case "Chicago Cubs":
+              this.homeImagePath = '/assets/images/cubs.png';
+              break;
+          case "Miami Marlins":
+              this.homeImagePath = '/assets/images/marlins.png';
+              break;
+          case "Boston Red Sox":
+              this.homeImagePath = '/assets/images/redsox.png';
+              break;
+          case "Los Angeles Angels":
+              this.homeImagePath = '/assets/images/angels.png';
+              break;
+          case "Oakland Athletics":
+              this.homeImagePath = '/assets/images/athletics.png';
+              break;
+          case "Cincinnati Reds":
+              this.homeImagePath = '/assets/images/reds.png';
+              break;
           default:
             this.homeImagePath = '/assets/images/mlb.png';
        }
@@ -138,6 +165,33 @@ class Action {
            break;
         case "Washington Nationals":
            this.awayImagePath = '/assets/images/nationals.png';
+           break;
+        case "Houston Astros":
+           this.awayImagePath = '/assets/images/astros.png';
+           break;
+        case "Los Angeles Dodgers":
+           this.awayImagePath = '/assets/images/dodgers.png';
+           break;
+        case "Atlanta Braves":
+           this.awayImagePath = '/assets/images/braves.png';
+           break;
+        case "Chicago Cubs":
+           this.awayImagePath = '/assets/images/cubs.png';
+           break;
+        case "Miami Marlins":
+           this.awayImagePath = '/assets/images/marlins.png';
+           break;
+        case "Boston Red Sox":
+           this.awayImagePath = '/assets/images/redsox.png';
+           break;
+        case "Los Angeles Angels":
+           this.awayImagePath = '/assets/images/angels.png';
+           break;
+        case "Oakland Athletics":
+           this.awayImagePath = '/assets/images/athletics.png';
+           break;
+        case "Cincinnati Reds":
+           this.awayImagePath = '/assets/images/reds.png';
            break;
         default:
            this.awayImagePath = '/assets/images/mlb.png';
