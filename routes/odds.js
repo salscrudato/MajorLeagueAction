@@ -44,6 +44,7 @@ router.get('/mlb', function(req, res, next){
         'New York Mets'
         );
         actions.push(action);
+        res.send(action);
   });
 });
 
