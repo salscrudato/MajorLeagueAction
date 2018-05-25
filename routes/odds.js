@@ -5,7 +5,7 @@ const request = require('request');
 router.get('/mlb', function(req, res, next){
 
   var headers = {
-      'x-api-key':'72812f76-4cbe-11e8-91fa-06aae780a1ef'
+      'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
   }
   var actions = [];
   // Configure the request
@@ -32,19 +32,6 @@ router.get('/mlb', function(req, res, next){
           res.send(actions);
           //res.send(body);
       }
-      var action = new Action('12345',
-        'New York Mets @ New York Yankees',
-        '7:00PM',
-        {
-          OddType:'Game',
-          MoneyLineHome:'110',
-          MoneyLineAway:'100'
-        },
-        'New York Yankees',
-        'New York Mets'
-        );
-        actions.push(action);
-        res.send(action);
   });
 });
 
