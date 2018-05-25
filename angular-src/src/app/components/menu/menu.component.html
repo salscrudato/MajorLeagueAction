@@ -1,5 +1,5 @@
 <div class="row mt-3">
-<div *ngFor="let action of actions" class="card mb-3" style="width: 18rem;">
+<div *ngFor="let action of actions" class="card mb-3 ml-5" style="width: 25rem;">
 <div class = "row" style="height:150px">
   <div class = "col">
     <img class="w-100 h-100" src="{{action.awayImagePath}}" alt="Card image cap">
@@ -10,6 +10,10 @@
 </div>
   <div class="card-body">
     <h5 class="card-title">{{action.details}}</h5>
+    <div class="row">
+      <p class="card-text">Date: {{action.matchDate}}</p>
+      <p class="card-text">Time: {{action.matchTime}}</p>
+    </div>
     <p class="card-text">Date: {{action.matchDate}}</p>
     <p class="card-text">Time: {{action.matchTime}}</p>
     <p class="card-text">{{action.homeTeam}}  {{action.homeTeamML}}</p>
