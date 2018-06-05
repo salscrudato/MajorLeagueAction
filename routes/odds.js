@@ -6,7 +6,7 @@ const apicache = require('apicache');
 let cache = apicache.middleware;
 
 router.get('/mlb', cache('10 minutes'), function(req, res, next){
-  
+
   var headers = {
       'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
   }
@@ -123,6 +123,9 @@ class Action {
           case "Cincinnati Reds":
               this.homeImagePath = '/assets/images/reds.png';
               break;
+          case "San Diego Padres":
+              this.homeImagePath = '/assets/images/padres.png';
+              break;
           default:
             this.homeImagePath = '/assets/images/mlb.png';
        }
@@ -195,6 +198,9 @@ class Action {
            break;
         case "Cincinnati Reds":
            this.awayImagePath = '/assets/images/reds.png';
+           break;
+        case "San Diego Padres":
+           this.awayImagePath = '/assets/images/padres.png';
            break;
         default:
            this.awayImagePath = '/assets/images/mlb.png';
