@@ -126,6 +126,18 @@ class Action {
           case "San Diego Padres":
               this.homeImagePath = '/assets/images/padres.png';
               break;
+          case "Toronto Blue Jays":
+              this.homeImagePath = '/assets/images/bluejays.png';
+              break;
+          case "Cleveland Indians":
+            this.homeImagePath = '/assets/images/indians.png';
+            break;
+          case "Colorado Rockies":
+            this.homeImagePath = '/assets/images/rockies.png';
+            break;
+          case "Philadelphia Phillies":
+            this.homeImagePath = '/assets/images/phillies.png';
+            break;
           default:
             this.homeImagePath = '/assets/images/mlb.png';
        }
@@ -202,6 +214,18 @@ class Action {
         case "San Diego Padres":
            this.awayImagePath = '/assets/images/padres.png';
            break;
+        case "Toronto Blue Jays":
+           this.awayImagePath = '/assets/images/bluejays.png';
+           break;
+        case "Cleveland Indians":
+          this.awayImagePath = '/assets/images/indians.png';
+          break;
+        case "Colorado Rockies":
+          this.awayImagePath = '/assets/images/rockies.png';
+          break;
+        case "Philadelphia Phillies":
+          this.awayImagePath = '/assets/images/phillies.png';
+          break;
         default:
            this.awayImagePath = '/assets/images/mlb.png';
       }
