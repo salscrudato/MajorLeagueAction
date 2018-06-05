@@ -138,6 +138,9 @@ class Action {
           case "Philadelphia Phillies":
             this.homeImagePath = '/assets/images/phillies.png';
             break;
+          case "St. Louis Cardinals":
+            this.homeImagePath = '/assets/images/cardinals.png';
+            break;
           default:
             this.homeImagePath = '/assets/images/mlb.png';
        }
@@ -225,6 +228,9 @@ class Action {
           break;
         case "Philadelphia Phillies":
           this.awayImagePath = '/assets/images/phillies.png';
+          break;
+        case "St. Louis Cardinals":
+          this.awayImagePath = '/assets/images/cardinals.png';
           break;
         default:
            this.awayImagePath = '/assets/images/mlb.png';
