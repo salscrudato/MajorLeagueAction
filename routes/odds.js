@@ -55,7 +55,7 @@ class Action {
             this.awayTeamML = odds[i].MoneyLineAway;
           }
         }
-        switch (this.homeTeam){
+        switch (homeTeam){
           case "New York Mets":
             this.homeImagePath = '/assets/images/mets.png';
             break;
@@ -149,7 +149,7 @@ class Action {
           default:
             this.homeImagePath = '/assets/images/mlb.png';
        }
-       switch (this.awayTeam){
+       switch (awayTeam){
          case "New York Mets":
            this.awayImagePath = '/assets/images/mets.png';
            break;
