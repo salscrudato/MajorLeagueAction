@@ -5,7 +5,7 @@ const apicache = require('apicache');
 
 let cache = apicache.middleware;
 
-router.get('/mlb', cache('10 seconds'), function(req, res, next){
+router.get('/mlb', cache('20 minutes'), function(req, res, next){
 //router.get('/mlb', function(req, res, next){
   var headers = {
       'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
@@ -47,8 +47,7 @@ class Action {
         this.details = details;
         this.matchDate = matchTime.substr(5,6);
         this.matchTime = matchTime.substr(11,matchTime.length-6);
-        //this.homeTeam = homeTeam + ' (' + homePitcher + ')';
-        this.homeTeam = homeTeam;
+        this.homeTeam = homeTeam + ' (' + homePitcher + ')';
         this.awayTeam = awayTeam + ' (' + awayPitcher + ')';
         for(var i = 0; i < odds.length; i++){
           if(odds[i].OddType=="Game"){
