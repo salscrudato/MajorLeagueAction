@@ -52,8 +52,9 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  comingSoon(){
+  comingSoon(action){
     alert('Feature Coming Soon!');
+    console.log(action.homeTeam);
   }
 
 }
