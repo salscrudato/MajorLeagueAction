@@ -5,8 +5,8 @@ const apicache = require('apicache');
 
 let cache = apicache.middleware;
 
-router.get('/mlb', cache('10 minutes'), function(req, res, next){
-
+router.get('/mlb', cache('20 minutes'), function(req, res, next){
+//router.get('/mlb', function(req, res, next){
   var headers = {
       'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
   }
@@ -27,7 +27,9 @@ router.get('/mlb', cache('10 minutes'), function(req, res, next){
               data[i].MatchTime,
               data[i].Odds,
               data[i].HomeTeam,
-              data[i].AwayTeam
+              data[i].AwayTeam,
+              data[i].HomePitcher,
+              data[i].AwayPitcher
               );
               actions.push(action);
           }
@@ -40,13 +42,13 @@ router.get('/mlb', cache('10 minutes'), function(req, res, next){
 
 class Action {
     constructor(id, details, matchTime,
-      odds, homeTeam, awayTeam) {
+      odds, homeTeam, awayTeam, homePitcher, awayPitcher) {
         this.id = id;
         this.details = details;
-        this.matchDate = matchTime.substr(0,10);
+        this.matchDate = matchTime.substr(5,10);
         this.matchTime = matchTime.substr(11,matchTime.length-3);
-        this.homeTeam = homeTeam;
-        this.awayTeam = awayTeam;
+        this.homeTeam = homeTeam + ' (' + homePitcher + ')';
+        this.awayTeam = awayTeam + ' (' + awayPitcher + ')';
         for(var i = 0; i < odds.length; i++){
           if(odds[i].OddType=="Game"){
             this.homeTeamML = odds[i].MoneyLineHome;
