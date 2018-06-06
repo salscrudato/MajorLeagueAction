@@ -46,7 +46,7 @@ class Action {
         this.id = id;
         this.details = details;
         this.matchDate = matchTime.substr(5,4);
-        this.matchTime = matchTime.substr(11,matchTime.length-6);
+        this.matchTime = matchTime.substr(10,matchTime.length-6);
         this.homeTeam = homeTeam + ' (' + homePitcher + ')';
         this.awayTeam = awayTeam + ' (' + awayPitcher + ')';
         for(var i = 0; i < odds.length; i++){
