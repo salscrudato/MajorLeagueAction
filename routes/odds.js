@@ -45,9 +45,10 @@ class Action {
       odds, homeTeam, awayTeam, homePitcher, awayPitcher) {
         this.id = id;
         this.details = details;
-        this.matchDate = matchTime.substr(5,5);
+        this.matchDate = matchTime.substr(5,6);
         this.matchTime = matchTime.substr(11,matchTime.length-6);
-        this.homeTeam = homeTeam + ' (' + homePitcher + ')';
+        //this.homeTeam = homeTeam + ' (' + homePitcher + ')';
+        this.homeTeam = homeTeam;
         this.awayTeam = awayTeam + ' (' + awayPitcher + ')';
         for(var i = 0; i < odds.length; i++){
           if(odds[i].OddType=="Game"){
