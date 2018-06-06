@@ -22,10 +22,10 @@
     <div align="left">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">{{action.homeTeam}}
-        <a class="btn btn-primary"(click)="comingSoon(action)">{{action.homeTeamML}}</a>
+        <a class="btn-sm btn-primary"(click)="comingSoon(action)">{{action.homeTeamML}}</a>
       </li>
-      <li class="list-group-item">
-        <a class="btn"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
+      <li class="list-group-item">{{action.awayTeam}}
+        <a class="btn-sm btn-primary"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
       </li>
     </ul>
       <!-- <p class="card-text">{{action.homeTeam}}  {{action.homeTeamML}}</p>
