@@ -11,11 +11,13 @@
 </div>
   <div class="card-body" align="left">
     <h5 class="card-title">{{action.details}}</h5>
-    <p class="card-text">Date: {{action.matchDate}}</p>
-    <p class="card-text">Time: {{action.matchTime}}</p>
+    <div class="row">
+      <p class="card-text">{{action.matchDate}}</p>
+      <p class="card-text float-right">{{action.matchTime}}</p>
+    </div>
     <p class="card-text">{{action.homeTeam}}  {{action.homeTeamML}}</p>
     <p class="card-text">{{action.awayTeam}}  {{action.awayTeamML}}</p>
-    <a class="btn btn-primary" (click)="comingSoon()">Place Bet</a>
+    <a class="btn btn-primary" (click)="comingSoon(action)">Place Bet</a>
   </div>
 </div>
 </div>
