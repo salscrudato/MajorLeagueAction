@@ -61,6 +61,9 @@ class Action {
             this.totalNumber = odds[i].TotalNumber;
           }
         }
+        if(this.homeTeamML > 0){
+          this.homeTeamML = "+" + this.homeTeamML;
+        }
         switch (homeTeam){
           case "New York Mets":
             this.homeImagePath = '/assets/images/mets.png';
