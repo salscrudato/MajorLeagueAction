@@ -23,7 +23,7 @@
       <div class="row pl-3">{{action.awayTeam}}</div>
       <div class="row pb-1 pt-1">
         <div class="col">
-        <a class="btn btn-primary btn-sm text-light float-left"(click)="comingSoon(action)"><p ngIf="action.awayTeamML > 0">+</p>{{action.awayTeamML}}</a>
+        <a class="btn btn-primary btn-sm text-light float-left"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
       </div>
       <div class="col" align="center">
         <a class="btn btn-primary btn-sm text-light"(click)="comingSoon(action)">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
