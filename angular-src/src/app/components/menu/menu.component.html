@@ -33,18 +33,20 @@
         <a class="btn btn-primary float-right"(click)="comingSoon(action)">o{{action.totalNumber}}</a>
       </div>
       </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item small pl-0 pr-0">{{action.homeTeam}}
-        <a class="btn btn-primary btn-sm float-right ml-1"(click)="comingSoon(action)"><span style="font-size:smaller;">{{action.homeTeamML}}</span></a>
-        <a class="btn btn-primary btn-sm btn-sm float-right"(click)="comingSoon(action)"><span style="font-size:smaller;">-1.5 {{action.homeTeamML}}</span></a>
-      </li>
-      <li class="list-group-item small pl-0 pr-0">{{action.awayTeam}}
-        <a class="btn-sm btn-primary float-right"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
-      </li>
-    </ul>
-      <!-- <p class="card-text">{{action.homeTeam}}  {{action.homeTeamML}}</p>
-      <p class="card-text">{{action.awayTeam}}  {{action.awayTeamML}}</p>
-      <a class="btn btn-primary" (click)="comingSoon(action)">Place Bet</a> -->
+    </div>
+    <div align="left">
+      <div class="row pl-3">{{action.awayTeam}}</div>
+      <div class="row border-bottom pb-1">
+        <div class="col">
+        <a class="btn btn-primary float-left"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
+      </div>
+      <div class="col" align="center">
+        <a class="btn btn-primary"(click)="comingSoon(action)">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
+      </div>
+      <div class="col">
+        <a class="btn btn-primary float-right"(click)="comingSoon(action)">u{{action.totalNumber}}</a>
+      </div>
+      </div>
     </div>
   </div>
 </div>
