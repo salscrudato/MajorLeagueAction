@@ -1,31 +1,45 @@
 <div class="row mt-3" align="center">
 <!-- <div *ngFor="let action of actions" class="card mb-3 ml-3" style="width: 22rem;"> -->
 <div *ngFor="let action of actions" class="card col-sm-4 mb-3 p-0">
+  <div class="row">
+    <div class="col ml-3" align="left">
+      <p>{{action.matchDate}}</p>
+    </div>
+    <div class="col mr-3" align="right">
+      <p>{{action.matchTime}}</p>
+    </div>
+  </div>
 <div class = "row" style="height:100px">
-  <div class = "col">
+  <div class = "col float-left">
     <img class="w-75 h-100" src="{{action.awayImagePath}}" alt="Card image cap">
   </div>
-  <div class = "col">
+  <h1 class="mt-4">@</h1>
+  <div class = "col float-right">
     <img class="w-75 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
   </div>
 </div>
   <div class="card-body">
-    <h6 class="card-title">{{action.details}}</h6>
-    <div class="row">
-      <div class="col" align="left">
-        <p>{{action.matchDate}}</p>
-      </div>
-      <div class="col" align="right">
-        <p>{{action.matchTime}}</p>
-      </div>
-    </div>
+
     <div align="left">
+      <div class="row pl-3">{{action.homeTeam}}</div>
+      <div class="row border-bottom pb-1">
+        <div class="col">
+        <a class="btn btn-primary float-left"(click)="comingSoon(action)">{{action.homeTeamML}}</a>
+      </div>
+      <div class="col" align="center">
+        <a class="btn btn-primary"(click)="comingSoon(action)">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
+      </div>
+      <div class="col">
+        <a class="btn btn-primary float-right"(click)="comingSoon(action)">o{{action.totalNumber}}</a>
+      </div>
+      </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{action.homeTeam}}
-        <a class="btn-sm btn-primary"(click)="comingSoon(action)">{{action.homeTeamML}}</a>
+      <li class="list-group-item small pl-0 pr-0">{{action.homeTeam}}
+        <a class="btn btn-primary btn-sm float-right ml-1"(click)="comingSoon(action)"><span style="font-size:smaller;">{{action.homeTeamML}}</span></a>
+        <a class="btn btn-primary btn-sm btn-sm float-right"(click)="comingSoon(action)"><span style="font-size:smaller;">-1.5 {{action.homeTeamML}}</span></a>
       </li>
-      <li class="list-group-item">{{action.awayTeam}}
-        <a class="btn-sm btn-primary"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
+      <li class="list-group-item small pl-0 pr-0">{{action.awayTeam}}
+        <a class="btn-sm btn-primary float-right"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
       </li>
     </ul>
       <!-- <p class="card-text">{{action.homeTeam}}  {{action.homeTeamML}}</p>

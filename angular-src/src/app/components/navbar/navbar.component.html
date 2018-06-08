@@ -5,14 +5,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li><a class="nav-link" [routerLink]="['/menu']">MLB</a></li>
-      <li><a class="nav-link" [routerLink]="['/start']">Start</a></li>
+      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/menu']">MLB</a></li>
+      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/start']">Start</a></li>
     </ul>
     <ul class="navbar-nav mr-right">
-      <li><a class="nav-link" [routerLink]="['/profile']" *ngIf="authService.loggedIn()">Profile</a></li>
-      <li><a class="nav-link" [routerLink]="['/dashboard']" *ngIf="authService.loggedIn()">Dashboard</a></li>
-      <li><a class="nav-link" [routerLink]="['/login']" *ngIf="!authService.loggedIn()">Login</a></li>
-      <li><a class="nav-link" [routerLink]="['/register']" *ngIf="!authService.loggedIn()">Register</a></li>
+      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/profile']" *ngIf="authService.loggedIn()">Profile</a></li>
+      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/dashboard']" *ngIf="authService.loggedIn()">Dashboard</a></li>
+      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/login']" *ngIf="!authService.loggedIn()">Login</a></li>
+      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/register']" *ngIf="!authService.loggedIn()">Register</a></li>
       <li><a class="nav-link" (click)="onLogoutClick()" *ngIf="authService.loggedIn()" href="#">Logout</a></li>
     </ul>
   </div>
