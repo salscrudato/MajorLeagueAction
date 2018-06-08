@@ -18,7 +18,7 @@
     <img class="w-75 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
   </div>
 </div>
-  <div class="card-body bg-dark">
+  <div class="card-body bg-secondary">
 
     <div align="left">
       <div class="row pl-3">{{action.homeTeam}}</div>
@@ -38,13 +38,13 @@
       <div class="row pl-3">{{action.awayTeam}}</div>
       <div class="row pb-1 pt-1">
         <div class="col">
-        <a class="btn btn-primary text-light float-left"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
+        <a class="btn btn-primary btn-sm text-light float-left"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
       </div>
       <div class="col" align="center">
-        <a class="btn btn-primary"(click)="comingSoon(action)">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
+        <a class="btn btn-primary btn-sm text-light"(click)="comingSoon(action)">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
       </div>
       <div class="col">
-        <a class="btn btn-primary float-right"(click)="comingSoon(action)">u{{action.totalNumber}}</a>
+        <a class="btn btn-primary btn-sm text-light float-right"(click)="comingSoon(action)">u{{action.totalNumber}}</a>
       </div>
       </div>
     </div>
