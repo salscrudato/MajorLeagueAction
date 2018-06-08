@@ -18,19 +18,19 @@
     <img class="w-75 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
   </div>
 </div>
-  <div class="card-body bg-secondary">
+  <div class="card-featured">
 
     <div align="left">
       <div class="row pl-3">{{action.homeTeam}}</div>
       <div class="row border-bottom pb-1 pt-1">
         <div class="col">
-        <a class="btn btn-outline-primary btn-sm float-left"(click)="comingSoon(action)">{{action.homeTeamML}}</a>
+        <a class="btn btn-primary btn-sm text-light float-left"(click)="comingSoon(action)">{{action.homeTeamML}}</a>
       </div>
       <div class="col" align="center">
-        <a class="btn btn-outline-primary"(click)="comingSoon(action)">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
+        <a class="btn btn-primary btn-sm text-light"(click)="comingSoon(action)">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
       </div>
       <div class="col">
-        <a class="btn btn-outline-primary float-right"(click)="comingSoon(action)">o{{action.totalNumber}}</a>
+        <a class="btn btn-primary btn-sm text-light float-right"(click)="comingSoon(action)">o{{action.totalNumber}}</a>
       </div>
       </div>
     </div>
