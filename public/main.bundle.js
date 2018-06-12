@@ -28,7 +28,8 @@ var UserService = (function () {
     UserService.prototype.getAllUsers = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/users/allProfiles', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
+        return this.http.get('users/allProfiles', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([
@@ -106,7 +107,8 @@ var OddsService = (function () {
     OddsService.prototype.getMLBOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/mlb')
+        //return this.http.get('http://localhost:8080/odds/mlb')
+        return this.http.get('odds/mlb')
             .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
@@ -914,13 +916,15 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
+        return this.http.post('users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/users/authenticate', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
+        return this.http.post('users/authenticate', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
@@ -928,7 +932,8 @@ var AuthService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/users/profile', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
+        return this.http.get('users/profile', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
