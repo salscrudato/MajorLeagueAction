@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {OddsService} from '../../services/odds.service';
 import {AuthService} from '../../services/auth.service';
+import {DataService} from '../../services/data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +17,9 @@ export class MenuComponent implements OnInit {
   constructor(
     private userService:UserService,
     private oddsService:OddsService,
-    private authService:AuthService
+    private authService:AuthService,
+    private router:Router,
+    private dataService:DataService
   ) {}
 
   ngOnInit() {
@@ -40,8 +44,8 @@ export class MenuComponent implements OnInit {
   }
 
   comingSoon(action){
-    alert('Feature Coming Soon!');
-    console.log(action.homeTeam);
+    this.dataService.addBets(action);
+    this.router.navigate(['confirm']);
   }
 
 }
