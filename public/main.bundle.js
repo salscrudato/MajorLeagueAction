@@ -103,12 +103,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var OddsService = (function () {
     function OddsService(http) {
         this.http = http;
-        this.environment = 'Prod';
     }
     OddsService.prototype.getMLBOdds = function () {
+        var environment = 'Prod';
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        if (this.environment = 'Dev') {
+        if (environment = 'Dev') {
             return this.http.get('http://localhost:8080/odds/mlb')
                 .map(function (res) { return res.json(); });
         }

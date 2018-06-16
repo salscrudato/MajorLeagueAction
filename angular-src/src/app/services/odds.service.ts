@@ -8,13 +8,14 @@ export class OddsService {
   environment: string;
 
   constructor(private http: Http) {
-    this.environment = 'Prod';
+
   }
 
   getMLBOdds(){
+    var environment = 'Prod';
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    if(this.environment = 'Dev'){
+    if(environment = 'Dev'){
       return this.http.get('http://localhost:8080/odds/mlb')
         .map(res => res.json());
     } else {
