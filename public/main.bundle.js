@@ -105,17 +105,12 @@ var OddsService = (function () {
         this.http = http;
     }
     OddsService.prototype.getMLBOdds = function () {
-        var environment = 'Prod';
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        if (environment = 'Dev') {
-            return this.http.get('http://localhost:8080/odds/mlb')
-                .map(function (res) { return res.json(); });
-        }
-        else {
-            return this.http.get('odds/mlb')
-                .map(function (res) { return res.json(); });
-        }
+        //return this.http.get('http://localhost:8080/odds/mlb')
+        //  .map(res => res.json());
+        return this.http.get('odds/mlb')
+            .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
