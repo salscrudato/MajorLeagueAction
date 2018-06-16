@@ -5,8 +5,8 @@ const apicache = require('apicache');
 
 let cache = apicache.middleware;
 
-//router.get('/mlb', cache('20 minutes'), function(req, res, next){
-router.get('/mlb', function(req, res, next){
+router.get('/mlb', cache('20 minutes'), function(req, res, next){
+//router.get('/mlb', function(req, res, next){
   console.log('In Odds Service');
   //router.get('/mlb', function(req, res, next){
   var headers = {

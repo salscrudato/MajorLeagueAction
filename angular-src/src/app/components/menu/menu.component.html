@@ -1,7 +1,7 @@
 <!--add row to the class below -->
-<div class="album" align="center">
-  <div *ngFor="let action of actions" class="card col-sm-4 mt-3 p-0">
-    <div class="row">
+<div class="row ml-0 mr-0" align="center">
+  <div *ngFor="let action of actions" class="card col-sm-4 mt-3 pl-0 pr-0">
+    <div class="row pl-0 pr-0">
       <div class="col ml-3" align="left">
         <p>{{action.matchDate}}</p>
       </div>
@@ -18,7 +18,7 @@
         <img class="w-75 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
       </div>
     </div>
-    <div class="card-header border-top">
+    <div class="card-header border-top pl-3 pr-3">
       <div align="left">
         <div class="row pl-3">{{action.awayTeam}}</div>
         <div class="row border-bottom pb-1 pt-1">
