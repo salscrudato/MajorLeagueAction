@@ -8,24 +8,34 @@ import {tokenNotExpired} from 'angular2-jwt';
 export class AuthService {
   authToken: any;
   user: any;
+  environment: string;
 
   constructor(private http: Http) {
+        this.environment = 'Prod';
       }
 
   registerUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
-    return this.http.post('users/register', user, {headers: headers})
-      .map(res => res.json());
+    if(this.environment == 'Dev'){
+      return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
+        .map(res => res.json());
+    } else{
+      return this.http.post('users/register', user, {headers: headers})
+        .map(res => res.json());
+    }
   }
 
   authenticateUser(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
-    return this.http.post('users/authenticate', user, {headers: headers})
-      .map(res => res.json());
+    if(this.environment == 'Dev'){
+      return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
+        .map(res => res.json());
+    } else {
+      return this.http.post('users/authenticate', user, {headers: headers})
+        .map(res => res.json());
+    }
   }
 
   getProfile(){
@@ -33,9 +43,13 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
-    return this.http.get('users/profile', {headers: headers})
-      .map(res => res.json());
+    if(this.environment == 'Dev'){
+      return this.http.get('http://localhost:8080/users/profile', {headers: headers})
+        .map(res => res.json());
+    } else {
+      return this.http.get('users/profile', {headers: headers})
+        .map(res => res.json());
+    }
   }
 
   storeUserData(token, user){
