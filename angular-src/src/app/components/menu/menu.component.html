@@ -1,12 +1,12 @@
-<!--add row to the class below -->
-<div class="row ml-0 mr-0" align="center">
+<div class="container-fluid">
+<div class="row" align="center">
   <div *ngFor="let action of actions" class="card col-sm-4 mt-3 pl-0 pr-0">
     <div class="row pl-0 pr-0">
-      <div class="col ml-3" align="left">
-        <p>{{action.matchDate}}</p>
+      <div class="col" align="left">
+        <p class="m-0 pl-3">{{action.matchDate}}</p>
       </div>
-      <div class="col mr-3" align="right">
-        <p>{{action.matchTime}}</p>
+      <div class="col" align="right">
+        <p class="m-0 pr-3">{{action.matchTime}}</p>
       </div>
     </div>
     <div class ="row" style="height:100px">
@@ -49,4 +49,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>
