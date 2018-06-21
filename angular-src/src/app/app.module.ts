@@ -9,6 +9,7 @@ import {AuthService} from './services/auth.service';
 import {UserService} from './services/user.service';
 import {OddsService} from './services/odds.service';
 import {DataService} from './services/data.service';
+import {BetService} from './services/bets.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {AuthGuard} from './guards/app.guards';
 
@@ -54,7 +55,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, UserService, OddsService, AuthGuard, DataService],
+  providers: [ValidateService, AuthService, UserService, OddsService, AuthGuard, DataService, BetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

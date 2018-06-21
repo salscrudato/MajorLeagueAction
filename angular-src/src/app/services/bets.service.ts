@@ -4,19 +4,18 @@ import { HttpModule } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class OddsService {
+export class BetService {
 
   constructor(private http: Http) {
 
-  }
+      }
 
-  getMLBOdds(){
-
+  placeBet(bet) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:8080/odds/mlb')
-    //return this.http.get('odds/mlb')
-    .map(res => res.json());
+      return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
+      //return this.http.post('users/register', user, {headers: headers})
+        .map(res => res.json());
   }
 
 }
