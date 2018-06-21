@@ -13,8 +13,8 @@ export class BetService {
   placeBet(bet) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-      return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
-      //return this.http.post('users/register', user, {headers: headers})
+      //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
+      return this.http.post('bets/placeBet', bet, {headers: headers})
         .map(res => res.json());
   }
 

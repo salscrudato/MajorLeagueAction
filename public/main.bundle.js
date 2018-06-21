@@ -106,7 +106,8 @@ var BetService = (function () {
     BetService.prototype.placeBet = function (bet) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/bets/placeBet', bet, { headers: headers })
+        //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
+        return this.http.post('bets/placeBet', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService = __decorate([
@@ -148,7 +149,8 @@ var OddsService = (function () {
     OddsService.prototype.getMLBOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/mlb')
+        //return this.http.get('http://localhost:8080/odds/mlb')
+        return this.http.get('odds/mlb')
             .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
@@ -415,10 +417,10 @@ var ConfirmComponent = (function () {
         var _this = this;
         var bet = {
             username: this.username,
-            oddsId: this.oddsId,
+            oddsId: '12345',
             description: 'test',
             odds: 110,
-            amount: 50
+            amount: this.amount
         };
         this.betService.placeBet(bet).subscribe(function (data) {
             if (data.success) {
@@ -1111,7 +1113,7 @@ module.exports = "<app-navbar></app-navbar>\n<!-- <div class=\"container pl-0 pr
 /***/ 698:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <p>Home Team: {{bets.homeTeam}}</p>\n  <p>Away Team: {{bets.awayTeam}}</p>\n  <form (submit)=\"placeBet()\" >\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"Enter Username\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"oddsId\">Odds ID</label>\n      <input type=\"text\" [(ngModel)]=\"oddsId\" name=\"oddsId\" class=\"form-control\" id=\"oddsId\">\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Login\">\n  </form>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <p>Home Team: {{bets.homeTeam}}</p>\n  <p>Away Team: {{bets.awayTeam}}</p>\n  <form (submit)=\"placeBet()\" >\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"Enter Username\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"amount\">Amount</label>\n      <input type=\"text\" [(ngModel)]=\"amount\" name=\"amount\" class=\"form-control\" id=\"amount\">\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n  </form>\n</div>\n"
 
 /***/ }),
 
