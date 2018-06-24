@@ -871,24 +871,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var NavbarComponent = (function () {
     function NavbarComponent(authService) {
         this.authService = authService;
-        console.log(authService.loggedIn());
-        //var arr = [1,5,3,6,2,100,30];
-        //console.log(arr);
-        //this.bubbleSort(arr);
     }
-    NavbarComponent.prototype.bubbleSort = function (arr) {
-        var arrLen = arr.length;
-        for (var i = 0; i < arrLen - 1; i++) {
-            for (var j = 0; j < arrLen - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    var temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
-        console.log(arr);
-    };
     NavbarComponent.prototype.onLogoutClick = function () {
         this.authService.logout();
     };
@@ -1134,7 +1117,7 @@ var environment = {
 /***/ 687:
 /***/ (function(module, exports) {
 
-module.exports = ".alert-fixed {\n    position:fixed;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    z-index:9999;\n    border-radius:0px\n}\n"
+module.exports = ".alert-fixed {\n    position:fixed;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    z-index:9999;\n    border-radius:0px\n}\n\n.maincontainer{ padding-top: 75px; }\n"
 
 /***/ }),
 
@@ -1204,7 +1187,7 @@ module.exports = ""
 /***/ 697:
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<!-- <div class=\"container pl-0 pr-0\"> -->\n\t<flash-messages class=\"alert-fixed\"></flash-messages>\n\t<router-outlet></router-outlet>\n<!-- </div> -->\n"
+module.exports = "<app-navbar class=\"fixed-top\"></app-navbar>\n<!-- <div class=\"container pl-0 pr-0\"> -->\n\t<flash-messages class=\"alert-fixed\"></flash-messages>\n\t<router-outlet class=\"maincontainer\"></router-outlet>\n<!-- </div> -->\n"
 
 /***/ }),
 
@@ -1246,7 +1229,7 @@ module.exports = "<div class=\"container-fluid\">\n<div class=\"row\" align=\"ce
 /***/ 703:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-dark\">\n  <a class=\"navbar-brand\" href=\"#\">MLBets</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/menu']\">MLB</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/start']\">Start</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/profile']\" *ngIf=\"authService.loggedIn()\">Profile</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/dashboard']\" *ngIf=\"authService.loggedIn()\">Dashboard</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/login']\" *ngIf=\"!authService.loggedIn()\">Login</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/register']\" *ngIf=\"!authService.loggedIn()\">Register</a></li>\n      <li><a class=\"nav-link\" (click)=\"onLogoutClick()\" *ngIf=\"authService.loggedIn()\" href=\"#\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand\" href=\"#\">MLBets</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/menu']\">MLB</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/start']\">Start</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a class=\"nav-link collapse\" [routerLink]=\"['/profile']\" *ngIf=\"authService.loggedIn()\">Profile</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/dashboard']\" *ngIf=\"authService.loggedIn()\">Dashboard</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/login']\" *ngIf=\"!authService.loggedIn()\">Login</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" [routerLink]=\"['/register']\" *ngIf=\"!authService.loggedIn()\">Register</a></li>\n      <li><a class=\"nav-link\" (click)=\"onLogoutClick()\" *ngIf=\"authService.loggedIn()\" href=\"#\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 
