@@ -1134,7 +1134,7 @@ var environment = {
 /***/ 687:
 /***/ (function(module, exports) {
 
-module.exports = ".salvatore{\n  position: fixed;\n  top: 0px;\n}\n"
+module.exports = ".salvatore{\n  position: fixed;\n  top: 0px;\n  width: inherit;\n  z-index: 2;\n  background: #252830;\n}\n"
 
 /***/ }),
 
