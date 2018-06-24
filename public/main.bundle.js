@@ -1194,14 +1194,14 @@ module.exports = "<app-navbar class=\"fixed-top\"></app-navbar>\n<!-- <div class
 /***/ 698:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <p>Home Team: {{bets.homeTeam}}</p>\n  <p>Away Team: {{bets.awayTeam}}</p>\n  <form (submit)=\"placeBet()\">\n    <div class=\"form-group\">\n      <label>Bet Description: </label>\n      <p>{{description}}</p>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"amount\">Bet Amount</label>\n      <input type=\"text\" style=\"width:200px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control\" id=\"amount\">\n    </div>\n    <div class=\"form-group row ml-0\">\n      <label class=\"mr-2\">Win Amount:  </label>\n      <p class=\"m-0\" *ngIf=\"odds>0\">{{betAmount * odds/100}}</p>\n      <p class=\"m-0\" *ngIf=\"odds<0\">{{betAmount / (odds * -1) * 100}}</p>\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n  </form>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n  <h2 class=\"page-header\">Place Bet</h2>\n  <p>Home Team: {{bets.homeTeam}}</p>\n  <p>Away Team: {{bets.awayTeam}}</p>\n  <form (submit)=\"placeBet()\">\n    <div class=\"form-group\">\n      <label>Bet Description: </label>\n      <p>{{description}}</p>\n    </div>\n    <div class=\"col>\"\n    <div class=\"form-group\">\n      <label for=\"amount\">Bet Amount</label>\n      <input type=\"text\" style=\"width:200px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n    </div>\n    <div class=\"form-group row ml-0\">\n      <label class=\"mr-2\">Win Amount:  </label>\n      <p class=\"m-0\" *ngIf=\"odds>0\">{{betAmount * odds/100}}</p>\n      <p class=\"m-0\" *ngIf=\"odds<0\">{{betAmount / (odds * -1) * 100}}</p>\n    </div>\n  </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n  </form>\n</div>\n"
 
 /***/ }),
 
 /***/ 699:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n\t<h3>Pending Bets</h3>\n\n\t\t<p *ngFor=\"let pendingBet of pendingBets\">\n\t\t\t{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}\n\t\t</p>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n\t<h2>Pending Bets</h2>\n\t\t<p *ngFor=\"let pendingBet of pendingBets\">\n\t\t\t{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}\n\t\t</p>\n</div>\n"
 
 /***/ }),
 
@@ -1236,7 +1236,7 @@ module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navba
 /***/ 704:
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\n  <h2 class=\"page-header\">{{user.name}}</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Email: {{user.email}}</li>\n    </ul>\n</div>\n"
+module.exports = "<div class=\"container\">\n<div *ngIf=\"user\">\n  <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Email: {{user.email}}</li>\n    </ul>\n</div>\n</div>\n"
 
 /***/ }),
 

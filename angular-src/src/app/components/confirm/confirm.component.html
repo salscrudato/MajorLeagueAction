@@ -1,4 +1,5 @@
 <div class="container pt-5">
+  <h2 class="page-header">Place Bet</h2>
   <p>Home Team: {{bets.homeTeam}}</p>
   <p>Away Team: {{bets.awayTeam}}</p>
   <form (submit)="placeBet()">
@@ -6,15 +7,17 @@
       <label>Bet Description: </label>
       <p>{{description}}</p>
     </div>
+    <div class="col>"
     <div class="form-group">
       <label for="amount">Bet Amount</label>
-      <input type="text" style="width:200px" [(ngModel)]="betAmount" name="betAmount" class="form-control" id="amount">
+      <input type="text" style="width:200px" [(ngModel)]="betAmount" name="betAmount" class="form-control mr-2" id="amount">
     </div>
     <div class="form-group row ml-0">
       <label class="mr-2">Win Amount:  </label>
       <p class="m-0" *ngIf="odds>0">{{betAmount * odds/100}}</p>
       <p class="m-0" *ngIf="odds<0">{{betAmount / (odds * -1) * 100}}</p>
     </div>
+  </div>
     <input type="submit" class="btn btn-primary" value="Place Bet">
   </form>
 </div>
