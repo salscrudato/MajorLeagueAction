@@ -25,8 +25,9 @@ router.post('/placeBet', function(req, res, next){
 
 router.post('/getPendings', function(req, res, next){
 	const userId = req.body.user._id;
+	console.log(userId);
 	var query = {username: userId}
-	Bet.find(function(err, bet) {
+	Bet.find(query, function(err, bet) {
     	var pendingBets = [];
     	bet.forEach(function(oneBet) {
       		pendingBets.push(oneBet);

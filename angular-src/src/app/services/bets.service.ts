@@ -21,6 +21,7 @@ export class BetService {
   getPendingBets(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    console.log(user);
       //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
       return this.http.post('bets/getPendings', user, {headers: headers})
         .map(res => res.json());
