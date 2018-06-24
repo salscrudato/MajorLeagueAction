@@ -1201,7 +1201,7 @@ module.exports = "<div class=\"container pt-5\">\n  <h2 class=\"page-header pt-2
 /***/ 699:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n\t<h2>Pending Bets</h2>\n\t\t<p *ngFor=\"let pendingBet of pendingBets\">\n\t\t\t{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}\n\t\t</p>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n\t<h2 class=\"pt-2\">Pending Bets</h2>\n\t\t<p *ngFor=\"let pendingBet of pendingBets\">\n\t\t\t{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}\n\t\t</p>\n</div>\n"
 
 /***/ }),
 
