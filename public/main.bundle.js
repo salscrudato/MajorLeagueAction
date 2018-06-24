@@ -1117,7 +1117,7 @@ var environment = {
 /***/ 687:
 /***/ (function(module, exports) {
 
-module.exports = ".alert-fixed {\n    position:fixed;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    z-index:9999;\n    border-radius:0px\n}\n\n.maincontainer{ padding-top: 75px; }\n"
+module.exports = ".alert-fixed {\n    position:fixed;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    z-index:9999;\n    border-radius:0px\n}\n"
 
 /***/ }),
 
@@ -1187,7 +1187,7 @@ module.exports = ""
 /***/ 697:
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar class=\"fixed-top\"></app-navbar>\n<!-- <div class=\"container pl-0 pr-0\"> -->\n\t<flash-messages class=\"alert-fixed\"></flash-messages>\n\t<router-outlet class=\"maincontainer\"></router-outlet>\n<!-- </div> -->\n"
+module.exports = "<app-navbar class=\"static-top\"></app-navbar>\n<!-- <div class=\"container pl-0 pr-0\"> -->\n\t<flash-messages class=\"alert-fixed\"></flash-messages>\n\t<router-outlet></router-outlet>\n<!-- </div> -->\n"
 
 /***/ }),
 
