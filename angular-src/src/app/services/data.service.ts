@@ -4,17 +4,28 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   bets:any;
+  profile:any;
+  type:string;
 
   constructor() { }
 
-  addBets(action){
+  addBets(action, type, profile){
     this.bets=action;
-    console.log("In data service " + this.bets);
+    this.type=type;
+    this.profile=profile;
+    console.log(type);
   }
 
   getBets(){
     return this.bets;
   }
 
+  getProfile(){
+    return this.profile;
+  }
+
+  getBetType(){
+    return this.type;
+  }
 
 }

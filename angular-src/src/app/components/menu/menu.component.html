@@ -23,13 +23,13 @@
         <div class="row pl-3">{{action.awayTeam}}</div>
         <div class="row border-bottom pb-1 pt-1">
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-left"(click)="comingSoon(action)">{{action.awayTeamML}}</a>
+            <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'awayTeamML')">{{action.awayTeamML}}</a>
           </div>
           <div class="col" align="center">
-            <a class="btn btn-primary btn-sm text-light"(click)="comingSoon(action)">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'awayTeamRL')">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-right"(click)="comingSoon(action)">u{{action.totalNumber}}</a>
+            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'over')">u{{action.totalNumber}}</a>
           </div>
         </div>
       </div>
@@ -37,13 +37,13 @@
         <div class="row pl-3">{{action.homeTeam}}</div>
         <div class="row pb-1 pt-1">
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-left"(click)="comingSoon(action)">{{action.homeTeamML}}</a>
+            <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'homeTeamML')">{{action.homeTeamML}}</a>
           </div>
           <div class="col" align="center">
-            <a class="btn btn-primary btn-sm text-light"(click)="comingSoon(action)">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'homeTeamRL')">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-right"(click)="comingSoon(action)">o{{action.totalNumber}}</a>
+            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'under')">o{{action.totalNumber}}</a>
           </div>
         </div>
       </div>

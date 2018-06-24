@@ -60,8 +60,8 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), function(r
 });
 
 router.get('/allProfiles', function(req, res){
-	var query = {name: 'Salvatore Scrudato'}
-	User.find(query, function(err, user) {
+	//var query = {name: 'Salvatore Scrudato'}
+	User.find(function(err, user) {
     	var userMap = [];
     	user.forEach(function(oneUser) {
       		userMap.push(oneUser);

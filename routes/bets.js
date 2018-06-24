@@ -10,7 +10,8 @@ router.post('/placeBet', function(req, res, next){
     oddId: req.body.oddsId,
     description: req.body.description,
     odds: req.body.odds,
-    amount: req.body.amount
+    betAmount: req.body.betAmount,
+		winAmount: req.body.winAmount
 	});
 
 	Bet.placeBet(bet, function(err,user){
@@ -20,6 +21,19 @@ router.post('/placeBet', function(req, res, next){
 			res.json({success: true, msg: 'Bet placed'});
 		}
 	});
+});
+
+router.post('/getPendings', function(req, res, next){
+	const userId = req.body.user._id;
+	var query = {username: userId}
+	Bet.find(function(err, bet) {
+    	var pendingBets = [];
+    	bet.forEach(function(oneBet) {
+      		pendingBets.push(oneBet);
+    	});
+    	//console.log('The first name in the list is '+userMap[0].name);
+    	res.send(pendingBets);
+  });
 });
 
 module.exports = router;

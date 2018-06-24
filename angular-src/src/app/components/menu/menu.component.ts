@@ -4,6 +4,7 @@ import {OddsService} from '../../services/odds.service';
 import {AuthService} from '../../services/auth.service';
 import {DataService} from '../../services/data.service';
 import {Router} from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-menu',
@@ -19,13 +20,17 @@ export class MenuComponent implements OnInit {
     private oddsService:OddsService,
     private authService:AuthService,
     private router:Router,
-    private dataService:DataService
+    private dataService:DataService,
+    private flashMessage:FlashMessagesService
   ) {}
 
   ngOnInit() {
-    this.getUserId();
+    this.getOdds();
+  }
+
+  getOdds(){
     this.oddsService.getMLBOdds().subscribe(data =>{
-    console.log(data);
+      console.log(data);
 
       for (var i = 0; i < data.length; i++) {
         this.actions.push(data[i]);
@@ -34,18 +39,18 @@ export class MenuComponent implements OnInit {
   }
 
   getUserId(){
-    this.authService.getProfile().subscribe(profile => {
-      console.log(profile.user);
-    },
-    err =>{
-      console.log(err);
-      return false;
-    });
   }
 
-  comingSoon(action){
-    this.dataService.addBets(action);
-    this.router.navigate(['confirm']);
+  placeBet(action,type){
+    this.authService.getProfile().subscribe(profile => {
+      this.dataService.addBets(action, type, profile);
+      this.router.navigate(['confirm']);
+    },
+    err =>{
+      this.flashMessage.show('You must be logged in to place a bet.', {cssClass: 'alert-danger'});
+      console.log(err._body);
+      return false;
+    });
   }
 
 }

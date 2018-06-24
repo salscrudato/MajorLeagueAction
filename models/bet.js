@@ -16,8 +16,11 @@ const BetSchema = mongoose.Schema({
   odds: {
     type: Number
   },
-  amount: {
+  betAmount: {
     type: Number
+  },
+  winAmount: {
+    type:Number
   }
 });
 

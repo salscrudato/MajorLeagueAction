@@ -1,8 +1,7 @@
-<div>
-	<h3>Current Usernames</h3>
-	<ul>
-	<li *ngFor="let user of users">
-      {{ user.username }}
-    </li>
-	</ul>
+<div class="container">
+	<h3>Pending Bets</h3>
+
+		<p *ngFor="let pendingBet of pendingBets">
+			{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}
+		</p>
 </div>
