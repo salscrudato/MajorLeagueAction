@@ -1,34 +1,25 @@
 <div class="container pt-5">
 	<div class ="jumbotron text-center">
-		<h1>Sal's Multi-Use MEAN Site.</h1>
-		<p class="lead">Create an Account or Login to place bets!</p>
+		<h1>Stoolie Bets</h1>
+		<p class="lead">A betting site made by the people, for the people.</p>
 		<div>
 			<button type="button" [routerLink]="['/register']" class="btn btn-primary">Register</button>
 			<button type="button" [routerLink]="['/login']" class="btn btn-secondary">Login</button>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-4">
-			<h3>Safe and Secure Betting</h3>
-			<p>JWT Authentication for login and access control</p>
+	<div class="row" align="center">
+		<div class="col-md-4 mb-3">
+			<h3>View Pending Bets</h3>
+			<button type="button" [routerLink]="['/dashboard']" class="btn btn-primary">Pendings</button>
 		</div>
-		<div class="col-md-4">
-			<h3>Peer to Peer</h3>
-			<p>Bets are made P2P and a very small fee is taken.</p>
+		<div class="col-md-4 mb-3">
+			<h3>MLB Bets</h3>
+			<button type="button" [routerLink]="['/menu']" class="btn btn-primary">MLB</button>
 		</div>
-		<div class="col-md-4">
-			<h3>TBD</h3>
-			<p>TBD</p>
+		<div class="col-md-4 mb-3">
+			<h3>MLB Bets</h3>
+			<button type="button" [routerLink]="['/menu']" class="btn btn-primary">Register</button>
 		</div>
-	</div>
-
-	<div>
-		<h3>Available Usernames</h3>
-		<ul>
-			<li *ngFor="let user of users" (click)="test(user)">
-				{{ user.username }}
-			</li>
-		</ul>
 	</div>
 </div>

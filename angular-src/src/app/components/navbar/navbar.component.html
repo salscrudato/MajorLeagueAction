@@ -1,18 +1,18 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">MLBets</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" href="#">Stoolie Bets</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nb" aria-controls="nb" aria-expanded="false">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="nb">
     <ul class="navbar-nav mr-auto">
-      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/menu']">MLB</a></li>
+      <li><a class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">MLB</a></li>
     </ul>
     <ul class="navbar-nav mr-right">
-      <li><a class="nav-link collapse" [routerLink]="['/profile']" *ngIf="authService.loggedIn()">Profile</a></li>
-      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/dashboard']" *ngIf="authService.loggedIn()">Dashboard</a></li>
-      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/login']" *ngIf="!authService.loggedIn()">Login</a></li>
-      <li><a class="nav-link" data-toggle="collapse" [routerLink]="['/register']" *ngIf="!authService.loggedIn()">Register</a></li>
-      <li><a class="nav-link" (click)="onLogoutClick()" *ngIf="authService.loggedIn()" href="#">Logout</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Profile</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Dashboard</a></li>
+      <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Login</a></li>
+      <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Register</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" (click)="onLogoutClick()">Logout</a></li>
     </ul>
   </div>
 </nav>
