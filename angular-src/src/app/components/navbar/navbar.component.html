@@ -8,8 +8,8 @@
       <li><a class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">MLB</a></li>
     </ul>
     <ul class="navbar-nav mr-right">
-      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Profile</a></li>
-      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Dashboard</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" [routerLink]="['/profile']">Profile</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" [routerLink]="['/dashboard']">Dashboard</a></li>
       <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Login</a></li>
       <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">Register</a></li>
       <li><a *ngIf="authService.loggedIn()" class="nav-link" (click)="onLogoutClick()">Logout</a></li>
