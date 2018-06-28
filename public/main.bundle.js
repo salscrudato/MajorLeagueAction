@@ -949,6 +949,7 @@ var ProfileComponent = (function () {
         });
         this.betService.getAllPendings().subscribe(function (pendings) {
             _this.allPendings = pendings;
+            console.log(pendings);
         }, function (err) {
             console.log(err);
             return false;
@@ -1264,7 +1265,7 @@ module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navba
 /***/ 704:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Email: {{user.email}}</li>\n    </ul>\n    <h2 class=\"page-header\">Pending Bets</h2>\n    <ul *ngFor=\"let pending of allPendings\" class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{pendingBet.username}} Description: {{pendingBet.description}}</li>\n    </ul>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Email: {{user.email}}</li>\n    </ul>\n    <h2 class=\"page-header\">Pending Bets</h2>\n    <ul *ngFor=\"let pending of allPendings\" class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{pending.username}} Description: {{pending.description}}</li>\n    </ul>\n  </div>\n</div>\n"
 
 /***/ }),
 

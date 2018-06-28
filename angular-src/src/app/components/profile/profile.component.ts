@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
 
     this.betService.getAllPendings().subscribe(pendings => {
       this.allPendings = pendings;
+      console.log(pendings);
     },
     err =>{
       console.log(err);
