@@ -28,8 +28,7 @@ var UserService = (function () {
     UserService.prototype.getAllUsers = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
-        return this.http.get('users/allProfiles', { headers: headers })
+        return this.http.get('http://localhost:8080/users/allProfiles', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([
@@ -71,16 +70,14 @@ var BetService = (function () {
     BetService.prototype.placeBet = function (bet) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
-        return this.http.post('bets/placeBet', bet, { headers: headers })
+        return this.http.post('http://localhost:8080/bets/placeBet', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getPendingBets = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         console.log(user);
-        //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
-        return this.http.post('bets/getPendings', user, { headers: headers })
+        return this.http.post('http://localhost:8080/bets/getPendings', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService = __decorate([
@@ -166,8 +163,7 @@ var OddsService = (function () {
     OddsService.prototype.getMLBOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/odds/mlb')
-        return this.http.get('odds/mlb')
+        return this.http.get('http://localhost:8080/odds/mlb')
             .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
@@ -289,15 +285,13 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
-        return this.http.post('users/register', user, { headers: headers })
+        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
-        return this.http.post('users/authenticate', user, { headers: headers })
+        return this.http.post('http://localhost:8080/users/authenticate', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
@@ -305,8 +299,7 @@ var AuthService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
-        return this.http.get('users/profile', { headers: headers })
+        return this.http.get('http://localhost:8080/users/profile', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
@@ -533,22 +526,27 @@ var ConfirmComponent = (function () {
             case 'awayTeamRL':
                 this.description = awayTeam + " Run Line " + awayTeamRL + " " + awayTeamRLOdds;
                 this.odds = parseInt(awayTeamRLOdds);
+                this.betType = 'awayTeamRL';
                 break;
             case 'homeTeamRL':
                 this.description = homeTeam + " Run Line " + homeTeamRL + " " + homeTeamRLOdds;
                 this.odds = parseInt(homeTeamRLOdds);
+                this.betType = 'homeTeamRL';
                 break;
             case 'awayTeamML':
                 this.description = awayTeam + " Money Line " + awayTeamML;
                 this.odds = parseInt(awayTeamML);
+                this.betType = 'awayTeamML';
                 break;
             case 'homeTeamML':
                 this.description = homeTeam + " Money Line " + homeTeamML;
                 this.odds = parseInt(homeTeamML);
+                this.betType = 'homeTeamML';
                 break;
             case 'over':
                 this.description = awayTeam + " @ " + homeTeam + " Over " + totalNumber;
                 this.odds = 100;
+                this.betType = 'over';
                 break;
             default:
                 break;

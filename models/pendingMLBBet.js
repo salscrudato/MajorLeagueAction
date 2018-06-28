@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
 //Bet schema
-const BetSchema = mongoose.Schema({
+const PendingMLBBetSchema = mongoose.Schema({
   username: {
     type: String
   },
@@ -19,12 +19,18 @@ const BetSchema = mongoose.Schema({
   betAmount: {
     type: Number
   },
+  betType: {
+    type:String
+  },
   winAmount: {
     type:Number
+  },
+  closed: {
+    type:Boolean
   }
 });
 
-const Bet = module.exports = mongoose.model('Bet', BetSchema);
+const PendingMLBBet = module.exports = mongoose.model('PendingMLBBet', PendingMLBBetSchema);
 
 module.exports.placeBet = function(bet, callback){
   bet.save(callback);

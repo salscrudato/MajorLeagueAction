@@ -17,6 +17,7 @@ export class ConfirmComponent implements OnInit {
   odds:number;
   description:string;
   oddsId:string;
+  betType:string;
 
   constructor(
     private dataService:DataService,
@@ -49,22 +50,27 @@ export class ConfirmComponent implements OnInit {
       case 'awayTeamRL':
         this.description = awayTeam + " Run Line " + awayTeamRL + " " + awayTeamRLOdds;
         this.odds = parseInt(awayTeamRLOdds);
+        this.betType = 'awayTeamRL';
       break;
       case 'homeTeamRL':
         this.description = homeTeam + " Run Line " + homeTeamRL + " " + homeTeamRLOdds;
         this.odds = parseInt(homeTeamRLOdds);
+        this.betType = 'homeTeamRL';
       break;
       case 'awayTeamML':
         this.description = awayTeam + " Money Line " + awayTeamML;
         this.odds = parseInt(awayTeamML);
+        this.betType = 'awayTeamML';
       break;
       case 'homeTeamML':
         this.description = homeTeam + " Money Line " + homeTeamML;
         this.odds = parseInt(homeTeamML);
+        this.betType = 'homeTeamML';
       break;
       case 'over':
         this.description = awayTeam + " @ " + homeTeam + " Over " + totalNumber;
         this.odds=100;
+        this.betType = 'over';
       break;
       default:
       break;
