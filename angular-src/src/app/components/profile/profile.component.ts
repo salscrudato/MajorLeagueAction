@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import {BetService} from '../../services/bets.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,7 +10,11 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user:Object;
-  constructor(private authService:AuthService, private router:Router) { }
+  allPendings:Object;
+  constructor(private authService:AuthService,
+    private router:Router,
+    private betService:BetService
+  ){ }
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
@@ -19,6 +24,14 @@ export class ProfileComponent implements OnInit {
       console.log(err);
       return false;
     });
+
+    this.betService.getAllPendings().subscribe(pendings => {
+      this.allPendings = pendings;
+    },
+    err =>{
+      console.log(err);
+      return false;
+    })
   }
 
 }

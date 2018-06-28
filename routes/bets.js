@@ -39,4 +39,16 @@ router.post('/getPendings', function(req, res, next){
   });
 });
 
+router.get('/getAllPendings', function(req, res, next){
+	var query = {closed: false}
+	PendingMLBBet.find(query, function(err, bet) {
+    	var pendingBets = [];
+    	bet.forEach(function(oneBet) {
+      		pendingBets.push(oneBet);
+    	});
+    	//console.log('The first name in the list is '+userMap[0].name);
+    	res.send(pendingBets);
+  });
+});
+
 module.exports = router;

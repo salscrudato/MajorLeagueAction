@@ -27,4 +27,12 @@ export class BetService {
         .map(res => res.json());
   }
 
+  getAllPendings() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+      //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
+      return this.http.get('bets/getAllPendings', {headers: headers})
+        .map(res => res.json());
+  }
+
 }
