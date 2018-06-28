@@ -18,6 +18,12 @@ const UserSchema = mongoose.Schema({
 	password: {
 		type: String,
 		required: true
+	},
+	totalBalance:{
+		type: Number
+	},
+	currentWeekBalance: {
+		type: Number
 	}
 });
 
@@ -48,4 +54,3 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		callback(null, isMatch);
 	});
 }
-
