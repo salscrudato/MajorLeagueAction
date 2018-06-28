@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const apicache = require('apicache');
-const MLBAction = require('./MLBActionClass.js');
+const MLBAction = require('./mlbActionClass.js');
 
 let cache = apicache.middleware;
 
