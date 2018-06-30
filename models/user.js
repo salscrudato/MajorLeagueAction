@@ -54,3 +54,8 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		callback(null, isMatch);
 	});
 }
+
+module.exports.updateBalance = function(userId, amount, callback){
+	const updatedBalance = {totalBalance: amount};
+	User.findByIdAndUpdate(userId, updatedBalance, callback);
+}

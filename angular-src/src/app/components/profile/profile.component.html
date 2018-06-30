@@ -5,7 +5,7 @@
       <li class="list-group-item">Username: {{user.username}}</li>
       <li class="list-group-item">Email: {{user.email}}</li>
     </ul>
-    <h2 class="page-header">Pending Bets</h2>
+    <h2 *ngIf="userIsAdmin()" class="page-header">All Pending Bets</h2>
     <ul *ngFor="let pending of allPendings" class="list-group">
       <li class="list-group-item">Username: {{pending.username}} Description: {{pending.description}}</li>
     </ul>

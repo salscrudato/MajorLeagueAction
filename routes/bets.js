@@ -6,7 +6,7 @@ const config = require('../config/database');
 //Route to place a bet
 router.post('/placeBet', function(req, res, next){
 	let bet = new PendingMLBBet({
-		username: req.body.username,
+		userId: req.body.userId,
     oddId: req.body.oddsId,
     description: req.body.description,
     odds: req.body.odds,
@@ -28,7 +28,7 @@ router.post('/placeBet', function(req, res, next){
 router.post('/getPendings', function(req, res, next){
 	const userId = req.body.user._id;
 	console.log(userId);
-	var query = {username: userId}
+	var query = {userId: userId}
 	PendingMLBBet.find(query, function(err, bet) {
     	var pendingBets = [];
     	bet.forEach(function(oneBet) {

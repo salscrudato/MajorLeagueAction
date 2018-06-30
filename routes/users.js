@@ -23,6 +23,17 @@ router.post('/register', function(req, res, next){
 	});
 });
 
+router.post('/updateBalance', function(req, res, next){
+	const userId = req.body.userId;
+	const amount = req.body.amount;
+	User.getUserById(userId,function(err, user){
+		const curBal = user.totalBalance;
+		const newBal = curBal + amount;
+		console.log(user);
+		//User.updateBalance()
+	})
+});
+
 router.post('/authenticate', function(req, res, next){
 	const username = req.body.username;
 	const password = req.body.password;
@@ -60,13 +71,11 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), function(r
 });
 
 router.get('/allProfiles', function(req, res){
-	//var query = {name: 'Salvatore Scrudato'}
 	User.find(function(err, user) {
     	var userMap = [];
     	user.forEach(function(oneUser) {
       		userMap.push(oneUser);
     	});
-    	//console.log('The first name in the list is '+userMap[0].name);
     	res.send(userMap);
   });
 });

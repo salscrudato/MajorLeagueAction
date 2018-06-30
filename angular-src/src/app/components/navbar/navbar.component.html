@@ -6,6 +6,7 @@
   <div class="collapse navbar-collapse" id="nb">
     <ul class="navbar-nav mr-auto">
       <li><a class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">MLB</a></li>
+      <li><a class="nav-link" data-target="#nb" (click)="route('mlblive')" [routerLink]="['/mlblive']">MLB Live Bets</a></li>
     </ul>
     <ul class="navbar-nav mr-right">
       <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('profile')" [routerLink]="['/profile']">Profile</a></li>

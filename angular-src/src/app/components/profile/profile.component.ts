@@ -9,8 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user:Object;
-  allPendings:Object;
+  user:any;
+  allPendings:any;
   constructor(private authService:AuthService,
     private router:Router,
     private betService:BetService
@@ -33,6 +33,15 @@ export class ProfileComponent implements OnInit {
       console.log(err);
       return false;
     })
+  }
+
+  closePendingBet(){
+
+  }
+
+  userIsAdmin(){
+    return this.user.username='admin';
+
   }
 
 }

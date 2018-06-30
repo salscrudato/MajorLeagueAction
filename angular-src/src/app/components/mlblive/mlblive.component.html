@@ -1,0 +1,46 @@
+<div class="container-fluid pt-5">
+<div class="row" align="center">
+  <div *ngFor="let action of actions" class="card col-sm-4 mt-3 pl-0 pr-0">
+    <div class ="row" style="height:100px">
+      <div class ="col float-left">
+        <img class="w-75 h-100" src="{{action.awayTeamImage}}" alt="Card image cap">
+      </div>
+      <h2 class="mt-4">@</h2>
+      <div class ="col float-right">
+        <img class="w-75 h-100" src="{{action.homeTeamImage}}" alt="Card image cap">
+      </div>
+    </div>
+    <div class="card-header border-top pl-3 pr-3">
+      <div align="left">
+        <div class="row pl-3">{{action.awayTeam}}</div>
+        <div class="row border-bottom pb-1 pt-1">
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'awayTeamML')">{{action.awayTeamML}}</a>
+          </div>
+          <div class="col" align="center">
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'awayTeamRL')">{{action.awayRunLine}} {{action.awayTeamRL}}</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'over')">u{{action.overUnder}}</a>
+          </div>
+        </div>
+      </div>
+      <div align="left">
+        <div class="row pl-3">{{action.homeTeam}}</div>
+        <div class="row pb-1 pt-1">
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'homeTeamML')">{{action.homeTeamML}}</a>
+          </div>
+          <div class="col" align="center">
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'homeTeamRL')">{{action.homeRunLine}} {{action.homeTeamRL}}</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'under')">o{{action.overUnder}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<a class="btn btn-primary btn-sm text-light float-right"(click)="getOdds()">Refresh</a>

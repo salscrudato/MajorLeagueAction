@@ -11,7 +11,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class ConfirmComponent implements OnInit {
 
-  username:string;
+  userId:string;
   betAmount:number = 0;
   bets:any;
   odds:number;
@@ -29,7 +29,7 @@ export class ConfirmComponent implements OnInit {
   ngOnInit() {
     this.bets = this.dataService.getBets();
     this.oddsId = this.bets.id;
-    this.username = this.dataService.getProfile().user._id;
+    this.userId = this.dataService.getProfile().user._id;
     const betType = this.dataService.getBetType();
     this.setBetDetails(betType)
   }
@@ -94,7 +94,7 @@ export class ConfirmComponent implements OnInit {
     }
 
     const bet = {
-      username: this.username,
+      userId: this.userId,
       oddsId: this.oddsId,
       description: this.description,
       odds: this.odds,

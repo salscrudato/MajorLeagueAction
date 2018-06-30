@@ -9,24 +9,27 @@ export class AuthService {
   authToken: any;
   user: any;
   environment: string;
+  urlPrefix = '';
 
   constructor(private http: Http) {
-        this.environment = 'Prod';
+
       }
 
   registerUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+      const url = this.urlPrefix + 'users/register';
       //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
-      return this.http.post('users/register', user, {headers: headers})
+      return this.http.post(url, user, {headers: headers})
         .map(res => res.json());
   }
 
   authenticateUser(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+      const url = this.urlPrefix + 'users/authenticate';
       //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
-      return this.http.post('users/authenticate', user, {headers: headers})
+      return this.http.post(url, user, {headers: headers})
         .map(res => res.json());
   }
 
@@ -35,8 +38,9 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
+      const url = this.urlPrefix + 'users/profile';
       //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
-      return this.http.get('users/profile', {headers: headers})
+      return this.http.get(url, {headers: headers})
         .map(res => res.json());
   }
 

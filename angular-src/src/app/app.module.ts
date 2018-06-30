@@ -23,6 +23,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { StartComponent } from './components/start/start.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { MlbliveComponent } from './components/mlblive/mlblive.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'menu', component: MenuComponent},
   {path: 'start', component: StartComponent},
-  {path: 'confirm', component: ConfirmComponent}
+  {path: 'confirm', component: ConfirmComponent},
+  {path: 'mlblive', component: MlbliveComponent}
 ]
 
 @NgModule({
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     MenuComponent,
     StartComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    MlbliveComponent
   ],
   imports: [
     BrowserModule,

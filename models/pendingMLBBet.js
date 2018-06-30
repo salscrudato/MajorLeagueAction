@@ -4,7 +4,7 @@ const config = require('../config/database');
 
 //Bet schema
 const PendingMLBBetSchema = mongoose.Schema({
-  username: {
+  userId: {
     type: String
   },
   oddsId: {
