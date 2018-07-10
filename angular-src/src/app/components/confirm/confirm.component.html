@@ -14,8 +14,8 @@
     </div>
     <div class="form-group row ml-0">
       <label class="mr-2">Win Amount:  </label>
-      <p class="m-0" *ngIf="odds>0">{{betAmount * odds/100}}</p>
-      <p class="m-0" *ngIf="odds<0">{{betAmount / (odds * -1) * 100}}</p>
+      <p class="m-0" *ngIf="odds>0">{{round(betAmount * odds/100)}}</p>
+      <p class="m-0" *ngIf="odds<0">{{round(betAmount / (odds * -1) * 100)}}</p>
     </div>
   </div>
     <input type="submit" class="btn btn-primary" value="Place Bet">

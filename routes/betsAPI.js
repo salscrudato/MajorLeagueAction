@@ -3,7 +3,7 @@ const router = express.Router();
 const request = require('request');
 const reqThen = require('then-request');
 const apicache = require('apicache');
-const MlbLiveOdds = require('./mlbLiveOddsClass.js');
+const MlbLiveOdds = require('../classes/mlbLiveOddsClass.js');
 //Can add global variables here i think
 const apiKey = '9095-0czQGV5X2XtHOn';
 var events = [];

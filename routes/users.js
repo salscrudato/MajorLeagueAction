@@ -9,9 +9,10 @@ const config = require('../config/database');
 router.post('/register', function(req, res, next){
 	let newUser = new User({
 		name: req.body.name,
-		email: req.body.email,
 		username: req.body.username,
-		password: req.body.password
+		password: req.body.password,
+		credit: req.body.credit,
+		currentBalance: 0
 	});
 
 	User.addUser(newUser, function(err,user){
@@ -26,12 +27,15 @@ router.post('/register', function(req, res, next){
 router.post('/updateBalance', function(req, res, next){
 	const userId = req.body.userId;
 	const amount = req.body.amount;
-	User.getUserById(userId,function(err, user){
-		const curBal = user.totalBalance;
+	User.getUserById(userId, function(err, user){
+		const curBal = user.currentBalance;
 		const newBal = curBal + amount;
-		console.log(user);
-		//User.updateBalance()
-	})
+		// user.currentBalance.$inc(amount);
+		console.log(newBal);
+		User.updateBalance(userId, newBal, function(err, response){
+			console.log(response);
+		});
+	});
 });
 
 router.post('/authenticate', function(req, res, next){

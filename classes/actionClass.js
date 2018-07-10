@@ -1,12 +1,17 @@
-class MLBAction {
+class Action {
   constructor(id, details, matchTime,
-    odds, homeTeam, awayTeam, homePitcher, awayPitcher) {
+    odds, homeTeam, awayTeam, homePitcher, awayPitcher, sport) {
       this.id = id;
       this.details = details;
       this.matchDate = this.constructor.setTime(matchTime);
-      this.matchTime = matchTime.substr(11,5);
-      this.homeTeam = homeTeam + ' [' + homePitcher + ']';
-      this.awayTeam = awayTeam + ' [' + awayPitcher + ']';
+      this.matchTime = this.constructor.convertTime(matchTime);
+      if (sport == 0){
+        this.homeTeam = homeTeam + ' [' + homePitcher + ']';
+        this.awayTeam = awayTeam + ' [' + awayPitcher + ']';
+      } else {
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+      }
       for(var i = 0; i < odds.length; i++){
         if(odds[i].OddType=="Game"){
           this.homeTeamML = odds[i].MoneyLineHome;
@@ -20,12 +25,33 @@ class MLBAction {
       }
       this.homeImagePath = this.constructor.setHomeAndAwayImages(homeTeam);
       this.awayImagePath = this.constructor.setHomeAndAwayImages(awayTeam);
+      this.sport = sport;
     }
 
     static setTime(gameTime){
       var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var month = Number(gameTime.substr(5,2));
       return months[month - 1] + " " + gameTime.substr(8,2);
+    }
+
+    static convertTime(gameTime){
+      var dayNight;
+      var hour = Number(gameTime.substr(11,2));
+      var hour = hour - 4;
+      if(hour < 0){
+        hour = 24 + hour;
+      }
+      if(hour > 12){
+        hour = hour-12;
+        dayNight = "PM";
+      } else {
+        dayNight = "AM"
+      }
+      return hour + gameTime.substr(13,3) + " " + dayNight;
+    }
+
+    static sayHello(){
+      console.log('Hello');
     }
 
     static setHomeAndAwayImages(team){
@@ -126,4 +152,4 @@ class MLBAction {
     }
   }
 
-  module.exports = MLBAction;
+  module.exports = Action;

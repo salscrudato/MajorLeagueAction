@@ -12,7 +12,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 export class ConfirmComponent implements OnInit {
 
   userId:string;
-  betAmount:number = 0;
+  betAmount:number;
   bets:any;
   odds:number;
   description:string;
@@ -28,7 +28,6 @@ export class ConfirmComponent implements OnInit {
 
   ngOnInit() {
     this.bets = this.dataService.getBets();
-    this.oddsId = this.bets.id;
     this.userId = this.dataService.getProfile().user._id;
     const betType = this.dataService.getBetType();
     this.setBetDetails(betType)
@@ -45,6 +44,7 @@ export class ConfirmComponent implements OnInit {
     const homeTeamRL = this.addPlus(this.bets.homeTeamRL);
     const homeTeamRLOdds = this.addPlus(this.bets.homeTeamRLOdds);
     const totalNumber = this.bets.totalNumber;
+    this.oddsId = this.bets.id;
 
     switch(betType) {
       case 'awayTeamRL':
@@ -88,9 +88,9 @@ export class ConfirmComponent implements OnInit {
   placeBet(){
     var winAmountCalc;
     if(this.odds > 0){
-      winAmountCalc = (this.odds / 100) * this.betAmount;
+      winAmountCalc = this.round((this.odds / 100) * this.betAmount);
     } else {
-      winAmountCalc = this.betAmount / (this.odds * -1) * 100;
+      winAmountCalc = this.round(this.betAmount / (this.odds * -1) * 100);
     }
 
     const bet = {
@@ -112,6 +112,10 @@ export class ConfirmComponent implements OnInit {
       }
     });
 
+  }
+
+  round(amount){
+    return Math.round(amount);
   }
 
 }

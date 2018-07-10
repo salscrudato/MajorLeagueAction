@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const PendingMLBBet = require('../models/pendingMLBBet');
+const Bet = require('../models/bet');
 const config = require('../config/database');
 
 //Route to place a bet
 router.post('/placeBet', function(req, res, next){
-	let bet = new PendingMLBBet({
+	let bet = new Bet({
 		userId: req.body.userId,
-    oddId: req.body.oddsId,
+    oddsId: req.body.oddsId,
     description: req.body.description,
     odds: req.body.odds,
     betAmount: req.body.betAmount,
@@ -16,7 +16,7 @@ router.post('/placeBet', function(req, res, next){
 		closed: 0
 	});
 
-	PendingMLBBet.placeBet(bet, function(err,user){
+	Bet.placeBet(bet, function(err,user){
 		if(err){
 			res.json({success: false, msg: 'Failed to place bet'});
 		} else {
@@ -29,7 +29,7 @@ router.post('/getPendings', function(req, res, next){
 	const userId = req.body.user._id;
 	console.log(userId);
 	var query = {userId: userId}
-	PendingMLBBet.find(query, function(err, bet) {
+	Bet.find(query, function(err, bet) {
     	var pendingBets = [];
     	bet.forEach(function(oneBet) {
       		pendingBets.push(oneBet);
@@ -41,7 +41,7 @@ router.post('/getPendings', function(req, res, next){
 
 router.get('/getAllPendings', function(req, res, next){
 	var query = {closed: false}
-	PendingMLBBet.find(query, function(err, bet) {
+	Bet.find(query, function(err, bet) {
     	var pendingBets = [];
     	bet.forEach(function(oneBet) {
       		pendingBets.push(oneBet);

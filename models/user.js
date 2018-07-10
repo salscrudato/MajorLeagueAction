@@ -7,10 +7,6 @@ const UserSchema = mongoose.Schema({
 	name: {
 		type: String
 	},
-	email: {
-		type: String,
-		required: true
-	},
 	username: {
 		type: String,
 		required: true
@@ -19,10 +15,10 @@ const UserSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	totalBalance:{
+	credit: {
 		type: Number
 	},
-	currentWeekBalance: {
+	currentBalance:{
 		type: Number
 	}
 });
@@ -56,6 +52,6 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 }
 
 module.exports.updateBalance = function(userId, amount, callback){
-	const updatedBalance = {totalBalance: amount};
+	const updatedBalance = {currentBalance: amount};
 	User.findByIdAndUpdate(userId, updatedBalance, callback);
 }

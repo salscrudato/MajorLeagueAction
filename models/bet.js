@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const config = require('../config/database');
 
 //Bet schema
-const PendingMLBBetSchema = mongoose.Schema({
+const BetSchema = mongoose.Schema({
   userId: {
     type: String
   },
@@ -30,7 +30,7 @@ const PendingMLBBetSchema = mongoose.Schema({
   }
 });
 
-const PendingMLBBet = module.exports = mongoose.model('PendingMLBBet', PendingMLBBetSchema);
+const Bet = module.exports = mongoose.model('Bet', BetSchema);
 
 module.exports.placeBet = function(bet, callback){
   bet.save(callback);
