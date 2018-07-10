@@ -29,20 +29,23 @@ var BetService = (function () {
     BetService.prototype.placeBet = function (bet) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/bets/placeBet', bet, { headers: headers })
+        //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
+        return this.http.post('bets/placeBet', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getPendingBets = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         console.log(user);
-        return this.http.post('http://localhost:8080/bets/getPendings', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
+        return this.http.post('bets/getPendings', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getAllPendings = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/bets/getAllPendings', { headers: headers })
+        //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
+        return this.http.get('bets/getAllPendings', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService = __decorate([
@@ -128,19 +131,22 @@ var OddsService = (function () {
     OddsService.prototype.getMLBOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/mlb')
+        //return this.http.get('http://localhost:8080/odds/mlb')
+        return this.http.get('odds/mlb')
             .map(function (res) { return res.json(); });
     };
     OddsService.prototype.getMLBLiveOddsEvents = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/betsAPI/mlbEvents')
+        //return this.http.get('http://localhost:8080/betsAPI/mlbEvents')
+        return this.http.get('betsAPI/mlbEvents')
             .map(function (res) { return res.json(); });
     };
     OddsService.prototype.getMLBLiveOdds = function (event) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/betsAPI/mlbEventOdds', event)
+        //return this.http.post('http://localhost:8080/betsAPI/mlbEventOdds', event)
+        return this.http.post('betsAPI/mlbEventOdds', event)
             .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
@@ -228,14 +234,16 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/register';
-        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
+        return this.http.post(url, user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/authenticate';
-        return this.http.post('http://localhost:8080/users/authenticate', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
+        return this.http.post(url, user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
@@ -244,7 +252,8 @@ var AuthService = (function () {
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/profile';
-        return this.http.get('http://localhost:8080/users/profile', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
+        return this.http.get(url, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
@@ -802,6 +811,7 @@ var MenuComponent = (function () {
         this.oddsService.getMLBOdds().subscribe(function (data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
+                console.log(data[i].sport);
                 _this.actions.push(data[i]);
             }
         });
@@ -1394,14 +1404,16 @@ var UserService = (function () {
     UserService.prototype.getAllUsers = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/users/allProfiles', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
+        return this.http.get('users/allProfiles', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.updateBalance = function (updatedAmount) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         console.log(updatedAmount);
-        return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
+        return this.http.post('updateBalance', updatedAmount, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([

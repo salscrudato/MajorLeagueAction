@@ -11,8 +11,8 @@ export class UserService {
   getAllUsers(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
-    //return this.http.get('users/allProfiles', {headers: headers})
+    //return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
+    return this.http.get('users/allProfiles', {headers: headers})
       .map(res => res.json());
   }
 
@@ -20,8 +20,8 @@ export class UserService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     console.log(updatedAmount);
-      return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
-      //return this.http.post('updateBalance', updatedAmount, {headers: headers})
+      //return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
+      return this.http.post('updateBalance', updatedAmount, {headers: headers})
         .map(res => res.json());
   }
 
