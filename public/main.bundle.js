@@ -811,8 +811,10 @@ var MenuComponent = (function () {
         this.oddsService.getMLBOdds().subscribe(function (data) {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
-                console.log(data[i].sport);
-                _this.actions.push(data[i]);
+                //MLB Odds are sport = 0
+                if (data[i].sport == 0) {
+                    _this.actions.push(data[i]);
+                }
             }
         });
     };
