@@ -1360,7 +1360,7 @@ var UserService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         //return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
-        return this.http.post('updateBalance', updatedAmount, { headers: headers })
+        return this.http.post('users/updateBalance', updatedAmount, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([
