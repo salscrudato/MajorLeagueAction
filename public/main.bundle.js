@@ -49,13 +49,15 @@ var BetService = (function () {
     BetService.prototype.getPendingBets = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/bets/getPendings', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
+        return this.http.post('bets/getPendings', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getAllPendings = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/bets/getAllPendings', { headers: headers })
+        //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
+        return this.http.get('bets/getAllPendings', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService = __decorate([
