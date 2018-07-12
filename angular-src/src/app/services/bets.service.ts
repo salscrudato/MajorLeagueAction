@@ -30,7 +30,7 @@ export class BetService {
     console.log(bet);
     headers.append('Content-Type', 'application/json');
       //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
-      return this.http.post('bets/placeBet', bet, {headers: headers})
+      return this.http.post('bets/closePending', bet, {headers: headers})
         .map(res => res.json());
   }
 
