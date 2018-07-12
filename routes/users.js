@@ -30,10 +30,8 @@ router.post('/updateBalance', function(req, res, next){
 	User.getUserById(userId, function(err, user){
 		const curBal = user.currentBalance;
 		const newBal = curBal + amount;
-		// user.currentBalance.$inc(amount);
-		console.log(newBal);
-		User.updateBalance(userId, newBal, function(err, response){
-			console.log(response);
+		User.updateBalance(userId, newBal, function(err, user){
+			res.json({success: true, msg: 'Balance Updated'});
 		});
 	});
 });

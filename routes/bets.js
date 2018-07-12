@@ -8,27 +8,28 @@ router.post('/placeBet', function(req, res, next){
 	let bet = new Bet({
 		userId: req.body.userId,
     oddsId: req.body.oddsId,
+		source: req.body.source,
     description: req.body.description,
     odds: req.body.odds,
     betAmount: req.body.betAmount,
 		betType: req.body.betType,
 		winAmount: req.body.winAmount,
-		closed: 0
+		status: 'open'
 	});
 
-	Bet.placeBet(bet, function(err,user){
+	Bet.placeBet(bet, function(err, placedBet){
 		if(err){
 			res.json({success: false, msg: 'Failed to place bet'});
 		} else {
 			res.json({success: true, msg: 'Bet placed'});
 		}
 	});
+
 });
 
 router.post('/getPendings', function(req, res, next){
 	const userId = req.body.user._id;
-	console.log(userId);
-	var query = {userId: userId}
+	var query = {userId: userId, status: 'open'}
 	Bet.find(query, function(err, bet) {
     	var pendingBets = [];
     	bet.forEach(function(oneBet) {
@@ -39,8 +40,17 @@ router.post('/getPendings', function(req, res, next){
   });
 });
 
+router.post('/closePending', function(req, res, next){
+	const betId = req.body.betId;
+	const status = req.body.status;
+	Bet.closeBet(betId, status, function(err, bet) {
+			//TODO change this to send success or fail
+    	res.send(bet);
+  });
+});
+
 router.get('/getAllPendings', function(req, res, next){
-	var query = {closed: false}
+	var query = {status: 'open'}
 	Bet.find(query, function(err, bet) {
     	var pendingBets = [];
     	bet.forEach(function(oneBet) {

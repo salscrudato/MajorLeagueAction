@@ -7,6 +7,9 @@ const BetSchema = mongoose.Schema({
   userId: {
     type: String
   },
+  source: {
+    type: String
+  },
   oddsId: {
     type: String
   },
@@ -25,8 +28,8 @@ const BetSchema = mongoose.Schema({
   winAmount: {
     type:Number
   },
-  closed: {
-    type:Boolean
+  status: {
+    type:String
   }
 });
 
@@ -34,4 +37,9 @@ const Bet = module.exports = mongoose.model('Bet', BetSchema);
 
 module.exports.placeBet = function(bet, callback){
   bet.save(callback);
+}
+
+module.exports.closeBet = function(betId, status, callback){
+	const closeStatus = {status: status};
+	Bet.findByIdAndUpdate(betId, closeStatus, callback);
 }

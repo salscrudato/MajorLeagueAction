@@ -10,6 +10,7 @@
     </ul>
     <ul class="navbar-nav mr-right">
       <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('profile')" [routerLink]="['/profile']">Profile</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('admin')" [routerLink]="['/admin']">Admin</a></li>
       <li><a *ngIf="authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('dashboard')" [routerLink]="['/dashboard']">Dashboard</a></li>
       <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('login')" [routerLink]="['/login']">Login</a></li>
       <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-target="#nb" (click)="route('register')" [routerLink]="['/register']">Register</a></li>

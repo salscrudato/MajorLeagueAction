@@ -24,6 +24,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { StartComponent } from './components/start/start.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { MlbliveComponent } from './components/mlblive/mlblive.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
   {path: 'menu', component: MenuComponent},
   {path: 'start', component: StartComponent},
   {path: 'confirm', component: ConfirmComponent},
-  {path: 'mlblive', component: MlbliveComponent}
+  {path: 'mlblive', component: MlbliveComponent},
+  {path: 'admin', component: AdminComponent}
 ]
 
 @NgModule({
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     MenuComponent,
     StartComponent,
     ConfirmComponent,
-    MlbliveComponent
+    MlbliveComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

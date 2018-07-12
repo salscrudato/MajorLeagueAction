@@ -86,7 +86,7 @@ export class ConfirmComponent implements OnInit {
   }
 
   placeBet(){
-    var winAmountCalc;
+    var winAmountCalc:number;
     if(this.odds > 0){
       winAmountCalc = this.round((this.odds / 100) * this.betAmount);
     } else {
@@ -96,6 +96,7 @@ export class ConfirmComponent implements OnInit {
     const bet = {
       userId: this.userId,
       oddsId: this.oddsId,
+      source: 'jsonOdds',
       description: this.description,
       odds: this.odds,
       betAmount: this.betAmount,

@@ -5,10 +5,5 @@
       <li class="list-group-item">Username: {{user.username}}</li>
       <li class="list-group-item">Current Balance: {{user.currentBalance}}</li>
     </ul>
-    <h2 *ngIf="userIsAdmin()" class="page-header">All Pending Bets</h2>
-    <ul *ngFor="let pending of allPendings" class="list-group">
-      <li class="list-group-item">Username: {{pending.userId}} Description: {{pending.description}}</li>
-      <a class="btn btn-primary btn-sm text-light"(click)="closePendingBet(pending, 'win')">Win</a>
-    </ul>
   </div>
 </div>
