@@ -48,9 +48,11 @@ var BetService = (function () {
     };
     BetService.prototype.getPendingBets = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        var userId = user._id;
+        var url = 'bets/getPendings?userId=' + userId;
         headers.append('Content-Type', 'application/json');
         //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
-        return this.http.post('bets/getPendings', user, { headers: headers })
+        return this.http.get(url, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getAllPendings = function () {

@@ -27,8 +27,9 @@ router.post('/placeBet', function(req, res, next){
 
 });
 
-router.post('/getPendings', function(req, res, next){
-	const userId = req.body.user._id;
+router.get('/getPendings', function(req, res, next){
+	//const userId = req.body.user._id;
+	const userId = req.query.userId;
 	var query = {userId: userId, status: 'open'}
 	Bet.find(query, function(err, bet) {
     	var pendingBets = [];

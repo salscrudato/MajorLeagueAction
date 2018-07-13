@@ -36,9 +36,11 @@ export class BetService {
 
   getPendingBets(user) {
     let headers = new Headers();
+    const userId = user._id;
+    const url = 'bets/getPendings?userId=' + userId;
     headers.append('Content-Type', 'application/json');
       //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
-      return this.http.post('bets/getPendings', user, {headers: headers})
+      return this.http.get(url, {headers: headers})
         .map(res => res.json());
   }
 
