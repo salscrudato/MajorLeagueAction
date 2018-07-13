@@ -34,12 +34,13 @@ export class BetService {
         .map(res => res.json());
   }
 
-  getPendingBets(user) {
+  getPendingBets(req) {
     let headers = new Headers();
-    const userId = user._id;
+    const userId = req.user._id;
     const url = 'bets/getPendings?userId=' + userId;
+    const url2 = 'http://localhost:8080/bets/getPendings?userId=' + userId;
     headers.append('Content-Type', 'application/json');
-      //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
+      //return this.http.get(url2, {headers: headers})
       return this.http.get(url, {headers: headers})
         .map(res => res.json());
   }

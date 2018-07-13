@@ -46,12 +46,13 @@ var BetService = (function () {
         return this.http.post('bets/closePending', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
-    BetService.prototype.getPendingBets = function (user) {
+    BetService.prototype.getPendingBets = function (req) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        var userId = user._id;
+        var userId = req.user._id;
         var url = 'bets/getPendings?userId=' + userId;
+        var url2 = 'http://localhost:8080/bets/getPendings?userId=' + userId;
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/getPendings', user, {headers: headers})
+        //return this.http.get(url2, {headers: headers})
         return this.http.get(url, { headers: headers })
             .map(function (res) { return res.json(); });
     };
@@ -207,8 +208,7 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/register';
-        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
-        return this.http.post(url, user, { headers: headers })
+        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
