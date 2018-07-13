@@ -608,6 +608,8 @@ var ConfirmComponent = (function () {
     ConfirmComponent.prototype.ngOnInit = function () {
         this.bets = this.dataService.getBets();
         this.userId = this.dataService.getProfile().user._id;
+        this.username = this.dataService.getProfile().user.username;
+        console.log('username: ' + this.username);
         var betType = this.dataService.getBetType();
         this.setBetDetails(betType);
     };
@@ -671,6 +673,7 @@ var ConfirmComponent = (function () {
         }
         var bet = {
             userId: this.userId,
+            username: this.username,
             oddsId: this.oddsId,
             source: 'jsonOdds',
             description: this.description,

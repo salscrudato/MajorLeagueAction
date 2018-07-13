@@ -7,6 +7,9 @@ const BetSchema = mongoose.Schema({
   userId: {
     type: String
   },
+  username: {
+    type: String
+  },
   source: {
     type: String
   },

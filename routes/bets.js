@@ -7,6 +7,7 @@ const config = require('../config/database');
 router.post('/placeBet', function(req, res, next){
 	let bet = new Bet({
 		userId: req.body.userId,
+		username: req.body.username,
     oddsId: req.body.oddsId,
 		source: req.body.source,
     description: req.body.description,
@@ -27,9 +28,9 @@ router.post('/placeBet', function(req, res, next){
 
 });
 
-router.get('/getPendings', function(req, res, next){
-	//const userId = req.body.user._id;
-	const userId = req.query.userId;
+router.post('/getPendings', function(req, res, next){
+	const userId = req.body.user._id;
+	//const userId = req.query.userId;
 	var query = {userId: userId, status: 'open'}
 	Bet.find(query, function(err, bet) {
     	var pendingBets = [];
