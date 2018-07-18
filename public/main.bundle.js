@@ -49,7 +49,7 @@ var BetService = (function () {
     BetService.prototype.getBets = function (profile, status) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         var userId = profile.user._id;
-        var url = 'http://localhost:8080/bets/getBets?userId=' + userId + 'status=' + status;
+        var url = 'bets/getBets?userId=' + userId + 'status=' + status;
         headers.append('Content-Type', 'application/json');
         //return this.http.get(url2, {headers: headers})
         return this.http.get(url, { headers: headers })

@@ -37,7 +37,7 @@ export class BetService {
   getBets(profile, status) {
     let headers = new Headers();
     const userId = profile.user._id;
-    const url = 'http://localhost:8080/bets/getBets?userId=' + userId + 'status=' + status;
+    const url = 'bets/getBets?userId=' + userId + 'status=' + status;
     headers.append('Content-Type', 'application/json');
       //return this.http.get(url2, {headers: headers})
       return this.http.get(url, {headers: headers})
