@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   user:any;
-  allPendings:any;
+  pendingBets:any[];
 
   constructor(
     private authService:AuthService,
@@ -27,17 +27,13 @@ export class ProfileComponent implements OnInit {
     //Gets current logged in user profile
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      this.betService.getBets(profile,'pending').subscribe(bets => {
+        this.pendingBets = bets;
+      });
     },
     err =>{
       return false;
     });
-
-    this.betService.getAllPendings().subscribe(pendings => {
-      this.allPendings = pendings;
-    },
-    err =>{
-      return false;
-    })
   }
 
   closePendingBet(pending, result){
