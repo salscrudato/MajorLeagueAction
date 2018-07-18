@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     //Gets current logged in user profile
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      this.betService.getBets(profile,'pending').subscribe(bets => {
+      this.betService.getBets(profile,'open').subscribe(bets => {
         this.pendingBets = bets;
       });
     },

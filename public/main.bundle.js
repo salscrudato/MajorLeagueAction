@@ -1059,7 +1059,7 @@ var ProfileComponent = (function () {
         //Gets current logged in user profile
         this.authService.getProfile().subscribe(function (profile) {
             _this.user = profile.user;
-            _this.betService.getBets(profile, 'pending').subscribe(function (bets) {
+            _this.betService.getBets(profile, 'open').subscribe(function (bets) {
                 _this.pendingBets = bets;
             });
         }, function (err) {
