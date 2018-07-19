@@ -10,8 +10,9 @@
         {{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}
       </p>
       <h2 class="mt-4">Bet History</h2>
-        <p *ngFor="let closedBet of closedBets">
-          <p>{{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>
-        </p>
+        <div *ngFor="let closedBet of closedBets">
+          <p *ngIf="closedBet.status === 'win'">{{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>
+          <p *ngIf="closedBet.status === 'loss'">{{closedBet.description}} Result: {{closedBet.status}} Amount: -{{closedBet.riskAmount}}</p>
+        </div>
   </div>
 </div>
