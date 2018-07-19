@@ -31,7 +31,6 @@ export class ConfirmComponent implements OnInit {
     this.bets = this.dataService.getBets();
     this.userId = this.dataService.getProfile().user._id;
     this.username = this.dataService.getProfile().user.username;
-    console.log('username: ' + this.username);
     const betType = this.dataService.getBetType();
     this.setBetDetails(betType)
   }
@@ -110,7 +109,7 @@ export class ConfirmComponent implements OnInit {
     this.betService.placeBet(bet).subscribe(data => {
       if(data.success){
         this.flashMessage.show(data.msg, {cssClass: 'alert-success'});
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['profile']);
       } else {
         this.flashMessage.show(data.msg, {cssClass: 'alert-danger'});
         this.router.navigate(['menu']);
