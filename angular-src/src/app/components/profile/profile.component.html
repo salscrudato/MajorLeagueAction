@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container mt-5 pt-2">
   <div *ngIf="user">
     <h2 class="page-header">Profile</h2>
     <ul class="list-group">
@@ -12,7 +12,7 @@
       <h2 class="mt-4">Bet History</h2>
         <div *ngFor="let closedBet of closedBets">
           <p *ngIf="closedBet.status === 'win'">{{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>
-          <p *ngIf="closedBet.status === 'loss'">{{closedBet.description}} Result: {{closedBet.status}} Amount: -{{closedBet.riskAmount}}</p>
+          <p *ngIf="closedBet.status === 'loss'">{{closedBet.description}} Result: {{closedBet.status}} Amount: -{{closedBet.betAmount}}</p>
         </div>
   </div>
 </div>

@@ -1002,7 +1002,7 @@ var NavbarComponent = (function () {
     }
     NavbarComponent.prototype.onLogoutClick = function () {
         this.authService.logout();
-        this.router.navigate(['home']);
+        this.router.navigate(['']);
     };
     NavbarComponent.prototype.route = function (route) {
         this.router.navigate([route]);
@@ -1413,7 +1413,7 @@ module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n 
 /***/ 707:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Current Balance: {{user.currentBalance}}</li>\n    </ul>\n    <h2 class=\"pt-2\">Pending Bets</h2>\n      <p *ngFor=\"let pendingBet of pendingBets\">\n        {{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}\n      </p>\n      <h2 class=\"mt-4\">Bet History</h2>\n        <div *ngFor=\"let closedBet of closedBets\">\n          <p *ngIf=\"closedBet.status === 'win'\">{{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>\n          <p *ngIf=\"closedBet.status === 'loss'\">{{closedBet.description}} Result: {{closedBet.status}} Amount: -{{closedBet.riskAmount}}</p>\n        </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container mt-5 pt-2\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Current Balance: {{user.currentBalance}}</li>\n    </ul>\n    <h2 class=\"pt-2\">Pending Bets</h2>\n      <p *ngFor=\"let pendingBet of pendingBets\">\n        {{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}\n      </p>\n      <h2 class=\"mt-4\">Bet History</h2>\n        <div *ngFor=\"let closedBet of closedBets\">\n          <p *ngIf=\"closedBet.status === 'win'\">{{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>\n          <p *ngIf=\"closedBet.status === 'loss'\">{{closedBet.description}} Result: {{closedBet.status}} Amount: -{{closedBet.betAmount}}</p>\n        </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
