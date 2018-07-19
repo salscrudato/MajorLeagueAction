@@ -4,11 +4,12 @@
     <ul class="list-group">
       <li class="list-group-item">Username: {{user.username}}</li>
       <li class="list-group-item">Current Balance: {{user.currentBalance}}</li>
+      <li class="list-group-item">Available Balance: {{user.currentBalance + user.credit}}</li>
     </ul>
     <h2 class="pt-2">Pending Bets</h2>
-      <p *ngFor="let pendingBet of pendingBets">
-        {{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}
-      </p>
+      <ul class="list-group" *ngFor="let pendingBet of pendingBets">
+        <li class="list-group-item">{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>
+      </ul>
       <h2 class="mt-4">Bet History</h2>
         <div *ngFor="let closedBet of closedBets">
           <p *ngIf="closedBet.status === 'win'">{{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>
