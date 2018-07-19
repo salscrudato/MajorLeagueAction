@@ -49,8 +49,7 @@ var BetService = (function () {
     BetService.prototype.getBets = function (profile, status) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         var userId = profile.user._id;
-        var url = 'bets/getBets?userId=' + userId + 'status=' + status;
-        console.log(url);
+        var url = 'bets/getBets?userId=' + userId + '&status=' + status;
         headers.append('Content-Type', 'application/json');
         //return this.http.get(url2, {headers: headers})
         return this.http.get(url, { headers: headers })
@@ -249,7 +248,8 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/register';
-        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
+        return this.http.post(url, user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
@@ -1054,14 +1054,23 @@ var ProfileComponent = (function () {
         this.router = router;
         this.betService = betService;
         this.userService = userService;
+        this.pendingBets = [];
+        this.closedBets = [];
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         //Gets current logged in user profile
         this.authService.getProfile().subscribe(function (profile) {
             _this.user = profile.user;
-            _this.betService.getBets(profile, 'open').subscribe(function (bets) {
-                _this.pendingBets = bets;
+            _this.betService.getBets(profile, 'all').subscribe(function (bets) {
+                for (var i = 0; i < bets.length; i++) {
+                    if (bets[i].status == 'open') {
+                        _this.pendingBets.push(bets[i]);
+                    }
+                    else {
+                        _this.closedBets.push(bets[i]);
+                    }
+                }
             });
         }, function (err) {
             return false;
@@ -1320,7 +1329,7 @@ module.exports = ""
 /***/ 695:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".nav-link{ cursor: pointer; }\n"
 
 /***/ }),
 
@@ -1397,7 +1406,7 @@ module.exports = "<div class=\"container-fluid pt-5\">\n<div class=\"row\" align
 /***/ 706:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand\" href=\"#\">Major League Action</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-target=\"#nb\" (click)=\"route('menu')\" [routerLink]=\"['/menu']\">MLB</a></li>\n      <li><a class=\"nav-link\" data-target=\"#nb\" (click)=\"route('mlblive')\" [routerLink]=\"['/mlblive']\">MLB Live Bets</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('profile')\" [routerLink]=\"['/profile']\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('admin')\" [routerLink]=\"['/admin']\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('login')\" [routerLink]=\"['/login']\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('register')\" [routerLink]=\"['/register']\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n  <a class=\"navbar-brand\" href=\"#\">Major League Action</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('menu')\">Bet Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('mlblive')\">Live Bet Menu</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('profile')\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('admin')\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('login')\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('register')\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n\n\n\n\n\n\n\n<nav class=\"navbar navbar-dark bg-dark\">\n  <a class=\"navbar-brand\" href=\"#\">Major League Action</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('menu')\">MLB</a></li>\n      <li><a class=\"nav-link\" data-target=\"#nb\" (click)=\"route('mlblive')\" [routerLink]=\"['/mlblive']\">MLB Live Bets</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('profile')\" [routerLink]=\"['/profile']\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('admin')\" [routerLink]=\"['/admin']\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('login')\" [routerLink]=\"['/login']\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"route('register')\" [routerLink]=\"['/register']\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 

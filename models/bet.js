@@ -43,6 +43,6 @@ module.exports.placeBet = function(bet, callback){
 }
 
 module.exports.closeBet = function(betId, status, callback){
-	const closeStatus = {status: status};
-	Bet.findByIdAndUpdate(betId, closeStatus, callback);
+	const closedStatus = {status: status};
+	Bet.findByIdAndUpdate(betId, closedStatus, callback);
 }

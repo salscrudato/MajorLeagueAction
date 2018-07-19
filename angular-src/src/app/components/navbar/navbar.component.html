@@ -1,3 +1,29 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <a class="navbar-brand" href="#">Major League Action</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nb" aria-controls="nb" aria-expanded="false">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="nb">
+    <ul class="navbar-nav mr-auto">
+      <li><a class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('menu')">Bet Menu</a></li>
+      <li><a class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('mlblive')">Live Bet Menu</a></li>
+    </ul>
+    <ul class="navbar-nav mr-right">
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('profile')">Profile</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('admin')">Admin</a></li>
+      <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('login')">Login</a></li>
+      <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('register')">Register</a></li>
+      <li><a *ngIf="authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="onLogoutClick()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Major League Action</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nb" aria-controls="nb" aria-expanded="false">
@@ -5,7 +31,7 @@
   </button>
   <div class="collapse navbar-collapse" id="nb">
     <ul class="navbar-nav mr-auto">
-      <li><a class="nav-link" data-target="#nb" (click)="route('menu')" [routerLink]="['/menu']">MLB</a></li>
+      <li><a class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('menu')">MLB</a></li>
       <li><a class="nav-link" data-target="#nb" (click)="route('mlblive')" [routerLink]="['/mlblive']">MLB Live Bets</a></li>
     </ul>
     <ul class="navbar-nav mr-right">

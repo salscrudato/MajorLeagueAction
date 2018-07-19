@@ -3,7 +3,6 @@ const router = express.Router();
 const Bet = require('../models/bet');
 const config = require('../config/database');
 
-//Route to place a bet
 router.post('/placeBet', function(req, res, next){
 	let bet = new Bet({
 		userId: req.body.userId,
@@ -31,16 +30,20 @@ router.post('/placeBet', function(req, res, next){
 router.get('/getBets', function(req, res, next){
 	const userId = req.query.userId;
 	const status = req.query.status;
-	var query = {userId: userId, status: status};
+	if(status=='all'){
+		var query = {userId: userId};
+	} else {
+		var query = {userId: userId, status: status};
+	}
 	Bet.find(query, function(err, bet) {
 		if(err){
 			res.json({sucess:false, msg: 'Could not retrieve bets'});
 		} else {
-			var pendingBets = [];
+			var bets = [];
 			bet.forEach(function(oneBet){
-				pendingBets.push(oneBet);
+				bets.push(oneBet);
 			});
-			res.send(pendingBets);
+			res.send(bets);
 		}
 	});
 });
@@ -49,20 +52,26 @@ router.post('/closePending', function(req, res, next){
 	const betId = req.body.betId;
 	const status = req.body.status;
 	Bet.closeBet(betId, status, function(err, bet) {
-		//TODO change this to send success or fail
-		res.send(bet);
+		if(err){
+			res.json({sucess:false, msg: 'Failed to close bet'});
+		} else {
+			res.json({sucess:true, msg: 'Bet successfully closed'});
+		}
 	});
 });
 
 router.get('/getAllPendings', function(req, res, next){
-	var query = {status: 'open'}
+	var query = {status: 'open'};
 	Bet.find(query, function(err, bet) {
-		var pendingBets = [];
-		bet.forEach(function(oneBet) {
-			pendingBets.push(oneBet);
-		});
-		//console.log('The first name in the list is '+userMap[0].name);
-		res.send(pendingBets);
+		if(err){
+			res.json({success:false, msg: 'Could not retrieve all bets'});
+		} else {
+			var pendingBets = [];
+			bet.forEach(function(oneBet) {
+				pendingBets.push(oneBet);
+			});
+			res.send(pendingBets);
+		}
 	});
 });
 

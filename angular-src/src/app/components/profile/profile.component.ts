@@ -13,7 +13,8 @@ import {Router} from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   user:any;
-  pendingBets:any[];
+  pendingBets:any = [];
+  closedBets:any = [];
 
   constructor(
     private authService:AuthService,
@@ -27,8 +28,14 @@ export class ProfileComponent implements OnInit {
     //Gets current logged in user profile
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      this.betService.getBets(profile,'open').subscribe(bets => {
-        this.pendingBets = bets;
+      this.betService.getBets(profile,'all').subscribe(bets => {
+        for(var i = 0; i < bets.length; i++){
+          if(bets[i].status == 'open'){
+            this.pendingBets.push(bets[i]);
+          } else {
+            this.closedBets.push(bets[i]);
+          }
+        }
       });
     },
     err =>{
