@@ -33,6 +33,12 @@ const BetSchema = mongoose.Schema({
   },
   status: {
     type:String
+  },
+  gameDate: {
+    type:String
+  },
+  gameTime: {
+    type:String
   }
 });
 

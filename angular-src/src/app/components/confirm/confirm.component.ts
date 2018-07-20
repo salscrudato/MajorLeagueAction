@@ -28,7 +28,7 @@ export class ConfirmComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.bets = this.dataService.getBets();
+    this.bets = this.dataService.getStraightBet();
     this.userId = this.dataService.getProfile().user._id;
     this.username = this.dataService.getProfile().user.username;
     const betType = this.dataService.getBetType();
@@ -103,7 +103,9 @@ export class ConfirmComponent implements OnInit {
       description: this.description,
       odds: this.odds,
       betAmount: this.betAmount,
-      winAmount: winAmountCalc
+      winAmount: winAmountCalc,
+      gameDate: this.bets.matchDate,
+      gameTime: this.bets.matchTime
     }
 
     this.betService.placeBet(bet).subscribe(data => {

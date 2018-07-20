@@ -14,7 +14,9 @@ router.post('/placeBet', function(req, res, next){
 		betAmount: req.body.betAmount,
 		betType: req.body.betType,
 		winAmount: req.body.winAmount,
-		status: 'open'
+		status: 'open',
+		gameDate: req.body.gameDate,
+		gameTime: req.body.gameTime
 	});
 
 	Bet.placeBet(bet, function(err, placedBet){

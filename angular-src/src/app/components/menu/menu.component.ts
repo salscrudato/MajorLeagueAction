@@ -46,7 +46,7 @@ export class MenuComponent implements OnInit {
 
   placeBet(action,type){
     this.authService.getProfile().subscribe(profile => {
-      this.dataService.addBets(action, type, profile);
+      this.dataService.addStraightBet(action, type, profile);
       this.router.navigate(['confirm']);
     },
     err =>{

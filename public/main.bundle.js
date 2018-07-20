@@ -92,14 +92,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DataService = (function () {
     function DataService() {
     }
-    DataService.prototype.addBets = function (action, type, profile) {
-        this.bets = action;
+    DataService.prototype.addStraightBet = function (action, type, profile) {
+        this.straightBet = action;
         this.type = type;
         this.profile = profile;
-        console.log(type);
     };
-    DataService.prototype.getBets = function () {
-        return this.bets;
+    DataService.prototype.getStraightBet = function () {
+        return this.straightBet;
     };
     DataService.prototype.getProfile = function () {
         return this.profile;
@@ -602,7 +601,7 @@ var ConfirmComponent = (function () {
         this.router = router;
     }
     ConfirmComponent.prototype.ngOnInit = function () {
-        this.bets = this.dataService.getBets();
+        this.bets = this.dataService.getStraightBet();
         this.userId = this.dataService.getProfile().user._id;
         this.username = this.dataService.getProfile().user.username;
         var betType = this.dataService.getBetType();
@@ -674,7 +673,9 @@ var ConfirmComponent = (function () {
             description: this.description,
             odds: this.odds,
             betAmount: this.betAmount,
-            winAmount: winAmountCalc
+            winAmount: winAmountCalc,
+            gameDate: this.bets.matchDate,
+            gameTime: this.bets.matchTime
         };
         this.betService.placeBet(bet).subscribe(function (data) {
             if (data.success) {
@@ -876,7 +877,7 @@ var MenuComponent = (function () {
     MenuComponent.prototype.placeBet = function (action, type) {
         var _this = this;
         this.authService.getProfile().subscribe(function (profile) {
-            _this.dataService.addBets(action, type, profile);
+            _this.dataService.addStraightBet(action, type, profile);
             _this.router.navigate(['confirm']);
         }, function (err) {
             _this.flashMessage.show('You must be logged in to place a bet.', { cssClass: 'alert-danger' });
@@ -1413,7 +1414,7 @@ module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n 
 /***/ 707:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container mt-5 pt-2\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Current Balance: {{user.currentBalance}}</li>\n      <li class=\"list-group-item\">Available Balance: {{user.currentBalance + user.credit}}</li>\n    </ul>\n    <h2 class=\"pt-2\">Pending Bets</h2>\n      <ul class=\"list-group\" *ngFor=\"let pendingBet of pendingBets\">\n        <li class=\"list-group-item\">{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>\n      </ul>\n      <h2 class=\"mt-4\">Bet History</h2>\n        <div *ngFor=\"let closedBet of closedBets\">\n          <p *ngIf=\"closedBet.status === 'win'\">{{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>\n          <p *ngIf=\"closedBet.status === 'loss'\">{{closedBet.description}} Result: {{closedBet.status}} Amount: -{{closedBet.betAmount}}</p>\n        </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container mt-5 pt-2\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Current Balance: {{user.currentBalance}}</li>\n      <li class=\"list-group-item\">Available Balance: {{user.currentBalance + user.credit}}</li>\n    </ul>\n    <h2 class=\"pt-2\">Pending Bets</h2>\n      <ul class=\"list-group\" *ngFor=\"let pendingBet of pendingBets\">\n        <li class=\"list-group-item\">{{closedBet.gameDate}} {{closedBet.gameTime}}:{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>\n      </ul>\n      <h2 class=\"mt-4\">Bet History</h2>\n        <div *ngFor=\"let closedBet of closedBets\">\n          <p *ngIf=\"closedBet.status === 'win'\">{{closedBet.gameDate}} {{closedBet.gameTime}}: {{closedBet.description}} Result: {{closedBet.status}} Amount: +{{closedBet.winAmount}}</p>\n          <p *ngIf=\"closedBet.status === 'loss'\">{{closedBet.description}} Result: {{closedBet.status}} Amount: -{{closedBet.betAmount}}</p>\n        </div>\n  </div>\n</div>\n"
 
 /***/ }),
 

@@ -3,21 +3,20 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DataService {
 
-  bets:any;
+  straightBet:any;
   profile:any;
   type:string;
 
   constructor() { }
 
-  addBets(action, type, profile){
-    this.bets=action;
+  addStraightBet(action, type, profile){
+    this.straightBet=action;
     this.type=type;
     this.profile=profile;
-    console.log(type);
   }
 
-  getBets(){
-    return this.bets;
+  getStraightBet(){
+    return this.straightBet;
   }
 
   getProfile(){
