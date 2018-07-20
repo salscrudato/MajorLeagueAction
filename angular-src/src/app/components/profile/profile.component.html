@@ -8,7 +8,7 @@
     </ul>
     <h2 class="pt-2">Pending Bets</h2>
       <ul class="list-group" *ngFor="let pendingBet of pendingBets">
-        <li class="list-group-item">{{closedBet.gameDate}} {{closedBet.gameTime}}:{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>
+        <li class="list-group-item">{{pendingBet.gameDate}} {{pendingBet.gameTime}}:{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>
       </ul>
       <h2 class="mt-4">Bet History</h2>
         <div *ngFor="let closedBet of closedBets">
