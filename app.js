@@ -56,7 +56,7 @@ app.get('/', function(req, res){
 });
 
 app.get('*', (req,res) => {
-	res.sendFile(path.join(__dirname, '/public/index.html'));
+	res.send({success:false, message:'Endpoint is invalid'});
 });
 
 app.listen(port, function(){

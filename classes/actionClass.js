@@ -3,8 +3,8 @@ class Action {
     odds, homeTeam, awayTeam, homePitcher, awayPitcher, sport) {
       this.id = id;
       this.details = details;
-      this.matchDate = this.constructor.setTime(matchTime);
-      this.matchTime = this.constructor.convertTime(matchTime);
+      this.matchDate = this.constructor.setDate(matchTime);
+      this.matchTime = this.constructor.setTime(matchTime);
       if (sport == 0){
         this.homeTeam = homeTeam + ' [' + homePitcher + ']';
         this.awayTeam = awayTeam + ' [' + awayPitcher + ']';
@@ -28,30 +28,35 @@ class Action {
       this.sport = sport;
     }
 
-    static setTime(gameTime){
+    static setDate(gameTime){
       var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var year = Number(gameTime.substr(0,4));
       var month = Number(gameTime.substr(5,2));
-      return months[month - 1] + " " + gameTime.substr(8,2);
+      var day = Number(gameTime.substr(8,2));
+      var hour = Number(gameTime.substr(11,2));
+      if(hour < 4){
+        day = day - 1;
+      }
+      return months[month - 1] + " " + day + " " + year;
     }
 
-    static convertTime(gameTime){
-      var dayNight;
+    static setTime(gameTime){
+      var amOrPm;
       var hour = Number(gameTime.substr(11,2));
+      //Move to EST
       var hour = hour - 4;
       if(hour < 0){
         hour = 24 + hour;
       }
       if(hour > 12){
         hour = hour-12;
-        dayNight = "PM";
+        amOrPm = "PM";
+      } else if(hour == 12) {
+        amOrPm = "PM";
       } else {
-        dayNight = "AM"
+        amOrPm = "AM";
       }
-      return hour + gameTime.substr(13,3) + " " + dayNight;
-    }
-
-    static sayHello(){
-      console.log('Hello');
+      return hour + gameTime.substr(13,3) + " " + amOrPm;
     }
 
     static setHomeAndAwayImages(team){

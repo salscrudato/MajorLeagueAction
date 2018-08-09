@@ -24,6 +24,7 @@ import { StartComponent } from './components/start/start.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { MlbliveComponent } from './components/mlblive/mlblive.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ParlayComponent } from './components/parlay/parlay.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
   {path: 'start', component: StartComponent},
   {path: 'confirm', component: ConfirmComponent},
   {path: 'mlblive', component: MlbliveComponent},
-  {path: 'admin', component: AdminComponent}
+  {path: 'admin', component: AdminComponent},
+  {path: 'parlay', component: ParlayComponent}
 ]
 
 @NgModule({
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     StartComponent,
     ConfirmComponent,
     MlbliveComponent,
-    AdminComponent
+    AdminComponent,
+    ParlayComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
 	password: String;
   credit: Number;
 
-
   constructor(
     private validateService: ValidateService,
     private flashMessage: FlashMessagesService,

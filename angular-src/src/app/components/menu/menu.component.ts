@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
   actions: Array<String> = [];
 
   constructor(
-    private userService:UserService,
     private oddsService:OddsService,
     private authService:AuthService,
     private router:Router,
@@ -25,13 +24,12 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //Can reuse this component by adding logic here to get odds by sport
     this.getOdds();
   }
 
   getOdds(){
     this.oddsService.getMLBOdds().subscribe(data =>{
-      console.log(data);
-
       for (var i = 0; i < data.length; i++) {
         //MLB Odds are sport = 0
         if(data[i].sport == 0){
@@ -41,17 +39,14 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  getUserId(){
-  }
-
   placeBet(action,type){
+    action.betType = type;
     this.authService.getProfile().subscribe(profile => {
-      this.dataService.addStraightBet(action, type, profile);
+      this.dataService.addStraightBet(action, profile, 'straight');
       this.router.navigate(['confirm']);
     },
     err =>{
       this.flashMessage.show('You must be logged in to place a bet.', {cssClass: 'alert-danger'});
-      console.log(err._body);
       return false;
     });
   }

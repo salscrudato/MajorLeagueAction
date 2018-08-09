@@ -43,25 +43,25 @@ getAllPendings(){
   });
 }
 
-closePendingBet(pending, result){
+closePendingBet(pendingBet, result){
   var amount;
   if(result=='win'){
-    amount = pending.winAmount;
+    amount = pendingBet.winAmount;
   } else {
-    amount = pending.betAmount * -1;
+    amount = pendingBet.betAmount * -1;
   }
   const updatedAmount = {
-    userId: pending.userId,
+    userId: pendingBet.userId,
     amount: amount
   }
   this.userService.updateBalance(updatedAmount).subscribe(data => {
-    console.log(data);
     if(data.success) {
-      this.betService.closeBet(pending._id, result).subscribe(data => {
+      this.betService.closeBet(pendingBet._id, result).subscribe(data => {
         this.getAllPendings();
         return true;
       },
       err =>{
+        console.log(err);
         return false;
       });
     } else {

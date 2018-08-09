@@ -6,7 +6,7 @@ const Action = require('../classes/actionClass.js');
 
 let cache = apicache.middleware;
 
-router.get('/mlb', cache('20 minutes'), function(req, res, next){
+router.get('/mlb', cache('10 minutes'), function(req, res, next){
 
   var headers = {
     'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'

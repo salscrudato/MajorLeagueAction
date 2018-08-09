@@ -4,6 +4,7 @@ const Bet = require('../models/bet');
 const config = require('../config/database');
 
 router.post('/placeBet', function(req, res, next){
+	console.log(req.body);
 	let bet = new Bet({
 		userId: req.body.userId,
 		username: req.body.username,
@@ -16,7 +17,8 @@ router.post('/placeBet', function(req, res, next){
 		winAmount: req.body.winAmount,
 		status: 'open',
 		gameDate: req.body.gameDate,
-		gameTime: req.body.gameTime
+		gameTime: req.body.gameTime,
+		subBets: req.body.subBets
 	});
 
 	Bet.placeBet(bet, function(err, placedBet){

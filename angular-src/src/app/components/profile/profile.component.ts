@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {BetService} from '../../services/bets.service';
 import {UserService} from '../../services/user.service';
+import {DataService} from '../../services/data.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -18,17 +19,19 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
-    private router:Router,
     private betService:BetService,
-    private userService:UserService
+    private dataService:DataService
   ){}
 
   ngOnInit() {
+    this.getAllBets();
+  }
 
-    //Gets current logged in user profile
+  //Gets current logged in user and then gets corresponding bets for that user
+  getAllBets(){
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      this.betService.getBets(profile,'all').subscribe(bets => {
+      this.betService.getBets(profile, 'all').subscribe(bets => {
         for(var i = 0; i < bets.length; i++){
           if(bets[i].status == 'open'){
             this.pendingBets.push(bets[i]);
@@ -36,31 +39,16 @@ export class ProfileComponent implements OnInit {
             this.closedBets.push(bets[i]);
           }
         }
+        this.dataService.sortBets(this.closedBets);
+      }, error =>{
+        console.log(error);
+        return false;
       });
     },
-    err =>{
+    error =>{
+      console.log(error);
       return false;
     });
-  }
-
-  closePendingBet(pending, result){
-    const updatedAmount = {
-      userId: pending.userId,
-      amount: pending.winAmount
-    }
-
-    this.userService.updateBalance(updatedAmount).subscribe(data => {
-    if(data.success) {
-      console.log(data);
-    } else {
-      //whatever action if we can't update balance
-    }
-  });
-
-  }
-
-  userIsAdmin(){
-    return this.user.username='admin';
   }
 
 }

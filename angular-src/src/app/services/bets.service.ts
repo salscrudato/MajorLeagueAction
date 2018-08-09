@@ -26,8 +26,6 @@ export class BetService {
       betId: betId,
       status: result
     }
-    console.log('in close bet in bet service');
-    console.log(bet);
     headers.append('Content-Type', 'application/json');
       //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
       return this.http.post('bets/closePending', bet, {headers: headers})
@@ -38,6 +36,7 @@ export class BetService {
     let headers = new Headers();
     const userId = profile.user._id;
     const url = 'bets/getBets?userId=' + userId + '&status=' + status;
+    const url2 = 'http://localhost:8080/bets/getBets?userId=' + userId + '&status=' + status;
     headers.append('Content-Type', 'application/json');
       //return this.http.get(url2, {headers: headers})
       return this.http.get(url, {headers: headers})

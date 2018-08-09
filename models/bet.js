@@ -39,6 +39,10 @@ const BetSchema = mongoose.Schema({
   },
   gameTime: {
     type:String
+  },
+  subBets: {
+    type:Array,
+    "default": []
   }
 });
 
