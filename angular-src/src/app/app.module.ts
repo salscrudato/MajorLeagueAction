@@ -25,6 +25,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { MlbliveComponent } from './components/mlblive/mlblive.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ParlayComponent } from './components/parlay/parlay.component';
+import { StraightComponent } from './components/straight/straight.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
   {path: 'confirm', component: ConfirmComponent},
   {path: 'mlblive', component: MlbliveComponent},
   {path: 'admin', component: AdminComponent},
-  {path: 'parlay', component: ParlayComponent}
+  {path: 'parlay', component: ParlayComponent},
+  {path: 'straight', component: StraightComponent}
 ]
 
 @NgModule({
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     ConfirmComponent,
     MlbliveComponent,
     AdminComponent,
-    ParlayComponent
+    ParlayComponent,
+    StraightComponent
   ],
   imports: [
     BrowserModule,
