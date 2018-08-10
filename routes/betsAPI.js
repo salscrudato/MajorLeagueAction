@@ -5,7 +5,7 @@ const reqThen = require('then-request');
 const apicache = require('apicache');
 const MlbLiveOdds = require('../classes/mlbLiveOddsClass.js');
 //Can add global variables here i think
-const apiKey = '9095-0czQGV5X2XtHOn';
+const apiKey = '10744-6nAVE6st6PH0mD';
 var events = [];
 var eventReturns = 0;
 

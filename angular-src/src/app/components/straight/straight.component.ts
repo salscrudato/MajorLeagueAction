@@ -24,12 +24,12 @@ export class StraightComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //Can reuse this component by adding logic here to get odds by sport
+    //Add logic to get odds selected from menu, pass this into getOdds
     this.getOdds();
   }
 
   getOdds(){
-    this.oddsService.getMLBOdds().subscribe(data =>{
+    this.oddsService.getOdds().subscribe(data =>{
       for (var i = 0; i < data.length; i++) {
         //MLB Odds are sport = 0
         if(data[i].sport == 0){

@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
   }
 
   getOdds(){
-    this.oddsService.getMLBOdds().subscribe(data =>{
+    this.oddsService.getOdds().subscribe(data =>{
       for (var i = 0; i < data.length; i++) {
         //MLB Odds are sport = 0
         if(data[i].sport == 0){

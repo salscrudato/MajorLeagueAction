@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const apicache = require('apicache');
-const Action = require('../classes/actionClass.js');
+const Action = require('../classes/action.js');
 
 let cache = apicache.middleware;
 
-router.get('/mlb', cache('10 minutes'), function(req, res, next){
+router.get('/all', cache('10 minutes'), function(req, res, next){
 
   var headers = {
     'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'

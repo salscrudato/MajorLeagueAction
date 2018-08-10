@@ -6,8 +6,17 @@ export class DataService {
   bet:any = [];
   profile:any;
   type:string;
+  sportMenu:any = [];
 
   constructor() { }
+
+  addSport(sport){
+    this.sportMenu.push(sport);
+  }
+
+  getSports(){
+    return this.sportMenu;
+  }
 
   addStraightBet(bet, profile, type){
     this.bet.push(bet);

@@ -25,11 +25,11 @@ var OddsService = (function () {
     function OddsService(http) {
         this.http = http;
     }
-    OddsService.prototype.getMLBOdds = function () {
+    OddsService.prototype.getOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/odds/mlb')
-        return this.http.get('odds/mlb')
+        //return this.http.get('http://localhost:8080/odds/all')
+        return this.http.get('odds/all')
             .map(function (res) { return res.json(); });
     };
     OddsService.prototype.getMLBLiveOddsEvents = function () {
@@ -899,7 +899,7 @@ var MenuComponent = (function () {
     };
     MenuComponent.prototype.getOdds = function () {
         var _this = this;
-        this.oddsService.getMLBOdds().subscribe(function (data) {
+        this.oddsService.getOdds().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
                 //MLB Odds are sport = 0
                 if (data[i].sport == 0) {
@@ -1102,7 +1102,7 @@ var ParlayComponent = (function () {
     };
     ParlayComponent.prototype.getOdds = function () {
         var _this = this;
-        this.oddsService.getMLBOdds().subscribe(function (data) {
+        this.oddsService.getOdds().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
                 if (data[i].sport == 0) {
                     _this.odds.push(data[i]);
@@ -1388,12 +1388,12 @@ var StraightComponent = (function () {
         this.actions = [];
     }
     StraightComponent.prototype.ngOnInit = function () {
-        //Can reuse this component by adding logic here to get odds by sport
+        //Add logic to get odds selected from menu, pass this into getOdds
         this.getOdds();
     };
     StraightComponent.prototype.getOdds = function () {
         var _this = this;
-        this.oddsService.getMLBOdds().subscribe(function (data) {
+        this.oddsService.getOdds().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
                 //MLB Odds are sport = 0
                 if (data[i].sport == 0) {
@@ -1541,7 +1541,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DataService = (function () {
     function DataService() {
         this.bet = [];
+        this.sportMenu = [];
     }
+    DataService.prototype.addSport = function (sport) {
+        this.sportMenu.push(sport);
+    };
+    DataService.prototype.getSports = function () {
+        return this.sportMenu;
+    };
     DataService.prototype.addStraightBet = function (bet, profile, type) {
         this.bet.push(bet);
         this.profile = profile;
@@ -1724,7 +1731,7 @@ module.exports = "<div class=\"container-fluid pt-5\">\n<div class=\"row\" align
 /***/ 711:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n  <a class=\"navbar-brand\" href=\"#\">Major League Action</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('menu')\">Bet Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('parlay')\">Parlay Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('mlblive')\">Live Bet Menu</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('profile')\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('admin')\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('login')\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('register')\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n  <a class=\"navbar-brand\" href=\"#\">Major League Action</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('straight')\">Bet Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('parlay')\">Parlay Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('mlblive')\">Live Bet Menu</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('profile')\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('admin')\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('login')\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('register')\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 

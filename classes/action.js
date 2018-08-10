@@ -21,6 +21,8 @@ class Action {
           this.awayTeamRL = odds[i].PointSpreadAway;
           this.awayTeamRLOdds = odds[i].PointSpreadAwayLine;
           this.totalNumber = odds[i].TotalNumber;
+          this.overLine = odds[i].OverLine;
+          this.underLine = odds[i].UnderLine;
         }
       }
       this.homeImagePath = this.constructor.setHomeAndAwayImages(homeTeam);
