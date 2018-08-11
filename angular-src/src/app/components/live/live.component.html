@@ -1,13 +1,13 @@
-<div class="container-fluid pt-5">
+<div class="container pt-5 pr-0 pl-0">
 <div class="row" align="center">
-  <div *ngFor="let action of actions" class="card col-sm-4 mt-3 pl-0 pr-0">
-    <div class ="row" style="height:100px">
-      <div class ="col float-left">
-        <img class="w-75 h-100" src="{{action.awayTeamImage}}" alt="Card image cap">
+  <div *ngFor="let action of eventOddsArray" class="card col-sm-4 mt-3 pl-0 pr-0">
+    <div class ="row ml-0 mr-0" style="height:100px">
+      <div class ="col p-0 float-left">
+        <img class="w-75 h-100" src="{{action.awayImagePath}}" alt="Card image cap">
       </div>
       <h2 class="mt-4">@</h2>
-      <div class ="col float-right">
-        <img class="w-75 h-100" src="{{action.homeTeamImage}}" alt="Card image cap">
+      <div class ="col p-0 float-right">
+        <img class="w-75 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
       </div>
     </div>
     <div class="card-header border-top pl-3 pr-3">
@@ -18,10 +18,10 @@
             <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'awayTeamML')">{{action.awayTeamML}}</a>
           </div>
           <div class="col" align="center">
-            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'awayTeamRL')">{{action.awayRunLine}} {{action.awayTeamRL}}</a>
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'awayTeamRL')">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'over')">u{{action.overUnder}}</a>
+            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'over')">u{{action.totalNumber}}</a>
           </div>
         </div>
       </div>
@@ -32,10 +32,10 @@
             <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'homeTeamML')">{{action.homeTeamML}}</a>
           </div>
           <div class="col" align="center">
-            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'homeTeamRL')">{{action.homeRunLine}} {{action.homeTeamRL}}</a>
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'homeTeamRL')">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'under')">o{{action.overUnder}}</a>
+            <a class="btn btn-primary btn-sm text-light float-right" (click)="placeBet(action,'under')">o{{action.totalNumber}}</a>
           </div>
         </div>
       </div>
@@ -43,4 +43,3 @@
   </div>
 </div>
 </div>
-<a class="btn btn-primary btn-sm text-light float-right"(click)="getOdds()">Refresh</a>

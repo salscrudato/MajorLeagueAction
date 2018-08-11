@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { MlbliveComponent } from './mlblive.component';
+import { LiveComponent } from './live.component';
 
-describe('MlbliveComponent', () => {
-  let component: MlbliveComponent;
-  let fixture: ComponentFixture<MlbliveComponent>;
+describe('LiveComponent', () => {
+  let component: LiveComponent;
+  let fixture: ComponentFixture<LiveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MlbliveComponent ]
+      declarations: [ LiveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MlbliveComponent);
+    fixture = TestBed.createComponent(LiveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

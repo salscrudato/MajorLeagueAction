@@ -4,7 +4,6 @@ const Bet = require('../models/bet');
 const config = require('../config/database');
 
 router.post('/placeBet', function(req, res, next){
-	console.log(req.body);
 	let bet = new Bet({
 		userId: req.body.userId,
 		username: req.body.username,

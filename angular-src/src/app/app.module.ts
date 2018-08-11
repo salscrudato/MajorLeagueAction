@@ -22,7 +22,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { StartComponent } from './components/start/start.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
-import { MlbliveComponent } from './components/mlblive/mlblive.component';
+import { LiveComponent } from './components/live/live.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ParlayComponent } from './components/parlay/parlay.component';
 import { StraightComponent } from './components/straight/straight.component';
@@ -35,7 +35,7 @@ const appRoutes: Routes = [
   {path: 'menu', component: MenuComponent},
   {path: 'start', component: StartComponent},
   {path: 'confirm', component: ConfirmComponent},
-  {path: 'mlblive', component: MlbliveComponent},
+  {path: 'live', component: LiveComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'parlay', component: ParlayComponent},
   {path: 'straight', component: StraightComponent}
@@ -52,7 +52,7 @@ const appRoutes: Routes = [
     MenuComponent,
     StartComponent,
     ConfirmComponent,
-    MlbliveComponent,
+    LiveComponent,
     AdminComponent,
     ParlayComponent,
     StraightComponent

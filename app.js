@@ -26,7 +26,6 @@ const app = express();
 const users = require('./routes/users');
 const odds = require('./routes/odds');
 const bets = require('./routes/bets');
-const betsApi = require('./routes/betsAPI');
 
 //const port = 3000;
 const port = process.env.PORT || 8080;
@@ -49,7 +48,6 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/odds', odds);
 app.use('/bets', bets);
-app.use('/betsAPI', betsApi);
 
 app.get('/', function(req, res){
 	res.send('invalid endpoints');
