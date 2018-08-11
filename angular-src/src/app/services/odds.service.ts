@@ -32,7 +32,7 @@ export class OddsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage)
-    return this.http.get('odds/eventOdds?eventId=' + eventId)
+    return this.http.get('odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage)
     .map(res => res.json());
   }
 
