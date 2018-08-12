@@ -33,7 +33,7 @@ export class ParlayComponent implements OnInit {
       for (var i = 0; i < data.length; i++) {
         if(data[i].sport == 0){
           this.odds.push(data[i]);
-        } else {
+        } else if (data[i].sport == 4) {
           this.testOdds.push(data[i]);
         }
       }

@@ -26,6 +26,7 @@ import { LiveComponent } from './components/live/live.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ParlayComponent } from './components/parlay/parlay.component';
 import { StraightComponent } from './components/straight/straight.component';
+import { Straight2Component } from './components/straight2/straight2.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
   {path: 'live', component: LiveComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'parlay', component: ParlayComponent},
-  {path: 'straight', component: StraightComponent}
+  {path: 'straight', component: StraightComponent},
+  {path: 'straight2', component: Straight2Component}
 ]
 
 @NgModule({
@@ -55,7 +57,8 @@ const appRoutes: Routes = [
     LiveComponent,
     AdminComponent,
     ParlayComponent,
-    StraightComponent
+    StraightComponent,
+    Straight2Component
   ],
   imports: [
     BrowserModule,

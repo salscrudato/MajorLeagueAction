@@ -1,0 +1,53 @@
+<div class="container pt-5 pr-0 pl-0">
+<div class="row" align="center">
+  <div *ngFor="let action of eventsArray" class="card col-sm-4 mt-3 pl-0 pr-0">
+    <div class="row pl-0 pr-0 ml-0 mr-0">
+      <div class="col" align="left">
+        <p class="m-0 pl-3">{{action.matchDate | slice:0:6}}</p>
+      </div>
+      <div class="col" align="right">
+        <p class="m-0 pr-3">{{action.matchTime}}</p>
+      </div>
+    </div>
+    <div class ="row ml-0 mr-0" style="height:100px" *ngIf="action.sport==0">
+      <div class ="col p-0 float-left">
+        <img class="w-75 h-100" src="{{action.awayImagePath}}" alt="Card image cap">
+      </div>
+      <h2 class="mt-4">@</h2>
+      <div class ="col p-0 float-right">
+        <img class="w-75 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
+      </div>
+    </div>
+    <div class="card-header border-top pl-3 pr-3">
+      <div align="left">
+        <div class="row pl-3">{{action.awayTeam}}</div>
+        <div class="row border-bottom pb-1 pt-1">
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'awayTeamML')">{{action.awayTeamML}}</a>
+          </div>
+          <div class="col" align="center">
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'awayTeamRL')">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'over')">u{{action.totalNumber}}</a>
+          </div>
+        </div>
+      </div>
+      <div align="left">
+        <div class="row pl-3">{{action.homeTeam}}</div>
+        <div class="row pb-1 pt-1">
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'homeTeamML')">{{action.homeTeamML}}</a>
+          </div>
+          <div class="col" align="center">
+            <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'homeTeamRL')">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-primary btn-sm text-light float-right" (click)="placeBet(action,'under')">o{{action.totalNumber}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

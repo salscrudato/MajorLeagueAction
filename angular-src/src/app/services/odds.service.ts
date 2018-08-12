@@ -28,6 +28,23 @@ export class OddsService {
     .toPromise();
   }
 
+  getUpcomingEvents(sportId, leagueId){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    //return this.http.get('http://localhost:8080/odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
+    return this.http.get('odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
+    .map(res => res.json())
+    .toPromise();
+  }
+
+  getUpcomingEventOdds(eventId, homeTeam, awayTeam, time, sport){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    //return this.http.get('http://localhost:8080/odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
+    return this.http.get('odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
+    .map(res => res.json());
+  }
+
   getLiveEventOdds(eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

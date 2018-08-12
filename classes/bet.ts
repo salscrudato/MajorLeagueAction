@@ -14,9 +14,7 @@ export class Bet {
   constructor(profile, bets, source, odds, betAmount, winAmount, betType){
     this.userId = profile.user._id;
     this.username = profile.user.username;
-    console.log(bets)
     for (var i = 0; i < bets.length; i++){
-      console.log(bets[i]);
       this.oddsId.push(bets[i].id);
       this.description.push(bets[i].betDetails);
       this.subBets.push(bets[i]);

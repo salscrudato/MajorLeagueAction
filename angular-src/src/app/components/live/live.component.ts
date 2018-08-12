@@ -25,6 +25,7 @@ export class LiveComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //this.getLiveEvents('16', '225');
     this.getLiveEvents('16', '225');
   }
 
@@ -49,22 +50,8 @@ export class LiveComponent implements OnInit {
     }
   }
 
-  // getOdds(){
-  //   this.actions = [];
-  //   for(var i = 0; i < this.events.length; i++){
-  //     this.oddsService.getMLBLiveOdds(this.events[i]).subscribe(data =>{
-  //       this.actions.push(data);
-  //     });
-  //   }
-  // }
-
-  // getOdds(){
-  //   this.oddsService.getMLBLiveOdds().subscribe(data =>{
-  //     for (var i = 0; i < data.length; i++) {
-  //       console.log(data[i]);
-  //       this.actions.push(data[i]);
-  //     }
-  //   });
-  // }
+  placeBet(){
+    
+  }
 
 }
