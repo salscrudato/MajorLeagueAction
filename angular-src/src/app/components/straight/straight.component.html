@@ -9,7 +9,7 @@
         <p class="m-0 pr-3">{{action.matchTime}}</p>
       </div>
     </div>
-    <div class ="row ml-0 mr-0" style="height:100px" *ngIf="action.sport==0">
+    <div class ="row ml-0 mr-0" style="height:100px" *ngIf="action.sport==0 || action.sport==4">
       <div class ="col p-0 float-left">
         <img class="w-75 h-100" src="{{action.awayImagePath}}" alt="Card image cap">
       </div>
@@ -29,7 +29,7 @@
             <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'awayTeamRL')">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'over')">u{{action.totalNumber}}</a>
+            <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'under')">u{{action.totalNumber}}  {{action.underLine}}</a>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
             <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'homeTeamRL')">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary btn-sm text-light float-right" (click)="placeBet(action,'under')">o{{action.totalNumber}}</a>
+            <a class="btn btn-primary btn-sm text-light float-right" (click)="placeBet(action,'over')">o{{action.totalNumber}}  {{action.overLine}}</a>
           </div>
         </div>
       </div>

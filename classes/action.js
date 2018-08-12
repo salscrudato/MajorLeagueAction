@@ -153,6 +153,102 @@ class Action {
         case "Chicago White Sox":
         return '/assets/images/whitesox.png';
         break;
+        case "Philadelphia Eagles":
+        return '/assets/images/Eagles.png';
+        break;
+        case "New York Giants":
+        return '/assets/images/Giants.png';
+        break;
+        case "Washington Redskins":
+        return '/assets/images/Redskins.png';
+        break;
+        case "Dallas Cowboys":
+        return '/assets/images/Cowboys.png';
+        break;
+        case "New Orleans Saints":
+        return '/assets/images/Saints.png';
+        break;
+        case "Atlanta Falcons":
+        return '/assets/images/Falcons.png';
+        break;
+        case "Carolina Panthers":
+        return '/assets/images/Panthers.png';
+        break;
+        case "Tampa Bay Buccaneers":
+        return '/assets/images/Buccaneers.png';
+        break;
+        case "Green Bay Packers":
+        return '/assets/images/Packers.png';
+        break;
+        case "Minnesota Vikings":
+        return '/assets/images/Vikings.png';
+        break;
+        case "Chicago Bears":
+        return '/assets/images/eagles.png';
+        break;
+        case "Detroit Lions":
+        return '/assets/images/Lions.png';
+        break;
+        case "Seattle Seahawks":
+        return '/assets/images/Seahawks.png';
+        break;
+        case "Los Angeles Rams":
+        return '/assets/images/Rams.png';
+        break;
+        case "San Francisco 49ers":
+        return '/assets/images/49ers.png';
+        break;
+        case "Arizona Cardinals":
+        return '/assets/images/CardinalsNFL.png';
+        break;
+        case "New York Jets":
+        return '/assets/images/Jets.png';
+        break;
+        case "New England Patriots":
+        return '/assets/images/Patriots.png';
+        break;
+        case "Miami Dolphins":
+        return '/assets/images/Dolphins.png';
+        break;
+        case "Buffalo Bills":
+        return '/assets/images/Bills.png';
+        break;
+        case "Tennessee Titans":
+        return '/assets/images/Titans.png';
+        break;
+        case "Jacksonville Jaguars":
+        return '/assets/images/Jaguars.png';
+        break;
+        case "Houston Texans":
+        return '/assets/images/Texans.png';
+        break;
+        case "Indianapolis Colts":
+        return '/assets/images/Colts.png';
+        break;
+        case "Pittsburgh Steelers":
+        return '/assets/images/Steelers.png';
+        break;
+        case "Baltimore Ravens":
+        return '/assets/images/Ravens.png';
+        break;
+        case "Cincinnati Bengals":
+        return '/assets/images/Bengals.png';
+        break;
+        case "Cleveland Browns":
+        return '/assets/images/Browns.png';
+        break;
+        case "Los Angeles Chargers":
+        return '/assets/images/Chargers.png';
+        break;
+        case "Kansas City Chiefs":
+        return '/assets/images/Chiefs.png';
+        break;
+        case "Oakland Raiders":
+        return '/assets/images/Raiders.png';
+        break;
+        case "Denver Broncos":
+        return '/assets/images/Broncos.png';
+        break;
         default:
         return '/assets/images/mlb.png';
       }

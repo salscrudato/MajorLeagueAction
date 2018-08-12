@@ -122,7 +122,7 @@ var UserService = (function () {
 
 /***/ }),
 
-/***/ 20:
+/***/ 24:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -324,14 +324,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validate_service__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_user_service__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_odds_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_data_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_data_service__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_bets_service__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__guards_app_guards__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_component__ = __webpack_require__(515);
@@ -443,10 +443,10 @@ var AppModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(23);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -535,9 +535,9 @@ var AdminComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_bets_service__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_bet__ = __webpack_require__(532);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfirmComponent; });
@@ -697,7 +697,7 @@ var ConfirmComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(159);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -748,10 +748,10 @@ var HomeComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_odds_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LiveComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -825,9 +825,9 @@ var LiveComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -888,12 +888,9 @@ var LoginComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_odds_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_odds_service__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(23);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -908,41 +905,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var MenuComponent = (function () {
-    function MenuComponent(oddsService, authService, router, dataService, flashMessage) {
-        this.oddsService = oddsService;
-        this.authService = authService;
+    function MenuComponent(router, dataService, oddsService) {
         this.router = router;
         this.dataService = dataService;
-        this.flashMessage = flashMessage;
+        this.oddsService = oddsService;
         this.actions = [];
     }
     MenuComponent.prototype.ngOnInit = function () {
-        //Can reuse this component by adding logic here to get odds by sport
         this.getOdds();
+    };
+    MenuComponent.prototype.navigate = function (sport) {
+        this.dataService.addSport(sport);
+        this.dataService.setJsonOddsEvents(this.actions);
+        this.router.navigate(['/straight']);
     };
     MenuComponent.prototype.getOdds = function () {
         var _this = this;
         this.oddsService.getOdds().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
-                //MLB Odds are sport = 0
-                if (data[i].sport == 0) {
-                    _this.actions.push(data[i]);
-                }
+                _this.actions.push(data[i]);
             }
-        });
-    };
-    MenuComponent.prototype.placeBet = function (action, type) {
-        var _this = this;
-        action.betType = type;
-        this.authService.getProfile().subscribe(function (profile) {
-            _this.dataService.addStraightBet(action, profile, 'straight');
-            _this.router.navigate(['confirm']);
-        }, function (err) {
-            _this.flashMessage.show('You must be logged in to place a bet.', { cssClass: 'alert-danger' });
-            return false;
         });
     };
     MenuComponent = __decorate([
@@ -951,10 +934,10 @@ var MenuComponent = (function () {
             template: __webpack_require__(712),
             styles: [__webpack_require__(698)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _e) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */]) === 'function' && _c) || Object])
     ], MenuComponent);
     return MenuComponent;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/menu.component.js.map
 
@@ -965,8 +948,8 @@ var MenuComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(23);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavbarComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1015,11 +998,11 @@ var NavbarComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_odds_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(23);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ParlayComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1125,9 +1108,9 @@ var ParlayComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(56);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1198,10 +1181,10 @@ var ProfileComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_validate_service__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(23);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1307,10 +1290,10 @@ var StartComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_odds_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StraightComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1338,20 +1321,28 @@ var StraightComponent = (function () {
         this.actions = [];
     }
     StraightComponent.prototype.ngOnInit = function () {
-        //Add logic to get odds selected from menu, pass this into getOdds
-        this.getOdds();
+        var tempActions = this.dataService.getJsonOddsEvents();
+        this.sport = this.dataService.getSports();
+        this.setUpActions(tempActions, this.sport);
     };
-    StraightComponent.prototype.getOdds = function () {
-        var _this = this;
-        this.oddsService.getOdds().subscribe(function (data) {
-            for (var i = 0; i < data.length; i++) {
-                //MLB Odds are sport = 0
-                if (data[i].sport == 0) {
-                    _this.actions.push(data[i]);
-                }
+    StraightComponent.prototype.setUpActions = function (tempActions, sport) {
+        for (var i = 0; i < tempActions.length; i++) {
+            if (tempActions[i].sport == sport) {
+                this.actions.push(tempActions[i]);
             }
-        });
+        }
     };
+    //-----Old Method-----
+    // getOdds(){
+    //   this.oddsService.getOdds().subscribe(data =>{
+    //     for (var i = 0; i < data.length; i++) {
+    //       //MLB Odds are sport = 0
+    //       if(data[i].sport == 0){
+    //         this.actions.push(data[i]);
+    //       }
+    //     }
+    //   });
+    // }
     StraightComponent.prototype.placeBet = function (action, type) {
         var _this = this;
         action.betType = type;
@@ -1384,10 +1375,10 @@ var StraightComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_odds_service__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Straight2Component; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1461,8 +1452,8 @@ var Straight2Component = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1548,7 +1539,7 @@ var Bet = (function () {
 
 /***/ }),
 
-/***/ 57:
+/***/ 56:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1567,13 +1558,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DataService = (function () {
     function DataService() {
         this.bet = [];
-        this.sportMenu = [];
+        this.jsonOddsEvents = [];
     }
     DataService.prototype.addSport = function (sport) {
-        this.sportMenu.push(sport);
+        this.sport = sport;
     };
     DataService.prototype.getSports = function () {
-        return this.sportMenu;
+        return this.sport;
+    };
+    DataService.prototype.setJsonOddsEvents = function (events) {
+        this.jsonOddsEvents = events;
+    };
+    DataService.prototype.getJsonOddsEvents = function () {
+        return this.jsonOddsEvents;
     };
     DataService.prototype.addStraightBet = function (bet, profile, type) {
         this.bet.push(bet);
@@ -1743,7 +1740,7 @@ module.exports = "<div class=\"container pt-5\">\n\t<div class =\"jumbotron text
 /***/ 710:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n      <div class=\"row ml-0 mr-0\">\n        <div class=\"col\" align=\"center\">\n          <p>{{action.homeTeam}} [{{action.homeScore}}] @ {{action.awayTeam}} [{{action.awayScore}}] - {{action.time}}</p>\n        </div>\n        <div class=\"card-header p-1 w-100\">\n\n          <div class=\"row border-bottom\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              {{action.awayTeam}}  [{{action.awayScore}}]\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              {{action.homeTeam}}  [{{action.homeScore}}]\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col\" align=\"center\">\n              MONEY LINE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\" *ngIf=\"action.awayTeamML != null\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{action.awayTeamML}}\n              </a>\n            </div>\n            <div class=\"col w-50\" *ngIf=\"action.homeTeamML != null\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{action.homeTeamML}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col\" align=\"center\">\n              RUN LINE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\" *ngIf=\"action.awayTeamRL != null\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{action.awayTeamRL}}  {{action.awayTeamRLOdds}}\n              </a>\n            </div>\n            <div class=\"col w-50\" *ngIf=\"action.homeTeamRL != null\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{action.homeTeamRL}}  {{action.homeTeamRLOdds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.awayTeamRLArray.length > 0 || action.homeTeamRLArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              ALT LINES\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\" *ngIf=\"action.awayTeamRLArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRLArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\" *ngIf=\"action.homeTeamRLArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRLArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              GAME TOTALS\n            </div>\n          </div>\n\n          <div class=\"row border-bottom\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              OVER\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              UNDER\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\" *ngIf=\"action.overArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let over of action.overArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{over.number}}  {{over.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\" *ngIf=\"action.underArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let under of action.underArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{under.number}}  {{under.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n      <div class=\"row ml-0 mr-0\">\n        <div class=\"col\" align=\"center\">\n          <p>{{action.homeTeam}} [{{action.homeScore}}] @ {{action.awayTeam}} [{{action.awayScore}}] - {{action.time}}</p>\n        </div>\n        <div class=\"card-header p-1 w-100\">\n\n          <div class=\"row border-bottom\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              {{action.awayTeam}}  [{{action.awayScore}}]\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              {{action.homeTeam}}  [{{action.homeScore}}]\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col\" align=\"center\">\n              MONEY LINE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamML != null\">\n                {{action.awayTeamML}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamML != null\">\n                {{action.homeTeamML}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col\" align=\"center\">\n              RUN LINE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamRL != null\">\n                {{action.awayTeamRL}}  {{action.awayTeamRLOdds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamRL != null\">\n                {{action.homeTeamRL}}  {{action.homeTeamRLOdds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.awayTeamRLArray.length > 0 || action.homeTeamRLArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              ALT LINES\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRLArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRLArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              GAME TOTALS\n            </div>\n          </div>\n\n          <div class=\"row border-bottom\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              OVER\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              UNDER\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamRL != null\">\n                {{action.over.number}}  {{action.over.odds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamRL != null\">\n                {{action.under.number}}  {{action.under.odds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\">\n            <div class=\"col w-50 border-right\" *ngIf=\"action.overArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let over of action.overArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{over.number}}  {{over.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\" *ngIf=\"action.underArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let under of action.underArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{under.number}}  {{under.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1757,14 +1754,14 @@ module.exports = "<div class=\"container pt-5\">\n<div class=\"mt-2\">\n<h2 clas
 /***/ 712:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n<div class=\"row\" align=\"center\">\n  <div *ngFor=\"let action of actions\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n    <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n      <div class=\"col\" align=\"left\">\n        <p class=\"m-0 pl-3\">{{action.matchDate | slice:0:6}}</p>\n      </div>\n      <div class=\"col\" align=\"right\">\n        <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n      </div>\n    </div>\n    <div class =\"row ml-0 mr-0\" style=\"height:100px\" *ngIf=\"action.sport==0\">\n      <div class =\"col p-0 float-left\">\n        <img class=\"w-75 h-100\" src=\"{{action.awayImagePath}}\" alt=\"Card image cap\">\n      </div>\n      <h2 class=\"mt-4\">@</h2>\n      <div class =\"col p-0 float-right\">\n        <img class=\"w-75 h-100\" src=\"{{action.homeImagePath}}\" alt=\"Card image cap\">\n      </div>\n    </div>\n    <div class=\"card-header border-top pl-3 pr-3\">\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.awayTeam}}</div>\n        <div class=\"row border-bottom pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'awayTeamML')\">{{action.awayTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'awayTeamRL')\">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\"(click)=\"placeBet(action,'over')\">u{{action.totalNumber}}</a>\n          </div>\n        </div>\n      </div>\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.homeTeam}}</div>\n        <div class=\"row pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'homeTeamML')\">{{action.homeTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'homeTeamRL')\">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\" (click)=\"placeBet(action,'under')\">o{{action.totalNumber}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n"
+module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-primary text-light\" (click)=\"navigate(0)\">Straight Bet</a>\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-primary text-light\">Alt Bets</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-primary text-light\" (click)=\"navigate(4)\">Straight Bet</a>\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-primary text-light\">Alt Bets</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 713:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n  <a class=\"navbar-brand\" href=\"#\">Major League Action</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('straight')\">Bet Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('straight2')\">Bet Menu 2</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('parlay')\">Parlay Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('live')\">Live Bet Menu</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('profile')\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('admin')\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('login')\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('register')\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n  <a class=\"navbar-brand\" href=\"#\">Major League Action</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('menu')\">Bet Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('straight2')\">Bet Menu 2</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('parlay')\">Parlay Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('live')\">Live Bet Menu</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('profile')\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('admin')\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('login')\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('register')\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1799,7 +1796,7 @@ module.exports = "<div class=\"container\">\n\n<div class=\"row\">\n  <input typ
 /***/ 718:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n<div class=\"row\" align=\"center\">\n  <div *ngFor=\"let action of actions\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n    <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n      <div class=\"col\" align=\"left\">\n        <p class=\"m-0 pl-3\">{{action.matchDate | slice:0:6}}</p>\n      </div>\n      <div class=\"col\" align=\"right\">\n        <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n      </div>\n    </div>\n    <div class =\"row ml-0 mr-0\" style=\"height:100px\" *ngIf=\"action.sport==0\">\n      <div class =\"col p-0 float-left\">\n        <img class=\"w-75 h-100\" src=\"{{action.awayImagePath}}\" alt=\"Card image cap\">\n      </div>\n      <h2 class=\"mt-4\">@</h2>\n      <div class =\"col p-0 float-right\">\n        <img class=\"w-75 h-100\" src=\"{{action.homeImagePath}}\" alt=\"Card image cap\">\n      </div>\n    </div>\n    <div class=\"card-header border-top pl-3 pr-3\">\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.awayTeam}}</div>\n        <div class=\"row border-bottom pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'awayTeamML')\">{{action.awayTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'awayTeamRL')\">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\"(click)=\"placeBet(action,'over')\">u{{action.totalNumber}}</a>\n          </div>\n        </div>\n      </div>\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.homeTeam}}</div>\n        <div class=\"row pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'homeTeamML')\">{{action.homeTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'homeTeamRL')\">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\" (click)=\"placeBet(action,'under')\">o{{action.totalNumber}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n"
+module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n<div class=\"row\" align=\"center\">\n  <div *ngFor=\"let action of actions\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n    <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n      <div class=\"col\" align=\"left\">\n        <p class=\"m-0 pl-3\">{{action.matchDate | slice:0:6}}</p>\n      </div>\n      <div class=\"col\" align=\"right\">\n        <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n      </div>\n    </div>\n    <div class =\"row ml-0 mr-0\" style=\"height:100px\" *ngIf=\"action.sport==0 || action.sport==4\">\n      <div class =\"col p-0 float-left\">\n        <img class=\"w-75 h-100\" src=\"{{action.awayImagePath}}\" alt=\"Card image cap\">\n      </div>\n      <h2 class=\"mt-4\">@</h2>\n      <div class =\"col p-0 float-right\">\n        <img class=\"w-75 h-100\" src=\"{{action.homeImagePath}}\" alt=\"Card image cap\">\n      </div>\n    </div>\n    <div class=\"card-header border-top pl-3 pr-3\">\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.awayTeam}}</div>\n        <div class=\"row border-bottom pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'awayTeamML')\">{{action.awayTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'awayTeamRL')\">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\"(click)=\"placeBet(action,'under')\">u{{action.totalNumber}}  {{action.underLine}}</a>\n          </div>\n        </div>\n      </div>\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.homeTeam}}</div>\n        <div class=\"row pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'homeTeamML')\">{{action.homeTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'homeTeamRL')\">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\" (click)=\"placeBet(action,'over')\">o{{action.totalNumber}}  {{action.overLine}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n"
 
 /***/ }),
 

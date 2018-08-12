@@ -46,7 +46,8 @@ router.get('/events', function(req, res, next){
   var leagueId = req.query.leagueId;
   var apiKey = '10744-6nAVE6st6PH0mD';
   var eventsUrl = 'https://api.betsapi.com/v1/bet365/inplay_filter?token='
-  + apiKey + '&sport_id=' + sportId + '&league_id=' + leagueId;
+  + apiKey + '&sport_id=' + sportId;
+  //+ apiKey + '&sport_id=' + sportId + '&league_id=' + leagueId;
   var options = {
     url:eventsUrl,
     method: 'GET'

@@ -6,16 +6,25 @@ export class DataService {
   bet:any = [];
   profile:any;
   type:string;
-  sportMenu:any = [];
+  sport:number;
+  jsonOddsEvents = [];
 
   constructor() { }
 
   addSport(sport){
-    this.sportMenu.push(sport);
+    this.sport = sport;
   }
 
   getSports(){
-    return this.sportMenu;
+    return this.sport;
+  }
+
+  setJsonOddsEvents(events){
+    this.jsonOddsEvents = events;
+  }
+
+  getJsonOddsEvents(){
+    return this.jsonOddsEvents;
   }
 
   addStraightBet(bet, profile, type){

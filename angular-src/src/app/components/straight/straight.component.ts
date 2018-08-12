@@ -13,7 +13,8 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 })
 export class StraightComponent implements OnInit {
 
-  actions: Array<String> = [];
+  actions:any = [];
+  sport:number;
 
   constructor(
     private oddsService:OddsService,
@@ -24,20 +25,30 @@ export class StraightComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //Add logic to get odds selected from menu, pass this into getOdds
-    this.getOdds();
+    var tempActions = this.dataService.getJsonOddsEvents();
+    this.sport = this.dataService.getSports();
+    this.setUpActions(tempActions, this.sport);
   }
 
-  getOdds(){
-    this.oddsService.getOdds().subscribe(data =>{
-      for (var i = 0; i < data.length; i++) {
-        //MLB Odds are sport = 0
-        if(data[i].sport == 0){
-          this.actions.push(data[i]);
-        }
+  setUpActions(tempActions, sport){
+    for (var i = 0; i < tempActions.length; i++){
+      if(tempActions[i].sport == sport){
+        this.actions.push(tempActions[i]);
       }
-    });
+    }
   }
+
+  //-----Old Method-----
+  // getOdds(){
+  //   this.oddsService.getOdds().subscribe(data =>{
+  //     for (var i = 0; i < data.length; i++) {
+  //       //MLB Odds are sport = 0
+  //       if(data[i].sport == 0){
+  //         this.actions.push(data[i]);
+  //       }
+  //     }
+  //   });
+  // }
 
   placeBet(action,type){
     action.betType = type;
