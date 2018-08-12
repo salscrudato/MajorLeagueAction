@@ -41,6 +41,7 @@ router.get('/all', cache('10 minutes'), function(req, res, next){
   });
 });
 
+//Live Events
 router.get('/events', function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
@@ -73,6 +74,7 @@ router.get('/events', function(req, res, next){
   });
 });
 
+//Upcoming Events
 router.get('/upcomingEvents', function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
@@ -105,6 +107,7 @@ router.get('/upcomingEvents', function(req, res, next){
   });
 });
 
+//Live Odds by Event
 router.get('/eventOdds', function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
@@ -130,6 +133,7 @@ router.get('/eventOdds', function(req, res, next){
   });
 });
 
+//Upcoming Odds by Event
 router.get('/upcomingEventOdds', function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
