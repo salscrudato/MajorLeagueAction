@@ -45,11 +45,11 @@ export class OddsService {
     .map(res => res.json());
   }
 
-  getLiveEventOdds(eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage){
+  getLiveEventOdds(eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage, sportId){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    //return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage)
-    return this.http.get('odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage)
+    //return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
+    return this.http.get('odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
     .map(res => res.json());
   }
 

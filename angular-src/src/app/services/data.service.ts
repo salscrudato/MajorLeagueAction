@@ -7,6 +7,7 @@ export class DataService {
   profile:any;
   type:string;
   sport:number;
+  league:number;
   jsonOddsEvents = [];
 
   constructor() { }
@@ -17,6 +18,14 @@ export class DataService {
 
   getSports(){
     return this.sport;
+  }
+
+  setLeague(league){
+    this.league = league;
+  }
+
+  getLeague(){
+    return this.league;
   }
 
   setJsonOddsEvents(events){

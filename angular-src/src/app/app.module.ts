@@ -20,13 +20,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { StartComponent } from './components/start/start.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { LiveComponent } from './components/live/live.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ParlayComponent } from './components/parlay/parlay.component';
 import { StraightComponent } from './components/straight/straight.component';
 import { Straight2Component } from './components/straight2/straight2.component';
+import { LiveMenuComponent } from './components/live-menu/live-menu.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -34,9 +34,9 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'menu', component: MenuComponent},
-  {path: 'start', component: StartComponent},
   {path: 'confirm', component: ConfirmComponent},
   {path: 'live', component: LiveComponent},
+  {path: 'liveMenu', component: LiveMenuComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'parlay', component: ParlayComponent},
   {path: 'straight', component: StraightComponent},
@@ -52,13 +52,13 @@ const appRoutes: Routes = [
     HomeComponent,
     ProfileComponent,
     MenuComponent,
-    StartComponent,
     ConfirmComponent,
     LiveComponent,
     AdminComponent,
     ParlayComponent,
     StraightComponent,
-    Straight2Component
+    Straight2Component,
+    LiveMenuComponent
   ],
   imports: [
     BrowserModule,

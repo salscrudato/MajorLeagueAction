@@ -14,6 +14,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 export class LiveComponent implements OnInit {
   eventsArray:any = [];
   eventOddsArray:any = [];
+  sport:any;
 
   constructor(
     private userService:UserService,
@@ -25,8 +26,9 @@ export class LiveComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.getLiveEvents('16', '225');
-    this.getLiveEvents('16', '225');
+    this.sport = this.dataService.getSports();
+    var league = this.dataService.getLeague();
+    this.getLiveEvents(this.sport, league);
   }
 
   getLiveEvents(sportId, leagueId){
@@ -43,7 +45,7 @@ export class LiveComponent implements OnInit {
 
   getLiveEventOdds(events){
     for(var i = 0; i < events.length; i++){
-      this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage).subscribe(data =>{
+      this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport).subscribe(data =>{
         this.eventOddsArray.push(data);
         console.log(this.eventOddsArray);
       });
@@ -51,7 +53,7 @@ export class LiveComponent implements OnInit {
   }
 
   placeBet(){
-    
+
   }
 
 }

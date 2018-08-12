@@ -1,5 +1,5 @@
 class Bet365Live {
-  constructor(id, homeTeam, awayTeam, oddsArray) {
+  constructor(id, homeTeam, awayTeam, oddsArray, sport) {
     this.id = id;
     this.homeTeam = homeTeam;
     this.awayTeam = awayTeam;
@@ -28,137 +28,167 @@ class Bet365Live {
     score = score.split('-');
     this.homeScore = parseFloat(score[0]);
     this.awayScore = parseFloat(score[1]);
-    this.time = this.constructor.setTime(oddsArray[0]);
+    this.details = this.constructor.setDetails(oddsArray[0], sport);
 
-    //Set indexes
-    for(var i = 0; i < oddsArray.length; i++){
-      if(oddsArray[i].type == 'MA'){
-        if(oddsArray[i].NA == 'Money Line'){
-          mlStartIndex = i + 2;
-          mlEndIndex = this.constructor.findEnd(mlStartIndex, oddsArray);
-        } else if(oddsArray[i].NA == 'Run Line'){
-          rlStartIndex = i + 2;
-          rlEndIndex = this.constructor.findEnd(rlStartIndex, oddsArray);
-        } else if(oddsArray[i].NA == 'Alternative Run Lines'){
-          altStartIndex = i + 2;
-          altEndIndex = this.constructor.findEnd(altStartIndex, oddsArray);
-        } else if(oddsArray[i].NA == 'Game Total'){
-          totalStartIndex = i + 2;
-          totalEndIndex = this.constructor.findEnd(totalStartIndex, oddsArray);
-        } else if(oddsArray[i].NA == 'Alternative Game Totals'){
-          altTotalStartIndex = i + 2;
-          altTotalEndIndex = this.constructor.findEnd(altTotalStartIndex, oddsArray);
+    //==========For Baseball==========
+    if(sport==16){
+      //Set indexes
+      for(var i = 0; i < oddsArray.length; i++){
+        if(oddsArray[i].type == 'MA'){
+          if(oddsArray[i].NA == 'Money Line'){
+            mlStartIndex = i + 2;
+            mlEndIndex = this.constructor.findEnd(mlStartIndex, oddsArray);
+          } else if(oddsArray[i].NA == 'Run Line'){
+            rlStartIndex = i + 2;
+            rlEndIndex = this.constructor.findEnd(rlStartIndex, oddsArray);
+          } else if(oddsArray[i].NA == 'Alternative Run Lines'){
+            altStartIndex = i + 2;
+            altEndIndex = this.constructor.findEnd(altStartIndex, oddsArray);
+          } else if(oddsArray[i].NA == 'Game Total'){
+            totalStartIndex = i + 2;
+            totalEndIndex = this.constructor.findEnd(totalStartIndex, oddsArray);
+          } else if(oddsArray[i].NA == 'Alternative Game Totals'){
+            altTotalStartIndex = i + 2;
+            altTotalEndIndex = this.constructor.findEnd(altTotalStartIndex, oddsArray);
+          }
+        }
+      }
+
+      this.homeTeamML = this.constructor.setML(homeTeam, mlStartIndex, mlEndIndex, oddsArray);
+      this.homeTeamML = this.constructor.convertOdds(this.homeTeamML);
+      this.awayTeamML = this.constructor.setML(awayTeam, mlStartIndex, mlEndIndex, oddsArray);
+      this.awayTeamML = this.constructor.convertOdds(this.awayTeamML);
+      this.homeTeamRL = this.constructor.setRL(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
+      this.awayTeamRL = this.constructor.setRL(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
+      this.homeTeamRLOdds = this.constructor.setRLOdds(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
+      this.homeTeamRLOdds = this.constructor.convertOdds(this.homeTeamRLOdds);
+      this.awayTeamRLOdds = this.constructor.setRLOdds(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
+      this.awayTeamRLOdds = this.constructor.convertOdds(this.awayTeamRLOdds);
+      this.homeTeamRLArray = this.constructor.setAltLines(homeTeam, altStartIndex, altEndIndex, oddsArray);
+      this.awayTeamRLArray = this.constructor.setAltLines(awayTeam, altStartIndex, altEndIndex, oddsArray);
+      this.under = this.constructor.setTotal('Under', totalStartIndex, totalEndIndex, oddsArray);
+      this.over = this.constructor.setTotal('Over', totalStartIndex, totalEndIndex, oddsArray);
+      this.overArray = this.constructor.setAltLines('Over', altTotalStartIndex, altTotalEndIndex, oddsArray);
+      this.underArray = this.constructor.setAltLines('Under', altTotalStartIndex, altTotalEndIndex, oddsArray);
+
+      //==========For Soccer==========
+    } else if (sport==1){
+      for(var i = 0; i < oddsArray.length; i++){
+        if(oddsArray[i].type == 'MA'){
+          if(oddsArray[i].NA == 'Fulltime Result'){
+            mlStartIndex = i + 2;
+            mlEndIndex = this.constructor.findEnd(mlStartIndex, oddsArray);
+          } else if(oddsArray[i].NA == 'Match Goals'){
+            totalStartIndex = i + 2;
+            totalEndIndex = this.constructor.findEnd(totalStartIndex, oddsArray);
+          }
+        }
+      }
+
+      //==========Get Odds==========
+      this.homeTeamML = this.constructor.setML(homeTeam, mlStartIndex, mlEndIndex, oddsArray);
+      this.homeTeamML = this.constructor.convertOdds(this.homeTeamML);
+      this.awayTeamML = this.constructor.setML(awayTeam, mlStartIndex, mlEndIndex, oddsArray);
+      this.awayTeamML = this.constructor.convertOdds(this.awayTeamML);
+      this.drawOdds = this.constructor.setML("Draw", mlStartIndex, mlEndIndex, oddsArray);
+      this.drawOdds = this.constructor.convertOdds(this.drawOdds);
+      this.under = this.constructor.setTotal('Under', totalStartIndex, totalEndIndex, oddsArray);
+      this.over = this.constructor.setTotal('Over', totalStartIndex, totalEndIndex, oddsArray);
+
+    }
+  }
+
+    static convertOdds(odd){
+      if(odd != null && odd != undefined && typeof odd == 'string'){
+        odd = odd.split('/');
+        if(odd.length>0){
+          odd[0] = parseInt(odd[0]);
+          odd[1] = parseInt(odd[1]);
+          var decOdd = (odd[0]/odd[1]) + 1.00;
+          if(decOdd >= 2){
+            return Math.round((decOdd - 1)*100);
+          }else{
+            return Math.round((-100)/(decOdd-1));
+          }
+        }
+      }
+      return odd;
+    }
+
+    static setDescription(event){
+      return event.NA;
+    }
+
+    static setScore(event){
+      return event.SS;
+    }
+
+    static setDetails(event, sport){
+      if(sport==16){
+        return event.ED;
+      } else if(sport==1){
+        return event.CT;
+      }
+    }
+
+    static setML(team, start, length, oddsArray){
+      for(var i = start; i < length + 1; i++){
+        if(oddsArray[i].NA == team){
+          return oddsArray[i].OD;
         }
       }
     }
 
-    this.homeTeamML = this.constructor.setML(homeTeam, mlStartIndex, mlEndIndex, oddsArray);
-    this.homeTeamML = this.constructor.convertOdds(this.homeTeamML);
-    this.awayTeamML = this.constructor.setML(awayTeam, mlStartIndex, mlEndIndex, oddsArray);
-    this.awayTeamML = this.constructor.convertOdds(this.awayTeamML);
-    this.homeTeamRL = this.constructor.setRL(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
-    this.awayTeamRL = this.constructor.setRL(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
-    this.homeTeamRLOdds = this.constructor.setRLOdds(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
-    this.homeTeamRLOdds = this.constructor.convertOdds(this.homeTeamRLOdds);
-    this.awayTeamRLOdds = this.constructor.setRLOdds(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
-    this.awayTeamRLOdds = this.constructor.convertOdds(this.awayTeamRLOdds);
-    this.homeTeamRLArray = this.constructor.setAltLines(homeTeam, altStartIndex, altEndIndex, oddsArray);
-    this.awayTeamRLArray = this.constructor.setAltLines(awayTeam, altStartIndex, altEndIndex, oddsArray);
-    this.under = this.constructor.setTotal('Under', totalStartIndex, totalEndIndex, oddsArray);
-    this.over = this.constructor.setTotal('Over', totalStartIndex, totalEndIndex, oddsArray);
-    this.overArray = this.constructor.setAltLines('Over', altTotalStartIndex, altTotalEndIndex, oddsArray);
-    this.underArray = this.constructor.setAltLines('Under', altTotalStartIndex, altTotalEndIndex, oddsArray);
-
-  }
-
-  static convertOdds(odd){
-    if(odd != null && odd != undefined && typeof odd == 'string'){
-      odd = odd.split('/');
-      if(odd.length>0){
-        odd[0] = parseInt(odd[0]);
-        odd[1] = parseInt(odd[1]);
-        var decOdd = (odd[0]/odd[1]) + 1.00;
-        if(decOdd >= 2){
-          return Math.round((decOdd - 1)*100);
-        }else{
-          return Math.round((-100)/(decOdd-1));
+    static setRL(team, start, length, oddsArray){
+      for(var i = start; i < length + 1; i++){
+        if(oddsArray[i].NA == team){
+          return oddsArray[i].HA;
         }
       }
     }
-    return odd;
-  }
 
-  static setDescription(event){
-    return event.NA;
-  }
-
-  static setScore(event){
-    return event.SS;
-  }
-
-  static setTime(event){
-    return event.ED;
-  }
-
-  static setML(team, start, length, oddsArray){
-    for(var i = start; i < length + 1; i++){
-      if(oddsArray[i].NA == team){
-        return oddsArray[i].OD;
+    static setRLOdds(team, start, length, oddsArray){
+      for(var i = start; i < length + 1; i++){
+        if(oddsArray[i].NA == team){
+          return oddsArray[i].OD;
+        }
       }
     }
-  }
 
-  static setRL(team, start, length, oddsArray){
-    for(var i = start; i < length + 1; i++){
-      if(oddsArray[i].NA == team){
-        return oddsArray[i].HA;
+
+    static setAltLines(team, start, length, oddsArray){
+      var tempArr = [];
+      for(var i = start; i < length + 1; i++){
+        if(oddsArray[i].NA == team){
+          tempArr.push({number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)});
+        }
       }
+      return tempArr;
     }
-  }
 
-  static setRLOdds(team, start, length, oddsArray){
-    for(var i = start; i < length + 1; i++){
-      if(oddsArray[i].NA == team){
-        return oddsArray[i].OD;
+    static setTotal(type, start, length, oddsArray){
+      var tempArr = [];
+      for(var i = start; i < length + 1; i++){
+        if(oddsArray[i].NA.trim() == type){
+          return {number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)};
+        }
       }
+      return tempArr;
     }
-  }
 
-
-  static setAltLines(team, start, length, oddsArray){
-    var tempArr = [];
-    for(var i = start; i < length + 1; i++){
-      if(oddsArray[i].NA == team){
-        tempArr.push({number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)});
+    static findEnd(start, oddsArr){
+      var found = 0;
+      var count = start;
+      while(found == 0){
+        if(oddsArr[count].type != 'PA' || count == oddsArr.length){
+          found = 1;
+        } else {
+          count = count + 1;
+        }
       }
+      return count - 1;
     }
-    return tempArr;
+
   }
 
-  static setTotal(type, start, length, oddsArray){
-    var tempArr = [];
-    for(var i = start; i < length + 1; i++){
-      console.log(oddsArray[i].NA);
-      if(oddsArray[i].NA == type){
-        return {number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)};
-      }
-    }
-    return tempArr;
-  }
-
-  static findEnd(start, oddsArr){
-    var found = 0;
-    var count = start;
-    while(found == 0){
-      if(oddsArr[count].type != 'PA' || count == oddsArr.length){
-        found = 1;
-      } else {
-        count = count + 1;
-      }
-    }
-    return count - 1;
-  }
-
-}
-
-module.exports = Bet365Live;
+  module.exports = Bet365Live;

@@ -47,29 +47,60 @@ router.get('/events', function(req, res, next){
   var leagueId = req.query.leagueId;
   var apiKey = '10744-6nAVE6st6PH0mD';
   var eventsUrl = 'https://api.betsapi.com/v1/bet365/inplay_filter?token='
-  + apiKey + '&sport_id=' + sportId;
-  //+ apiKey + '&sport_id=' + sportId + '&league_id=' + leagueId;
+  + apiKey + '&sport_id=' + sportId + '&league_id=' + leagueId;
   var options = {
     url:eventsUrl,
     method: 'GET'
+  }
+  if(leagueId == 0){
+    leagueId = '';
   }
   var tempEventsArray = [];
   request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var events = JSON.parse(body);
-      for(var i = 0; i < events.results.length; i++){
-        tempEventsArray.push({
-          id: events.results[i].id,
-          time: events.results[i].time,
-          homeTeam: events.results[i].home.name,
-          homeTeamImage: events.results[i].home.image_id,
-          awayTeam: events.results[i].away.name,
-          awayTeamImage: events.results[i].away.image_id
-        });
+      if(events != undefined && events.results != undefined){
+        for(var i = 0; i < events.results.length; i++){
+          tempEventsArray.push({
+            id: events.results[i].id,
+            time: events.results[i].time,
+            homeTeam: events.results[i].home.name,
+            homeTeamImage: events.results[i].home.image_id,
+            awayTeam: events.results[i].away.name,
+            awayTeamImage: events.results[i].away.image_id,
+            sport: sportId
+          });
+        }
       }
       res.send(tempEventsArray);
     } else {
       res.send({success:false, msg:'Failed to get events'});
+    }
+  });
+});
+
+//Live Odds by Event
+router.get('/eventOdds', function(req, res, next){
+  var eventId = req.query.eventId;
+  var homeTeam = req.query.homeTeam;
+  var homeTeamImage = req.query.homeTeamImage;
+  var awayTeam = req.query.awayTeam;
+  var awayTeamImage = req.query.awayTeamImage;
+  var sportId = req.query.sportId;
+  var apiKey = '10744-6nAVE6st6PH0mD';
+  var oddsUrl = 'https://api.betsapi.com/v1/bet365/event?token=' + apiKey + '&FI=' + eventId;
+  var oddsOptions = {
+    url: oddsUrl,
+    method: 'GET'
+  }
+  request(oddsOptions, function (error, response, body){
+    if (!error && response.statusCode == 200) {
+      var data = JSON.parse(body);
+      if(data != undefined && data.results != undefined){
+        var oddsArr = data.results[0];
+        var liveEventOdds = new Bet365Live(eventId, homeTeam, awayTeam, oddsArr, sportId);
+      }
+      res.send(liveEventOdds);
     }
   });
 });
@@ -107,32 +138,6 @@ router.get('/upcomingEvents', function(req, res, next){
   });
 });
 
-//Live Odds by Event
-router.get('/eventOdds', function(req, res, next){
-  var eventId = req.query.eventId;
-  var homeTeam = req.query.homeTeam;
-  var homeTeamImage = req.query.homeTeamImage;
-  var awayTeam = req.query.awayTeam;
-  var awayTeamImage = req.query.awayTeamImage;
-  var apiKey = '10744-6nAVE6st6PH0mD';
-  var oddsUrl = 'https://api.betsapi.com/v1/bet365/event?token=' + apiKey + '&FI=' + eventId;
-  console.log(oddsUrl);
-  var oddsOptions = {
-    url: oddsUrl,
-    method: 'GET'
-  }
-  request(oddsOptions, function (error, response, body){
-    if (!error && response.statusCode == 200) {
-      var data = JSON.parse(body);
-      if(data != undefined && data.results != undefined){
-        var oddsArr = data.results[0];
-        var liveEventOdds = new Bet365Live(eventId, homeTeam, awayTeam, oddsArr);
-      }
-      res.send(liveEventOdds);
-    }
-  });
-});
-
 //Upcoming Odds by Event
 router.get('/upcomingEventOdds', function(req, res, next){
   var eventId = req.query.eventId;
@@ -149,7 +154,6 @@ router.get('/upcomingEventOdds', function(req, res, next){
   request(oddsOptions, function (error, response, body){
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      console.log('getting for ' + eventId);
       var oddsArr = data.results[0].main;
       var eventOdds = new Action2(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
       res.send(eventOdds);
