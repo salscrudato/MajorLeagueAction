@@ -1,25 +1,23 @@
-<div class="container pt-5">
-	<div class ="jumbotron text-center">
-		<h1>Major League Action</h1>
-		<p class="lead">A betting site made by the people, for the people.</p>
-		<div>
-			<button type="button" [routerLink]="['/register']" class="btn btn-primary">Register</button>
-			<button type="button" [routerLink]="['/login']" class="btn btn-secondary">Login</button>
+<body background="assets/images/bg-masthead.jpg">
+<!-- Header -->
+<header class="masthead">
+	<div class="container d-flex h-100 align-items-center">
+		<div class="mx-auto text-center">
+			<h1 class="mx-auto text-uppercase">Action</h1>
+			<h2 class="text-light mx-auto mt-2 mb-5">Login</h2>
+			<form class="form-inline d-flex">
+				<input type="username" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="USERNAME">
+				<input type="password" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="username" placeholder="PASSWORD">
+				<button type="submit" class="btn btn-primary mx-auto">Login</button>
+			</form>
 		</div>
 	</div>
+</header>
 
-	<div class="row" align="center">
-		<div class="col-md-4 mb-3">
-			<h3>View Pending Bets</h3>
-			<button type="button" [routerLink]="['/dashboard']" class="btn btn-primary">Pendings</button>
-		</div>
-		<div class="col-md-4 mb-3">
-			<h3>MLB</h3>
-			<button type="button" [routerLink]="['/menu']" class="btn btn-primary">MLB</button>
-		</div>
-		<div class="col-md-4 mb-3">
-			<h3>Live Bets</h3>
-			<button type="button" [routerLink]="['/mlblive']" class="btn btn-primary">Live Bets</button>
-		</div>
+</body>
+
+<!-- <footer class="bg-black small text-center text-light">
+	<div class="container">
+		Contact Us (Coming Soon)
 	</div>
-</div>
+</footer> -->
