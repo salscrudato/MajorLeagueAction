@@ -1733,7 +1733,7 @@ module.exports = "<div class=\"container pt-5\">\n  <h2 class=\"page-header pt-2
 /***/ 709:
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"masthead\">\n\t<div class=\"container d-flex h-100 align-items-center\">\n\t\t<div class=\"mx-auto text-center\">\n\t\t\t<h1 class=\"mx-auto text-uppercase\">Action+</h1>\n\t\t\t<h2 class=\"text-white-50 mx-auto mt-2 mb-5\">Login</h2>\n\t\t\t<form class=\"form-inline d-flex\">\n\t\t\t\t<input type=\"username\" class=\"form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0\" id=\"username\" placeholder=\"Username\">\n\t\t\t\t<input type=\"password\" class=\"form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0\" id=\"password\" placeholder=\"Password\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary mx-auto\">Login</button>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</header>\n\n\n<!-- <footer class=\"bg-black small text-center text-light\">\n\t<div class=\"container\">\n\t\tContact Us (Coming Soon)\n\t</div>\n</footer> -->\n"
+module.exports = "<header class=\"masthead\">\n\t<div class=\"container d-flex h-100 align-items-center\">\n\t\t<div class=\"mx-auto text-center\">\n\t\t\t<h1 class=\"mx-auto text-uppercase\">Action+</h1>\n\t\t\t<form class=\"form-inline d-flex\">\n\t\t\t\t<input type=\"username\" class=\"form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0\" id=\"username\" placeholder=\"Username\">\n\t\t\t\t<input type=\"password\" class=\"form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0\" id=\"password\" placeholder=\"Password\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary mx-auto\">Login</button>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</header>\n"
 
 /***/ }),
 
