@@ -1,7 +1,9 @@
 class Bet365Upcoming {
   constructor(id, gameTime, oddsArr, sport, homeTeam, awayTeam){
     this.id = id;
-    this.epoch = parseInt(gameTime)*1000;
+    var tempEpoch = parseInt(gameTime)*1000;
+    var offset = -240;
+    this.epoch = (tempEpoch + offset*60*1000);
     var humanDate = new Date(this.epoch);
     var months = {0:'Jan', 1:'Feb', 2:'Mar', 3:'Apr', 4:'May', 5:'Jun', 6:'Jul', 7:'Aug', 8:'Sep', 9:'Oct', 10:'Nov', 11:'Dec'};
     var month = months[humanDate.getMonth()];
