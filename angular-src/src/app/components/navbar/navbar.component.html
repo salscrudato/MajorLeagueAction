@@ -1,10 +1,10 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-  <a class="navbar-brand" href="#">Action+</a>
+  <a class="masthead" href="#">Action+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nb" aria-controls="nb" aria-expanded="false">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="nb">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav ml-2 mr-auto">
       <li><a class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('menu')">Bet Menu</a></li>
       <li><a class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('other')">Bet Menu 2</a></li>
       <li><a class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('parlayMenu')">Parlay Menu</a></li>
@@ -13,7 +13,6 @@
     <ul class="navbar-nav mr-right">
       <li><a *ngIf="authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('profile')">Profile</a></li>
       <li><a *ngIf="authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('admin')">Admin</a></li>
-      <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('login')">Login</a></li>
       <li><a *ngIf="!authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="route('register')">Register</a></li>
       <li><a *ngIf="authService.loggedIn()" class="nav-link" data-toggle="collapse" data-target="#nb" (click)="onLogoutClick()">Logout</a></li>
     </ul>

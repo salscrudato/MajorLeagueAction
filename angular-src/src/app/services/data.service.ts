@@ -17,7 +17,9 @@ export class DataService {
   }
 
   getSports(){
-    return this.sport;
+    var tempSport = this.sport;
+    this.sport = null;
+    return tempSport;
   }
 
   setLeague(league){
@@ -25,7 +27,9 @@ export class DataService {
   }
 
   getLeague(){
-    return this.league;
+    var tempLeague = this.league;
+    this.league = null;
+    return tempLeague;
   }
 
   setJsonOddsEvents(events){
@@ -51,7 +55,9 @@ export class DataService {
   }
 
   getBet(){
-    return this.bet;
+    var tempBet = this.bet;
+    this.bet = [];
+    return tempBet;
   }
 
   getProfile(){
@@ -59,7 +65,9 @@ export class DataService {
   }
 
   getBetType(){
-    return this.type;
+    var tempBetType = this.type;
+    this.type = null;
+    return tempBetType;
   }
 
   sortBets(unsorted){

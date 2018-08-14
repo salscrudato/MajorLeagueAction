@@ -45,15 +45,41 @@ export class LiveComponent implements OnInit {
 
   getLiveEventOdds(events){
     for(var i = 0; i < events.length; i++){
-      this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport).subscribe(data =>{
+      this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport, events[i].epoch).subscribe(data =>{
         this.eventOddsArray.push(data);
-        console.log(this.eventOddsArray);
       });
     }
   }
 
-  placeBet(){
+  placeBet(action,type){
+    action.betType = type;
+    this.authService.getProfile().subscribe(profile => {
+      this.dataService.addStraightBet(action, profile, 'straight');
+      this.router.navigate(['confirm']);
+    },
+    err =>{
+      this.flashMessage.show('You must be logged in to place a bet.', {cssClass: 'alert-danger'});
+      return false;
+    });
+  }
 
+  placeBetWithIndex(action, type, oddsArray, i){
+    var oddsArrNum = oddsArray[i].number;
+    var oddsArrOdds = oddsArray[i].odds;
+    if(type == 'homeTeamRL'){
+      action.homeTeamRL = oddsArrNum;
+      action.homeTeamRLOdds = oddsArrOdds;
+    } else if(type == 'awayTeamRL'){
+      action.awayTeamRL = oddsArrNum;
+      action.awayTeamRLOdds = oddsArrOdds;
+    } else if(type == 'over'){
+      action.over.number = oddsArrNum;
+      action.over.odds = oddsArrOdds;
+    } else if(type == 'under'){
+      action.under.number = oddsArrNum;
+      action.under.odds = oddsArrOdds;
+    }
+    this.placeBet(action, type);
   }
 
 }

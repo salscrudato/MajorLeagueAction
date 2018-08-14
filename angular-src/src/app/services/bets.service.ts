@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class BetService {
-  urlPrefix = '';
 
   constructor(private http: Http) {
 
@@ -15,8 +14,8 @@ export class BetService {
   placeBet(bet) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-      //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
-      return this.http.post('bets/placeBet', bet, {headers: headers})
+      return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
+      //return this.http.post('bets/placeBet', bet, {headers: headers})
         .map(res => res.json());
   }
 
@@ -27,8 +26,8 @@ export class BetService {
       status: result
     }
     headers.append('Content-Type', 'application/json');
-      //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
-      return this.http.post('bets/closePending', bet, {headers: headers})
+      return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
+      //return this.http.post('bets/closePending', bet, {headers: headers})
         .map(res => res.json());
   }
 
@@ -38,16 +37,16 @@ export class BetService {
     const url = 'bets/getBets?userId=' + userId + '&status=' + status;
     const url2 = 'http://localhost:8080/bets/getBets?userId=' + userId + '&status=' + status;
     headers.append('Content-Type', 'application/json');
-      //return this.http.get(url2, {headers: headers})
-      return this.http.get(url, {headers: headers})
+      return this.http.get(url2, {headers: headers})
+      //return this.http.get(url, {headers: headers})
         .map(res => res.json());
   }
 
   getAllPendings() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-      //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
-      return this.http.get('bets/getAllPendings', {headers: headers})
+      return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
+      //return this.http.get('bets/getAllPendings', {headers: headers})
         .map(res => res.json());
   }
 

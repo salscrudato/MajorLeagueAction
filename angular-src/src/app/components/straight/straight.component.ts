@@ -28,6 +28,9 @@ export class StraightComponent implements OnInit {
     var tempActions = this.dataService.getJsonOddsEvents();
     this.sport = this.dataService.getSports();
     this.setUpActions(tempActions, this.sport);
+    if(this.sport==21){
+      console.log(this.actions);
+    }
   }
 
   setUpActions(tempActions, sport){
@@ -48,6 +51,14 @@ export class StraightComponent implements OnInit {
       this.flashMessage.show('You must be logged in to place a bet.', {cssClass: 'alert-danger'});
       return false;
     });
+  }
+
+  addPlus(odds){
+    if(odds>0){
+      return '+';
+    }else{
+      return '';
+    }
   }
 
 }

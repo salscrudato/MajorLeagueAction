@@ -32,7 +32,8 @@ router.get('/all', cache('10 minutes'), function(req, res, next){
           data[i].AwayTeam,
           data[i].HomePitcher,
           data[i].AwayPitcher,
-          data[i].Sport
+          data[i].Sport,
+          data[i].League
         );
         actions.push(action);
       }
@@ -70,6 +71,7 @@ router.get('/events', function(req, res, next){
             homeTeamImage: events.results[i].home.image_id,
             awayTeam: events.results[i].away.name,
             awayTeamImage: events.results[i].away.image_id,
+            epoch: events.results[i].time,
             sport: sportId
           });
         }
@@ -89,6 +91,7 @@ router.get('/eventOdds', function(req, res, next){
   var awayTeam = req.query.awayTeam;
   var awayTeamImage = req.query.awayTeamImage;
   var sportId = req.query.sportId;
+  var epoch = req.query.epoch;
   var apiKey = '10744-6nAVE6st6PH0mD';
   var oddsUrl = 'https://api.betsapi.com/v1/bet365/event?token=' + apiKey + '&FI=' + eventId;
   var oddsOptions = {
@@ -100,7 +103,7 @@ router.get('/eventOdds', function(req, res, next){
       var data = JSON.parse(body);
       if(data != undefined && data.results != undefined){
         var oddsArr = data.results[0];
-        var liveEventOdds = new Bet365Live(eventId, homeTeam, awayTeam, oddsArr, sportId);
+        var liveEventOdds = new Bet365Live(eventId, homeTeam, awayTeam, oddsArr, sportId, epoch);
       }
       res.send(liveEventOdds);
     }

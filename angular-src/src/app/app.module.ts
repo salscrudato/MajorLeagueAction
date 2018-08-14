@@ -15,7 +15,6 @@ import {AuthGuard} from './guards/app.guards';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -31,7 +30,6 @@ import { LiveMenuComponent } from './components/live-menu/live-menu.component';
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'menu', component: MenuComponent},
   {path: 'confirm', component: ConfirmComponent},
@@ -47,7 +45,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent,
     RegisterComponent,
     HomeComponent,
     ProfileComponent,

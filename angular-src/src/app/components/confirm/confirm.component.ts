@@ -34,7 +34,7 @@ export class ConfirmComponent implements OnInit{
   clickPlaceBet(){
     var profile = this.dataService.getProfile();
     var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-    var confirmedBet = new Bet(profile, this.bet, 'jsonOdds', this.odds, this.betAmount, winAmount, this.betType);
+    var confirmedBet = new Bet(profile, this.bet, this.bet.source, this.odds, this.betAmount, winAmount, this.betType);
     this.betService.placeBet(confirmedBet).subscribe(data => {
       if(data.success){
         this.router.navigate(['profile']);
@@ -76,13 +76,16 @@ export class ConfirmComponent implements OnInit{
         break;
       case 'over':
         bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber;
-        bet.odds = -110;
+        bet.odds = bet.overLine;
         break;
       case 'under':
         bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber;
-        bet.overUnderOdds=-100;
-        bet.odds = -110;
+        bet.odds = bet.underLine;
         break;
+        case 'draw':
+          bet.betDetails = awayTeam + " @ " + homeTeam + " Draw " + bet.drawOdds;
+          bet.odds = bet.drawOdds;
+          break;
       default:
         break;
     }

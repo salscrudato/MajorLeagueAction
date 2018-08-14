@@ -12,6 +12,7 @@ export class Bet {
   betType:string;
   subBets:any = [];
   constructor(profile, bet, source, odds, betAmount, winAmount, betType){
+    console.log(bet);
     this.userId = profile.user._id;
     this.username = profile.user.username;
     for (var i = 0; i < bet.length; i++){
@@ -22,16 +23,18 @@ export class Bet {
     this.odds = odds;
     this.betAmount = betAmount;
     this.winAmount = winAmount;
-    //Add logic here to loop through subBets
 
-    // var tmpIndex = 0;
-    // var tmpTime = 0;
-    // for (var i = 0; i < subBets.length; i++){
-    //
-    // }
-    
-    this.gameDate = bet[0].matchDate;
-    this.gameTime = bet[0].matchTime;
+    var tmpIndex = 0;
+    var tmpTime = 0;
+    for (var i = 0; i < bet.length; i++){
+      if(bet[i].epoch > tmpTime){
+        tmpTime = bet[i].epoch;
+        tmpIndex = i;
+      }
+    }
+    this.epoch = tmpTime;
+    this.gameDate = bet[tmpIndex].matchDate;
+    this.gameTime = bet[tmpIndex].matchTime;
     this.betType = betType;
   }
 }

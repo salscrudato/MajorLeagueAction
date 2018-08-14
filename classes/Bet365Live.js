@@ -1,6 +1,16 @@
 class Bet365Live {
-  constructor(id, homeTeam, awayTeam, oddsArray, sport) {
+  constructor(id, homeTeam, awayTeam, oddsArray, sport, epoch) {
     this.id = id;
+    var tempEpoch = parseInt(epoch)*1000;
+    var offset = -240;
+    this.epoch = (tempEpoch + offset*60*1000);
+    var humanDate = new Date(this.epoch);
+    var months = {0:'Jan', 1:'Feb', 2:'Mar', 3:'Apr', 4:'May', 5:'Jun', 6:'Jul', 7:'Aug', 8:'Sep', 9:'Oct', 10:'Nov', 11:'Dec'};
+    var month = months[humanDate.getMonth()];
+    var day = humanDate.getDate();
+    this.matchDate = month + " " + day;
+    this.matchTime = this.constructor.formatAMPM(humanDate);
+    this.source = 'bet365';
     this.homeTeam = homeTeam;
     this.awayTeam = awayTeam;
     this.overArray = [];
@@ -188,6 +198,17 @@ class Bet365Live {
         }
       }
       return count - 1;
+    }
+
+    static formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
     }
 
   }

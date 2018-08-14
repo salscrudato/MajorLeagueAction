@@ -34,7 +34,7 @@ export class MenuComponent implements OnInit {
     this.oddsService.getOdds().subscribe(data =>{
       for (var i = 0; i < data.length; i++) {
         this.actions.push(data[i]);
-        if(data[i].sport != 0 && data[i].sport != 4 && data[i].sport !=8 && data[i].sport !=3){
+        if(data[i].sport != 0 && data[i].sport != 4 && data[i].sport !=8 && data[i].sport !=3 && data[i].sport !=21 && data[i].sport !=19 && data[i].sport !=20 && data[i].sport !=24){
           tempArr.push(data[i]);
         }
       }

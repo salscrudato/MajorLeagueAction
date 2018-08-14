@@ -1,6 +1,7 @@
 class Bet365Upcoming {
   constructor(id, gameTime, oddsArr, sport, homeTeam, awayTeam){
     this.id = id;
+    this.source = 'bet365';
     var tempEpoch = parseInt(gameTime)*1000;
     var offset = -240;
     this.epoch = (tempEpoch + offset*60*1000);

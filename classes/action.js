@@ -1,8 +1,11 @@
 class Action {
   constructor(id, details, matchTime,
-    odds, homeTeam, awayTeam, homePitcher, awayPitcher, sport) {
+    odds, homeTeam, awayTeam, homePitcher, awayPitcher, sport, league) {
+
       this.id = id;
+      this.source = 'jsonOdds';
       this.details = details;
+
       //==========Time==========
       var tempEpoch = new Date(matchTime).getTime();
       var offset = -240;
@@ -21,6 +24,7 @@ class Action {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
       }
+
       for(var i = 0; i < odds.length; i++){
         if(odds[i].OddType=='Game'){
           this.homeTeamML = odds[i].MoneyLineHome;
@@ -34,9 +38,20 @@ class Action {
           this.underLine = odds[i].UnderLine;
         }
       }
+
+      //==========Golf==========
+      if(sport==21){
+        this.eventName = league.Name;
+        this.participant = [];
+        for(var i = 0; i < odds.length; i++){
+          this.participant.push({name: odds[i].Participant.Name, odds: odds[i].MoneyLineHome});
+        }
+      }
+
       this.homeImagePath = this.constructor.setHomeAndAwayImages(homeTeam);
       this.awayImagePath = this.constructor.setHomeAndAwayImages(awayTeam);
       this.sport = sport;
+
     }
 
     static formatAMPM(date) {
@@ -629,7 +644,7 @@ class Action {
         return '/assets/images/ulm war hawks.png';
         break;
         default:
-        return '/assets/images/mlb.png';
+        return '/assets/images/default.jpeg';
       }
     }
   }

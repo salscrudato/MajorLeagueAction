@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-home',
@@ -9,24 +11,34 @@ import {UserService} from '../../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  users:any;
+  username:String;
+  password:String;
 
   constructor(
     private authService:AuthService,
-    private userService:UserService
-  ){
-
-    this.userService.getAllUsers().subscribe(data => {
-      this.users = data;
-    });
-
-  }
+    private userService:UserService,
+    private router:Router,
+    private flashMessage:FlashMessagesService
+  ){}
 
   ngOnInit() {
   }
 
-  test(x){
-    console.log(x.name);
+  onLoginSubmit(){
+    const user = {
+      username: this.username,
+      password: this.password
+    }
+
+    this.authService.authenticateUser(user).subscribe(data => {
+      if(data.success){
+        this.authService.storeUserData(data.token, data.user);
+        this.router.navigate(['profile']);
+      } else {
+        this.flashMessage.show(data.msg, {cssClass: 'alert-danger'});
+      }
+    });
+
   }
 
 }

@@ -24,13 +24,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var BetService = (function () {
     function BetService(http) {
         this.http = http;
-        this.urlPrefix = '';
     }
     BetService.prototype.placeBet = function (bet) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
-        return this.http.post('bets/placeBet', bet, { headers: headers })
+        return this.http.post('http://localhost:8080/bets/placeBet', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.closeBet = function (betId, result) {
@@ -40,8 +38,7 @@ var BetService = (function () {
             status: result
         };
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
-        return this.http.post('bets/closePending', bet, { headers: headers })
+        return this.http.post('http://localhost:8080/bets/closePending', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getBets = function (profile, status) {
@@ -50,15 +47,13 @@ var BetService = (function () {
         var url = 'bets/getBets?userId=' + userId + '&status=' + status;
         var url2 = 'http://localhost:8080/bets/getBets?userId=' + userId + '&status=' + status;
         headers.append('Content-Type', 'application/json');
-        //return this.http.get(url2, {headers: headers})
-        return this.http.get(url, { headers: headers })
+        return this.http.get(url2, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getAllPendings = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
-        return this.http.get('bets/getAllPendings', { headers: headers })
+        return this.http.get('http://localhost:8080/bets/getAllPendings', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService = __decorate([
@@ -100,15 +95,13 @@ var UserService = (function () {
     UserService.prototype.getAllUsers = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
-        return this.http.get('users/allProfiles', { headers: headers })
+        return this.http.get('http://localhost:8080/users/allProfiles', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.updateBalance = function (updatedAmount) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
-        return this.http.post('users/updateBalance', updatedAmount, { headers: headers })
+        return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([
@@ -122,7 +115,7 @@ var UserService = (function () {
 
 /***/ }),
 
-/***/ 24:
+/***/ 29:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -130,7 +123,7 @@ var UserService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_jwt__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_jwt__ = __webpack_require__(536);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -155,16 +148,14 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/register';
-        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
-        return this.http.post(url, user, { headers: headers })
+        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/authenticate';
-        //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
-        return this.http.post(url, user, { headers: headers })
+        return this.http.post('http://localhost:8080/users/authenticate', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
@@ -173,8 +164,7 @@ var AuthService = (function () {
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/profile';
-        //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
-        return this.http.get(url, { headers: headers })
+        return this.http.get('http://localhost:8080/users/profile', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
@@ -182,6 +172,9 @@ var AuthService = (function () {
         localStorage.setItem('user', JSON.stringify(user));
         this.authToken = token;
         this.user = user;
+    };
+    AuthService.prototype.getUsername = function () {
+        return localStorage.getItem('user');
     };
     AuthService.prototype.loadToken = function () {
         var token = localStorage.getItem('id_token');
@@ -247,42 +240,7 @@ var ValidateService = (function () {
 
 /***/ }),
 
-/***/ 397:
-/***/ (function(module, exports) {
-
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 397;
-
-
-/***/ }),
-
-/***/ 398:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(485);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(516);
-
-
-
-
-if (__WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].production) {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["enableProdMode"])();
-}
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_3__app_app_module__["a" /* AppModule */]);
-//# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/main.js.map
-
-/***/ }),
-
-/***/ 43:
+/***/ 39:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -307,13 +265,17 @@ var DataService = (function () {
         this.sport = sport;
     };
     DataService.prototype.getSports = function () {
-        return this.sport;
+        var tempSport = this.sport;
+        this.sport = null;
+        return tempSport;
     };
     DataService.prototype.setLeague = function (league) {
         this.league = league;
     };
     DataService.prototype.getLeague = function () {
-        return this.league;
+        var tempLeague = this.league;
+        this.league = null;
+        return tempLeague;
     };
     DataService.prototype.setJsonOddsEvents = function (events) {
         this.jsonOddsEvents = events;
@@ -334,13 +296,17 @@ var DataService = (function () {
         this.type = type;
     };
     DataService.prototype.getBet = function () {
-        return this.bet;
+        var tempBet = this.bet;
+        this.bet = [];
+        return tempBet;
     };
     DataService.prototype.getProfile = function () {
         return this.profile;
     };
     DataService.prototype.getBetType = function () {
-        return this.type;
+        var tempBetType = this.type;
+        this.type = null;
+        return tempBetType;
     };
     DataService.prototype.sortBets = function (unsorted) {
         for (var i = 0; i < unsorted.length; i++) {
@@ -357,6 +323,41 @@ var DataService = (function () {
     return DataService;
 }());
 //# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/data.service.js.map
+
+/***/ }),
+
+/***/ 397:
+/***/ (function(module, exports) {
+
+function webpackEmptyContext(req) {
+	throw new Error("Cannot find module '" + req + "'.");
+}
+webpackEmptyContext.keys = function() { return []; };
+webpackEmptyContext.resolve = webpackEmptyContext;
+module.exports = webpackEmptyContext;
+webpackEmptyContext.id = 397;
+
+
+/***/ }),
+
+/***/ 398:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(516);
+
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].production) {
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["enableProdMode"])();
+}
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_3__app_app_module__["a" /* AppModule */]);
+//# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/main.js.map
 
 /***/ }),
 
@@ -383,8 +384,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
-            template: __webpack_require__(706),
-            styles: [__webpack_require__(692)]
+            template: __webpack_require__(704),
+            styles: [__webpack_require__(691)]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
@@ -404,28 +405,27 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validate_service__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_auth_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_user_service__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_odds_service__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_bets_service__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__guards_app_guards__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__guards_app_guards__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_component__ = __webpack_require__(515);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_navbar_navbar_component__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_login_login_component__ = __webpack_require__(522);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_register_register_component__ = __webpack_require__(528);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_profile_profile_component__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_menu_menu_component__ = __webpack_require__(523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_confirm_confirm_component__ = __webpack_require__(518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_live_live_component__ = __webpack_require__(521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_admin_admin_component__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_parlay_parlay_component__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_straight_straight_component__ = __webpack_require__(529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_other_other_component__ = __webpack_require__(525);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_live_menu_live_menu_component__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_navbar_navbar_component__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_register_register_component__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_home_home_component__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_profile_profile_component__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_menu_menu_component__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_confirm_confirm_component__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_live_live_component__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_admin_admin_component__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_parlay_parlay_component__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_straight_straight_component__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_other_other_component__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_live_menu_live_menu_component__ = __webpack_require__(520);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -462,20 +462,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var appRoutes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__["a" /* HomeComponent */] },
-    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_16__components_register_register_component__["a" /* RegisterComponent */] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_15__components_login_login_component__["a" /* LoginComponent */] },
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_18__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__guards_app_guards__["a" /* AuthGuard */]] },
-    { path: 'menu', component: __WEBPACK_IMPORTED_MODULE_19__components_menu_menu_component__["a" /* MenuComponent */] },
-    { path: 'confirm', component: __WEBPACK_IMPORTED_MODULE_20__components_confirm_confirm_component__["a" /* ConfirmComponent */] },
-    { path: 'live', component: __WEBPACK_IMPORTED_MODULE_21__components_live_live_component__["a" /* LiveComponent */] },
-    { path: 'liveMenu', component: __WEBPACK_IMPORTED_MODULE_26__components_live_menu_live_menu_component__["a" /* LiveMenuComponent */] },
-    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_22__components_admin_admin_component__["a" /* AdminComponent */] },
-    { path: 'parlay', component: __WEBPACK_IMPORTED_MODULE_23__components_parlay_parlay_component__["a" /* ParlayComponent */] },
-    { path: 'straight', component: __WEBPACK_IMPORTED_MODULE_24__components_straight_straight_component__["a" /* StraightComponent */] },
-    { path: 'other', component: __WEBPACK_IMPORTED_MODULE_25__components_other_other_component__["a" /* OtherComponent */] }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_16__components_home_home_component__["a" /* HomeComponent */] },
+    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_15__components_register_register_component__["a" /* RegisterComponent */] },
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_17__components_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_12__guards_app_guards__["a" /* AuthGuard */]] },
+    { path: 'menu', component: __WEBPACK_IMPORTED_MODULE_18__components_menu_menu_component__["a" /* MenuComponent */] },
+    { path: 'confirm', component: __WEBPACK_IMPORTED_MODULE_19__components_confirm_confirm_component__["a" /* ConfirmComponent */] },
+    { path: 'live', component: __WEBPACK_IMPORTED_MODULE_20__components_live_live_component__["a" /* LiveComponent */] },
+    { path: 'liveMenu', component: __WEBPACK_IMPORTED_MODULE_25__components_live_menu_live_menu_component__["a" /* LiveMenuComponent */] },
+    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_21__components_admin_admin_component__["a" /* AdminComponent */] },
+    { path: 'parlay', component: __WEBPACK_IMPORTED_MODULE_22__components_parlay_parlay_component__["a" /* ParlayComponent */] },
+    { path: 'straight', component: __WEBPACK_IMPORTED_MODULE_23__components_straight_straight_component__["a" /* StraightComponent */] },
+    { path: 'other', component: __WEBPACK_IMPORTED_MODULE_24__components_other_other_component__["a" /* OtherComponent */] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -485,18 +483,17 @@ var AppModule = (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_14__components_navbar_navbar_component__["a" /* NavbarComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__components_login_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__components_register_register_component__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__components_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_18__components_profile_profile_component__["a" /* ProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__components_menu_menu_component__["a" /* MenuComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__components_confirm_confirm_component__["a" /* ConfirmComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__components_live_live_component__["a" /* LiveComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__components_admin_admin_component__["a" /* AdminComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__components_parlay_parlay_component__["a" /* ParlayComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__components_straight_straight_component__["a" /* StraightComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__components_other_other_component__["a" /* OtherComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__components_live_menu_live_menu_component__["a" /* LiveMenuComponent */]
+                __WEBPACK_IMPORTED_MODULE_15__components_register_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__components_home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__components_profile_profile_component__["a" /* ProfileComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__components_menu_menu_component__["a" /* MenuComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__components_confirm_confirm_component__["a" /* ConfirmComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__components_live_live_component__["a" /* LiveComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__components_admin_admin_component__["a" /* AdminComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__components_parlay_parlay_component__["a" /* ParlayComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__components_straight_straight_component__["a" /* StraightComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__components_other_other_component__["a" /* OtherComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__components_live_menu_live_menu_component__["a" /* LiveMenuComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -521,7 +518,7 @@ var AppModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(20);
@@ -595,8 +592,8 @@ var AdminComponent = (function () {
     AdminComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-admin',
-            template: __webpack_require__(707),
-            styles: [__webpack_require__(693)]
+            template: __webpack_require__(705),
+            styles: [__webpack_require__(692)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_bets_service__["a" /* BetService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_bets_service__["a" /* BetService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]) === 'function' && _d) || Object])
     ], AdminComponent);
@@ -614,10 +611,10 @@ var AdminComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_bets_service__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_bet__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_bet__ = __webpack_require__(531);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfirmComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -653,7 +650,7 @@ var ConfirmComponent = (function () {
         var _this = this;
         var profile = this.dataService.getProfile();
         var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-        var confirmedBet = new __WEBPACK_IMPORTED_MODULE_5__classes_bet__["a" /* Bet */](profile, this.bet, 'jsonOdds', this.odds, this.betAmount, winAmount, this.betType);
+        var confirmedBet = new __WEBPACK_IMPORTED_MODULE_5__classes_bet__["a" /* Bet */](profile, this.bet, this.bet.source, this.odds, this.betAmount, winAmount, this.betType);
         this.betService.placeBet(confirmedBet).subscribe(function (data) {
             if (data.success) {
                 _this.router.navigate(['profile']);
@@ -693,12 +690,15 @@ var ConfirmComponent = (function () {
                 break;
             case 'over':
                 bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber;
-                bet.odds = -110;
+                bet.odds = bet.overLine;
                 break;
             case 'under':
                 bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber;
-                bet.overUnderOdds = -100;
-                bet.odds = -110;
+                bet.odds = bet.underLine;
+                break;
+            case 'draw':
+                bet.betDetails = awayTeam + " @ " + homeTeam + " Draw " + bet.drawOdds;
+                bet.odds = bet.drawOdds;
                 break;
             default:
                 break;
@@ -758,8 +758,8 @@ var ConfirmComponent = (function () {
     ConfirmComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-confirm',
-            template: __webpack_require__(708),
-            styles: [__webpack_require__(694)]
+            template: __webpack_require__(706),
+            styles: [__webpack_require__(693)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_bets_service__["a" /* BetService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_bets_service__["a" /* BetService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === 'function' && _d) || Object])
     ], ConfirmComponent);
@@ -775,8 +775,11 @@ var ConfirmComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -790,30 +793,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var HomeComponent = (function () {
-    function HomeComponent(authService, userService) {
-        var _this = this;
+    function HomeComponent(authService, userService, router, flashMessage) {
         this.authService = authService;
         this.userService = userService;
-        this.userService.getAllUsers().subscribe(function (data) {
-            _this.users = data;
-        });
+        this.router = router;
+        this.flashMessage = flashMessage;
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
-    HomeComponent.prototype.test = function (x) {
-        console.log(x.name);
+    HomeComponent.prototype.onLoginSubmit = function () {
+        var _this = this;
+        var user = {
+            username: this.username,
+            password: this.password
+        };
+        this.authService.authenticateUser(user).subscribe(function (data) {
+            if (data.success) {
+                _this.authService.storeUserData(data.token, data.user);
+                _this.router.navigate(['profile']);
+            }
+            else {
+                _this.flashMessage.show(data.msg, { cssClass: 'alert-danger' });
+            }
+        });
     };
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(709),
-            styles: [__webpack_require__(695)]
+            template: __webpack_require__(707),
+            styles: [__webpack_require__(694)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _d) || Object])
     ], HomeComponent);
     return HomeComponent;
-    var _a, _b;
+    var _a, _b, _c, _d;
 }());
 //# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/home.component.js.map
 
@@ -824,7 +840,7 @@ var HomeComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_odds_service__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LiveMenuComponent; });
@@ -857,8 +873,8 @@ var LiveMenuComponent = (function () {
     LiveMenuComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-live-menu',
-            template: __webpack_require__(710),
-            styles: [__webpack_require__(696)]
+            template: __webpack_require__(708),
+            styles: [__webpack_require__(695)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */]) === 'function' && _c) || Object])
     ], LiveMenuComponent);
@@ -876,8 +892,8 @@ var LiveMenuComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_odds_service__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages__);
@@ -926,19 +942,48 @@ var LiveComponent = (function () {
     LiveComponent.prototype.getLiveEventOdds = function (events) {
         var _this = this;
         for (var i = 0; i < events.length; i++) {
-            this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport).subscribe(function (data) {
+            this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport, events[i].epoch).subscribe(function (data) {
                 _this.eventOddsArray.push(data);
-                console.log(_this.eventOddsArray);
             });
         }
     };
-    LiveComponent.prototype.placeBet = function () {
+    LiveComponent.prototype.placeBet = function (action, type) {
+        var _this = this;
+        action.betType = type;
+        this.authService.getProfile().subscribe(function (profile) {
+            _this.dataService.addStraightBet(action, profile, 'straight');
+            _this.router.navigate(['confirm']);
+        }, function (err) {
+            _this.flashMessage.show('You must be logged in to place a bet.', { cssClass: 'alert-danger' });
+            return false;
+        });
+    };
+    LiveComponent.prototype.placeBetWithIndex = function (action, type, oddsArray, i) {
+        var oddsArrNum = oddsArray[i].number;
+        var oddsArrOdds = oddsArray[i].odds;
+        if (type == 'homeTeamRL') {
+            action.homeTeamRL = oddsArrNum;
+            action.homeTeamRLOdds = oddsArrOdds;
+        }
+        else if (type == 'awayTeamRL') {
+            action.awayTeamRL = oddsArrNum;
+            action.awayTeamRLOdds = oddsArrOdds;
+        }
+        else if (type == 'over') {
+            action.over.number = oddsArrNum;
+            action.over.odds = oddsArrOdds;
+        }
+        else if (type == 'under') {
+            action.under.number = oddsArrNum;
+            action.under.odds = oddsArrOdds;
+        }
+        this.placeBet(action, type);
     };
     LiveComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-live',
-            template: __webpack_require__(711),
-            styles: [__webpack_require__(697)]
+            template: __webpack_require__(709),
+            styles: [__webpack_require__(696)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__services_data_service__["a" /* DataService */]) === 'function' && _e) || Object, (typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_6_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _f) || Object])
     ], LiveComponent);
@@ -954,70 +999,7 @@ var LiveComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var LoginComponent = (function () {
-    function LoginComponent(authService, router, flashMessage) {
-        this.authService = authService;
-        this.router = router;
-        this.flashMessage = flashMessage;
-    }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
-    LoginComponent.prototype.onLoginSubmit = function () {
-        var _this = this;
-        var user = {
-            username: this.username,
-            password: this.password
-        };
-        this.authService.authenticateUser(user).subscribe(function (data) {
-            if (data.success) {
-                _this.authService.storeUserData(data.token, data.user);
-                _this.router.navigate(['profile']);
-            }
-            else {
-                _this.flashMessage.show(data.msg, { cssClass: 'alert-danger' });
-                _this.router.navigate(['login']);
-            }
-        });
-    };
-    LoginComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-login',
-            template: __webpack_require__(712),
-            styles: [__webpack_require__(698)]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _c) || Object])
-    ], LoginComponent);
-    return LoginComponent;
-    var _a, _b, _c;
-}());
-//# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/login.component.js.map
-
-/***/ }),
-
-/***/ 523:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_odds_service__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
@@ -1055,7 +1037,7 @@ var MenuComponent = (function () {
         this.oddsService.getOdds().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
                 _this.actions.push(data[i]);
-                if (data[i].sport != 0 && data[i].sport != 4 && data[i].sport != 8 && data[i].sport != 3) {
+                if (data[i].sport != 0 && data[i].sport != 4 && data[i].sport != 8 && data[i].sport != 3 && data[i].sport != 21 && data[i].sport != 19 && data[i].sport != 20 && data[i].sport != 24) {
                     tempArr.push(data[i]);
                 }
             }
@@ -1065,8 +1047,8 @@ var MenuComponent = (function () {
     MenuComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-menu',
-            template: __webpack_require__(713),
-            styles: [__webpack_require__(699)]
+            template: __webpack_require__(710),
+            styles: [__webpack_require__(697)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */]) === 'function' && _c) || Object])
     ], MenuComponent);
@@ -1077,13 +1059,14 @@ var MenuComponent = (function () {
 
 /***/ }),
 
-/***/ 524:
+/***/ 523:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavbarComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1097,10 +1080,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var NavbarComponent = (function () {
-    function NavbarComponent(authService, router) {
+    function NavbarComponent(authService, router, dataService) {
         this.authService = authService;
         this.router = router;
+        this.dataService = dataService;
     }
     NavbarComponent.prototype.onLogoutClick = function () {
         this.authService.logout();
@@ -1109,31 +1094,34 @@ var NavbarComponent = (function () {
     NavbarComponent.prototype.route = function (route) {
         this.router.navigate([route]);
     };
+    // showAdmin(){
+    //   return JSON.parse(this.authService.getUsername()).name == 'admin'
+    // }
     NavbarComponent.prototype.ngOnInit = function () {
     };
     NavbarComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-navbar',
-            template: __webpack_require__(714),
-            styles: [__webpack_require__(700)]
+            template: __webpack_require__(711),
+            styles: [__webpack_require__(698)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === 'function' && _b) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */]) === 'function' && _c) || Object])
     ], NavbarComponent);
     return NavbarComponent;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 //# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/navbar.component.js.map
 
 /***/ }),
 
-/***/ 525:
+/***/ 524:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_odds_service__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
@@ -1193,8 +1181,8 @@ var OtherComponent = (function () {
     OtherComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-other',
-            template: __webpack_require__(715),
-            styles: [__webpack_require__(701)]
+            template: __webpack_require__(712),
+            styles: [__webpack_require__(699)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _e) || Object])
     ], OtherComponent);
@@ -1205,16 +1193,16 @@ var OtherComponent = (function () {
 
 /***/ }),
 
-/***/ 526:
+/***/ 525:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_odds_service__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ParlayComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1304,8 +1292,8 @@ var ParlayComponent = (function () {
     ParlayComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-parlay',
-            template: __webpack_require__(716),
-            styles: [__webpack_require__(702)]
+            template: __webpack_require__(713),
+            styles: [__webpack_require__(700)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__services_data_service__["a" /* DataService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === 'function' && _e) || Object])
     ], ParlayComponent);
@@ -1316,14 +1304,14 @@ var ParlayComponent = (function () {
 
 /***/ }),
 
-/***/ 527:
+/***/ 526:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(39);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1376,8 +1364,8 @@ var ProfileComponent = (function () {
     ProfileComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-profile',
-            template: __webpack_require__(717),
-            styles: [__webpack_require__(703)]
+            template: __webpack_require__(714),
+            styles: [__webpack_require__(701)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_bets_service__["a" /* BetService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_bets_service__["a" /* BetService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */]) === 'function' && _c) || Object])
     ], ProfileComponent);
@@ -1388,13 +1376,13 @@ var ProfileComponent = (function () {
 
 /***/ }),
 
-/***/ 528:
+/***/ 527:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_validate_service__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(20);
@@ -1450,8 +1438,8 @@ var RegisterComponent = (function () {
     RegisterComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-register',
-            template: __webpack_require__(718),
-            styles: [__webpack_require__(704)]
+            template: __webpack_require__(715),
+            styles: [__webpack_require__(702)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === 'function' && _d) || Object])
     ], RegisterComponent);
@@ -1462,14 +1450,14 @@ var RegisterComponent = (function () {
 
 /***/ }),
 
-/***/ 529:
+/***/ 528:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_odds_service__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
@@ -1502,6 +1490,9 @@ var StraightComponent = (function () {
         var tempActions = this.dataService.getJsonOddsEvents();
         this.sport = this.dataService.getSports();
         this.setUpActions(tempActions, this.sport);
+        if (this.sport == 21) {
+            console.log(this.actions);
+        }
     };
     StraightComponent.prototype.setUpActions = function (tempActions, sport) {
         for (var i = 0; i < tempActions.length; i++) {
@@ -1521,11 +1512,19 @@ var StraightComponent = (function () {
             return false;
         });
     };
+    StraightComponent.prototype.addPlus = function (odds) {
+        if (odds > 0) {
+            return '+';
+        }
+        else {
+            return '';
+        }
+    };
     StraightComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-straight',
-            template: __webpack_require__(719),
-            styles: [__webpack_require__(705)]
+            template: __webpack_require__(716),
+            styles: [__webpack_require__(703)]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_odds_service__["a" /* OddsService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_data_service__["a" /* DataService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _e) || Object])
     ], StraightComponent);
@@ -1536,13 +1535,13 @@ var StraightComponent = (function () {
 
 /***/ }),
 
-/***/ 530:
+/***/ 529:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(29);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1581,7 +1580,7 @@ var AuthGuard = (function () {
 
 /***/ }),
 
-/***/ 531:
+/***/ 530:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1597,7 +1596,7 @@ var environment = {
 
 /***/ }),
 
-/***/ 532:
+/***/ 531:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1606,6 +1605,7 @@ var Bet = (function () {
     function Bet(profile, bet, source, odds, betAmount, winAmount, betType) {
         this.description = [];
         this.subBets = [];
+        console.log(bet);
         this.userId = profile.user._id;
         this.username = profile.user.username;
         for (var i = 0; i < bet.length; i++) {
@@ -1616,14 +1616,17 @@ var Bet = (function () {
         this.odds = odds;
         this.betAmount = betAmount;
         this.winAmount = winAmount;
-        //Add logic here to loop through subBets
-        // var tmpIndex = 0;
-        // var tmpTime = 0;
-        // for (var i = 0; i < subBets.length; i++){
-        //
-        // }
-        this.gameDate = bet[0].matchDate;
-        this.gameTime = bet[0].matchTime;
+        var tmpIndex = 0;
+        var tmpTime = 0;
+        for (var i = 0; i < bet.length; i++) {
+            if (bet[i].epoch > tmpTime) {
+                tmpTime = bet[i].epoch;
+                tmpIndex = i;
+            }
+        }
+        this.epoch = tmpTime;
+        this.gameDate = bet[tmpIndex].matchDate;
+        this.gameTime = bet[tmpIndex].matchTime;
         this.betType = betType;
     }
     return Bet;
@@ -1640,7 +1643,7 @@ var Bet = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(726);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__ = __webpack_require__(723);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OddsService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1664,33 +1667,29 @@ var OddsService = (function () {
     OddsService.prototype.getOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/odds/all')
-        return this.http.get('odds/all')
+        return this.http.get('http://localhost:8080/odds/all')
             .map(function (res) { return res.json(); });
     };
     //==========Live Events from Bet365==========
     OddsService.prototype.getLiveEvents = function (sportId, leagueId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
-        return this.http.get('odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
+        return this.http.get('http://localhost:8080/odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
             .map(function (res) { return res.json(); })
             .toPromise();
     };
     //==========Live Event Odds from Bet365==========
-    OddsService.prototype.getLiveEventOdds = function (eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage, sportId) {
+    OddsService.prototype.getLiveEventOdds = function (eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage, sportId, epoch) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
-        return this.http.get('odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
+        return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId + '&epoch=' + epoch)
             .map(function (res) { return res.json(); });
     };
     //==========Upcoming Events from Bet365==========
     OddsService.prototype.getUpcomingEvents = function (sportId, leagueId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
-        return this.http.get('odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
+        return this.http.get('http://localhost:8080/odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
             .map(function (res) { return res.json(); })
             .toPromise();
     };
@@ -1698,8 +1697,7 @@ var OddsService = (function () {
     OddsService.prototype.getUpcomingEventOdds = function (eventId, homeTeam, awayTeam, time, sport) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
-        return this.http.get('odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
+        return this.http.get('http://localhost:8080/odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
             .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
@@ -1713,10 +1711,17 @@ var OddsService = (function () {
 
 /***/ }),
 
-/***/ 692:
+/***/ 691:
 /***/ (function(module, exports) {
 
 module.exports = ".alert-fixed {\n    position:fixed;\n    top: 0px;\n    left: 0px;\n    width: 100%;\n    z-index:9999;\n    border-radius:0px\n}\n"
+
+/***/ }),
+
+/***/ 692:
+/***/ (function(module, exports) {
+
+module.exports = ""
 
 /***/ }),
 
@@ -1730,186 +1735,165 @@ module.exports = ""
 /***/ 694:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".masthead {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  min-height: 35rem;\n  padding: 10rem 0;\n  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url(\"assets/images/bg-masthead.jpg\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n}\n\n.masthead h1 {\n  font-size: 2.5rem;\n  line-height: 2.5rem;\n  letter-spacing: 0.8rem;\n  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n}\n\n.masthead h2 {\n  max-width: 20rem;\n  font-size: 1rem;\n}\n\n@media (min-width: 768px) {\n  .masthead h1 {\n    font-size: 4rem;\n    line-height: 4rem;\n  }\n}\n\n@media (min-width: 992px) {\n  .masthead {\n    height: 100vh;\n    padding: 0;\n  }\n  .masthead h1 {\n    font-size: 6.5rem;\n    line-height: 6.5rem;\n    letter-spacing: 0.8rem;\n  }\n  .masthead h2 {\n    max-width: 30rem;\n    font-size: 1.25rem;\n  }\n}\n\n.btn {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  padding: .5rem .8rem;\n  font-size: 80%;\n  text-transform: uppercase;\n  letter-spacing: .15rem;\n  border: 0;\n}\n\n.in-test {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  font-size: 80%;\n  text-transform: uppercase;\n  letter-spacing: ..8rem;\n  border: 0;\n}\n\n.btn-primary {\n  background-color: #64a19d;\n}\n\n.btn-primary:hover {\n  background-color: #4f837f;\n}\n\n.btn-primary:focus {\n  background-color: #4f837f;\n  color: white;\n}\n\n.btn-primary:active {\n  background-color: #467370 !important;\n}\n\na {\n  color: #64a19d;\n}\n\na:focus, a:hover {\n  text-decoration: none;\n  color: #3c6360;\n}\n\n.bg-black {\n  background-color: #161616 !important;\n}\n\n.bg-primary {\n  background-color: #64a19d !important;\n}\n\n.text-primary {\n  color: #64a19d !important;\n}\n\nfooter {\n  padding: 5rem 0;\n}\n"
 
 /***/ }),
 
 /***/ 695:
 /***/ (function(module, exports) {
 
-module.exports = ".masthead {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  min-height: 35rem;\n  padding: 10rem 0;\n  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url(\"assets/images/bg-masthead.jpg\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n}\n\n.masthead h1 {\n  font-size: 2.5rem;\n  line-height: 2.5rem;\n  letter-spacing: 0.8rem;\n  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n}\n\n.masthead h2 {\n  max-width: 20rem;\n  font-size: 1rem;\n}\n\n@media (min-width: 768px) {\n  .masthead h1 {\n    font-size: 4rem;\n    line-height: 4rem;\n  }\n}\n\n@media (min-width: 992px) {\n  .masthead {\n    height: 100vh;\n    padding: 0;\n  }\n  .masthead h1 {\n    font-size: 6.5rem;\n    line-height: 6.5rem;\n    letter-spacing: 0.8rem;\n  }\n  .masthead h2 {\n    max-width: 30rem;\n    font-size: 1.25rem;\n  }\n}\n\n.btn {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  padding: .5rem .8rem;\n  font-size: 80%;\n  text-transform: uppercase;\n  letter-spacing: .15rem;\n  border: 0;\n}\n\n.in-test {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  font-size: 80%;\n  text-transform: uppercase;\n  letter-spacing: ..8rem;\n  border: 0;\n}\n\n.btn-primary {\n  background-color: #64a19d;\n}\n\n.btn-primary:hover {\n  background-color: #4f837f;\n}\n\n.btn-primary:focus {\n  background-color: #4f837f;\n  color: white;\n}\n\n.btn-primary:active {\n  background-color: #467370 !important;\n}\n\na {\n  color: #64a19d;\n}\n\na:focus, a:hover {\n  text-decoration: none;\n  color: #3c6360;\n}\n\n.bg-black {\n  background-color: #161616 !important;\n}\n\n.bg-primary {\n  background-color: #64a19d !important;\n}\n\n.text-primary {\n  color: #64a19d !important;\n}\n\nfooter {\n  padding: 5rem 0;\n}\n"
+module.exports = ""
 
 /***/ }),
 
 /***/ 696:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".row {\n  margin-left: 0px;\n  margin-right: 0px;\n}\n\n.soc {\n  font-size: 75%;\n}\n"
 
 /***/ }),
 
 /***/ 697:
 /***/ (function(module, exports) {
 
-module.exports = ".row {\n  margin-left: 0px;\n  margin-right: 0px;\n}\n\n.soc {\n  font-size: 75%;\n}\n"
+module.exports = ".btn {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  padding: .5rem .8rem;\n  font-size: 80%;\n  text-transform: uppercase;\n  border: 0;\n}\n"
 
 /***/ }),
 
 /***/ 698:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".nav-link{ cursor: pointer; }\n\n.masthead {\n  font-size: 1rem;\n  line-height: 2.5rem;\n  letter-spacing: 0.1rem;\n  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n}\n\n.bg-dark {\n  background-color: #A9A9A9;\n}\n"
 
 /***/ }),
 
 /***/ 699:
 /***/ (function(module, exports) {
 
-module.exports = ".btn {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  padding: .5rem .8rem;\n  font-size: 80%;\n  text-transform: uppercase;\n  border: 0;\n}\n"
+module.exports = ".row {\n  margin-left: 0px;\n  margin-right: 0px;\n}\n"
 
 /***/ }),
 
 /***/ 700:
 /***/ (function(module, exports) {
 
-module.exports = ".nav-link{ cursor: pointer; }\n"
+module.exports = ".inside {\n    display: inline-block;\n    position: fixed;\n    bottom: 10px;\n    left: 50%;\n    margin-left: -50px;\n}\n"
 
 /***/ }),
 
 /***/ 701:
 /***/ (function(module, exports) {
 
-module.exports = ".row {\n  margin-left: 0px;\n  margin-right: 0px;\n}\n"
+module.exports = ""
 
 /***/ }),
 
 /***/ 702:
 /***/ (function(module, exports) {
 
-module.exports = ".inside {\n    display: inline-block;\n    position: fixed;\n    bottom: 10px;\n    left: 50%;\n    margin-left: -50px;\n}\n"
+module.exports = ""
 
 /***/ }),
 
 /***/ 703:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".row{\n  margin-left: 0px;\n  margin-right: 0px;\n}\n"
 
 /***/ }),
 
 /***/ 704:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<app-navbar class=\"fixed-top\"></app-navbar>\n<!-- <div class=\"container pl-0 pr-0\"> -->\n\t<flash-messages class=\"alert-fixed\"></flash-messages>\n\t<router-outlet></router-outlet>\n<!-- </div> -->\n"
 
 /***/ }),
 
 /***/ 705:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<div class=\"container\">\n  <div>\n    <h2 class=\"page-header\">All Pending Bets</h2>\n    <ul *ngFor=\"let pending of allPendings\" class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{pending.username}} Description: {{pending.description}}</li>\n      <div class=\"row\">\n      <a class=\"btn btn-primary btn-sm text-light w-50\"(click)=\"closePendingBet(pending, 'win')\">Win</a>\n      <a class=\"btn btn-danger btn-sm text-light w-50\"(click)=\"closePendingBet(pending, 'loss')\">Loss</a>\n    </div>\n    </ul>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 706:
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar class=\"fixed-top\"></app-navbar>\n<!-- <div class=\"container pl-0 pr-0\"> -->\n\t<flash-messages class=\"alert-fixed\"></flash-messages>\n\t<router-outlet></router-outlet>\n<!-- </div> -->\n"
+module.exports = "<div class=\"container pt-5\">\n  <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n  <p>{{betType}} BET</p>\n  <form (submit)=\"clickPlaceBet()\">\n    <ul class=\"list-group mb-2\">\n      <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n    </ul>\n    <div class=\"row p-0 m-0\">\n      <div class=\"form-group\">\n        <label for=\"amount\">Bet Amount</label>\n        <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n      </div>\n      <div class=\"form-group row ml-0\" *ngIf=\"betAmount>0\">\n        <label class=\"mr-2\">To Win:</label>\n        <p class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</p>\n        <p class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</p>\n      </div>\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n  </form>\n</div>\n"
 
 /***/ }),
 
 /***/ 707:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div>\n    <h2 class=\"page-header\">All Pending Bets</h2>\n    <ul *ngFor=\"let pending of allPendings\" class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{pending.username}} Description: {{pending.description}}</li>\n      <div class=\"row\">\n      <a class=\"btn btn-primary btn-sm text-light w-50\"(click)=\"closePendingBet(pending, 'win')\">Win</a>\n      <a class=\"btn btn-danger btn-sm text-light w-50\"(click)=\"closePendingBet(pending, 'loss')\">Loss</a>\n    </div>\n    </ul>\n  </div>\n</div>\n"
+module.exports = "<header class=\"masthead\">\n\t<div class=\"container d-flex h-100 align-items-center\">\n\t\t<div class=\"mx-auto text-center\">\n\t\t\t<h1 class=\"mx-auto text-uppercase mb-5\">Action+</h1>\n\t\t\t<form (submit)=\"onLoginSubmit()\" class=\"form-inline d-flex\" autocomplete=\"off\">\n\t\t\t\t<div class=\"col\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<input type=\"username\" [(ngModel)]=\"username\" name=\"username\" class=\"in-test form-control flex-fill mb-2 mx-auto\" id=\"username\" placeholder=\"Username\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t<input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"in-test form-control flex-fill mb-2 mx-auto\" id=\"password\" placeholder=\"Password\">\n\t\t\t</div>\n\t\t\t<div class=\"row\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary mx-auto mt-3\">Login</button>\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</header>\n<footer class=\"bg-black small text-center text-white-50\">\n\t<div class=\"container\">\n\t\tContact Us\n\t</div>\n</footer>\n"
 
 /***/ }),
 
 /***/ 708:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n  <p>{{betType}} BET</p>\n  <form (submit)=\"clickPlaceBet()\">\n    <ul class=\"list-group mb-2\">\n      <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n    </ul>\n    <div class=\"row p-0 m-0\">\n      <div class=\"form-group\">\n        <label for=\"amount\">Bet Amount</label>\n        <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n      </div>\n      <div class=\"form-group row ml-0\" *ngIf=\"betAmount>0\">\n        <label class=\"mr-2\">To Win:</label>\n        <p class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</p>\n        <p class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</p>\n      </div>\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n  </form>\n</div>\n"
+module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\" (click)=\"navigate(16, 225)\">\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/soccer.jpg\" (click)=\"navigate(1, 0)\">\n    </div>\n\n</div>\n</div>\n"
 
 /***/ }),
 
 /***/ 709:
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"masthead\">\n\t<div class=\"container d-flex h-100 align-items-center\">\n\t\t<div class=\"mx-auto text-center\">\n\t\t\t<h1 class=\"mx-auto text-uppercase mb-5\">Action+</h1>\n\t\t\t<form class=\"form-inline d-flex\" autocomplete=\"off\">\n\t\t\t\t<div class=\"col\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<input type=\"username\" class=\"in-test form-control flex-fill mb-2 mx-auto\" id=\"username\" placeholder=\"Username\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t<input type=\"password\" class=\"in-test form-control flex-fill mb-2 mx-auto\" id=\"password\" placeholder=\"Password\">\n\t\t\t</div>\n\t\t\t<div class=\"row\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary mx-auto\">Login</button>\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</header>\n<footer class=\"bg-black small text-center text-white-50\">\n\t<div class=\"container\">\n\t\tContact Us\n\t</div>\n</footer>\n"
+module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n\n      <!-- Date -->\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <div class=\"row ml-0 mr-0\">\n        <div class=\"col\" align=\"center\">\n          <p>{{action.homeTeam}} [{{action.homeScore}}] @ {{action.awayTeam}} [{{action.awayScore}}] - {{action.details}}</p>\n        </div>\n        <div class=\"card-header p-1 w-100\">\n\n          <div *ngIf=\"sport != 1\">\n            <div class=\"row border-bottom\">\n              <div class=\"col w-50 border-right\" align=\"center\">\n                {{action.awayTeam}}  [{{action.awayScore}}]\n              </div>\n              <div class=\"col w-50\" align=\"center\">\n                {{action.homeTeam}}  [{{action.homeScore}}]\n              </div>\n            </div>\n\n            <div class=\"row\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null\">\n              <div class=\"col\" align=\"center\">\n                MONEY LINE\n              </div>\n            </div>\n\n            <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null\">\n              <div class=\"col w-50 border-right\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamML')\" *ngIf=\"action.awayTeamML != null\">\n                  {{action.awayTeamML}}\n                </a>\n              </div>\n              <div class=\"col w-50\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamML')\" *ngIf=\"action.homeTeamML != null\">\n                  {{action.homeTeamML}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n          <div *ngIf=\"sport == 1\">\n            <div class=\"row border-bottom\">\n              <div class=\"col soc border-right\" align=\"center\">\n                {{action.awayTeam}}  [{{action.awayScore}}]\n              </div>\n              <div class=\"col soc border-right\" align=\"center\">\n                Draw\n              </div>\n              <div class=\"col soc\" align=\"center\">\n                {{action.homeTeam}}  [{{action.homeScore}}]\n              </div>\n            </div>\n\n            <div class=\"row border-bottom mb-1 pb-1 pt-1\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null || action.drawOdds != null\">\n              <div class=\"col border-right\">\n                <a class=\"btn btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamML')\" *ngIf=\"action.awayTeamML != null\">\n                  {{action.awayTeamML}}\n                </a>\n              </div>\n              <div class=\"col border-right\">\n                <a class=\"btn btn-primary text-light\" (click)=\"placeBet(action, 'draw')\" *ngIf=\"action.drawOdds != null\">\n                  {{action.drawOdds}}\n                </a>\n              </div>\n              <div class=\"col border-right\">\n                <a class=\"btn btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamML')\" *ngIf=\"action.homeTeamML != null\">\n                  {{action.homeTeamML}}\n                </a>\n              </div>\n            </div>\n\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.awayTeamRL != null || action.homeTeamRL != null\">\n            <div class=\"col\" align=\"center\">\n              RUN LINE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL != null || action.homeTeamRL != null\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamRL')\" *ngIf=\"action.awayTeamRL != null\">\n                {{action.awayTeamRL}}  {{action.awayTeamRLOdds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamRL')\" *ngIf=\"action.homeTeamRL != null\">\n                {{action.homeTeamRL}}  {{action.homeTeamRLOdds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.awayTeamRLArray.length > 0 || action.homeTeamRLArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              ALT LINES\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRLArray.length > 0 || action.homeTeamRLArray.length > 0\">\n            <div class=\"col w-50 border-right\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRLArray; let i = index\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'awayTeamRL', action.awayTeamRLArray, i)\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRLArray; let i = index\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'homeTeamRL', action.homeTeamRLArray, i)\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              GAME TOTALS\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0 || action.over.length != 0 || action.under.length != 0\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              OVER\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              UNDER\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.over.length!=0 || action.under.length!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'over')\" *ngIf=\"action.over.length!=0\">\n                {{action.over.number}}  {{action.over.odds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'under')\" *ngIf=\"action.under.length!=0\">\n                {{action.under.number}}  {{action.under.odds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col w-50 border-right\" *ngIf=\"action.overArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let over of action.overArray; let i = index\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'over', action.overArray, i)\">\n                  {{over.number}}  {{over.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\" *ngIf=\"action.underArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let under of action.underArray; let i = index\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'under', action.underArray, i)\">\n                  {{under.number}}  {{under.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 710:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\" (click)=\"navigate(16, 225)\">\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/soccer.jpg\" (click)=\"navigate(1, 0)\">\n    </div>\n\n</div>\n</div>\n"
+module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(0)\">Game Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">More Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(4)\">Game Odds</a>\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">More Odds</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ncaaf.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(3)\">Game Odds</a>\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">More Odds</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/golf.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(21)\">Tournament</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 711:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n      <div class=\"row ml-0 mr-0\">\n        <div class=\"col\" align=\"center\">\n          <p>{{action.homeTeam}} [{{action.homeScore}}] @ {{action.awayTeam}} [{{action.awayScore}}] - {{action.details}}</p>\n        </div>\n        <div class=\"card-header p-1 w-100\">\n\n          <div *ngIf=\"sport != 1\">\n            <div class=\"row border-bottom\">\n              <div class=\"col w-50 border-right\" align=\"center\">\n                {{action.awayTeam}}  [{{action.awayScore}}]\n              </div>\n              <div class=\"col w-50\" align=\"center\">\n                {{action.homeTeam}}  [{{action.homeScore}}]\n              </div>\n            </div>\n\n            <div class=\"row\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null\">\n              <div class=\"col\" align=\"center\">\n                MONEY LINE\n              </div>\n            </div>\n\n            <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null\">\n              <div class=\"col w-50 border-right\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamML != null\">\n                  {{action.awayTeamML}}\n                </a>\n              </div>\n              <div class=\"col w-50\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamML != null\">\n                  {{action.homeTeamML}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n          <div *ngIf=\"sport == 1\">\n            <div class=\"row border-bottom\">\n              <div class=\"col soc border-right\" align=\"center\">\n                {{action.awayTeam}}  [{{action.awayScore}}]\n              </div>\n              <div class=\"col soc border-right\" align=\"center\">\n                Draw\n              </div>\n              <div class=\"col soc\" align=\"center\">\n                {{action.homeTeam}}  [{{action.homeScore}}]\n              </div>\n            </div>\n\n            <div class=\"row border-bottom mb-1 pb-1 pt-1\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null || action.drawOdds != null\">\n              <div class=\"col border-right\">\n                <a class=\"btn btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamML != null\">\n                  {{action.awayTeamML}}\n                </a>\n              </div>\n              <div class=\"col border-right\">\n                <a class=\"btn btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.drawOdds != null\">\n                  {{action.drawOdds}}\n                </a>\n              </div>\n              <div class=\"col border-right\">\n                <a class=\"btn btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamML != null\">\n                  {{action.homeTeamML}}\n                </a>\n              </div>\n            </div>\n\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.awayTeamRL != null || action.homeTeamRL != null\">\n            <div class=\"col\" align=\"center\">\n              RUN LINE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL != null || action.homeTeamRL != null\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamRL != null\">\n                {{action.awayTeamRL}}  {{action.awayTeamRLOdds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamRL != null\">\n                {{action.homeTeamRL}}  {{action.homeTeamRLOdds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.awayTeamRLArray.length > 0 || action.homeTeamRLArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              ALT LINES\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRLArray.length > 0 || action.homeTeamRLArray.length > 0\">\n            <div class=\"col w-50 border-right\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRLArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\">\n              <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRLArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{runLine.number}}  {{runLine.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col\" align=\"center\">\n              GAME TOTALS\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0 || action.over.length != 0 || action.under.length != 0\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              OVER\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              UNDER\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.over.length!=0 || action.under.length!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.over.length!=0\">\n                {{action.over.number}}  {{action.over.odds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.under.length!=0\">\n                {{action.under.number}}  {{action.under.odds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.overArray.length > 0 || action.underArray.length > 0\">\n            <div class=\"col w-50 border-right\" *ngIf=\"action.overArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let over of action.overArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{over.number}}  {{over.odds}}\n                </a>\n              </div>\n            </div>\n            <div class=\"col w-50\" *ngIf=\"action.underArray.length > 0\">\n              <div class=\"mb-2\" *ngFor=\"let under of action.underArray\">\n                <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                  {{under.number}}  {{under.odds}}\n                </a>\n              </div>\n            </div>\n          </div>\n\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n  <a class=\"masthead\" href=\"#\">Action+</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav ml-2 mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('menu')\">Bet Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('other')\">Bet Menu 2</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('parlayMenu')\">Parlay Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('liveMenu')\">Live Bet Menu</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('profile')\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('admin')\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('register')\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 
 /***/ 712:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n<div class=\"mt-2\">\n<h2 class=\"page-header\">Login</h2>\n<form (submit)=\"onLoginSubmit()\" >\n  <div class=\"form-group\">\n    <label for=\"username\">Username</label>\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"Enter Username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\" placeholder=\" Enter Password\">\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Login\">\n</form>\n</div>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n\n      <!-- Date -->\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          {{action.awayTeam}} @ {{action.homeTeam}}\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n        <!-- Away Team, Home Team Headers -->\n        <div class=\"row border-bottom\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            {{action.awayTeam}}\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            {{action.homeTeam}}\n          </div>\n        </div>\n\n        <!-- 1st Half Money Line -->\n        <div class=\"row\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col\" align=\"center\" *ngIf=\"action.sport==16\">\n            First 5 Innings\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamFirstHalf != 0\">\n              {{action.awayTeamFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamFirstHalf != 0\">\n              {{action.homeTeamFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Team Total -->\n        <div class=\"row\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col\" align=\"center\">\n            Team Total\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamTotalLine != 0\">\n              o{{action.awayTeamTotalLine}} {{action.awayTeamOverOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamTotalLine != 0\">\n              o{{action.homeTeamTotalLine}} {{action.homeTeamOverOdds}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Alternative Lines -->\n        <div class=\"row\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col\" align=\"center\">\n            Alternative Lines\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col w-50 border-right\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRL\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n          <div class=\"col w-50\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRL\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <!-- Run In First -->\n        <div class=\"row\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            Score in 1st\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            No Score in 1st\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n              {{action.runInFirst}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n              {{action.noRunInFirst}}\n            </a>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 713:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(0)\">Game Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">More Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(4)\">Game Odds</a>\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">More Odds</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ncaaf.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(3)\">Game Odds</a>\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\">More Odds</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n<div class=\"row\" align=\"center\">\n  <div *ngFor=\"let odd of odds\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n    <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n      <div class=\"col\" align=\"left\">\n        <p class=\"m-0 pl-3\">{{odd.matchDate | slice:0:6}}</p>\n      </div>\n      <div class=\"col\" align=\"right\">\n        <p class=\"m-0 pr-3\">{{odd.matchTime}}</p>\n      </div>\n    </div>\n    <div class =\"row ml-0 mr-0\" style=\"height:100px\" *ngIf=\"odd.sport==0\">\n      <div class =\"col p-0 float-left\">\n        <img class=\"w-75 h-100\" src=\"{{odd.awayImagePath}}\" alt=\"Card image cap\">\n      </div>\n      <h2 class=\"mt-4\">@</h2>\n      <div class =\"col p-0 float-right\">\n        <img class=\"w-75 h-100\" src=\"{{odd.homeImagePath}}\" alt=\"Card image cap\">\n      </div>\n    </div>\n    <div class=\"card-header border-top\">\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{odd.awayTeam}}</div>\n        <div class=\"row border-bottom pb-1 pt-1\">\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-left\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'awayTeamML')\">{{odd.awayTeamML}}</label>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <label class=\"btn btn-primary btn-sm\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'awayTeamRL')\">{{odd.awayTeamRL}} {{odd.awayTeamRLOdds}}</label>\n          </div>\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-right\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'over')\">o{{odd.totalNumber}}</label>\n          </div>\n        </div>\n      </div>\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{odd.homeTeam}}</div>\n        <div class=\"row pb-1 pt-1\">\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-left\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'homeTeamML')\">{{odd.homeTeamML}}</label>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <label class=\"btn btn-primary btn-sm\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'homeTeamRL')\">{{odd.homeTeamRL}} {{odd.homeTeamRLOdds}}</label>\n          </div>\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-right\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'under')\">u{{odd.totalNumber}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"btn btn-success btn-lg inside mb-2\" *ngIf=\"parlay.length>1\" (click)=\"placeBet()\">Continue</div>\n</div>\n"
 
 /***/ }),
 
 /***/ 714:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark navbar-expand-lg\">\n  <a class=\"navbar-brand\" href=\"#\">Action+</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nb\" aria-controls=\"nb\" aria-expanded=\"false\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"nb\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('menu')\">Bet Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('other')\">Bet Menu 2</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('parlayMenu')\">Parlay Menu</a></li>\n      <li><a class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('liveMenu')\">Live Bet Menu</a></li>\n    </ul>\n    <ul class=\"navbar-nav mr-right\">\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('profile')\">Profile</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('admin')\">Admin</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('login')\">Login</a></li>\n      <li><a *ngIf=\"!authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"route('register')\">Register</a></li>\n      <li><a *ngIf=\"authService.loggedIn()\" class=\"nav-link\" data-toggle=\"collapse\" data-target=\"#nb\" (click)=\"onLogoutClick()\">Logout</a></li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<div class=\"container mt-5 pt-2\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Current Balance: {{user.currentBalance}}</li>\n      <li class=\"list-group-item\">Available Balance: {{user.currentBalance + user.credit}}</li>\n    </ul>\n    <h2 class=\"pt-2\">Pending Bets</h2>\n      <ul class=\"list-group\" *ngFor=\"let pendingBet of pendingBets\">\n        <li class=\"list-group-item\">{{pendingBet.gameDate}} {{pendingBet.gameTime}}:{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>\n      </ul>\n      <h2 class=\"mt-4\">Bet History</h2>\n        <div *ngFor=\"let closedBet of closedBets\">\n          <p *ngIf=\"closedBet.status === 'win'\">{{closedBet.gameDate}} {{closedBet.gameTime}}: {{closedBet.description}} Result: {{closedBet.status}} {{closedBet.winAmount}} dollars</p>\n          <p *ngIf=\"closedBet.status === 'loss'\">{{closedBet.gameDate}} {{closedBet.gameTime}}: {{closedBet.description}} Result: {{closedBet.status}} -{{closedBet.betAmount}} dollars</p>\n        </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 715:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n\n      <!-- Date -->\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          {{action.awayTeam}} @ {{action.homeTeam}}\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n        <!-- Away Team, Home Team Headers -->\n        <div class=\"row border-bottom\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            {{action.awayTeam}}\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            {{action.homeTeam}}\n          </div>\n        </div>\n\n        <!-- 1st Half Money Line -->\n        <div class=\"row\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col\" align=\"center\" *ngIf=\"action.sport==16\">\n            First 5 Innings\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamFirstHalf != 0\">\n              {{action.awayTeamFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamFirstHalf != 0\">\n              {{action.homeTeamFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Team Total -->\n        <div class=\"row\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col\" align=\"center\">\n            Team Total\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.awayTeamTotalLine != 0\">\n              o{{action.awayTeamTotalLine}} {{action.awayTeamOverOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\" *ngIf=\"action.homeTeamTotalLine != 0\">\n              o{{action.homeTeamTotalLine}} {{action.homeTeamOverOdds}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Alternative Lines -->\n        <div class=\"row\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col\" align=\"center\">\n            Alternative Lines\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col w-50 border-right\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRL\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n          <div class=\"col w-50\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRL\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <!-- Run In First -->\n        <div class=\"row\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            Score in 1st\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            No Score in 1st\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n              {{action.runInFirst}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet()\">\n              {{action.noRunInFirst}}\n            </a>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\" container mt-2 pt-5\">\n<h2 class=\"page-header\">Register</h2>\n<form (submit)=\"onRegisterSubmit()\" >\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\" placeholder=\"Enter Name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"username\">Username</label>\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"Enter Username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter Password\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"credit\">Account Credit</label>\n    <input type=\"number\" [(ngModel)]=\"credit\" name=\"credit\" class=\"form-control\" id=\"credit\" placeholder=\"Enter Account Credit\">\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n</form>\n</div>\n\n<!-- <div class=\"form-group\">\n  <label for=\"email\">Email</label>\n  <input type=\"email\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\" id=\"email\" aria-describedby=\"emailHelp\" placeholder=\"Enter Email\">\n  <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n</div> -->\n"
 
 /***/ }),
 
 /***/ 716:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n<div class=\"row\" align=\"center\">\n  <div *ngFor=\"let odd of odds\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n    <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n      <div class=\"col\" align=\"left\">\n        <p class=\"m-0 pl-3\">{{odd.matchDate | slice:0:6}}</p>\n      </div>\n      <div class=\"col\" align=\"right\">\n        <p class=\"m-0 pr-3\">{{odd.matchTime}}</p>\n      </div>\n    </div>\n    <div class =\"row ml-0 mr-0\" style=\"height:100px\" *ngIf=\"odd.sport==0\">\n      <div class =\"col p-0 float-left\">\n        <img class=\"w-75 h-100\" src=\"{{odd.awayImagePath}}\" alt=\"Card image cap\">\n      </div>\n      <h2 class=\"mt-4\">@</h2>\n      <div class =\"col p-0 float-right\">\n        <img class=\"w-75 h-100\" src=\"{{odd.homeImagePath}}\" alt=\"Card image cap\">\n      </div>\n    </div>\n    <div class=\"card-header border-top\">\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{odd.awayTeam}}</div>\n        <div class=\"row border-bottom pb-1 pt-1\">\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-left\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'awayTeamML')\">{{odd.awayTeamML}}</label>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <label class=\"btn btn-primary btn-sm\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'awayTeamRL')\">{{odd.awayTeamRL}} {{odd.awayTeamRLOdds}}</label>\n          </div>\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-right\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'over')\">o{{odd.totalNumber}}</label>\n          </div>\n        </div>\n      </div>\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{odd.homeTeam}}</div>\n        <div class=\"row pb-1 pt-1\">\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-left\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'homeTeamML')\">{{odd.homeTeamML}}</label>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <label class=\"btn btn-primary btn-sm\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'homeTeamRL')\">{{odd.homeTeamRL}} {{odd.homeTeamRLOdds}}</label>\n          </div>\n          <div class=\"col\">\n            <label class=\"btn btn-primary btn-sm float-right\"><input class=\"mr-2\" type=\"checkbox\" (click)=\"parlayCheckboxClick($event, odd, 'under')\">u{{odd.totalNumber}}</label>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"btn btn-success btn-lg inside mb-2\" *ngIf=\"parlay.length>1\" (click)=\"placeBet()\">Continue</div>\n</div>\n"
+module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\" align=\"center\" *ngIf=\"sport==0 || sport==3 || sport==4\">\n    <div *ngFor=\"let action of actions\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate | slice:0:6}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <div class =\"row ml-0 mr-0 w-100\" style=\"height:100px\" *ngIf=\"action.sport==0 || action.sport==4 || action.sport==3\">\n        <div class =\"col p-0 float-left\">\n          <img class=\"w-75 h-100\" src=\"{{action.awayImagePath}}\" alt=\"Card image cap\">\n        </div>\n        <h2 class=\"mt-4\">@</h2>\n        <div class =\"col p-0 float-right\">\n          <img class=\"w-75 h-100\" src=\"{{action.homeImagePath}}\" alt=\"Card image cap\">\n        </div>\n      </div>\n\n      <div class=\"card-header border-top pl-3 pr-3\">\n\n        <div align=\"left\">\n          <div class=\"row pl-3\">{{action.awayTeam}}</div>\n          <div class=\"row border-bottom pb-1 pt-1\">\n            <div class=\"col\">\n              <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'awayTeamML')\">{{addPlus(action.awayTeamML)}}{{action.awayTeamML}}</a>\n            </div>\n            <div class=\"col\" align=\"center\">\n              <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'awayTeamRL')\">{{action.awayTeamRL}} {{addPlus(awayTeamRLOdds)}}{{action.awayTeamRLOdds}}</a>\n            </div>\n            <div class=\"col\">\n              <a class=\"btn btn-primary btn-sm text-light float-right\"(click)=\"placeBet(action,'under')\">u{{action.totalNumber}}  {{addPlus(action.underLine)}}{{action.underLine}}</a>\n            </div>\n          </div>\n        </div>\n\n        <div align=\"left\">\n          <div class=\"row pl-3\">{{action.homeTeam}}</div>\n          <div class=\"row pb-1 pt-1\">\n            <div class=\"col\">\n              <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'homeTeamML')\">{{addPlus(action.homeTeamML)}}{{action.homeTeamML}}</a>\n            </div>\n            <div class=\"col\" align=\"center\">\n              <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'homeTeamRL')\">{{action.homeTeamRL}} {{addPlus(action.homeTeamRL)}}{{action.homeTeamRLOdds}}</a>\n            </div>\n            <div class=\"col\">\n              <a class=\"btn btn-primary btn-sm text-light float-right\" (click)=\"placeBet(action,'over')\">o{{action.totalNumber}}  {{addPlus(action.overLine)}}{{action.overLine}}</a>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\" align=\"center\" *ngIf=\"sport==21\">\n    <div class=\"row\" *ngFor=\"let action of actions\">\n      <h1>{{action.eventName}}</h1>\n      <ul class=\"list-group w-100\">\n        <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let participant of action.participant\">\n          {{participant.name}}  {{addPlus(participant.odds)}}{{participant.odds}}\n        </li>\n      </ul>\n    </div>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
-/***/ 717:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container mt-5 pt-2\">\n  <div *ngIf=\"user\">\n    <h2 class=\"page-header\">Profile</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{user.username}}</li>\n      <li class=\"list-group-item\">Current Balance: {{user.currentBalance}}</li>\n      <li class=\"list-group-item\">Available Balance: {{user.currentBalance + user.credit}}</li>\n    </ul>\n    <h2 class=\"pt-2\">Pending Bets</h2>\n      <ul class=\"list-group\" *ngFor=\"let pendingBet of pendingBets\">\n        <li class=\"list-group-item\">{{pendingBet.gameDate}} {{pendingBet.gameTime}}:{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>\n      </ul>\n      <h2 class=\"mt-4\">Bet History</h2>\n        <div *ngFor=\"let closedBet of closedBets\">\n          <p *ngIf=\"closedBet.status === 'win'\">{{closedBet.gameDate}} {{closedBet.gameTime}}: {{closedBet.description}} Result: {{closedBet.status}} {{closedBet.winAmount}} dollars</p>\n          <p *ngIf=\"closedBet.status === 'loss'\">{{closedBet.gameDate}} {{closedBet.gameTime}}: {{closedBet.description}} Result: {{closedBet.status}} -{{closedBet.betAmount}} dollars</p>\n        </div>\n  </div>\n</div>\n"
-
-/***/ }),
-
-/***/ 718:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\" container mt-2 pt-5\">\n<h2 class=\"page-header\">Register</h2>\n<form (submit)=\"onRegisterSubmit()\" >\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\" placeholder=\"Enter Name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"username\">Username</label>\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"Enter Username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter Password\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"credit\">Account Credit</label>\n    <input type=\"number\" [(ngModel)]=\"credit\" name=\"credit\" class=\"form-control\" id=\"credit\" placeholder=\"Enter Account Credit\">\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n</form>\n</div>\n\n<!-- <div class=\"form-group\">\n  <label for=\"email\">Email</label>\n  <input type=\"email\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\" id=\"email\" aria-describedby=\"emailHelp\" placeholder=\"Enter Email\">\n  <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n</div> -->\n"
-
-/***/ }),
-
-/***/ 719:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n<div class=\"row\" align=\"center\">\n  <div *ngFor=\"let action of actions\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n\n    <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n      <div class=\"col w-50\" align=\"left\">\n        <p class=\"m-0 pl-3\">{{action.matchDate | slice:0:6}}</p>\n      </div>\n      <div class=\"col w-50\" align=\"right\">\n        <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n      </div>\n    </div>\n\n    <div class =\"row ml-0 mr-0\" style=\"height:100px\" *ngIf=\"action.sport==0 || action.sport==4 || action.sport==3\">\n      <div class =\"col p-0 float-left\">\n        <img class=\"w-75 h-100\" src=\"{{action.awayImagePath}}\" alt=\"Card image cap\">\n      </div>\n      <h2 class=\"mt-4\">@</h2>\n      <div class =\"col p-0 float-right\">\n        <img class=\"w-75 h-100\" src=\"{{action.homeImagePath}}\" alt=\"Card image cap\">\n      </div>\n    </div>\n\n    <div class=\"card-header border-top pl-3 pr-3\">\n\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.awayTeam}}</div>\n        <div class=\"row border-bottom pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'awayTeamML')\">{{action.awayTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'awayTeamRL')\">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\"(click)=\"placeBet(action,'under')\">u{{action.totalNumber}}  {{action.underLine}}</a>\n          </div>\n        </div>\n      </div>\n\n      <div align=\"left\">\n        <div class=\"row pl-3\">{{action.homeTeam}}</div>\n        <div class=\"row pb-1 pt-1\">\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-left\"(click)=\"placeBet(action,'homeTeamML')\">{{action.homeTeamML}}</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-primary btn-sm text-light\"(click)=\"placeBet(action,'homeTeamRL')\">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>\n          </div>\n          <div class=\"col\">\n            <a class=\"btn btn-primary btn-sm text-light float-right\" (click)=\"placeBet(action,'over')\">o{{action.totalNumber}}  {{action.overLine}}</a>\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</div>\n</div>\n"
-
-/***/ }),
-
-/***/ 758:
+/***/ 755:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(398);
@@ -1917,5 +1901,5 @@ module.exports = __webpack_require__(398);
 
 /***/ })
 
-},[758]);
+},[755]);
 //# sourceMappingURL=main.bundle.map
