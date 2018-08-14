@@ -44,7 +44,7 @@ export class OddsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //return this.http.get('http://localhost:8080/odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
-    return this.http.get('odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
+    return this.http.get('odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
     .map(res => res.json())
     .toPromise();
   }
