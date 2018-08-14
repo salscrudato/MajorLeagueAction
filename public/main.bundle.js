@@ -98,7 +98,8 @@ var UserService = (function () {
     UserService.prototype.getAllUsers = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/users/allProfiles', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
+        return this.http.get('users/allProfiles', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.updateBalance = function (updatedAmount) {
@@ -168,7 +169,8 @@ var AuthService = (function () {
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/profile';
-        return this.http.get('http://localhost:8080/users/profile', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
+        return this.http.get(url, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
