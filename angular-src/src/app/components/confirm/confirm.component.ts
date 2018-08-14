@@ -12,7 +12,7 @@ import {Bet} from '../../../../../classes/bet';
 })
 export class ConfirmComponent implements OnInit{
 
-  bets:any = [];
+  bet:any = [];
   betType:string;
   betAmount:number = null;
   odds:number;
@@ -25,16 +25,16 @@ export class ConfirmComponent implements OnInit{
   ){}
 
   ngOnInit(){
-    this.bets = this.dataService.getBet();
+    this.bet = this.dataService.getBet();
     this.betType = this.dataService.getBetType().toUpperCase();
-    this.setBetDetailsAndOdds(this.bets);
-    this.odds = this.calculateOdds(this.bets);
+    this.setBetDetailsAndOdds(this.bet);
+    this.odds = this.calculateOdds(this.bet);
   }
 
   clickPlaceBet(){
     var profile = this.dataService.getProfile();
     var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-    var confirmedBet = new Bet(profile, this.bets, 'jsonOdds', this.odds, this.betAmount, winAmount, this.betType);
+    var confirmedBet = new Bet(profile, this.bet, 'jsonOdds', this.odds, this.betAmount, winAmount, this.betType);
     this.betService.placeBet(confirmedBet).subscribe(data => {
       if(data.success){
         this.router.navigate(['profile']);

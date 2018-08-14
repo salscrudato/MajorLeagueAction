@@ -38,18 +38,6 @@ export class StraightComponent implements OnInit {
     }
   }
 
-  //-----Old Method-----
-  // getOdds(){
-  //   this.oddsService.getOdds().subscribe(data =>{
-  //     for (var i = 0; i < data.length; i++) {
-  //       //MLB Odds are sport = 0
-  //       if(data[i].sport == 0){
-  //         this.actions.push(data[i]);
-  //       }
-  //     }
-  //   });
-  // }
-
   placeBet(action,type){
     action.betType = type;
     this.authService.getProfile().subscribe(profile => {

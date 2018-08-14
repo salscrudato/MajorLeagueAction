@@ -3,8 +3,17 @@ class Action {
     odds, homeTeam, awayTeam, homePitcher, awayPitcher, sport) {
       this.id = id;
       this.details = details;
-      this.matchDate = this.constructor.setDate(matchTime);
-      this.matchTime = this.constructor.setTime(matchTime);
+      //==========Time==========
+      var tempEpoch = new Date(matchTime).getTime();
+      var offset = -240;
+      this.epoch = (tempEpoch + offset*60*1000);
+      var humanDate = new Date(this.epoch);
+      var months = {0:'Jan', 1:'Feb', 2:'Mar', 3:'Apr', 4:'May', 5:'Jun', 6:'Jul', 7:'Aug', 8:'Sep', 9:'Oct', 10:'Nov', 11:'Dec'};
+      var month = months[humanDate.getMonth()];
+      var day = humanDate.getDate();
+      this.matchDate = month + " " + day;
+      this.matchTime = this.constructor.formatAMPM(humanDate);
+
       if (sport == 0){
         this.homeTeam = homeTeam + ' [' + homePitcher + ']';
         this.awayTeam = awayTeam + ' [' + awayPitcher + ']';
@@ -30,35 +39,15 @@ class Action {
       this.sport = sport;
     }
 
-    static setDate(gameTime){
-      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      var year = Number(gameTime.substr(0,4));
-      var month = Number(gameTime.substr(5,2));
-      var day = Number(gameTime.substr(8,2));
-      var hour = Number(gameTime.substr(11,2));
-      if(hour < 4){
-        day = day - 1;
-      }
-      return months[month - 1] + ' ' + day + ' ' + year;
-    }
-
-    static setTime(gameTime){
-      var amOrPm;
-      var hour = Number(gameTime.substr(11,2));
-      //Move to EST
-      var hour = hour - 4;
-      if(hour < 0){
-        hour = 24 + hour;
-      }
-      if(hour > 12){
-        hour = hour-12;
-        amOrPm = 'PM';
-      } else if(hour == 12) {
-        amOrPm = 'PM';
-      } else {
-        amOrPm = 'AM';
-      }
-      return hour + gameTime.substr(13,3) + ' ' + amOrPm;
+    static formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
     }
 
     static setHomeAndAwayImages(team){
@@ -262,7 +251,7 @@ class Action {
         return '/assets/images/NC State.png';
         break;
         case 'Syracuse':
-        return '/assets/images/Syracuse orange.png';
+        return '/assets/images/syracuse orange.png';
         break;
         case 'Wake Forest':
         return '/assets/images/wake forest demon deacons.png';
@@ -273,8 +262,11 @@ class Action {
         case 'Georgia Tech':
         return '/assets/images/GT.png';
         break;
+        case 'Louisville':
+        return '/assets/images/louisville cardinals.png';
+        break;
         case 'Miami Florida':
-        return '/assets/images/Miami hurricanes.png';
+        return '/assets/images/miami hurricanes.png';
         break;
         case 'North Carolina':
         return '/assets/images/UNC Tar Heels.png';
@@ -289,13 +281,13 @@ class Action {
         return '/assets/images/VT hokies.png';
         break;
         case 'Cincinnati':
-        return '/assets/images/cincinnati bearcats.png';
+        return '/assets/images/cincinnati bearcats.jpg';
         break;
         case 'East Carolina':
         return '/assets/images/ECU Pirates.png';
         break;
         case 'Houston':
-        return '/assets/images/Houston cougars.png';
+        return '/assets/images/houston cougars.png';
         break;
         case 'Memphis':
         return '/assets/images/memphis tigers.png';
@@ -315,23 +307,29 @@ class Action {
         case 'Tulsa':
         return '/assets/images/tulsa golden hurricane.png';
         break;
-        case 'UCF':
+        case 'Central Florida':
         return '/assets/images/UCF.png';
         break;
         case 'Connecticut':
-        return '/assets/images/uconn huskies.png';
+        return '/assets/images/uconn huskies.jpg';
         break;
         case 'South Florida':
         return '/assets/images/USF.png';
         break;
         case 'Illinois':
-        return '/assets/images/Illinois fighting illini.png';
+        return '/assets/images/illinois fighting illini.png';
         break;
         case 'Indiana':
-        return '/assets/images/Indiana hoosiers.png';
+        return '/assets/images/indiana hoosiers.png';
+        break;
+        case 'Iowa':
+        return '/assets/images/iowa-hawkeyes-logo.png';
         break;
         case 'Maryland':
         return '/assets/images/maryland-terps-logo.png';
+        break;
+        case 'Michigan':
+        return '/assets/images/michigan wolverines.png';
         break;
         case 'Michigan State':
         return '/assets/images/michigan-state-university-logo.png';
@@ -342,14 +340,14 @@ class Action {
         case 'Nebraska':
         return '/assets/images/nebraska.png';
         break;
-        case ' Northwestern':
+        case 'Northwestern':
         return '/assets/images/Northwestern.png';
         break;
         case 'Ohio State':
-        return '/assets/images/OSU.png';
+        return '/assets/images/OSU.jpg';
         break;
         case 'Penn State':
-        return '/assets/images/PSU.png';
+        return '/assets/images/PSU logo.png';
         break;
         case 'Purdue':
         return '/assets/images/purdue logo.png';
@@ -358,7 +356,7 @@ class Action {
         return '/assets/images/Rutgers.png';
         break;
         case 'Wisconsin':
-        return '/assets/images/Wisconsin.png';
+        return '/assets/images/Wisconsin logo.png';
         break;
         case 'Baylor':
         return '/assets/images/baylor bears.png';
@@ -388,7 +386,7 @@ class Action {
         return '/assets/images/Texas Tech.png';
         break;
         case 'West Virginia':
-        return '/assets/images/WVU.png';
+        return '/assets/images/WVU.jpg';
         break;
         case 'Charlotte':
         return '/assets/images/charlotte-49ers-logo.png';
@@ -397,16 +395,16 @@ class Action {
         return '/assets/images/FAU.png';
         break;
         case 'Florida Intl':
-        return '/assets/images/FIU.png';
+        return '/assets/images/FIU.jpg';
         break;
         case 'Louisiana Tech':
-        return '/assets/images/latech2.png';
+        return '/assets/images/latech2.jpg';
         break;
         case 'Marshall':
         return '/assets/images/marshall.png';
         break;
         case 'Middle Tenn St':
-        return '/assets/images/middle tennessee.png';
+        return '/assets/images/middle tennessee.jpg';
         break;
         case 'Old Dominion':
         return '/assets/images/old dominion.png';
@@ -432,7 +430,7 @@ class Action {
         case 'Western Kentucky':
         return '/assets/images/wku.png';
         break;
-        case 'Denver Broncos':
+        case 'Army':
         return '/assets/images/army black knights.png';
         break;
         case 'BYU':
@@ -469,7 +467,7 @@ class Action {
         return '/assets/images/EMU.png';
         break;
         case 'Kent State':
-        return '/assets/images/kent state.png';
+        return '/assets/images/kent state.jpg';
         break;
         case 'Miami Ohio':
         return '/assets/images/Miami university.png';
@@ -493,13 +491,13 @@ class Action {
         return '/assets/images/boise state.png';
         break;
         case 'Colorado State':
-        return '/assets/images/Colorado State.png';
+        return '/assets/images/Colorado State.jpg';
         break;
         case 'Fresno State':
         return '/assets/images/Fresno State.png';
         break;
         case 'Hawaii':
-        return '/assets/images/Hawaii.png';
+        return '/assets/images/hawaii.png';
         break;
         case 'Nevada':
         return '/assets/images/Nevada.png';
@@ -517,7 +515,7 @@ class Action {
         return '/assets/images/unlv.png';
         break;
         case 'Utah State':
-        return '/assets/images/Utah state.png';
+        return '/assets/images/utah state.png';
         break;
         case 'Wyoming':
         return '/assets/images/Wyoming.png';
@@ -536,6 +534,9 @@ class Action {
         break;
         case 'Oregon':
         return '/assets/images/Oregon.png';
+        break;
+        case 'Oregon State':
+        return '/assets/images/osu beavers.png';
         break;
         case 'Stanford':
         return '/assets/images/stanford-cardinals-logo.png';
@@ -586,7 +587,7 @@ class Action {
         return '/assets/images/Ole Miss.png';
         break;
         case 'South Carolina':
-        return '/assets/images/south carolina.png';
+        return '/assets/images/south carolina.jpg';
         break;
         case 'Texas A&M':
         return '/assets/images/TAMU Aggies.png';
@@ -598,13 +599,13 @@ class Action {
         return '/assets/images/Vandy.jpg';
         break;
         case 'Appalachian St':
-        return '/assets/images/app state.png';
+        return '/assets/images/app state.jpg';
         break;
         case 'Arkansas State':
         return '/assets/images/arkansas state.png';
         break;
         case 'Coastal Carolina':
-        return '/assets/images/coastal carolina.png';
+        return '/assets/images/coastal carolina.jpg';
         break;
         case 'Georgia State':
         return '/assets/images/georgia state.png';
@@ -619,10 +620,10 @@ class Action {
         return '/assets/images/south alabama.png';
         break;
         case 'Texas State':
-        return '/assets/images/texas state.png';
+        return '/assets/images/texas state.jpg';
         break;
         case 'Troy':
-        return '/assets/images/troy trojans.png';
+        return '/assets/images/troy trojans.jpg';
         break;
         case 'Louisiana Monroe':
         return '/assets/images/ulm war hawks.png';
@@ -634,3 +635,34 @@ class Action {
   }
 
   module.exports = Action;
+
+  // static setDate(gameTime){
+  //   var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  //   var year = Number(gameTime.substr(0,4));
+  //   var month = Number(gameTime.substr(5,2));
+  //   var day = Number(gameTime.substr(8,2));
+  //   var hour = Number(gameTime.substr(11,2));
+  //   if(hour < 4){
+  //     day = day - 1;
+  //   }
+  //   return months[month - 1] + ' ' + day + ' ' + year;
+  // }
+  //
+  // static setTime(gameTime){
+  //   var amOrPm;
+  //   var hour = Number(gameTime.substr(11,2));
+  //   //Move to EST
+  //   var hour = hour - 4;
+  //   if(hour < 0){
+  //     hour = 24 + hour;
+  //   }
+  //   if(hour > 12){
+  //     hour = hour-12;
+  //     amOrPm = 'PM';
+  //   } else if(hour == 12) {
+  //     amOrPm = 'PM';
+  //   } else {
+  //     amOrPm = 'AM';
+  //   }
+  //   return hour + gameTime.substr(13,3) + ' ' + amOrPm;
+  // }

@@ -9,6 +9,7 @@ class Bet365Live {
     this.awayTeamRLArray = [];
     this.homeTeamML = 0;
     this.awayTeamML = 0;
+    this.sport = sport;
 
     //Initialize varants
     var mlStartIndex = 0;

@@ -11,6 +11,7 @@ export class OddsService {
 
   }
 
+  //==========Get JSON Odds==========
   getOdds(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -19,6 +20,7 @@ export class OddsService {
     .map(res => res.json());
   }
 
+  //==========Live Events from Bet365==========
   getLiveEvents(sportId, leagueId){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -28,6 +30,16 @@ export class OddsService {
     .toPromise();
   }
 
+  //==========Live Event Odds from Bet365==========
+  getLiveEventOdds(eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage, sportId){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    //return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
+    return this.http.get('odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
+    .map(res => res.json());
+  }
+
+  //==========Upcoming Events from Bet365==========
   getUpcomingEvents(sportId, leagueId){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -37,19 +49,12 @@ export class OddsService {
     .toPromise();
   }
 
+  //==========Upcoming Event Odds from Bet365==========
   getUpcomingEventOdds(eventId, homeTeam, awayTeam, time, sport){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //return this.http.get('http://localhost:8080/odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
     return this.http.get('odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
-    .map(res => res.json());
-  }
-
-  getLiveEventOdds(eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage, sportId){
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    //return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
-    return this.http.get('odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId)
     .map(res => res.json());
   }
 

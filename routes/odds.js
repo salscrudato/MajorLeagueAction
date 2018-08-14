@@ -3,13 +3,13 @@ const router = express.Router();
 const request = require('request');
 const apicache = require('apicache');
 const Action = require('../classes/action.js');
-const Action2 = require('../classes/action2.js');
-const BetsApiAction = require('../classes/betsApiAction.js');
+const Bet365Upcoming = require('../classes/Bet365Upcoming.js');
 const Bet365Live = require('../classes/Bet365Live.js');
 
 let cache = apicache.middleware;
 
 router.get('/all', cache('10 minutes'), function(req, res, next){
+//router.get('/all', function(req, res, next){
   var headers = {
     'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
   }
@@ -37,6 +37,8 @@ router.get('/all', cache('10 minutes'), function(req, res, next){
         actions.push(action);
       }
       res.send(actions);
+    } else {
+      res.send({success:false, msg: 'Failed to get odds'});
     }
   });
 });
@@ -120,18 +122,20 @@ router.get('/upcomingEvents', function(req, res, next){
   request(options, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var events = JSON.parse(body);
-      for(var i = 0; i < events.results.length; i++){
-        tempEventsArray.push({
-          id: events.results[i].id,
-          time: events.results[i].time,
-          homeTeam: events.results[i].away.name,
-          homeTeamImage: events.results[i].home.image_id,
-          awayTeam: events.results[i].home.name,
-          awayTeamImage: events.results[i].away.image_id,
-          sport: sportId
-        });
+      if(events.results != undefined){
+        for(var i = 0; i < events.results.length; i++){
+          tempEventsArray.push({
+            id: events.results[i].id,
+            time: events.results[i].time,
+            homeTeam: events.results[i].away.name,
+            homeTeamImage: events.results[i].home.image_id,
+            awayTeam: events.results[i].home.name,
+            awayTeamImage: events.results[i].away.image_id,
+            sport: sportId
+          });
+        }
+        res.send(tempEventsArray);
       }
-      res.send(tempEventsArray);
     } else {
       res.send({success:false, msg:'Failed to get events'});
     }
@@ -154,9 +158,15 @@ router.get('/upcomingEventOdds', function(req, res, next){
   request(oddsOptions, function (error, response, body){
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
-      var oddsArr = data.results[0].main;
-      var eventOdds = new Action2(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
+      if(data.results != undefined && data.success){
+        var oddsArr = data.results[0].main;
+      } else {
+        var oddsArr = undefined;
+      }
+      var eventOdds = new Bet365Upcoming(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
       res.send(eventOdds);
+    } else {
+      res.send({success:false, msg:'Failed to get odds'});
     }
   });
 });
