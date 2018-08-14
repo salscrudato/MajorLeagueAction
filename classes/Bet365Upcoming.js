@@ -1,9 +1,7 @@
 class Bet365Upcoming {
   constructor(id, gameTime, oddsArr, sport, homeTeam, awayTeam){
     this.id = id;
-    var tempEpoch = parseInt(gameTime);
-    var offset = -240;
-    this.epoch = (tempEpoch + offset*60*1000);
+    this.epoch = parseInt(gameTime)*1000;
     var humanDate = new Date(this.epoch);
     var months = {0:'Jan', 1:'Feb', 2:'Mar', 3:'Apr', 4:'May', 5:'Jun', 6:'Jul', 7:'Aug', 8:'Sep', 9:'Oct', 10:'Nov', 11:'Dec'};
     var month = months[humanDate.getMonth()];
@@ -56,11 +54,11 @@ class Bet365Upcoming {
         for(var i = 0; i < altLines.length; i++){
           var line = parseFloat(altLines[i].opp);
           var team = altLines[i].header;
-          var odds = parseInt(altLines[i].odds);
+          var odds = this.constructor.convertOdds(parseFloat(altLines[i].odds));
           if (line > -3 && line < 3){
-            if(team = this.homeTeam){
+            if(team == this.homeTeam){
               this.homeTeamRL.push({number: line, odds: odds});
-            } else if(team = this.awayTeam){
+            } else if(team == this.awayTeam){
               this.awayTeamRL.push({number: line, odds: odds});
             }
           }
@@ -75,14 +73,14 @@ class Bet365Upcoming {
             var type = teamTotals[i].opp.substring(0,1);
             var number = teamTotals[i].opp.substring(2);
             var odds = this.constructor.convertOdds(teamTotals[i].odds);
-            if(this.homeTeam = team){
+            if(this.homeTeam == team){
               if(type == 'O'){
                 this.homeTeamTotalLine = number;
                 this.homeTeamOverOdds = odds;
               } else {
                 this.homeTeamUnderOdds = odds;
               }
-            } else if(this.awayTeam = team){
+            } else if(this.awayTeam == team){
               if(type == 'O'){
                 this.awayTeamTotalLine = number;
                 this.awayTeamOverOdds = odds;
