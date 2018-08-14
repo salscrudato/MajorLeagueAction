@@ -52,17 +52,17 @@
 
             <div class="row border-bottom mb-1 pb-1" *ngIf="action.awayTeamML != null || action.homeTeamML != null || action.drawOdds != null">
               <div class="col-sm-4 border-right">
-                <a class="btn btn-block btn-primary text-light" (click)="placeBet()" *ngIf="action.awayTeamML != null">
+                <a class="btn btn-primary text-light" (click)="placeBet()" *ngIf="action.awayTeamML != null">
                   {{action.awayTeamML}}
                 </a>
               </div>
               <div class="col-sm-4 border-right">
-                <a class="btn btn-block btn-primary text-light" (click)="placeBet()" *ngIf="action.drawOdds != null">
+                <a class="btn btn-primary text-light" (click)="placeBet()" *ngIf="action.drawOdds != null">
                   {{action.drawOdds}}
                 </a>
               </div>
               <div class="col-sm-4 border-right">
-                <a class="btn btn-block btn-primary text-light" (click)="placeBet()" *ngIf="action.homeTeamML != null">
+                <a class="btn btn-primary text-light" (click)="placeBet()" *ngIf="action.homeTeamML != null">
                   {{action.homeTeamML}}
                 </a>
               </div>
