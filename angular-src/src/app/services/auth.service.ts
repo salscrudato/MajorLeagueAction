@@ -28,8 +28,8 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
       const url = this.urlPrefix + 'users/authenticate';
-      return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
-      //return this.http.post(url, user, {headers: headers})
+      //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
+      return this.http.post(url, user, {headers: headers})
         .map(res => res.json());
   }
 
