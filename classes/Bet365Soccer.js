@@ -27,9 +27,9 @@ class Bet365Soccer {
     if(oddsArr != undefined){
       for(var key in oddsArr.sp){
         if(key=='full_time_result'){
-          this.homeTeamML = this.constructor.convertOdds(oddsArr.sp[key][0].odds);
+          this.homeTeamML = this.constructor.convertOdds(oddsArr.sp[key][2].odds);
           this.drawOdds = this.constructor.convertOdds(oddsArr.sp[key][1].odds);
-          this.awayTeamML = this.constructor.convertOdds(oddsArr.sp[key][2].odds);
+          this.awayTeamML = this.constructor.convertOdds(oddsArr.sp[key][0].odds);
         }
         if(key=='goals_over_under'){
           this.over = {number: oddsArr.sp[key][0].goals, odds: this.constructor.convertOdds(oddsArr.sp[key][0].odds)};
