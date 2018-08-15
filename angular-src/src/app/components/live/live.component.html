@@ -13,9 +13,16 @@
       </div>
 
       <div class="row ml-0 mr-0">
-        <div class="col" align="center">
-          <p>{{action.homeTeam}} [{{action.homeScore}}] @ {{action.awayTeam}} [{{action.awayScore}}] - {{action.details}}</p>
+
+          <div class="col">
+          <div class="row justify-content-center mb-0 pb-0">
+            {{action.homeTeam}} [{{action.homeScore}}] @ {{action.awayTeam}} [{{action.awayScore}}]
+          </div>
+          <div class="row justify-content-center mt-0 pt-0">
+            {{action.details}}
+          </div>
         </div>
+
         <div class="card-header p-1 w-100">
 
           <div *ngIf="sport != 1">

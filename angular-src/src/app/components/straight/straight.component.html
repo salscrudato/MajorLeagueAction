@@ -1,17 +1,17 @@
-<div class="container pt-5 pr-0 pl-0">
+<div class="container pt-5">
   <div class="row" align="center" *ngIf="sport==0 || sport==3 || sport==4">
     <div *ngFor="let action of actions" class="card col-sm-4 mt-3 pl-0 pr-0">
 
-      <div class="row pl-0 pr-0 ml-0 mr-0">
+      <div class="row pl-0 pr-0">
         <div class="col w-50" align="left">
-          <p class="m-0 pl-3">{{action.matchDate | slice:0:6}}</p>
+          <p class="m-0 pl-3">{{action.matchDate}}</p>
         </div>
         <div class="col w-50" align="right">
           <p class="m-0 pr-3">{{action.matchTime}}</p>
         </div>
       </div>
 
-      <div class ="row ml-0 mr-0 w-100" style="height:100px" *ngIf="action.sport==0 || action.sport==4 || action.sport==3">
+      <div class ="row w-100" style="height:100px" *ngIf="action.sport==0 || action.sport==4 || action.sport==3">
         <div class ="col p-0 float-left">
           <img class="w-75 h-100" src="{{action.awayImagePath}}" alt="Card image cap">
         </div>
@@ -27,13 +27,13 @@
           <div class="row pl-3">{{action.awayTeam}}</div>
           <div class="row border-bottom pb-1 pt-1">
             <div class="col">
-              <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'awayTeamML')">{{addPlus(action.awayTeamML)}}{{action.awayTeamML}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-left" *ngIf="action.awayTeamML!=0 && action.awayTeamML>-400 && action.awayTeamML<400" (click)="placeBet(action,'awayTeamML')">{{addPlus(action.awayTeamML)}}{{action.awayTeamML}}</a>
             </div>
             <div class="col" align="center">
-              <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'awayTeamRL')">{{action.awayTeamRL}} {{addPlus(awayTeamRLOdds)}}{{action.awayTeamRLOdds}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light" *ngIf="action.awayTeamRL!=0" (click)="placeBet(action,'awayTeamRL')">{{addPlus(action.awayTeamRL)}}{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
             </div>
             <div class="col">
-              <a class="btn btn-primary btn-sm text-light float-right"(click)="placeBet(action,'under')">u{{action.totalNumber}}  {{addPlus(action.underLine)}}{{action.underLine}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-right" *ngIf="action.totalNumber!=0" (click)="placeBet(action,'under')">u{{action.totalNumber}}  {{addPlus(action.underLine)}}{{action.underLine}}</a>
             </div>
           </div>
         </div>
@@ -42,13 +42,13 @@
           <div class="row pl-3">{{action.homeTeam}}</div>
           <div class="row pb-1 pt-1">
             <div class="col">
-              <a class="btn btn-primary btn-sm text-light float-left"(click)="placeBet(action,'homeTeamML')">{{addPlus(action.homeTeamML)}}{{action.homeTeamML}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-left" *ngIf="action.homeTeamML!=0 && action.homeTeamML>-400 && action.homeTeamML<400" (click)="placeBet(action,'homeTeamML')">{{addPlus(action.homeTeamML)}}{{action.homeTeamML}}</a>
             </div>
             <div class="col" align="center">
-              <a class="btn btn-primary btn-sm text-light"(click)="placeBet(action,'homeTeamRL')">{{action.homeTeamRL}} {{addPlus(action.homeTeamRL)}}{{action.homeTeamRLOdds}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light" *ngIf="action.homeTeamRL!=0" (click)="placeBet(action,'homeTeamRL')">{{addPlus(action.homeTeamRL)}}{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
             </div>
             <div class="col">
-              <a class="btn btn-primary btn-sm text-light float-right" (click)="placeBet(action,'over')">o{{action.totalNumber}}  {{addPlus(action.overLine)}}{{action.overLine}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-right" *ngIf="action.totalNumber!=0" (click)="placeBet(action,'over')">o{{action.totalNumber}}  {{addPlus(action.overLine)}}{{action.overLine}}</a>
             </div>
           </div>
         </div>

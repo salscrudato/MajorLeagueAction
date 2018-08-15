@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class MenuComponent implements OnInit {
 
   actions:any = [];
+  soccer:any = [];
 
   constructor(
     private router:Router,
@@ -20,6 +21,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.getOdds();
+    this.soccer = [{league:'England Premier League', id:94}, {league:'England League 1', id:587}, {league:'UEFA', id:6542}, {league:'UEFA Europe League Qualifying', id:5823},
+    {league:'Italy Serie A', id:199}, {league:'Spain Primera Liga', id:207}, {league:'Spain Copa Federacion', id:429}]
 
   }
 
@@ -27,6 +30,12 @@ export class MenuComponent implements OnInit {
     this.dataService.addSport(sport);
     this.dataService.setJsonOddsEvents(this.actions);
     this.router.navigate(['/straight']);
+  }
+
+  moreOdds(sport, league){
+    this.dataService.addSport(sport);
+    this.dataService.setLeague(league);
+    this.router.navigate(['/other']);
   }
 
   getOdds(){

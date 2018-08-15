@@ -54,6 +54,8 @@ export class StraightComponent implements OnInit {
   }
 
   addPlus(odds){
+    odds = parseFloat(odds);
+
     if(odds>0){
       return '+';
     }else{

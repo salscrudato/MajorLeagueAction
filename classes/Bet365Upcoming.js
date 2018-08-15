@@ -27,8 +27,9 @@ class Bet365Upcoming {
     this.awayTeamOverOdds = 0;
     this.awayTeamUnderOdds = 0;
 
+    if(oddsArr != undefined){
     for(var key in oddsArr.sp){
-      if(key == 'a_run_in_the_1st_innings'){
+      if(key == 'a_run_in_the_1st_innings' && this.sport == 16){
         //Run in first lines
         if(oddsArr.sp.a_run_in_the_1st_innings[0].opp == 'Yes'){
           this.runInFirst = this.constructor.convertOdds(oddsArr.sp.a_run_in_the_1st_innings[0].odds);
@@ -37,7 +38,7 @@ class Bet365Upcoming {
           this.noRunInFirst = this.constructor.convertOdds(oddsArr.sp.a_run_in_the_1st_innings[1].odds);
         }
       }
-      if(key == '5_innings_line'){
+      if(key == '5_innings_line' && this.sport == 16){
         //First 5 innings line
         var fiveInnArr = oddsArr.sp["5_innings_line"];
         if(fiveInnArr[0].opp.includes(this.homeTeam)){
@@ -51,7 +52,7 @@ class Bet365Upcoming {
           this.awayTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[1].odds);
         }
       }
-      if(key == 'alternative_run_line'){
+      if(key == 'alternative_run_line' && this.sport == 16){
         //Alternate Run lines
         var altLines = oddsArr.sp["alternative_run_line"];
         for(var i = 0; i < altLines.length; i++){
@@ -67,7 +68,7 @@ class Bet365Upcoming {
           }
         }
       }
-      if(key == 'team_totals'){
+      if(key == 'team_totals' && this.sport == 16){
         //Set Team Totals
         var teamTotals = oddsArr.sp["team_totals"];
         for(var i = 0; i < teamTotals.length; i++){
@@ -95,6 +96,7 @@ class Bet365Upcoming {
         }
       }
     }
+  }
   }
 
   static convertOdds(odd){

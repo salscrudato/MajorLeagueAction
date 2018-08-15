@@ -19,8 +19,8 @@ export class UserService {
   updateBalance(updatedAmount) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-      return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
-      //return this.http.post('users/updateBalance', updatedAmount, {headers: headers})
+      //return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
+      return this.http.post('users/updateBalance', updatedAmount, {headers: headers})
         .map(res => res.json());
   }
 

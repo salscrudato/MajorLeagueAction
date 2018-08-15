@@ -15,6 +15,7 @@ export class OtherComponent implements OnInit {
 
   eventsArray:any = [];
   eventOddsArray:any = [];
+  sport:number = 0;
 
   constructor(
     private oddsService:OddsService,
@@ -26,7 +27,9 @@ export class OtherComponent implements OnInit {
 
   ngOnInit() {
     this.eventsArray = [];
-    this.getEvents('16', '225');
+    this.sport = this.dataService.getSports();
+    var league = this.dataService.getLeague();
+    this.getEvents(this.sport, league);
   }
 
   getEvents(sportId, leagueId){
@@ -36,7 +39,7 @@ export class OtherComponent implements OnInit {
           this.eventsArray.push(events[i]);
         }
         this.getUpcomingEventOdds(this.eventsArray);
-        console.log(this.eventsArray);
+
       },
       (error) => {
         console.log(error);
@@ -52,6 +55,14 @@ export class OtherComponent implements OnInit {
           console.log(this.eventOddsArray);
         }
       });
+    }
+  }
+
+  showDetails(action){
+    if(action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0 || action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0 || action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0 || action.runInFirst != 0){
+      return true;
+    } else {
+      return false;
     }
   }
 

@@ -5,6 +5,7 @@ const apicache = require('apicache');
 const Action = require('../classes/action.js');
 const Bet365Upcoming = require('../classes/Bet365Upcoming.js');
 const Bet365Live = require('../classes/Bet365Live.js');
+const Bet365Soccer = require('../classes/Bet365Soccer.js');
 
 let cache = apicache.middleware;
 
@@ -129,6 +130,8 @@ router.get('/upcomingEvents', function(req, res, next){
         for(var i = 0; i < events.results.length; i++){
           tempEventsArray.push({
             id: events.results[i].id,
+            league: events.results[i].league.name,
+            leagueId: events.results[i].league.id,
             time: events.results[i].time,
             homeTeam: events.results[i].away.name,
             homeTeamImage: events.results[i].home.image_id,
@@ -163,10 +166,15 @@ router.get('/upcomingEventOdds', function(req, res, next){
       var data = JSON.parse(body);
       if(data.results != undefined && data.success){
         var oddsArr = data.results[0].main;
+        if(sport==16){
+        var eventOdds = new Bet365Upcoming(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
+      } else if(sport==1){
+        var eventOdds = new Bet365Soccer(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
+      }
       } else {
         var oddsArr = undefined;
       }
-      var eventOdds = new Bet365Upcoming(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
+      //var eventOdds = new Bet365Upcoming(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
       res.send(eventOdds);
     } else {
       res.send({success:false, msg:'Failed to get odds'});
