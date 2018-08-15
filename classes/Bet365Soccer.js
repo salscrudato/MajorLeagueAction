@@ -23,6 +23,8 @@ class Bet365Soccer {
     this.homeTeamRL = 0;
     this.awayTeamRLOdds = 0;
     this.awayTeamRL = 0;
+    this.bothScoreYes = 0;
+    this.bothScoreNo = 0;
 
     if(oddsArr != undefined){
       for(var key in oddsArr.sp){
@@ -46,6 +48,10 @@ class Bet365Soccer {
           tmpHome = this.constructor.formatRunLine(tmpHome);
           this.homeTeamRL = tmpHome;
           this.homeTeamRLOdds = this.constructor.convertOdds(oddsArr.sp[key][2].odds);
+        }
+        if(key=='both_teams_to_score'){
+          this.bothScoreYes = this.constructor.convertOdds(oddsArr.sp[key][0].odds);
+          this.bothScoreNo = this.constructor.convertOdds(oddsArr.sp[key][1].odds);
         }
       }
     }

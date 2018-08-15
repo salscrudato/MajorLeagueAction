@@ -38,6 +38,10 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/other']);
   }
 
+  parlay(){
+    this.router.navigate(['/parlay']);
+  }
+
   getOdds(){
     var tempArr = [];
     this.oddsService.getOdds().subscribe(data =>{
