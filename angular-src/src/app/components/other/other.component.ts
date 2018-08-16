@@ -52,7 +52,6 @@ export class OtherComponent implements OnInit {
       this.oddsService.getUpcomingEventOdds(events[i].id, events[i].homeTeam, events[i].awayTeam, events[i].time, events[i].sport).subscribe(data =>{
         if(data.id != undefined){
           this.eventOddsArray.push(data);
-          console.log(this.eventOddsArray);
         }
       });
     }
@@ -64,6 +63,38 @@ export class OtherComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  placeBet(action,type){
+    action.betType = type;
+    this.authService.getProfile().subscribe(profile => {
+      this.dataService.addStraightBet(action, profile, 'straight');
+      this.router.navigate(['confirm']);
+    },
+    err =>{
+      this.flashMessage.show('You must be logged in to place a bet.', {cssClass: 'alert-danger'});
+      return false;
+    });
+  }
+
+  placeBetWithIndex(action, type, oddsArray, i){
+    action.betType = type;
+    if(type='awayTeamRL'){
+      action.awayTeamRL = oddsArray[i].number;
+      action.awayTeamRLOdds = oddsArray[i].odds;
+    }
+    if(type='homeTeamRL'){
+      action.homeTeamRL = oddsArray[i].number;
+      action.homeTeamRLOdds = oddsArray[i].odds;
+    }
+    this.authService.getProfile().subscribe(profile => {
+      this.dataService.addStraightBet(action, profile, 'straight');
+      this.router.navigate(['confirm']);
+    },
+    err =>{
+      this.flashMessage.show('You must be logged in to place a bet.', {cssClass: 'alert-danger'});
+      return false;
+    });
   }
 
 }

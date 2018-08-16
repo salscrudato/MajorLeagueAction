@@ -15,6 +15,7 @@ export class ParlayComponent implements OnInit {
   odds:any = [];
   testOdds:any = [];
   parlay:any = [];
+  sport:number;
 
   constructor(
     private flashMessage: FlashMessagesService,
@@ -25,21 +26,20 @@ export class ParlayComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getOdds();
+    this.sport = this.dataService.getSports();
+    this.odds = this.dataService.getJsonOddsEvents();
+    //this.getOdds();
   }
 
-  getOdds(){
-    this.oddsService.getOdds().subscribe(data =>{
-      for (var i = 0; i < data.length; i++) {
-        if(data[i].sport == 0){
-          this.odds.push(data[i]);
-        } else if (data[i].sport == 4) {
-          this.testOdds.push(data[i]);
-        }
-      }
-      console.log(this.testOdds);
-    });
-  }
+  // getOdds(sport){
+  //   this.oddsService.getOdds().subscribe(data =>{
+  //     for (var i = 0; i < data.length; i++) {
+  //       if(data[i].sport == sport){
+  //         this.odds.push(data[i]);
+  //       }
+  //     }
+  //   });
+  // }
 
   parlayCheckboxClick(event, odd, type){
     if(event.target.checked==true){

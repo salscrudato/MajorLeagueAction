@@ -38,7 +38,9 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/other']);
   }
 
-  parlay(){
+  parlay(sport){
+    this.dataService.addSport(sport);
+    this.dataService.setJsonOddsEvents(this.actions);
     this.router.navigate(['/parlay']);
   }
 
