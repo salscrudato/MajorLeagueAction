@@ -52,7 +52,7 @@ export class ConfirmComponent implements OnInit{
   setBetDescription(bet){
     const awayTeam = bet.awayTeam;
     const homeTeam = bet.homeTeam;
-    if(bet.sport=='0' || bet.sport=='16' || bet.sport=='4' || bet.sport=='3'){
+    if(bet.sport=='0' || bet.sport=='16' || bet.sport=='4' || bet.sport=='3' || bet.sport=='1'){
       switch(bet.betType){
         case 'awayTeamRL':
         const awayTeamRL = this.addPlus(bet.awayTeamRL);
@@ -77,12 +77,22 @@ export class ConfirmComponent implements OnInit{
         bet.odds = homeTeamML;
         break;
         case 'over':
-        bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber;
-        bet.odds = bet.overLine;
+          if(bet.sport !='1'){
+            bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber;
+            bet.odds = bet.overLine;
+          } else {
+            bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number;
+            bet.odds = bet.over.odds;
+          }
         break;
         case 'under':
-        bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber;
-        bet.odds = bet.underLine;
+        if(bet.sport != '1'){
+          bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber;
+          bet.odds = bet.underLine;
+        } else {
+          bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number;
+          bet.odds = bet.under.odds;
+        }
         break;
         case 'draw':
         bet.betDetails = awayTeam + " @ " + homeTeam + " Draw " + bet.drawOdds;
@@ -113,8 +123,14 @@ export class ConfirmComponent implements OnInit{
         bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Run In First';
         bet.odds = bet.runInFirst;
         case 'noRunInFirst':
-        bet.betDetails = awayTeam + ' @ ' + homeTeam + 'No Runs In First';
+        bet.betDetails = awayTeam + ' @ ' + homeTeam + ' No Runs In First';
         bet.odds = bet.noRunInFirst;
+        case 'bothScoreYes':
+        bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - Yes';
+        bet.odds = bet.bothScoreYes;
+        case 'bothScoreNo':
+        bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - No';
+        bet.odds = bet.bothScoreNo;
         default:
         break;
       }

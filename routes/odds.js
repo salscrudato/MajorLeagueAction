@@ -9,8 +9,10 @@ const Bet365Soccer = require('../classes/Bet365Soccer.js');
 
 let cache = apicache.middleware;
 
-router.get('/all', cache('10 minutes'), function(req, res, next){
+//router.get('/all', cache('2 minutes'), function(req, res, next){
+router.get('/all', cache('5 minutes'), function(req, res, next){
 //router.get('/all', function(req, res, next){
+  console.log('getting odds');
   var headers = {
     'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
   }
@@ -46,7 +48,7 @@ router.get('/all', cache('10 minutes'), function(req, res, next){
 });
 
 //Live Events
-router.get('/events', function(req, res, next){
+router.get('/events', cache(1000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   var apiKey = '10744-6nAVE6st6PH0mD';
@@ -85,7 +87,7 @@ router.get('/events', function(req, res, next){
 });
 
 //Live Odds by Event
-router.get('/eventOdds', function(req, res, next){
+router.get('/eventOdds', cache(1000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   var homeTeamImage = req.query.homeTeamImage;
@@ -112,7 +114,7 @@ router.get('/eventOdds', function(req, res, next){
 });
 
 //Upcoming Events
-router.get('/upcomingEvents', function(req, res, next){
+router.get('/upcomingEvents', cache(1000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   var apiKey = '10744-6nAVE6st6PH0mD';
@@ -149,7 +151,7 @@ router.get('/upcomingEvents', function(req, res, next){
 });
 
 //Upcoming Odds by Event
-router.get('/upcomingEventOdds', function(req, res, next){
+router.get('/upcomingEventOdds', cache(1000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   var awayTeam = req.query.awayTeam;

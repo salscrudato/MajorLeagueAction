@@ -1,19 +1,28 @@
-<div class="container mt-5 pt-2">
+<div class="container mt-5 pt-2 pl-0 pr-0">
   <div *ngIf="user">
-    <h2 class="page-header">Profile</h2>
-    <ul class="list-group">
-      <li class="list-group-item">Username: {{user.username}}</li>
-      <li class="list-group-item">Current Balance: {{user.currentBalance}}</li>
-      <li class="list-group-item">Available Balance: {{user.currentBalance + user.credit}}</li>
-    </ul>
-    <h2 class="pt-2">Pending Bets</h2>
-      <ul class="list-group" *ngFor="let pendingBet of pendingBets">
-        <li class="list-group-item">{{pendingBet.gameDate}} {{pendingBet.gameTime}}:{{pendingBet.description}} Risking {{pendingBet.betAmount}} to win {{pendingBet.winAmount}}</li>
-      </ul>
-      <h2 class="mt-4">Bet History</h2>
-        <div *ngFor="let closedBet of closedBets">
-          <p *ngIf="closedBet.status === 'win'">{{closedBet.gameDate}} {{closedBet.gameTime}}: {{closedBet.description}} Result: {{closedBet.status}} {{closedBet.winAmount}} dollars</p>
-          <p *ngIf="closedBet.status === 'loss'">{{closedBet.gameDate}} {{closedBet.gameTime}}: {{closedBet.description}} Result: {{closedBet.status}} -{{closedBet.betAmount}} dollars</p>
-        </div>
+
+    <div class="row border-bottom">
+      <div class="col" align="center">
+        <h3>Welcome back, {{user.name}}!</h3>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col border-bottom" align="center">
+        <p>Current Balance:  {{user.currentBalance}}</p>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col border-bottom" align="center">
+        <p>Available Balance:  {{user.credit + user.currentBalance}}</p>
+      </div>
+    </div>
+
+    <div class="row bg-dark m-0 p-0 w-100 text-light">
+      
+    </div>
+
   </div>
+  <div *ngIf="!user">Error Loading Profile</div>
 </div>

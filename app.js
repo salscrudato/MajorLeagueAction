@@ -54,7 +54,8 @@ app.get('/', function(req, res){
 });
 
 app.get('*', (req,res) => {
-	res.send({success:false, message:'Endpoint is invalid'});
+	console.log('Here');
+	res.send({message: 'Cannot refresh, please navigate to the homepage'});
 });
 
 app.listen(port, function(){

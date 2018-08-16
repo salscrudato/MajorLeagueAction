@@ -2,3 +2,16 @@
   margin-left: 0px;
   margin-right: 0px;
 }
+
+.card-pricing.popular {
+    z-index: 1;
+    border: 3px solid #007bff;
+}
+.card-pricing .list-unstyled li {
+    padding: .5rem 0;
+    color: #6c757d;
+}
+
+.font-small{
+  font-size: 80%;
+}
