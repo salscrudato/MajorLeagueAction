@@ -39,6 +39,9 @@
           <div class="col" align="center" *ngIf="action.sport==16">
             First 5 Innings
           </div>
+          <div class="col" align="center" *ngIf="action.sport==12">
+            First Half
+          </div>
         </div>
 
         <div class="row border-bottom mb-1 pb-1" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
@@ -50,6 +53,19 @@
           <div class="col w-50">
             <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamFirstHalf')" *ngIf="action.homeTeamFirstHalf != 0">
               {{action.homeTeamFirstHalf}}
+            </a>
+          </div>
+        </div>
+
+        <div class="row border-bottom mb-1 pb-1" *ngIf="action.homeTeamRLFirstHalf != 0 || action.awayTeamRLFirstHalf != 0">
+          <div class="col w-50 border-right">
+            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamFirstHalf')" *ngIf="action.awayTeamRLFirstHalf != 0">
+              {{action.awayTeamRLFirstHalf}}  {{action.awayTeamRLFirstHalfOdds}}
+            </a>
+          </div>
+          <div class="col w-50">
+            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamFirstHalf')" *ngIf="action.homeTeamRLFirstHalf!= 0">
+              {{action.homeTeamRLFirstHalf}}  {{action.homeTeamRLFirstHalfOdds}}
             </a>
           </div>
         </div>

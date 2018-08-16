@@ -6,12 +6,13 @@ const Action = require('../classes/action.js');
 const Bet365Upcoming = require('../classes/Bet365Upcoming.js');
 const Bet365Live = require('../classes/Bet365Live.js');
 const Bet365Soccer = require('../classes/Bet365Soccer.js');
+const Bet365Football = require('../classes/Bet365Soccer.js');
 
 let cache = apicache.middleware;
 
 //router.get('/all', cache('2 minutes'), function(req, res, next){
 router.get('/all', cache('5 minutes'), function(req, res, next){
-//router.get('/all', function(req, res, next){
+  //router.get('/all', function(req, res, next){
   console.log('getting odds');
   var headers = {
     'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
@@ -169,10 +170,12 @@ router.get('/upcomingEventOdds', cache(1000), function(req, res, next){
       if(data.results != undefined && data.success){
         var oddsArr = data.results[0].main;
         if(sport==16){
-        var eventOdds = new Bet365Upcoming(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
-      } else if(sport==1){
-        var eventOdds = new Bet365Soccer(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
-      }
+          var eventOdds = new Bet365Upcoming(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
+        } else if(sport==1){
+          var eventOdds = new Bet365Soccer(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
+        } else if(sport==12){
+          var eventOdds = new Bet365Football(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
+        }
       } else {
         var oddsArr = undefined;
       }
