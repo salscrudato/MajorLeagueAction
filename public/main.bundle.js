@@ -675,90 +675,88 @@ var ConfirmComponent = (function () {
     ConfirmComponent.prototype.setBetDescription = function (bet) {
         var awayTeam = bet.awayTeam;
         var homeTeam = bet.homeTeam;
-        if (bet.sport == '0' || bet.sport == '16' || bet.sport == '4' || bet.sport == '3' || bet.sport == '1') {
-            switch (bet.betType) {
-                case 'awayTeamRL':
-                    var awayTeamRL = this.addPlus(bet.awayTeamRL);
-                    var awayTeamRLOdds = this.addPlus(bet.awayTeamRLOdds);
-                    bet.betDetails = awayTeam + " Spread " + awayTeamRL + " " + awayTeamRLOdds;
-                    bet.odds = awayTeamRLOdds;
-                    break;
-                case 'homeTeamRL':
-                    var homeTeamRL = this.addPlus(bet.homeTeamRL);
-                    var homeTeamRLOdds = this.addPlus(bet.homeTeamRLOdds);
-                    bet.betDetails = homeTeam + " Spread " + homeTeamRL + " " + homeTeamRLOdds;
-                    bet.odds = homeTeamRLOdds;
-                    break;
-                case 'awayTeamML':
-                    var awayTeamML = this.addPlus(bet.awayTeamML);
-                    bet.betDetails = awayTeam + " Money Line " + awayTeamML;
-                    bet.odds = awayTeamML;
-                    break;
-                case 'homeTeamML':
-                    var homeTeamML = this.addPlus(bet.homeTeamML);
-                    bet.betDetails = homeTeam + " Money Line " + homeTeamML;
-                    bet.odds = homeTeamML;
-                    break;
-                case 'over':
-                    if (bet.sport != '1') {
-                        bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber;
-                        bet.odds = bet.overLine;
-                    }
-                    else {
-                        bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number;
-                        bet.odds = bet.over.odds;
-                    }
-                    break;
-                case 'under':
-                    if (bet.sport != '1') {
-                        bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber;
-                        bet.odds = bet.underLine;
-                    }
-                    else {
-                        bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number;
-                        bet.odds = bet.under.odds;
-                    }
-                    break;
-                case 'draw':
-                    bet.betDetails = awayTeam + " @ " + homeTeam + " Draw " + bet.drawOdds;
-                    bet.odds = bet.drawOdds;
-                    break;
-                case 'awayTeamFirstHalf':
-                    bet.betDetails = awayTeam + ' First 5 Innings ' + bet.awayTeamFirstHalf;
-                    bet.odds = bet.awayTeamFirstHalf;
-                case 'homeTeamFirstHalf':
-                    bet.betDetails = homeTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
-                    bet.odds = bet.homeTeamFirstHalf;
-                case 'homeTeamFirstHalf':
-                    bet.betDetails = awayTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
-                    bet.odds = bet.homeTeamFirstHalf;
-                case 'homeTeamOver':
-                    bet.betDetails = homeTeam + ' Over ' + bet.homeTeamTotalLine;
-                    bet.odds = bet.homeTeamOverOdds;
-                case 'homeTeamUnder':
-                    bet.betDetails = homeTeam + ' Under ' + bet.homeTeamTotalLine;
-                    bet.odds = bet.homeTeamUnderOdds;
-                case 'awayTeamOver':
-                    bet.betDetails = awayTeam + ' Over ' + bet.awayTeamTotalLine;
-                    bet.odds = bet.awayTeamOverOdds;
-                case 'awayTeamUnder':
-                    bet.betDetails = awayTeam + ' Under ' + bet.awayTeamTotalLine;
-                    bet.odds = bet.awayTeamUnderOdds;
-                case 'runInFirst':
-                    bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Run In First';
-                    bet.odds = bet.runInFirst;
-                case 'noRunInFirst':
-                    bet.betDetails = awayTeam + ' @ ' + homeTeam + ' No Runs In First';
-                    bet.odds = bet.noRunInFirst;
-                case 'bothScoreYes':
-                    bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - Yes';
-                    bet.odds = bet.bothScoreYes;
-                case 'bothScoreNo':
-                    bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - No';
-                    bet.odds = bet.bothScoreNo;
-                default:
-                    break;
-            }
+        switch (bet.betType) {
+            case 'awayTeamRL':
+                var awayTeamRL = this.addPlus(bet.awayTeamRL);
+                var awayTeamRLOdds = this.addPlus(bet.awayTeamRLOdds);
+                bet.betDetails = awayTeam + " Spread " + awayTeamRL + " " + awayTeamRLOdds;
+                bet.odds = awayTeamRLOdds;
+                break;
+            case 'homeTeamRL':
+                var homeTeamRL = this.addPlus(bet.homeTeamRL);
+                var homeTeamRLOdds = this.addPlus(bet.homeTeamRLOdds);
+                bet.betDetails = homeTeam + " Spread " + homeTeamRL + " " + homeTeamRLOdds;
+                bet.odds = homeTeamRLOdds;
+                break;
+            case 'awayTeamML':
+                var awayTeamML = this.addPlus(bet.awayTeamML);
+                bet.betDetails = awayTeam + " Money Line " + awayTeamML;
+                bet.odds = awayTeamML;
+                break;
+            case 'homeTeamML':
+                var homeTeamML = this.addPlus(bet.homeTeamML);
+                bet.betDetails = homeTeam + " Money Line " + homeTeamML;
+                bet.odds = homeTeamML;
+                break;
+            case 'over':
+                if (bet.sport != '1') {
+                    bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber;
+                    bet.odds = bet.overLine;
+                }
+                else {
+                    bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number;
+                    bet.odds = bet.over.odds;
+                }
+                break;
+            case 'under':
+                if (bet.sport != '1') {
+                    bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber;
+                    bet.odds = bet.underLine;
+                }
+                else {
+                    bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number;
+                    bet.odds = bet.under.odds;
+                }
+                break;
+            case 'draw':
+                bet.betDetails = awayTeam + " @ " + homeTeam + " Draw " + bet.drawOdds;
+                bet.odds = bet.drawOdds;
+                break;
+            case 'awayTeamFirstHalf':
+                bet.betDetails = awayTeam + ' First 5 Innings ' + bet.awayTeamFirstHalf;
+                bet.odds = bet.awayTeamFirstHalf;
+            case 'homeTeamFirstHalf':
+                bet.betDetails = homeTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
+                bet.odds = bet.homeTeamFirstHalf;
+            case 'homeTeamFirstHalf':
+                bet.betDetails = awayTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
+                bet.odds = bet.homeTeamFirstHalf;
+            case 'homeTeamOver':
+                bet.betDetails = homeTeam + ' Over ' + bet.homeTeamTotalLine;
+                bet.odds = bet.homeTeamOverOdds;
+            case 'homeTeamUnder':
+                bet.betDetails = homeTeam + ' Under ' + bet.homeTeamTotalLine;
+                bet.odds = bet.homeTeamUnderOdds;
+            case 'awayTeamOver':
+                bet.betDetails = awayTeam + ' Over ' + bet.awayTeamTotalLine;
+                bet.odds = bet.awayTeamOverOdds;
+            case 'awayTeamUnder':
+                bet.betDetails = awayTeam + ' Under ' + bet.awayTeamTotalLine;
+                bet.odds = bet.awayTeamUnderOdds;
+            case 'runInFirst':
+                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Run In First';
+                bet.odds = bet.runInFirst;
+            case 'noRunInFirst':
+                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' No Runs In First';
+                bet.odds = bet.noRunInFirst;
+            case 'bothScoreYes':
+                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - Yes';
+                bet.odds = bet.bothScoreYes;
+            case 'bothScoreNo':
+                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - No';
+                bet.odds = bet.bothScoreNo;
+            default:
+                break;
         }
         return bet;
     };

@@ -52,7 +52,6 @@ export class ConfirmComponent implements OnInit{
   setBetDescription(bet){
     const awayTeam = bet.awayTeam;
     const homeTeam = bet.homeTeam;
-    if(bet.sport=='0' || bet.sport=='16' || bet.sport=='4' || bet.sport=='3' || bet.sport=='1'){
       switch(bet.betType){
         case 'awayTeamRL':
         const awayTeamRL = this.addPlus(bet.awayTeamRL);
@@ -134,7 +133,6 @@ export class ConfirmComponent implements OnInit{
         default:
         break;
       }
-    }
     return bet;
   }
 
