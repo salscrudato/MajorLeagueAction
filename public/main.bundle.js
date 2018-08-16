@@ -1689,14 +1689,16 @@ var OddsService = (function () {
     OddsService.prototype.getOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/all')
+        //return this.http.get('http://localhost:8080/odds/all')
+        return this.http.get('odds/all')
             .map(function (res) { return res.json(); });
     };
     //==========Live Events from Bet365==========
     OddsService.prototype.getLiveEvents = function (sportId, leagueId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
+        //return this.http.get('http://localhost:8080/odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
+        return this.http.get('odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
             .map(function (res) { return res.json(); })
             .toPromise();
     };
