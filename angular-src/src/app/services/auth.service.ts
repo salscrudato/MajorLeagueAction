@@ -28,8 +28,8 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
       const url = this.urlPrefix + 'users/authenticate';
-      return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
-      //return this.http.post(url, user, {headers: headers})
+      //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
+      return this.http.post(url, user, {headers: headers})
         .map(res => res.json());
   }
 
@@ -39,8 +39,8 @@ export class AuthService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
       const url = this.urlPrefix + 'users/profile';
-      return this.http.get('http://localhost:8080/users/profile', {headers: headers})
-      //return this.http.get(url, {headers: headers})
+      //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
+      return this.http.get(url, {headers: headers})
         .map(res => res.json());
   }
 
