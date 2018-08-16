@@ -28,9 +28,6 @@ export class StraightComponent implements OnInit {
     var tempActions = this.dataService.getJsonOddsEvents();
     this.sport = this.dataService.getSports();
     this.setUpActions(tempActions, this.sport);
-    if(this.sport==21){
-      console.log(this.actions);
-    }
   }
 
   setUpActions(tempActions, sport){

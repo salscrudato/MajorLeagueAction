@@ -27,19 +27,17 @@ export class ParlayComponent implements OnInit {
 
   ngOnInit() {
     this.sport = this.dataService.getSports();
-    this.odds = this.dataService.getJsonOddsEvents();
-    //this.getOdds();
+    var tmpOdds = this.dataService.getJsonOddsEvents();
+    this.setUpActions(tmpOdds, this.sport);
   }
 
-  // getOdds(sport){
-  //   this.oddsService.getOdds().subscribe(data =>{
-  //     for (var i = 0; i < data.length; i++) {
-  //       if(data[i].sport == sport){
-  //         this.odds.push(data[i]);
-  //       }
-  //     }
-  //   });
-  // }
+  setUpActions(tempActions, sport){
+    for (var i = 0; i < tempActions.length; i++){
+      if(tempActions[i].sport == sport){
+        this.odds.push(tempActions[i]);
+      }
+    }
+  }
 
   parlayCheckboxClick(event, odd, type){
     if(event.target.checked==true){
