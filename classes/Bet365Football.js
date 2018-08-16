@@ -35,7 +35,7 @@ class Bet365Soccer {
           this.awayTeamRLOddsFirstHalf = this.constructor.convertOdds(oddsArr.sp[key][0].odds);
           this.homeTeamRLOddsFirstHalf = this.constructor.convertOdds(oddsArr.sp[key][1].odds);
           this.awayTeamRLFirstHalf = oddsArr.sp[key][0].opp.replace(this.awayTeam + ' ','');
-          this.homeTeamRLFirstHalf = oddsArr.sp[key][0].opp.replace(this.homeTeam + ' ','');
+          this.homeTeamRLFirstHalf = oddsArr.sp[key][1].opp.replace(this.homeTeam + ' ','');
         }
         if(key=='1st_half_total_2_way'){
           this.firstHalfOverOdds = this.constructor.convertOdds(oddsArr.sp[key][0].odds);

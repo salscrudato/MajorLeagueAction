@@ -39,7 +39,6 @@ export class OtherComponent implements OnInit {
           this.eventsArray.push(events[i]);
         }
         this.getUpcomingEventOdds(this.eventsArray);
-
       },
       (error) => {
         console.log(error);
@@ -52,8 +51,27 @@ export class OtherComponent implements OnInit {
       this.oddsService.getUpcomingEventOdds(events[i].id, events[i].homeTeam, events[i].awayTeam, events[i].time, events[i].sport).subscribe(data =>{
         if(data.id != undefined){
           this.eventOddsArray.push(data);
+          this.eventOddsArray = this.sortEventOdds(this.eventOddsArray);
         }
       });
+    }
+  }
+
+  sortEventOdds(odds){
+    if(odds.length == 1){
+      return odds;
+    } else {
+      for(var i = 0; i < odds.length; i++){
+        for(var j = 0; j < odds.length - 1 - i; j++){
+          if(odds[j].epoch > odds[j+1].epoch){
+            var tmpOdds = odds[j];
+            odds[j] = odds[j+1];
+            odds[j+1] = tmpOdds;
+          }
+        }
+      }
+      console.log(odds);
+      return odds;
     }
   }
 

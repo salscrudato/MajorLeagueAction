@@ -15,6 +15,7 @@
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "*",
+    "ngx-order-pipe": "^2.0.1",
     "passport": "*",
     "passport-jwt": "*",
     "request": "^2.85.0",

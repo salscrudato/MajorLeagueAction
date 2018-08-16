@@ -6,7 +6,7 @@ const Action = require('../classes/action.js');
 const Bet365Upcoming = require('../classes/Bet365Upcoming.js');
 const Bet365Live = require('../classes/Bet365Live.js');
 const Bet365Soccer = require('../classes/Bet365Soccer.js');
-const Bet365Football = require('../classes/Bet365Soccer.js');
+const Bet365Football = require('../classes/Bet365Football.js');
 
 let cache = apicache.middleware;
 
