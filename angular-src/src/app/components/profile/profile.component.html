@@ -19,13 +19,14 @@
       </div>
     </div>
 
-    <div class="col bg-dark block text-light p-0 m-0">
-      <div class="row pt-2 border-bottom">
+    <div class="col bg-dark block text-light p-0 m-0 h-100">
+      <div class="row pt-2 border-bottom" (click)="showHidePending()">
         <div class="col" align="center">
-          <h5>Open Bets</h5>
+          <h5 *ngIf="showPending==false">Show Pendings (${{amountPending}})</h5>
+          <h5 *ngIf="showPending==true">Hide Open Bets</h5>
         </div>
       </div>
-      <div>
+      <div *ngIf="showPending==true">
       <table class="table table-dark table-hover w-100">
         <thead>
           <tr>
@@ -44,6 +45,37 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    </div>
+
+    <div class="row m-0 p-0">
+    <div class="col bg-dark block text-light p-0 m-0">
+      <div class="row pt-2 border-bottom" (click)="showHideClosed()">
+        <div class="col" align="center">
+          <h5 *ngIf="showClosed==false">Show Bet History</h5>
+          <h5 *ngIf="showClosed==true">Hide Bet History</h5>
+        </div>
+      </div>
+      <div *ngIf="showClosed==true">
+      <table class="table table-dark table-hover w-100">
+        <thead>
+          <tr>
+            <th style="width:15%">Date</th>
+            <th>Description</th>
+            <th style="width:5%">Risk</th>
+            <th style="width:5%">Win</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bet of pendingBets">
+            <td>{{bet.gameDate}} {{bet.gameTime}}</td>
+            <td>{{bet.description}}</td>
+            <td>{{bet.betAmount}}</td>
+            <td>{{bet.winAmount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     </div>
     </div>
 

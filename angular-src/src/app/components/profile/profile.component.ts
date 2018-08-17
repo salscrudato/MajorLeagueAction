@@ -16,6 +16,9 @@ export class ProfileComponent implements OnInit {
   user:any;
   pendingBets:any = [];
   closedBets:any = [];
+  showPending:boolean = false;
+  showClosed:boolean = false;
+  amountPending:number=0;
 
   constructor(
     private authService:AuthService,
@@ -35,6 +38,7 @@ export class ProfileComponent implements OnInit {
         for(var i = 0; i < bets.length; i++){
           if(bets[i].status == 'open'){
             this.pendingBets.push(bets[i]);
+            this.amountPending = this.amountPending + bets[i].betAmount;
           } else {
             this.closedBets.push(bets[i]);
           }
@@ -51,6 +55,22 @@ export class ProfileComponent implements OnInit {
       console.log(error);
       return false;
     });
+  }
+
+  showHidePending(){
+    if(this.showPending==false){
+      this.showPending=true;
+    } else {
+      this.showPending=false;
+    }
+  }
+
+  showHideClosed(){
+    if(this.showClosed==false){
+      this.showClosed=true;
+    } else {
+      this.showClosed=false;
+    }
   }
 
 }
