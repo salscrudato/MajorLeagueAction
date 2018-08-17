@@ -53,7 +53,12 @@ export class MenuComponent implements OnInit {
       for (var i = 0; i < data.length; i++) {
         this.actions.push(data[i]);
         this.actions = this.sortEventOdds(this.actions);
+        if(data[i].sport == 21){
+          tempArr.push(data[i]);
+        }
       }
+      console.log(tempArr);
+      console.log(this.actions);
     });
   }
 

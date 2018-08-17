@@ -33,7 +33,7 @@ export class LiveComponent implements OnInit {
     this.getLiveEvents(this.sport, league);
     this.interval = setInterval(() => {
       this.refreshLiveEventOdds(this.eventsArray);
-    }, 8000);
+    }, 10000);
   }
 
   getLiveEvents(sportId, leagueId){

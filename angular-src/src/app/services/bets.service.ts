@@ -26,8 +26,8 @@ export class BetService {
       status: result
     }
     headers.append('Content-Type', 'application/json');
-      //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
-      return this.http.post('bets/closePending', bet, {headers: headers})
+      return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
+      //return this.http.post('bets/closePending', bet, {headers: headers})
         .map(res => res.json());
   }
 
@@ -45,8 +45,8 @@ export class BetService {
   getAllPendings() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-      //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
-      return this.http.get('bets/getAllPendings', {headers: headers})
+      return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
+      //return this.http.get('bets/getAllPendings', {headers: headers})
         .map(res => res.json());
   }
 

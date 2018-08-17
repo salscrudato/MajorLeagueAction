@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   onLoginSubmit(){
     const user = {
-      username: this.username,
+      username: this.username.toLowerCase(),
       password: this.password
     }
 

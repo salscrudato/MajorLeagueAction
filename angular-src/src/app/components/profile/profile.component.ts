@@ -39,7 +39,9 @@ export class ProfileComponent implements OnInit {
             this.closedBets.push(bets[i]);
           }
         }
-        this.dataService.sortBets(this.closedBets);
+        this.pendingBets = this.dataService.sortBets(this.pendingBets);
+        this.closedBets = this.dataService.sortBets(this.closedBets);
+        console.log(this.pendingBets);
       }, error =>{
         console.log(error);
         return false;

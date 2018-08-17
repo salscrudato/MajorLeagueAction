@@ -38,12 +38,14 @@ export class StraightComponent implements OnInit {
     var tempArr = [];
     this.oddsService.getOdds().subscribe(data =>{
       for (var i = 0; i < data.length; i++) {
-        this.actions.push(data[i]);
-        this.actions = this.sortEventOdds(this.actions);
+        if(data[i].sport == this.sport){
+          this.actions.push(data[i]);
+          this.actions = this.sortEventOdds(this.actions);
+        }
       }
     });
   }
-
+  
   sortEventOdds(odds){
     if(odds.length == 1){
       return odds;

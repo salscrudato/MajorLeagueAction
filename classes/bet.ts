@@ -12,7 +12,6 @@ export class Bet {
   betType:string;
   subBets:any = [];
   constructor(profile, bet, source, odds, betAmount, winAmount, betType){
-    console.log(bet);
     this.userId = profile.user._id;
     this.username = profile.user.username;
     for (var i = 0; i < bet.length; i++){

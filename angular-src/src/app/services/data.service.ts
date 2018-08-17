@@ -70,12 +70,28 @@ export class DataService {
     return tempBetType;
   }
 
-  sortBets(unsorted){
-    for(var i = 0; i < unsorted.length; i++){
-      var year = unsorted[i].gameDate.substr(0,3);
-      var month = unsorted[i].gameDate.substr(0,3);
-      var day = unsorted[i].gameDate.substr(0,3);
-      console.log(month);
+  // sortBets(unsorted){
+  //   for(var i = 0; i < unsorted.length; i++){
+  //     var year = unsorted[i].gameDate.substr(0,3);
+  //     var month = unsorted[i].gameDate.substr(0,3);
+  //     var day = unsorted[i].gameDate.substr(0,3);
+  //   }
+  // }
+
+  sortBets(bets){
+    if(bets.length == 1){
+      return bets;
+    } else {
+      for(var i = 0; i < bets.length; i++){
+        for(var j = 0; j < bets.length - 1 - i; j++){
+          if(bets[j].epoch < bets[j+1].epoch){
+            var tmpBet = bets[j];
+            bets[j] = bets[j+1];
+            bets[j+1] = tmpBet;
+          }
+        }
+      }
+      return bets;
     }
   }
 

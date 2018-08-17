@@ -39,8 +39,7 @@ var BetService = (function () {
             status: result
         };
         headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
-        return this.http.post('bets/closePending', bet, { headers: headers })
+        return this.http.post('http://localhost:8080/bets/closePending', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getBets = function (profile, status) {
@@ -56,8 +55,7 @@ var BetService = (function () {
     BetService.prototype.getAllPendings = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
-        return this.http.get('bets/getAllPendings', { headers: headers })
+        return this.http.get('http://localhost:8080/bets/getAllPendings', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService = __decorate([
@@ -154,8 +152,7 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/register';
-        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
-        return this.http.post(url, user, { headers: headers })
+        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
@@ -317,12 +314,28 @@ var DataService = (function () {
         this.type = null;
         return tempBetType;
     };
-    DataService.prototype.sortBets = function (unsorted) {
-        for (var i = 0; i < unsorted.length; i++) {
-            var year = unsorted[i].gameDate.substr(0, 3);
-            var month = unsorted[i].gameDate.substr(0, 3);
-            var day = unsorted[i].gameDate.substr(0, 3);
-            console.log(month);
+    // sortBets(unsorted){
+    //   for(var i = 0; i < unsorted.length; i++){
+    //     var year = unsorted[i].gameDate.substr(0,3);
+    //     var month = unsorted[i].gameDate.substr(0,3);
+    //     var day = unsorted[i].gameDate.substr(0,3);
+    //   }
+    // }
+    DataService.prototype.sortBets = function (bets) {
+        if (bets.length == 1) {
+            return bets;
+        }
+        else {
+            for (var i = 0; i < bets.length; i++) {
+                for (var j = 0; j < bets.length - 1 - i; j++) {
+                    if (bets[j].epoch < bets[j + 1].epoch) {
+                        var tmpBet = bets[j];
+                        bets[j] = bets[j + 1];
+                        bets[j + 1] = tmpBet;
+                    }
+                }
+            }
+            return bets;
         }
     };
     DataService = __decorate([
@@ -647,25 +660,28 @@ var ConfirmComponent = (function () {
         this.flashMessage = flashMessage;
         this.router = router;
         this.bet = [];
-        this.betAmount = null;
     }
     ConfirmComponent.prototype.ngOnInit = function () {
         this.bet = this.dataService.getBet();
         this.betType = this.dataService.getBetType().toUpperCase();
         this.setBetDetailsAndOdds(this.bet);
-        console.log(this.bet);
         this.odds = this.calculateOdds(this.bet);
     };
     ConfirmComponent.prototype.clickPlaceBet = function () {
         var _this = this;
-        var profile = this.dataService.getProfile();
-        var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-        var confirmedBet = new __WEBPACK_IMPORTED_MODULE_5__classes_bet__["a" /* Bet */](profile, this.bet, this.bet.source, this.odds, this.betAmount, winAmount, this.betType);
-        this.betService.placeBet(confirmedBet).subscribe(function (data) {
-            if (data.success) {
-                _this.router.navigate(['profile']);
-            }
-        });
+        if (this.betAmount > 0) {
+            var profile = this.dataService.getProfile();
+            var winAmount = this.calcWinAmount(this.odds, this.betAmount);
+            var confirmedBet = new __WEBPACK_IMPORTED_MODULE_5__classes_bet__["a" /* Bet */](profile, this.bet, this.bet.source, this.odds, this.betAmount, winAmount, this.betType);
+            this.betService.placeBet(confirmedBet).subscribe(function (data) {
+                if (data.success) {
+                    _this.router.navigate(['profile']);
+                }
+            });
+        }
+        else {
+            this.flashMessage.show('You must enter a number greater than 0', { cssClass: 'alert-warning' });
+        }
     };
     ConfirmComponent.prototype.setBetDetailsAndOdds = function (bets) {
         for (var i = 0; i < bets.length; i++) {
@@ -677,24 +693,24 @@ var ConfirmComponent = (function () {
         var homeTeam = bet.homeTeam;
         switch (bet.betType) {
             case 'awayTeamRL':
-                var awayTeamRL = this.addPlus(bet.awayTeamRL);
-                var awayTeamRLOdds = this.addPlus(bet.awayTeamRLOdds);
+                var awayTeamRL = bet.awayTeamRL;
+                var awayTeamRLOdds = bet.awayTeamRLOdds;
                 bet.betDetails = awayTeam + " Spread " + awayTeamRL + " " + awayTeamRLOdds;
                 bet.odds = awayTeamRLOdds;
                 break;
             case 'homeTeamRL':
-                var homeTeamRL = this.addPlus(bet.homeTeamRL);
-                var homeTeamRLOdds = this.addPlus(bet.homeTeamRLOdds);
+                var homeTeamRL = bet.homeTeamRL;
+                var homeTeamRLOdds = bet.homeTeamRLOdds;
                 bet.betDetails = homeTeam + " Spread " + homeTeamRL + " " + homeTeamRLOdds;
                 bet.odds = homeTeamRLOdds;
                 break;
             case 'awayTeamML':
-                var awayTeamML = this.addPlus(bet.awayTeamML);
+                var awayTeamML = bet.awayTeamML;
                 bet.betDetails = awayTeam + " Money Line " + awayTeamML;
                 bet.odds = awayTeamML;
                 break;
             case 'homeTeamML':
-                var homeTeamML = this.addPlus(bet.homeTeamML);
+                var homeTeamML = bet.homeTeamML;
                 bet.betDetails = homeTeam + " Money Line " + homeTeamML;
                 bet.odds = homeTeamML;
                 break;
@@ -725,36 +741,47 @@ var ConfirmComponent = (function () {
             case 'awayTeamFirstHalf':
                 bet.betDetails = awayTeam + ' First 5 Innings ' + bet.awayTeamFirstHalf;
                 bet.odds = bet.awayTeamFirstHalf;
+                break;
             case 'homeTeamFirstHalf':
                 bet.betDetails = homeTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
                 bet.odds = bet.homeTeamFirstHalf;
+                break;
             case 'homeTeamFirstHalf':
                 bet.betDetails = awayTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
                 bet.odds = bet.homeTeamFirstHalf;
+                break;
             case 'homeTeamOver':
                 bet.betDetails = homeTeam + ' Over ' + bet.homeTeamTotalLine;
                 bet.odds = bet.homeTeamOverOdds;
+                break;
             case 'homeTeamUnder':
                 bet.betDetails = homeTeam + ' Under ' + bet.homeTeamTotalLine;
                 bet.odds = bet.homeTeamUnderOdds;
+                break;
             case 'awayTeamOver':
                 bet.betDetails = awayTeam + ' Over ' + bet.awayTeamTotalLine;
                 bet.odds = bet.awayTeamOverOdds;
+                break;
             case 'awayTeamUnder':
                 bet.betDetails = awayTeam + ' Under ' + bet.awayTeamTotalLine;
                 bet.odds = bet.awayTeamUnderOdds;
+                break;
             case 'runInFirst':
                 bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Run In First';
                 bet.odds = bet.runInFirst;
+                break;
             case 'noRunInFirst':
                 bet.betDetails = awayTeam + ' @ ' + homeTeam + ' No Runs In First';
                 bet.odds = bet.noRunInFirst;
+                break;
             case 'bothScoreYes':
-                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - Yes';
+                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - Yes ' + bet.bothScoreYes;
                 bet.odds = bet.bothScoreYes;
+                break;
             case 'bothScoreNo':
-                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - No';
+                bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - No ' + bet.bothScoreNo;
                 bet.odds = bet.bothScoreNo;
+                break;
             default:
                 break;
         }
@@ -862,7 +889,7 @@ var HomeComponent = (function () {
     HomeComponent.prototype.onLoginSubmit = function () {
         var _this = this;
         var user = {
-            username: this.username,
+            username: this.username.toLowerCase(),
             password: this.password
         };
         this.authService.authenticateUser(user).subscribe(function (data) {
@@ -987,7 +1014,7 @@ var LiveComponent = (function () {
         this.getLiveEvents(this.sport, league);
         this.interval = setInterval(function () {
             _this.refreshLiveEventOdds(_this.eventsArray);
-        }, 8000);
+        }, 10000);
     };
     LiveComponent.prototype.getLiveEvents = function (sportId, leagueId) {
         var _this = this;
@@ -1152,7 +1179,12 @@ var MenuComponent = (function () {
             for (var i = 0; i < data.length; i++) {
                 _this.actions.push(data[i]);
                 _this.actions = _this.sortEventOdds(_this.actions);
+                if (data[i].sport == 21) {
+                    tempArr.push(data[i]);
+                }
             }
+            console.log(tempArr);
+            console.log(_this.actions);
         });
     };
     MenuComponent.prototype.sortEventOdds = function (odds) {
@@ -1539,7 +1571,9 @@ var ProfileComponent = (function () {
                         _this.closedBets.push(bets[i]);
                     }
                 }
-                _this.dataService.sortBets(_this.closedBets);
+                _this.pendingBets = _this.dataService.sortBets(_this.pendingBets);
+                _this.closedBets = _this.dataService.sortBets(_this.closedBets);
+                console.log(_this.pendingBets);
             }, function (error) {
                 console.log(error);
                 return false;
@@ -1689,8 +1723,10 @@ var StraightComponent = (function () {
         var tempArr = [];
         this.oddsService.getOdds().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
-                _this.actions.push(data[i]);
-                _this.actions = _this.sortEventOdds(_this.actions);
+                if (data[i].sport == _this.sport) {
+                    _this.actions.push(data[i]);
+                    _this.actions = _this.sortEventOdds(_this.actions);
+                }
             }
         });
     };
@@ -1823,7 +1859,6 @@ var Bet = (function () {
     function Bet(profile, bet, source, odds, betAmount, winAmount, betType) {
         this.description = [];
         this.subBets = [];
-        console.log(bet);
         this.userId = profile.user._id;
         this.username = profile.user.username;
         for (var i = 0; i < bet.length; i++) {
@@ -2007,7 +2042,7 @@ module.exports = ".inside {\n    display: inline-block;\n    position: fixed;\n 
 /***/ 701:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".block {\n  height: calc(100vh - 72px);\n}\n\n.ly {\n  display: block;\n  width: 100%;\n  overflow-x: auto;\n  -webkit-overflow-scrolling: touch;\n  -ms-overflow-style: -ms-autohiding-scrollbar; }\n  .ly > .cl {\n    border: 0; }\n\n    .ck {\n    border-collapse: collapse !important; }\n  .cl th,\n  .cl td {\n    border: 1px solid #ddd !important; }\n\n    .ck {\n      width: 100%;\n      max-width: 100%;\n      margin-bottom: 20px;\n      background-color: transparent; }\n      .ck th,\n      .ck td {\n        padding: 0.75rem;\n        vertical-align: top;\n        border-top: 1px solid #434857; }\n      .ck thead th {\n        vertical-align: bottom;\n        border-bottom: 2px solid #434857; }\n      .ck tbody + tbody {\n        border-top: 2px solid #434857; }\n      .ck .ck {\n        background-color: #252830; }\n\n        .ck .ls th {\n  color: #fff;\n  background-color: #212529;\n  border-color: #32383e; }\n\n.ck .lt th {\n  color: #495057;\n  background-color: #e9ecef;\n  border-color: #434857; }\n\n  .ck .bov {\n  padding-right: 20px;\n  font-weight: 700; }\n  .ck .bov:hover {\n    cursor: pointer; }\n"
 
 /***/ }),
 
@@ -2084,7 +2119,7 @@ module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n 
 /***/ 712:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\" *ngIf=\"sport==16\">\n  <div class=\"row\">\n\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n      <!-- Date -->\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          <p class=\"font-weight-bold mb-0\">{{action.awayTeam}} @ {{action.homeTeam}}</p>\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n        <!-- Away Team, Home Team Headers -->\n        <div class=\"row border-bottom\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            {{action.awayTeam}}\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            {{action.homeTeam}}\n          </div>\n        </div>\n\n        <div align=\"center\" *ngIf=\"!showBaseballDetails(action)\">\n          <h4 class=\"col w-100 text-muted\">Check back later</h4>\n        </div>\n\n        <!-- 1st Half Money Line -->\n        <div class=\"row\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col\" align=\"center\" *ngIf=\"action.sport==16\">\n            First 5 Innings\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamFirstHalf')\" *ngIf=\"action.awayTeamFirstHalf != 0\">\n              {{action.awayTeamFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamFirstHalf')\" *ngIf=\"action.homeTeamFirstHalf != 0\">\n              {{action.homeTeamFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Team Total -->\n        <div class=\"row\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col\" align=\"center\">\n            Team Total\n          </div>\n        </div>\n\n        <div class=\"row mb-1\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamOver')\" *ngIf=\"action.awayTeamTotalLine != 0\">\n              o{{action.awayTeamTotalLine}} {{action.awayTeamOverOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamOver')\" *ngIf=\"action.homeTeamTotalLine != 0\">\n              o{{action.homeTeamTotalLine}} {{action.homeTeamOverOdds}}\n            </a>\n          </div>\n        </div>\n        <div class=\"row border-bottom mb-1\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamUnder')\" *ngIf=\"action.awayTeamTotalLine != 0\">\n              u{{action.awayTeamTotalLine}} {{action.awayTeamUnderOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamUnder')\" *ngIf=\"action.homeTeamTotalLine != 0\">\n              u{{action.homeTeamTotalLine}} {{action.homeTeamUnderOdds}}\n            </a>\n          </div>\n        </div>\n\n\n        <!-- Alternative Lines -->\n        <div class=\"row\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col\" align=\"center\">\n            Alternative Lines\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col w-50 border-right\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRL; let i = index\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'awayTeamRL', action.awayTeamRL, i)\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n          <div class=\"col w-50\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRL; let i = index\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'homeTeamRL', action.homeTeamRL, i)\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <!-- Run In First -->\n        <div class=\"row\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            Score in 1st\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            No Score in 1st\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'runInFirst')\">\n              {{action.runInFirst}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'noRunInFirst')\">\n              {{action.noRunInFirst}}\n            </a>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"container pt-5\" *ngIf=\"sport==1\">\n  <div class=\"row\">\n\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n      <!-- Date -->\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          {{action.awayTeam}} @ {{action.homeTeam}}\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n\n        <!-- Away Team, Home Team, Draw Headers -->\n        <div *ngIf=\"sport == 1\">\n          <div class=\"row border-bottom\">\n            <div class=\"col soc border-right\" align=\"center\">\n              {{action.awayTeam}}\n            </div>\n            <div class=\"col soc border-right\" align=\"center\">\n              Draw\n            </div>\n            <div class=\"col soc\" align=\"center\">\n              {{action.homeTeam}}\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1 pt-1\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null || action.drawOdds != null\">\n            <div class=\"col border-right\">\n              <a class=\"btn btn-primary btn-block text-light\" (click)=\"placeBet(action, 'awayTeamML')\" *ngIf=\"action.awayTeamML != null && action.awayTeamML != 0\">\n                {{action.awayTeamML}}\n              </a>\n            </div>\n            <div class=\"col border-right\">\n              <a class=\"btn btn-primary btn-block text-light\" (click)=\"placeBet(action, 'draw')\" *ngIf=\"action.drawOdds != null && action.drawOdds != 0\">\n                {{action.drawOdds}}\n              </a>\n            </div>\n            <div class=\"col border-right\">\n              <a class=\"btn btn-primary btn-block text-light\" (click)=\"placeBet(action, 'homeTeamML')\" *ngIf=\"action.homeTeamML != null && action.homeTeamML != 0\">\n                {{action.homeTeamML}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL!=0 || action.homeTeamRL!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamRL')\" *ngIf=\"action.awayTeamRL!=0\">\n                {{action.awayTeamRL}}  {{action.awayTeamRLOdds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action.homeTeamRL)\" *ngIf=\"action.homeTeamRL!=0\">\n                {{action.homeTeamRL}}  {{action.homeTeamRLOdds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.over.number!=0 || action.under.number!=0\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              OVER\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              UNDER\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.over.number!=0 || action.under.number!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'over')\" *ngIf=\"action.over.length!=0\">\n                {{action.over.number}}  {{action.over.odds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'under')\" *ngIf=\"action.under.length!=0\">\n                {{action.under.number}}  {{action.under.odds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.bothScoreYes!=0 || action.bothScoreNo!=0\">\n            <div class=\"col w-100 border-right\" align=\"center\">\n              BOTH TEAMS SCORE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.bothScoreYes!=0 || action.bothScoreNo!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'bothScoreYes')\" *ngIf=\"action.bothScoreYes!=0\">\n                Yes {{action.bothScoreYes}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'bothScoreNo')\" *ngIf=\"action.bothScoreNo!=0\">\n                No {{action.bothScoreNo}}\n              </a>\n            </div>\n          </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n\n<!-- NFL -->\n<div class=\"container pt-5\" *ngIf=\"sport==12\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          <p class=\"font-weight-bold mb-0\">{{action.awayTeam}} @ {{action.homeTeam}}</p>\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n\n        <div align=\"center\" *ngIf=\"!showFootballDetails(action)\">\n          <h4 class=\"col w-100 text-muted\">Check back later</h4>\n        </div>\n\n        <!-- Away Team, Home Team Headers -->\n        <div class=\"row border-bottom\" *ngIf=\"showFootballDetails(action)\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            {{action.awayTeam}}\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            {{action.homeTeam}}\n          </div>\n        </div>\n\n        <!-- 1st Half Money Line -->\n        <div class=\"row\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col\" align=\"center\" *ngIf=\"action.sport==12\">\n            First Half\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamFirstHalf')\" *ngIf=\"action.awayTeamFirstHalf != 0\">\n              {{action.awayTeamFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamFirstHalf')\" *ngIf=\"action.homeTeamFirstHalf != 0\">\n              {{action.homeTeamFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.homeTeamRLFirstHalf != 0 || action.awayTeamRLFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamFirstHalf')\" *ngIf=\"action.awayTeamRLFirstHalf != 0\">\n              {{action.awayTeamRLFirstHalf}}  {{action.awayTeamRLOddsFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamFirstHalf')\" *ngIf=\"action.homeTeamRLFirstHalf!= 0\">\n              {{action.homeTeamRLFirstHalf}}  {{action.homeTeamRLOddsFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Over/Under -->\n        <div class=\"row border-bottom\" *ngIf=\"action.firstHalfOver != 0 || action.firstHalfOver != 0\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            1H Over\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            1H Under\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.firstHalfOver != 0 || action.firstHalfOver != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'firstHalfOver')\" *ngIf=\"action.firstHalfOver != 0\">\n              {{action.firstHalfOver}}  {{action.firstHalfOverOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'firstHalfUnder')\" *ngIf=\"action.firstHalfUnder != 0\">\n              {{action.firstHalfUnder}}  {{action.firstHalfUnderOdds}}\n            </a>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n</div>\n"
+module.exports = "<div class=\"container pt-5\" *ngIf=\"sport==16\">\n  <div class=\"row\">\n\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n      <!-- Date -->\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          <p class=\"font-weight-bold mb-0\">{{action.awayTeam}} @ {{action.homeTeam}}</p>\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n        <!-- Away Team, Home Team Headers -->\n        <div class=\"row border-bottom\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            {{action.awayTeam}}\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            {{action.homeTeam}}\n          </div>\n        </div>\n\n        <div align=\"center\" *ngIf=\"!showBaseballDetails(action)\">\n          <h4 class=\"col w-100 text-muted\">Check back later</h4>\n        </div>\n\n        <!-- 1st Half Money Line -->\n        <div class=\"row\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col\" align=\"center\" *ngIf=\"action.sport==16\">\n            First 5 Innings\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamFirstHalf')\" *ngIf=\"action.awayTeamFirstHalf != 0\">\n              {{action.awayTeamFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamFirstHalf')\" *ngIf=\"action.homeTeamFirstHalf != 0\">\n              {{action.homeTeamFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Team Total -->\n        <div class=\"row\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col\" align=\"center\">\n            Team Total\n          </div>\n        </div>\n\n        <div class=\"row mb-1\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamOver')\" *ngIf=\"action.awayTeamTotalLine != 0\">\n              o{{action.awayTeamTotalLine}} {{action.awayTeamOverOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamOver')\" *ngIf=\"action.homeTeamTotalLine != 0\">\n              o{{action.homeTeamTotalLine}} {{action.homeTeamOverOdds}}\n            </a>\n          </div>\n        </div>\n        <div class=\"row border-bottom mb-1\" *ngIf=\"action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamUnder')\" *ngIf=\"action.awayTeamTotalLine != 0\">\n              u{{action.awayTeamTotalLine}} {{action.awayTeamUnderOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamUnder')\" *ngIf=\"action.homeTeamTotalLine != 0\">\n              u{{action.homeTeamTotalLine}} {{action.homeTeamUnderOdds}}\n            </a>\n          </div>\n        </div>\n\n\n        <!-- Alternative Lines -->\n        <div class=\"row\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col\" align=\"center\">\n            Alternative Lines\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0\">\n          <div class=\"col w-50 border-right\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.awayTeamRL; let i = index\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'awayTeamRL', action.awayTeamRL, i)\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n          <div class=\"col w-50\">\n            <div class=\"mb-2\" *ngFor=\"let runLine of action.homeTeamRL; let i = index\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBetWithIndex(action, 'homeTeamRL', action.homeTeamRL, i)\">\n                {{runLine.number}}  {{runLine.odds}}\n              </a>\n            </div>\n          </div>\n        </div>\n\n        <!-- Run In First -->\n        <div class=\"row\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            Score in 1st\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            No Score in 1st\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.runInFirst != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'runInFirst')\">\n              {{action.runInFirst}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'noRunInFirst')\">\n              {{action.noRunInFirst}}\n            </a>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"container pt-5\" *ngIf=\"sport==1\">\n  <div class=\"row\">\n\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n      <!-- Date -->\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          {{action.awayTeam}} @ {{action.homeTeam}}\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n\n        <!-- Away Team, Home Team, Draw Headers -->\n        <div *ngIf=\"sport == 1\">\n          <div class=\"row border-bottom\">\n            <div class=\"col soc border-right\" align=\"center\">\n              {{action.awayTeam}}\n            </div>\n            <div class=\"col soc border-right\" align=\"center\">\n              Draw\n            </div>\n            <div class=\"col soc\" align=\"center\">\n              {{action.homeTeam}}\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1 pt-1\" *ngIf=\"action.awayTeamML != null || action.homeTeamML != null || action.drawOdds != null\">\n            <div class=\"col border-right\">\n              <a class=\"btn btn-primary btn-block text-light\" (click)=\"placeBet(action, 'awayTeamML')\" *ngIf=\"action.awayTeamML != null && action.awayTeamML != 0\">\n                {{action.awayTeamML}}\n              </a>\n            </div>\n            <div class=\"col border-right\">\n              <a class=\"btn btn-primary btn-block text-light\" (click)=\"placeBet(action, 'draw')\" *ngIf=\"action.drawOdds != null && action.drawOdds != 0\">\n                {{action.drawOdds}}\n              </a>\n            </div>\n            <div class=\"col border-right\">\n              <a class=\"btn btn-primary btn-block text-light\" (click)=\"placeBet(action, 'homeTeamML')\" *ngIf=\"action.homeTeamML != null && action.homeTeamML != 0\">\n                {{action.homeTeamML}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamRL!=0 || action.homeTeamRL!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamRL')\" *ngIf=\"action.awayTeamRL!=0\">\n                {{action.awayTeamRL}}  {{action.awayTeamRLOdds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamRL')\" *ngIf=\"action.homeTeamRL!=0\">\n                {{action.homeTeamRL}}  {{action.homeTeamRLOdds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.over.number!=0 || action.under.number!=0\">\n            <div class=\"col w-50 border-right\" align=\"center\">\n              OVER\n            </div>\n            <div class=\"col w-50\" align=\"center\">\n              UNDER\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.over.number!=0 || action.under.number!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'over')\" *ngIf=\"action.over.length!=0\">\n                {{action.over.number}}  {{action.over.odds}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'under')\" *ngIf=\"action.under.length!=0\">\n                {{action.under.number}}  {{action.under.odds}}\n              </a>\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"action.bothScoreYes!=0 || action.bothScoreNo!=0\">\n            <div class=\"col w-100 border-right\" align=\"center\">\n              BOTH TEAMS SCORE\n            </div>\n          </div>\n\n          <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.bothScoreYes!=0 || action.bothScoreNo!=0\">\n            <div class=\"col w-50 border-right\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'bothScoreYes')\" *ngIf=\"action.bothScoreYes!=0\">\n                Yes {{action.bothScoreYes}}\n              </a>\n            </div>\n            <div class=\"col w-50\">\n              <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'bothScoreNo')\" *ngIf=\"action.bothScoreNo!=0\">\n                No {{action.bothScoreNo}}\n              </a>\n            </div>\n          </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n</div>\n\n<!-- NFL -->\n<div class=\"container pt-5\" *ngIf=\"sport==12\">\n  <div class=\"row\">\n    <div *ngFor=\"let action of eventOddsArray\" class=\"card col-sm-4 mt-3 pl-0 pr-0\">\n\n      <div class=\"row pl-0 pr-0 ml-0 mr-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <p class=\"m-0 pl-3\">{{action.matchDate}}</p>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <p class=\"m-0 pr-3\">{{action.matchTime}}</p>\n        </div>\n      </div>\n\n      <!-- Away Team @ Home Team -->\n      <div class=\"row pl-0 pr-0\" align=\"center\">\n        <div class=\"col\" align=\"center\">\n          <p class=\"font-weight-bold mb-0\">{{action.awayTeam}} @ {{action.homeTeam}}</p>\n        </div>\n      </div>\n\n      <div class=\"card-header p-1 w-100\">\n\n        <div align=\"center\" *ngIf=\"!showFootballDetails(action)\">\n          <h4 class=\"col w-100 text-muted\">Check back later</h4>\n        </div>\n\n        <!-- Away Team, Home Team Headers -->\n        <div class=\"row border-bottom\" *ngIf=\"showFootballDetails(action)\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            {{action.awayTeam}}\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            {{action.homeTeam}}\n          </div>\n        </div>\n\n        <!-- 1st Half Money Line -->\n        <div class=\"row\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col\" align=\"center\" *ngIf=\"action.sport==12\">\n            First Half\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamFirstHalf')\" *ngIf=\"action.awayTeamFirstHalf != 0\">\n              {{action.awayTeamFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamFirstHalf')\" *ngIf=\"action.homeTeamFirstHalf != 0\">\n              {{action.homeTeamFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.homeTeamRLFirstHalf != 0 || action.awayTeamRLFirstHalf != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'awayTeamFirstHalf')\" *ngIf=\"action.awayTeamRLFirstHalf != 0\">\n              {{action.awayTeamRLFirstHalf}}  {{action.awayTeamRLOddsFirstHalf}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'homeTeamFirstHalf')\" *ngIf=\"action.homeTeamRLFirstHalf!= 0\">\n              {{action.homeTeamRLFirstHalf}}  {{action.homeTeamRLOddsFirstHalf}}\n            </a>\n          </div>\n        </div>\n\n        <!-- Over/Under -->\n        <div class=\"row border-bottom\" *ngIf=\"action.firstHalfOver != 0 || action.firstHalfOver != 0\">\n          <div class=\"col w-50 border-right\" align=\"center\">\n            1H Over\n          </div>\n          <div class=\"col w-50\" align=\"center\">\n            1H Under\n          </div>\n        </div>\n\n        <div class=\"row border-bottom mb-1 pb-1\" *ngIf=\"action.firstHalfOver != 0 || action.firstHalfOver != 0\">\n          <div class=\"col w-50 border-right\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'firstHalfOver')\" *ngIf=\"action.firstHalfOver != 0\">\n              {{action.firstHalfOver}}  {{action.firstHalfOverOdds}}\n            </a>\n          </div>\n          <div class=\"col w-50\">\n            <a class=\"btn btn-block btn-primary text-light\" (click)=\"placeBet(action, 'firstHalfUnder')\" *ngIf=\"action.firstHalfUnder != 0\">\n              {{action.firstHalfUnder}}  {{action.firstHalfUnderOdds}}\n            </a>\n          </div>\n        </div>\n\n    </div>\n  </div>\n</div>\n</div>\n"
 
 /***/ }),
 
@@ -2098,7 +2133,7 @@ module.exports = "<div class=\"container pt-5\">\n<div class=\"row\" align=\"cen
 /***/ 714:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container mt-5 pt-2 pl-0 pr-0\">\n  <div *ngIf=\"user\">\n\n    <div class=\"row border-bottom\">\n      <div class=\"col\" align=\"center\">\n        <h3>Welcome back, {{user.name}}!</h3>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Current Balance:  {{user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Available Balance:  {{user.credit + user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"row bg-dark m-0 p-0 w-100 text-light\">\n      \n    </div>\n\n  </div>\n  <div *ngIf=\"!user\">Error Loading Profile</div>\n</div>\n"
+module.exports = "<div class=\"container mt-5 pt-2 pl-0 pr-0\">\n  <div *ngIf=\"user\">\n\n    <div class=\"row border-bottom\">\n      <div class=\"col\" align=\"center\">\n        <h3>{{user.name.toUpperCase()}} Account Info</h3>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Current Balance:  {{user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Available Balance:  {{user.credit + user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"col bg-dark block text-light p-0 m-0\">\n      <div class=\"row pt-2 border-bottom\">\n        <div class=\"col\" align=\"center\">\n          <h5>Open Bets</h5>\n        </div>\n      </div>\n      <div>\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Risk</th>\n            <th style=\"width:5%\">Win</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of pendingBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.betAmount}}</td>\n            <td>{{bet.winAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n\n  </div>\n  <div *ngIf=\"!user\">Error Loading Profile</div>\n</div>\n"
 
 /***/ }),
 
