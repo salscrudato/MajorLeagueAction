@@ -115,6 +115,38 @@ export class ConfirmComponent implements OnInit{
       bet.betDetails = homeTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
       bet.odds = bet.homeTeamFirstHalf;
       break;
+      case 'awayTeamFirstHalfFB':
+      bet.betDetails = awayTeam + ' First Half ' + bet.awayTeamFirstHalf;
+      bet.odds = bet.awayTeamFirstHalf;
+      break;
+      case 'homeTeamFirstHalfFB':
+      bet.betDetails = homeTeam + ' First Half ' + bet.homeTeamFirstHalf;
+      bet.odds = bet.homeTeamFirstHalf;
+      break;
+      case 'awayTeamFirstHalfSpread':
+      const awayTeamFirstHalfSpread = bet.awayTeamRLFirstHalf;
+      const awayTeamFirstHalfSpreadOdds = bet.awayTeamRLFirstHalfOdds;
+      bet.betDetails = awayTeam + " Spread " + awayTeamFirstHalfSpread + " " + awayTeamFirstHalfSpreadOdds;
+      bet.odds = bet.awayTeamRLFirstHalfOdds;
+      bet.line = bet.awayTeamRLFirstHalf;
+      break;
+      case 'homeTeamFirstHalfSpread':
+      const homeTeamFirstHalfSpread = bet.homeTeamRLFirstHalf;
+      const homeTeamFirstHalfSpreadOdds = bet.homeTeamRLFirstHalfOdds;
+      bet.betDetails = homeTeam + " Spread " + homeTeamFirstHalfSpread + " " + homeTeamFirstHalfSpreadOdds;
+      bet.odds = bet.homeTeamRLFirstHalfOdds;
+      bet.line = bet.homeTeamRLFirstHalf;
+      break;
+      case 'firstHalfOverFB':
+      bet.betDetails = awayTeam + ' @ ' + homeTeam + 'First Half Over ' + bet.firstHalfOver + ' ' +  bet.firstHalfOverOdds;
+      bet.odds = bet.firstHalfOverOdds;
+      bet.line = bet.firstHalfOver;
+      break;
+      case 'firstHalfUnderFB':
+      bet.betDetails = awayTeam + ' @ ' + homeTeam + 'First Half Under ' + bet.firstHalfUnder + ' ' +  bet.firstHalfUnderOdds;
+      bet.odds = bet.firstHalfUnderOdds;
+      bet.line = bet.firstHalfUnder;
+      break;
       case 'homeTeamFirstHalf':
       bet.betDetails = awayTeam + ' First 5 Innings ' + bet.homeTeamFirstHalf;
       bet.odds = bet.homeTeamFirstHalf;
