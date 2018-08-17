@@ -2042,7 +2042,7 @@ module.exports = ".inside {\n    display: inline-block;\n    position: fixed;\n 
 /***/ 701:
 /***/ (function(module, exports) {
 
-module.exports = ".block {\n  height: calc(100vh - 72px);\n}\n\n.ly {\n  display: block;\n  width: 100%;\n  overflow-x: auto;\n  -webkit-overflow-scrolling: touch;\n  -ms-overflow-style: -ms-autohiding-scrollbar; }\n  .ly > .cl {\n    border: 0; }\n\n    .ck {\n    border-collapse: collapse !important; }\n  .cl th,\n  .cl td {\n    border: 1px solid #ddd !important; }\n\n    .ck {\n      width: 100%;\n      max-width: 100%;\n      margin-bottom: 20px;\n      background-color: transparent; }\n      .ck th,\n      .ck td {\n        padding: 0.75rem;\n        vertical-align: top;\n        border-top: 1px solid #434857; }\n      .ck thead th {\n        vertical-align: bottom;\n        border-bottom: 2px solid #434857; }\n      .ck tbody + tbody {\n        border-top: 2px solid #434857; }\n      .ck .ck {\n        background-color: #252830; }\n\n        .ck .ls th {\n  color: #fff;\n  background-color: #212529;\n  border-color: #32383e; }\n\n.ck .lt th {\n  color: #495057;\n  background-color: #e9ecef;\n  border-color: #434857; }\n\n  .ck .bov {\n  padding-right: 20px;\n  font-weight: 700; }\n  .ck .bov:hover {\n    cursor: pointer; }\n"
+module.exports = ".block {\n  height: calc(100vh - 72px);\n}\n\nth {\n  font-size: 60%;\n}\n"
 
 /***/ }),
 
