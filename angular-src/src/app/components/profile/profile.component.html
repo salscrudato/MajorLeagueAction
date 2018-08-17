@@ -23,7 +23,7 @@
       <div class="row pt-2 border-bottom" (click)="showHidePending()">
         <div class="col" align="center">
           <h5 *ngIf="showPending==false">Show Pendings (${{amountPending}})</h5>
-          <h5 *ngIf="showPending==true">Hide Open Bets</h5>
+          <h5 *ngIf="showPending==true">Hide Pendings (${{amountPending}})</h5>
         </div>
       </div>
       <div *ngIf="showPending==true">
@@ -67,7 +67,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let bet of pendingBets">
+          <tr *ngFor="let bet of closedBets">
             <td>{{bet.gameDate}} {{bet.gameTime}}</td>
             <td>{{bet.description}}</td>
             <td>{{bet.betAmount}}</td>

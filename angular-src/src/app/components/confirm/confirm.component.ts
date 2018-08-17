@@ -35,7 +35,8 @@ export class ConfirmComponent implements OnInit{
     if(this.betAmount > 0){
       var profile = this.dataService.getProfile();
       var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-      var confirmedBet = new Bet(profile, this.bet, this.bet.source, this.odds, this.betAmount, winAmount, this.betType);
+      console.log(this.bet);
+      var confirmedBet = new Bet(profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
       this.betService.placeBet(confirmedBet).subscribe(data => {
         if(data.success){
           this.router.navigate(['profile']);
