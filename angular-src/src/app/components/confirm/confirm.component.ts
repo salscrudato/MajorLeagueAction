@@ -62,12 +62,14 @@ export class ConfirmComponent implements OnInit{
       const awayTeamRLOdds = bet.awayTeamRLOdds;
       bet.betDetails = awayTeam + " Spread " + awayTeamRL + " " + awayTeamRLOdds;
       bet.odds = awayTeamRLOdds;
+      bet.line = awayTeamRL;
       break;
       case 'homeTeamRL':
       const homeTeamRL = bet.homeTeamRL;
       const homeTeamRLOdds = bet.homeTeamRLOdds;
       bet.betDetails = homeTeam + " Spread " + homeTeamRL + " " + homeTeamRLOdds;
       bet.odds = homeTeamRLOdds;
+      bet.line = homeTeamRL;
       break;
       case 'awayTeamML':
       const awayTeamML = bet.awayTeamML;
@@ -83,18 +85,22 @@ export class ConfirmComponent implements OnInit{
       if(bet.sport !='1'){
         bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber + ' ' + bet.overLine;
         bet.odds = bet.overLine;
+        bet.line = bet.overLine;
       } else {
         bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number + ' ' + bet.over.odds;
         bet.odds = bet.over.odds;
+        bet.line = bet.over.number;
       }
       break;
       case 'under':
       if(bet.sport != '1'){
         bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber + ' ' + bet.underLine;
         bet.odds = bet.underLine;
+        bet.line = bet.underLine;
       } else {
         bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number + ' ' + bet.under.odds;
         bet.odds = bet.under.odds;
+        bet.line = bet.under.number;
       }
       break;
       case 'draw':

@@ -14,7 +14,6 @@ let cache = apicache.middleware;
 //router.get('/all', cache('2 minutes'), function(req, res, next){
 router.get('/all', cache('5 minutes'), function(req, res, next){
   //router.get('/all', function(req, res, next){
-  console.log('getting odds');
   var headers = {
     'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
   }

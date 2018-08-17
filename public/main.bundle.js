@@ -154,7 +154,8 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/register';
-        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
+        return this.http.post(url, user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
@@ -700,12 +701,14 @@ var ConfirmComponent = (function () {
                 var awayTeamRLOdds = bet.awayTeamRLOdds;
                 bet.betDetails = awayTeam + " Spread " + awayTeamRL + " " + awayTeamRLOdds;
                 bet.odds = awayTeamRLOdds;
+                bet.line = awayTeamRL;
                 break;
             case 'homeTeamRL':
                 var homeTeamRL = bet.homeTeamRL;
                 var homeTeamRLOdds = bet.homeTeamRLOdds;
                 bet.betDetails = homeTeam + " Spread " + homeTeamRL + " " + homeTeamRLOdds;
                 bet.odds = homeTeamRLOdds;
+                bet.line = homeTeamRL;
                 break;
             case 'awayTeamML':
                 var awayTeamML = bet.awayTeamML;
@@ -721,20 +724,24 @@ var ConfirmComponent = (function () {
                 if (bet.sport != '1') {
                     bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber + ' ' + bet.overLine;
                     bet.odds = bet.overLine;
+                    bet.line = bet.overLine;
                 }
                 else {
                     bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number + ' ' + bet.over.odds;
                     bet.odds = bet.over.odds;
+                    bet.line = bet.over.number;
                 }
                 break;
             case 'under':
                 if (bet.sport != '1') {
                     bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber + ' ' + bet.underLine;
                     bet.odds = bet.underLine;
+                    bet.line = bet.underLine;
                 }
                 else {
                     bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number + ' ' + bet.under.odds;
                     bet.odds = bet.under.odds;
+                    bet.line = bet.under.number;
                 }
                 break;
             case 'draw':
