@@ -27,13 +27,13 @@
           <div class="row pl-3">{{action.awayTeam}}</div>
           <div class="row border-bottom pb-1 pt-1">
             <div class="col">
-              <a class="btn btn-primary btn-block btn-sm text-light float-left" *ngIf="action.awayTeamML!=0 && action.awayTeamML>-400 && action.awayTeamML<400" (click)="placeBet(action,'awayTeamML')">{{addPlus(action.awayTeamML)}}{{action.awayTeamML}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-left" *ngIf="action.awayTeamML!=0 && action.awayTeamML>-400 && action.awayTeamML<400" (click)="placeBet(action,'awayTeamML')">{{action.awayTeamML}}</a>
             </div>
             <div class="col" align="center">
-              <a class="btn btn-primary btn-block btn-sm text-light" *ngIf="action.awayTeamRL!=0" (click)="placeBet(action,'awayTeamRL')">{{addPlus(action.awayTeamRL)}}{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light" *ngIf="action.awayTeamRL!=0" (click)="placeBet(action,'awayTeamRL')">{{action.awayTeamRL}} {{action.awayTeamRLOdds}}</a>
             </div>
             <div class="col">
-              <a class="btn btn-primary btn-block btn-sm text-light float-right" *ngIf="action.totalNumber!=0" (click)="placeBet(action,'under')">u{{action.totalNumber}}  {{addPlus(action.underLine)}}{{action.underLine}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-right" *ngIf="action.totalNumber!=0" (click)="placeBet(action,'under')">u{{action.totalNumber}}  {{action.underLine}}</a>
             </div>
           </div>
         </div>
@@ -42,13 +42,13 @@
           <div class="row pl-3">{{action.homeTeam}}</div>
           <div class="row pb-1 pt-1">
             <div class="col">
-              <a class="btn btn-primary btn-block btn-sm text-light float-left" *ngIf="action.homeTeamML!=0 && action.homeTeamML>-400 && action.homeTeamML<400" (click)="placeBet(action,'homeTeamML')">{{addPlus(action.homeTeamML)}}{{action.homeTeamML}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-left" *ngIf="action.homeTeamML!=0 && action.homeTeamML>-400 && action.homeTeamML<400" (click)="placeBet(action,'homeTeamML')">{{action.homeTeamML}}</a>
             </div>
             <div class="col" align="center">
-              <a class="btn btn-primary btn-block btn-sm text-light" *ngIf="action.homeTeamRL!=0" (click)="placeBet(action,'homeTeamRL')">{{addPlus(action.homeTeamRL)}}{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light" *ngIf="action.homeTeamRL!=0" (click)="placeBet(action,'homeTeamRL')">{{action.homeTeamRL}} {{action.homeTeamRLOdds}}</a>
             </div>
             <div class="col">
-              <a class="btn btn-primary btn-block btn-sm text-light float-right" *ngIf="action.totalNumber!=0" (click)="placeBet(action,'over')">o{{action.totalNumber}}  {{addPlus(action.overLine)}}{{action.overLine}}</a>
+              <a class="btn btn-primary btn-block btn-sm text-light float-right" *ngIf="action.totalNumber!=0" (click)="placeBet(action,'over')">o{{action.totalNumber}}  {{action.overLine}}</a>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
       <h1>{{action.eventName}}</h1>
       <ul class="list-group w-100">
         <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let participant of action.participant">
-          {{participant.name}}  {{addPlus(participant.odds)}}{{participant.odds}}
+          {{participant.name}}  {{participant.odds}}
         </li>
       </ul>
     </div>

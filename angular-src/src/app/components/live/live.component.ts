@@ -12,9 +12,11 @@ import {FlashMessagesService} from 'angular2-flash-messages';
   styleUrls: ['./live.component.css']
 })
 export class LiveComponent implements OnInit {
+
   eventsArray:any = [];
   eventOddsArray:any = [];
   sport:any;
+  interval:any;
 
   constructor(
     private userService:UserService,
@@ -29,6 +31,9 @@ export class LiveComponent implements OnInit {
     this.sport = this.dataService.getSports();
     var league = this.dataService.getLeague();
     this.getLiveEvents(this.sport, league);
+    this.interval = setInterval(() => {
+      this.refreshLiveEventOdds(this.eventsArray);
+    }, 8000);
   }
 
   getLiveEvents(sportId, leagueId){
@@ -47,7 +52,37 @@ export class LiveComponent implements OnInit {
     for(var i = 0; i < events.length; i++){
       this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport, events[i].epoch).subscribe(data =>{
         this.eventOddsArray.push(data);
+        this.eventOddsArray = this.sortEventOdds(this.eventOddsArray);
       });
+    }
+  }
+
+  refreshLiveEventOdds(events){
+    for(var i = 0; i < events.length; i++){
+      this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport, events[i].epoch).subscribe(data =>{
+        for(var i = 0; i < this.eventOddsArray.length; i++){
+          if(this.eventOddsArray[i].id == data.id){
+            this.eventOddsArray[i] = data;
+          }
+        }
+      });
+    }
+  }
+
+  sortEventOdds(odds:any []){
+    if(odds.length == 1){
+      return odds;
+    } else {
+      for(var i = 0; i < odds.length; i++){
+        for(var j = 0; j < odds.length - 1 - i; j++){
+          if(odds[j].epoch > odds[j+1].epoch){
+            var tmpOdds = odds[j];
+            odds[j] = odds[j+1];
+            odds[j+1] = tmpOdds;
+          }
+        }
+      }
+      return odds;
     }
   }
 
@@ -80,6 +115,16 @@ export class LiveComponent implements OnInit {
       action.under.odds = oddsArrOdds;
     }
     this.placeBet(action, type);
+  }
+
+  addPlus(odds){
+    odds = parseFloat(odds);
+
+    if(odds>0){
+      return '+';
+    }else{
+      return '';
+    }
   }
 
 }

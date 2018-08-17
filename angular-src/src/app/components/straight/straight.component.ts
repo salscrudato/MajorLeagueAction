@@ -27,7 +27,38 @@ export class StraightComponent implements OnInit {
   ngOnInit() {
     var tempActions = this.dataService.getJsonOddsEvents();
     this.sport = this.dataService.getSports();
-    this.setUpActions(tempActions, this.sport);
+    if(tempActions.length>0){
+      this.setUpActions(tempActions, this.sport);
+    } else {
+      this.getOdds();
+    }
+  }
+
+  getOdds(){
+    var tempArr = [];
+    this.oddsService.getOdds().subscribe(data =>{
+      for (var i = 0; i < data.length; i++) {
+        this.actions.push(data[i]);
+        this.actions = this.sortEventOdds(this.actions);
+      }
+    });
+  }
+
+  sortEventOdds(odds){
+    if(odds.length == 1){
+      return odds;
+    } else {
+      for(var i = 0; i < odds.length; i++){
+        for(var j = 0; j < odds.length - 1 - i; j++){
+          if(odds[j].epoch > odds[j+1].epoch){
+            var tmpOdds = odds[j];
+            odds[j] = odds[j+1];
+            odds[j+1] = tmpOdds;
+          }
+        }
+      }
+      return odds;
+    }
   }
 
   setUpActions(tempActions, sport){

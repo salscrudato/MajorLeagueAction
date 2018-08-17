@@ -70,13 +70,20 @@ export class OtherComponent implements OnInit {
           }
         }
       }
-      console.log(odds);
       return odds;
     }
   }
 
-  showDetails(action){
+  showBaseballDetails(action){
     if(action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0 || action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0 || action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0 || action.runInFirst != 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  showFootballDetails(action){
+    if(action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0 || action.awayTeamRLFirstHalf != 0 || action.homeTeamRLFirstHalf || action.firstHalfOver != 0 || action.firstHalfUnder){
       return true;
     } else {
       return false;

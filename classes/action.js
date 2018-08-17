@@ -6,6 +6,16 @@ class Action {
       this.source = 'jsonOdds';
       this.details = details;
 
+      this.homeTeamML = 0;
+      this.awayTeamML = 0;
+      this.homeTeamRL = 0;
+      this.homeTeamRLOdds = 0;
+      this.awayTeamRL = 0;
+      this.awayTeamRLOdds = 0;
+      this.totalNumber = 0;
+      this.overLine = 0;
+      this.underLine = 0;
+
       //==========Time==========
       var tempEpoch = new Date(matchTime).getTime();
       var offset = -240;
@@ -39,6 +49,15 @@ class Action {
         }
       }
 
+        this.homeTeamML = this.constructor.addPlus(this.homeTeamML);
+        this.awayTeamML = this.constructor.addPlus(this.awayTeamML);
+        this.homeTeamRL = this.constructor.addPlus(this.homeTeamRL);
+        this.awayTeamRL = this.constructor.addPlus(this.awayTeamRL);
+        this.homeTeamRLOdds = this.constructor.addPlus(this.homeTeamRLOdds);
+        this.awayTeamRLOdds = this.constructor.addPlus(this.awayTeamRLOdds);
+        this.overLine = this.constructor.addPlus(this.overLine);
+        this.underLine = this.constructor.addPlus(this.underLine);
+
       //==========Golf==========
       if(sport==21){
         this.eventName = league.Name;
@@ -63,6 +82,14 @@ class Action {
       minutes = minutes < 10 ? '0'+minutes : minutes;
       var strTime = hours + ':' + minutes + ' ' + ampm;
       return strTime;
+    }
+
+    static addPlus(odds){
+      if (odds > 0){
+        return '+' + odds;
+      } else {
+        return odds;
+      }
     }
 
     static setHomeAndAwayImages(team){
@@ -161,7 +188,7 @@ class Action {
         return '/assets/images/Eagles.png';
         break;
         case 'New York Giants':
-        return '/assets/images/Giants.png';
+        return '/assets/images/nygiants.png';
         break;
         case 'Washington Redskins':
         return '/assets/images/Redskins.png';

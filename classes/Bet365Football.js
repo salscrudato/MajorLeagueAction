@@ -1,4 +1,4 @@
-class Bet365Soccer {
+class Bet365Football {
   constructor(id, gameTime, oddsArr, sport, homeTeam, awayTeam){
     this.id = id;
     this.source = 'bet365';
@@ -76,4 +76,4 @@ class Bet365Soccer {
 
 }
 
-module.exports = Bet365Soccer;
+module.exports = Bet365Football;

@@ -5,6 +5,7 @@ const apicache = require('apicache');
 const Action = require('../classes/action.js');
 const Bet365Upcoming = require('../classes/Bet365Upcoming.js');
 const Bet365Live = require('../classes/Bet365Live.js');
+const Bet365LiveFootball = require('../classes/Bet365LiveFootball.js');
 const Bet365Soccer = require('../classes/Bet365Soccer.js');
 const Bet365Football = require('../classes/Bet365Football.js');
 
@@ -107,7 +108,11 @@ router.get('/eventOdds', cache(1000), function(req, res, next){
       var data = JSON.parse(body);
       if(data != undefined && data.results != undefined){
         var oddsArr = data.results[0];
-        var liveEventOdds = new Bet365Live(eventId, homeTeam, awayTeam, oddsArr, sportId, epoch);
+        if(sportId==16 || sportId==1){
+          var liveEventOdds = new Bet365Live(eventId, homeTeam, awayTeam, oddsArr, sportId, epoch);
+        } else if (sportId==12){
+          var liveEventOdds = new Bet365LiveFootball(eventId, homeTeam, awayTeam, oddsArr, sportId, epoch);
+        }
       }
       res.send(liveEventOdds);
     }
@@ -155,6 +160,7 @@ router.get('/upcomingEvents', cache(1000), function(req, res, next){
 router.get('/upcomingEventOdds', cache(1000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
+  console.log('Getting Live Odds ' + homeTeam);
   var awayTeam = req.query.awayTeam;
   var gameTime = req.query.gameTime;
   var sport = req.query.sport;

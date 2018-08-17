@@ -30,8 +30,8 @@
           </div>
         </div>
 
-        <div align="center" *ngIf="!showDetails(action)">
-          <h3 class="col w-100">Check back later</h3>
+        <div align="center" *ngIf="!showBaseballDetails(action)">
+          <h4 class="col w-100 text-muted">Check back later</h4>
         </div>
 
         <!-- 1st Half Money Line -->
@@ -276,8 +276,13 @@
       </div>
 
       <div class="card-header p-1 w-100">
+
+        <div align="center" *ngIf="!showFootballDetails(action)">
+          <h4 class="col w-100 text-muted">Check back later</h4>
+        </div>
+
         <!-- Away Team, Home Team Headers -->
-        <div class="row border-bottom">
+        <div class="row border-bottom" *ngIf="showFootballDetails(action)">
           <div class="col w-50 border-right" align="center">
             {{action.awayTeam}}
           </div>
@@ -288,9 +293,6 @@
 
         <!-- 1st Half Money Line -->
         <div class="row" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
-          <div class="col" align="center" *ngIf="action.sport==16">
-            First 5 Innings
-          </div>
           <div class="col" align="center" *ngIf="action.sport==12">
             First Half
           </div>
@@ -323,7 +325,7 @@
         </div>
 
         <!-- Over/Under -->
-        <div class="row border-bottom">
+        <div class="row border-bottom" *ngIf="action.firstHalfOver != 0 || action.firstHalfOver != 0">
           <div class="col w-50 border-right" align="center">
             1H Over
           </div>

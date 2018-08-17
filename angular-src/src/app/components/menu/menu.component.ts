@@ -22,7 +22,10 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.getOdds();
     this.soccer = [{league:'England Premier League', id:94}, {league:'England League 1', id:587}, {league:'UEFA', id:6542}, {league:'UEFA Europe League Qualifying', id:5823},
-    {league:'Italy Serie A', id:199}, {league:'Spain Primera Liga', id:207}, {league:'Spain Copa Federacion', id:429}]
+    {league:'Italy Serie A', id:199}, {league:'Spain Primera Liga', id:207}, {league:'Spain Copa Federacion', id:429},
+    {league:'Germany Bundesliga 1', id:123}, {league:'France Ligue 1', id:99}, {league:'USA MLS', id:242}, {league:'Elite Cup Friendlies', id:631},
+    {league:'Europe Friendlies', id:363}, {league:'Russia Premier League', id:153}, {league:'Republic of Ireland Premier Division', id:398},
+    {league:'Copa Sudamericano', id:445}, {league:'Brazil Serie A', id:155}]
 
   }
 
@@ -49,12 +52,26 @@ export class MenuComponent implements OnInit {
     this.oddsService.getOdds().subscribe(data =>{
       for (var i = 0; i < data.length; i++) {
         this.actions.push(data[i]);
-        if(data[i].sport != 0 && data[i].sport != 4 && data[i].sport !=8 && data[i].sport !=3 && data[i].sport !=21 && data[i].sport !=19 && data[i].sport !=20 && data[i].sport !=24){
-          tempArr.push(data[i]);
+        this.actions = this.sortEventOdds(this.actions);
+      }
+    });
+  }
+
+  sortEventOdds(odds){
+    if(odds.length == 1){
+      return odds;
+    } else {
+      for(var i = 0; i < odds.length; i++){
+        for(var j = 0; j < odds.length - 1 - i; j++){
+          if(odds[j].epoch > odds[j+1].epoch){
+            var tmpOdds = odds[j];
+            odds[j] = odds[j+1];
+            odds[j+1] = tmpOdds;
+          }
         }
       }
-      console.log(tempArr);
-    });
+      return odds;
+    }
   }
 
 }

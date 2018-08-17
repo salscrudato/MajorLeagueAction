@@ -28,7 +28,7 @@ export class ConfirmComponent implements OnInit{
     this.bet = this.dataService.getBet();
     this.betType = this.dataService.getBetType().toUpperCase();
     this.setBetDetailsAndOdds(this.bet);
-    console.log(this.bet)
+    console.log(this.bet);
     this.odds = this.calculateOdds(this.bet);
   }
 
@@ -77,19 +77,19 @@ export class ConfirmComponent implements OnInit{
         break;
         case 'over':
           if(bet.sport !='1'){
-            bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber;
+            bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber + ' ' + bet.overLine;
             bet.odds = bet.overLine;
           } else {
-            bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number;
+            bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number + ' ' + bet.over.odds;
             bet.odds = bet.over.odds;
           }
         break;
         case 'under':
         if(bet.sport != '1'){
-          bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber;
+          bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber + ' ' + bet.underLine;
           bet.odds = bet.underLine;
         } else {
-          bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number;
+          bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number + ' ' + bet.under.odds;
           bet.odds = bet.under.odds;
         }
         break;
