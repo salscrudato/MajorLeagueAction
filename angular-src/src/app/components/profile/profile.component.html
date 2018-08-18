@@ -32,16 +32,17 @@
           <tr>
             <th style="width:15%">Date</th>
             <th>Description</th>
-            <th style="width:5%">Risk</th>
-            <th style="width:5%">Win</th>
+            <th style="width:5%">Result</th>
+            <th style="width:5%">Amount</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let bet of pendingBets">
             <td>{{bet.gameDate}} {{bet.gameTime}}</td>
             <td>{{bet.description}}</td>
-            <td>{{bet.betAmount}}</td>
-            <td>{{bet.winAmount}}</td>
+            <td>{{bet.status}}</td>
+            <td *ngIf="bet.status=='win'">{{bet.winAmount}}</td>
+            <td *ngIf="bet.status=='loss'">{{bet.betAmount}}</td>
           </tr>
         </tbody>
       </table>

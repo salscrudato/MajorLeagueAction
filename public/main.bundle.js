@@ -666,6 +666,7 @@ var ConfirmComponent = (function () {
     }
     ConfirmComponent.prototype.ngOnInit = function () {
         this.bet = this.dataService.getBet();
+        console.log(this.bet);
         this.betType = this.dataService.getBetType().toUpperCase();
         this.setBetDetailsAndOdds(this.bet);
         this.odds = this.calculateOdds(this.bet);
@@ -675,7 +676,7 @@ var ConfirmComponent = (function () {
         if (this.betAmount > 0) {
             var profile = this.dataService.getProfile();
             var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-            console.log(this.bet);
+            // console.log(this.bet);
             var confirmedBet = new __WEBPACK_IMPORTED_MODULE_5__classes_bet__["a" /* Bet */](profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
             this.betService.placeBet(confirmedBet).subscribe(function (data) {
                 if (data.success) {
@@ -724,7 +725,7 @@ var ConfirmComponent = (function () {
                 if (bet.sport != '1') {
                     bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber + ' ' + bet.overLine;
                     bet.odds = bet.overLine;
-                    bet.line = bet.overLine;
+                    bet.line = bet.totalNumber;
                 }
                 else {
                     bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number + ' ' + bet.over.odds;
@@ -741,7 +742,7 @@ var ConfirmComponent = (function () {
                 else {
                     bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number + ' ' + bet.under.odds;
                     bet.odds = bet.under.odds;
-                    bet.line = bet.under.number;
+                    bet.line = bet.totalNumber;
                 }
                 break;
             case 'draw':
@@ -2195,7 +2196,7 @@ module.exports = "<div class=\"container pt-5\">\n<div class=\"row\" align=\"cen
 /***/ 714:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container mt-5 pt-4 pl-0 pr-0\">\n  <div *ngIf=\"user\">\n\n    <div class=\"row border-bottom\">\n      <div class=\"col\" align=\"center\">\n        <h3>{{user.name.toUpperCase()}} Account Info</h3>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Current Balance:  {{user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Available Balance:  {{user.credit + user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHidePending()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showPending==false\">Show Pendings (${{amountPending}})</h5>\n          <h5 *ngIf=\"showPending==true\">Hide Pendings (${{amountPending}})</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showPending==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Risk</th>\n            <th style=\"width:5%\">Win</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of pendingBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.betAmount}}</td>\n            <td>{{bet.winAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n\n    <div class=\"row m-0 p-0\">\n    <div class=\"col bg-dark block text-light p-0 m-0\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHideClosed()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showClosed==false\">Show Bet History</h5>\n          <h5 *ngIf=\"showClosed==true\">Hide Bet History</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showClosed==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Risk</th>\n            <th style=\"width:5%\">Win</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of closedBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.betAmount}}</td>\n            <td>{{bet.winAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n    </div>\n\n  </div>\n  <div *ngIf=\"!user\">Error Loading Profile</div>\n</div>\n"
+module.exports = "<div class=\"container mt-5 pt-4 pl-0 pr-0\">\n  <div *ngIf=\"user\">\n\n    <div class=\"row border-bottom\">\n      <div class=\"col\" align=\"center\">\n        <h3>{{user.name.toUpperCase()}} Account Info</h3>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Current Balance:  {{user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Available Balance:  {{user.credit + user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHidePending()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showPending==false\">Show Pendings (${{amountPending}})</h5>\n          <h5 *ngIf=\"showPending==true\">Hide Pendings (${{amountPending}})</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showPending==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Result</th>\n            <th style=\"width:5%\">Amount</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of pendingBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.status}}</td>\n            <td *ngIf=\"bet.status=='win'\">{{bet.winAmount}}</td>\n            <td *ngIf=\"bet.status=='loss'\">{{bet.betAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n\n    <div class=\"row m-0 p-0\">\n    <div class=\"col bg-dark block text-light p-0 m-0\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHideClosed()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showClosed==false\">Show Bet History</h5>\n          <h5 *ngIf=\"showClosed==true\">Hide Bet History</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showClosed==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Risk</th>\n            <th style=\"width:5%\">Win</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of closedBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.betAmount}}</td>\n            <td>{{bet.winAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n    </div>\n\n  </div>\n  <div *ngIf=\"!user\">Error Loading Profile</div>\n</div>\n"
 
 /***/ }),
 

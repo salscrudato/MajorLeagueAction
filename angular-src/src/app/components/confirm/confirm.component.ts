@@ -26,6 +26,7 @@ export class ConfirmComponent implements OnInit{
 
   ngOnInit(){
     this.bet = this.dataService.getBet();
+    console.log(this.bet);
     this.betType = this.dataService.getBetType().toUpperCase();
     this.setBetDetailsAndOdds(this.bet);
     this.odds = this.calculateOdds(this.bet);
@@ -35,7 +36,7 @@ export class ConfirmComponent implements OnInit{
     if(this.betAmount > 0){
       var profile = this.dataService.getProfile();
       var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-      console.log(this.bet);
+      // console.log(this.bet);
       var confirmedBet = new Bet(profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
       this.betService.placeBet(confirmedBet).subscribe(data => {
         if(data.success){
@@ -85,7 +86,7 @@ export class ConfirmComponent implements OnInit{
       if(bet.sport !='1'){
         bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber + ' ' + bet.overLine;
         bet.odds = bet.overLine;
-        bet.line = bet.overLine;
+        bet.line = bet.totalNumber;
       } else {
         bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.over.number + ' ' + bet.over.odds;
         bet.odds = bet.over.odds;
@@ -100,7 +101,7 @@ export class ConfirmComponent implements OnInit{
       } else {
         bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.under.number + ' ' + bet.under.odds;
         bet.odds = bet.under.odds;
-        bet.line = bet.under.number;
+        bet.line = bet.totalNumber;
       }
       break;
       case 'draw':
