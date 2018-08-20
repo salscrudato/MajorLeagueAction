@@ -987,8 +987,14 @@ var LiveMenuComponent = (function () {
         this.router = router;
         this.dataService = dataService;
         this.oddsService = oddsService;
+        this.soccer = [];
     }
     LiveMenuComponent.prototype.ngOnInit = function () {
+        this.soccer = [{ league: 'England Premier League', id: 94 }, { league: 'England League 1', id: 587 }, { league: 'UEFA', id: 6542 }, { league: 'UEFA Europe League Qualifying', id: 5823 },
+            { league: 'Italy Serie A', id: 199 }, { league: 'Spain Primera Liga', id: 207 }, { league: 'Spain Copa Federacion', id: 429 },
+            { league: 'Germany Bundesliga 1', id: 123 }, { league: 'France Ligue 1', id: 99 }, { league: 'USA MLS', id: 242 }, { league: 'Elite Cup Friendlies', id: 631 },
+            { league: 'Europe Friendlies', id: 363 }, { league: 'Russia Premier League', id: 153 }, { league: 'Republic of Ireland Premier Division', id: 398 },
+            { league: 'Copa Sudamericano', id: 445 }, { league: 'Brazil Serie A', id: 155 }];
     };
     LiveMenuComponent.prototype.navigate = function (sport, league) {
         this.dataService.addSport(sport);
@@ -1502,7 +1508,25 @@ var ParlayComponent = (function () {
     ParlayComponent.prototype.ngOnInit = function () {
         this.sport = this.dataService.getSports();
         var tmpOdds = this.dataService.getJsonOddsEvents();
-        this.setUpActions(tmpOdds, this.sport);
+        if (tmpOdds.length > 0) {
+            this.setUpActions(tmpOdds, this.sport);
+        }
+        else {
+            this.getOdds();
+        }
+    };
+    ParlayComponent.prototype.getOdds = function () {
+        var _this = this;
+        var tempArr = [];
+        this.oddsService.getOdds().subscribe(function (data) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].sport == _this.sport) {
+                    tempArr.push(data[i]);
+                    tempArr = _this.dataService.sortBets(tempArr);
+                    _this.setUpActions(tempArr, _this.sport);
+                }
+            }
+        });
     };
     ParlayComponent.prototype.setUpActions = function (tempActions, sport) {
         for (var i = 0; i < tempActions.length; i++) {
@@ -2056,7 +2080,7 @@ module.exports = ""
 /***/ 694:
 /***/ (function(module, exports) {
 
-module.exports = ".masthead {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  min-height: 35rem;\n  padding: 10rem 0;\n  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url(\"assets/images/bg-masthead.jpg\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n}\n\n.masthead h1 {\n  font-size: 2.5rem;\n  line-height: 2.5rem;\n  letter-spacing: 0.8rem;\n  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n}\n\n.masthead h2 {\n  max-width: 20rem;\n  font-size: 1rem;\n}\n\n@media (min-width: 768px) {\n  .masthead h1 {\n    font-size: 4rem;\n    line-height: 4rem;\n  }\n}\n\n@media (min-width: 992px) {\n  .masthead {\n    height: 100vh;\n    padding: 0;\n  }\n  .masthead h1 {\n    font-size: 6.5rem;\n    line-height: 6.5rem;\n    letter-spacing: 0.8rem;\n  }\n  .masthead h2 {\n    max-width: 30rem;\n    font-size: 1.25rem;\n  }\n}\n\n.btn {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  padding: .5rem .8rem;\n  font-size: 80%;\n  text-transform: uppercase;\n  letter-spacing: .15rem;\n  border: 0;\n}\n\n.in-test {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  font-size: 80%;\n  text-transform: uppercase;\n  letter-spacing: ..8rem;\n  border: 0;\n}\n\n.btn-primary {\n  background-color: #64a19d;\n}\n\n.btn-primary:hover {\n  background-color: #4f837f;\n}\n\n.btn-primary:focus {\n  background-color: #4f837f;\n  color: white;\n}\n\n.btn-primary:active {\n  background-color: #467370 !important;\n}\n\na {\n  color: #64a19d;\n}\n\na:focus, a:hover {\n  text-decoration: none;\n  color: #3c6360;\n}\n\n.bg-black {\n  background-color: #161616 !important;\n}\n\n.bg-primary {\n  background-color: #64a19d !important;\n}\n\n.text-primary {\n  color: #64a19d !important;\n}\n\nfooter {\n  padding: 5rem 0;\n}\n"
+module.exports = ".masthead {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  min-height: 35rem;\n  padding: 10rem 0;\n  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url(\"assets/images/bg-masthead.jpg\");\n  background-position: center;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-size: cover;\n}\n\n.masthead h1 {\n  font-size: 2.5rem;\n  line-height: 2.5rem;\n  letter-spacing: 0.8rem;\n  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n}\n\n.masthead h2 {\n  max-width: 20rem;\n  font-size: 1rem;\n}\n\n@media (min-width: 768px) {\n  .masthead h1 {\n    font-size: 4rem;\n    line-height: 4rem;\n  }\n}\n\n@media (min-width: 992px) {\n  .masthead {\n    height: 100vh;\n    padding: 0;\n  }\n  .masthead h1 {\n    font-size: 6.5rem;\n    line-height: 6.5rem;\n    letter-spacing: 0.8rem;\n  }\n  .masthead h2 {\n    max-width: 30rem;\n    font-size: 1.25rem;\n  }\n}\n\n.btn {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  padding: .5rem .8rem;\n  font-size: 80%;\n  text-transform: uppercase;\n  letter-spacing: .15rem;\n  border: 0;\n}\n\n.in-test {\n  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;\n  font-size: 16px;\n  text-transform: uppercase;\n  letter-spacing: ..8rem;\n  border: 0;\n}\n\n.btn-primary {\n  background-color: #64a19d;\n}\n\n.btn-primary:hover {\n  background-color: #4f837f;\n}\n\n.btn-primary:focus {\n  background-color: #4f837f;\n  color: white;\n}\n\n.btn-primary:active {\n  background-color: #467370 !important;\n}\n\na {\n  color: #64a19d;\n}\n\na:focus, a:hover {\n  text-decoration: none;\n  color: #3c6360;\n}\n\n.bg-black {\n  background-color: #161616 !important;\n}\n\n.bg-primary {\n  background-color: #64a19d !important;\n}\n\n.text-primary {\n  color: #64a19d !important;\n}\n\nfooter {\n  padding: 5rem 0;\n}\n"
 
 /***/ }),
 
@@ -2105,7 +2129,7 @@ module.exports = ".inside {\n    display: inline-block;\n    position: fixed;\n 
 /***/ 701:
 /***/ (function(module, exports) {
 
-module.exports = ".block {\n  height: calc(100vh - 72px);\n}\n\ntd {\n  font-size: 60%;\n}\n"
+module.exports = ".block {\n  height: calc(100vh - 72px);\n}\n\ntd {\n  font-size: 60%;\n}\n\n.row{\n  margin-left: 0px;\n  margin-right: 0px;\n}\n"
 
 /***/ }),
 
@@ -2154,7 +2178,7 @@ module.exports = "<header class=\"masthead\">\n\t<div class=\"container d-flex h
 /***/ 708:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\" (click)=\"navigate(16, 225)\">\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/soccer.jpg\" (click)=\"navigate(1, 0)\">\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\" (click)=\"navigate(12, 271)\">\n    </div>\n\n</div>\n</div>\n"
+module.exports = "<div class=\"container pt-5 pr-0 pl-0\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\" (click)=\"navigate(16, 225)\">\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/soccer.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row mb-1\" *ngFor=\"let soccer of soccer\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(1, soccer.id)\">{{soccer.league}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\" (click)=\"navigate(12, 271)\">\n    </div>\n\n</div>\n</div>\n"
 
 /***/ }),
 

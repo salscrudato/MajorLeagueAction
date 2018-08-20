@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
     {league:'Italy Serie A', id:199}, {league:'Spain Primera Liga', id:207}, {league:'Spain Copa Federacion', id:429},
     {league:'Germany Bundesliga 1', id:123}, {league:'France Ligue 1', id:99}, {league:'USA MLS', id:242}, {league:'Elite Cup Friendlies', id:631},
     {league:'Europe Friendlies', id:363}, {league:'Russia Premier League', id:153}, {league:'Republic of Ireland Premier Division', id:398},
-    {league:'Copa Sudamericano', id:445}, {league:'Brazil Serie A', id:155}]
+    {league:'Copa Sudamericano', id:445}, {league:'Brazil Serie A', id:155}];
 
   }
 

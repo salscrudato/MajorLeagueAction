@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 })
 export class LiveMenuComponent implements OnInit {
 
+  soccer:any = [];
+
   constructor(
     private router:Router,
     private dataService:DataService,
@@ -17,7 +19,11 @@ export class LiveMenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+    this.soccer = [{league:'England Premier League', id:94}, {league:'England League 1', id:587}, {league:'UEFA', id:6542}, {league:'UEFA Europe League Qualifying', id:5823},
+    {league:'Italy Serie A', id:199}, {league:'Spain Primera Liga', id:207}, {league:'Spain Copa Federacion', id:429},
+    {league:'Germany Bundesliga 1', id:123}, {league:'France Ligue 1', id:99}, {league:'USA MLS', id:242}, {league:'Elite Cup Friendlies', id:631},
+    {league:'Europe Friendlies', id:363}, {league:'Russia Premier League', id:153}, {league:'Republic of Ireland Premier Division', id:398},
+    {league:'Copa Sudamericano', id:445}, {league:'Brazil Serie A', id:155}];
   }
 
   navigate(sport, league){

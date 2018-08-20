@@ -28,7 +28,24 @@ export class ParlayComponent implements OnInit {
   ngOnInit() {
     this.sport = this.dataService.getSports();
     var tmpOdds = this.dataService.getJsonOddsEvents();
-    this.setUpActions(tmpOdds, this.sport);
+    if(tmpOdds.length>0){
+      this.setUpActions(tmpOdds, this.sport);
+    } else {
+      this.getOdds();
+    }
+  }
+
+  getOdds(){
+    var tempArr = [];
+    this.oddsService.getOdds().subscribe(data =>{
+      for (var i = 0; i < data.length; i++) {
+        if(data[i].sport == this.sport){
+          tempArr.push(data[i]);
+          tempArr = this.dataService.sortBets(tempArr);
+          this.setUpActions(tempArr, this.sport);
+        }
+      }
+    });
   }
 
   setUpActions(tempActions, sport){
