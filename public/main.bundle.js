@@ -2113,7 +2113,7 @@ module.exports = ""
 /***/ 696:
 /***/ (function(module, exports) {
 
-module.exports = ".row {\n  margin-left: 0px;\n  margin-right: 0px;\n}\n\n.soc {\n  font-size: 75%;\n}\n"
+module.exports = ".row {\n  margin-left: 0px;\n  margin-right: 0px;\n}\n\n.soc {\n  font-size: 75%;\n}\n\n.container{\n  height: 100%;\n}\n"
 
 /***/ }),
 
