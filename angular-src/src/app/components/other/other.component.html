@@ -43,12 +43,12 @@
 
         <div class="row border-bottom mb-1 pb-1" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
           <div class="col w-50 border-right">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamFirstHalf')" *ngIf="action.awayTeamFirstHalf != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamFirstHalf')" *ngIf="action.awayTeamFirstHalf != 0">
               {{action.awayTeamFirstHalf}}
             </a>
           </div>
           <div class="col w-50">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamFirstHalf')" *ngIf="action.homeTeamFirstHalf != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamFirstHalf')" *ngIf="action.homeTeamFirstHalf != 0">
               {{action.homeTeamFirstHalf}}
             </a>
           </div>
@@ -63,24 +63,24 @@
 
         <div class="row mb-1" *ngIf="action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0">
           <div class="col w-50 border-right">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamOver')" *ngIf="action.awayTeamTotalLine != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamOver')" *ngIf="action.awayTeamTotalLine != 0">
               o{{action.awayTeamTotalLine}} {{action.awayTeamOverOdds}}
             </a>
           </div>
           <div class="col w-50">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamOver')" *ngIf="action.homeTeamTotalLine != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamOver')" *ngIf="action.homeTeamTotalLine != 0">
               o{{action.homeTeamTotalLine}} {{action.homeTeamOverOdds}}
             </a>
           </div>
         </div>
         <div class="row border-bottom mb-1" *ngIf="action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0">
           <div class="col w-50 border-right">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamUnder')" *ngIf="action.awayTeamTotalLine != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamUnder')" *ngIf="action.awayTeamTotalLine != 0">
               u{{action.awayTeamTotalLine}} {{action.awayTeamUnderOdds}}
             </a>
           </div>
           <div class="col w-50">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamUnder')" *ngIf="action.homeTeamTotalLine != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamUnder')" *ngIf="action.homeTeamTotalLine != 0">
               u{{action.homeTeamTotalLine}} {{action.homeTeamUnderOdds}}
             </a>
           </div>
@@ -97,14 +97,14 @@
         <div class="row border-bottom mb-1 pb-1" *ngIf="action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0">
           <div class="col w-50 border-right">
             <div class="mb-2" *ngFor="let runLine of action.awayTeamRL; let i = index">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBetWithIndex(action, 'awayTeamRL', action.awayTeamRL, i)">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBetWithIndex(action, 'awayTeamRL', action.awayTeamRL, i)">
                 {{runLine.number}}  {{runLine.odds}}
               </a>
             </div>
           </div>
           <div class="col w-50">
             <div class="mb-2" *ngFor="let runLine of action.homeTeamRL; let i = index">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBetWithIndex(action, 'homeTeamRL', action.homeTeamRL, i)">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBetWithIndex(action, 'homeTeamRL', action.homeTeamRL, i)">
                 {{runLine.number}}  {{runLine.odds}}
               </a>
             </div>
@@ -123,12 +123,12 @@
 
         <div class="row border-bottom mb-1 pb-1" *ngIf="action.runInFirst != 0">
           <div class="col w-50 border-right">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'runInFirst')">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'runInFirst')">
               {{action.runInFirst}}
             </a>
           </div>
           <div class="col w-50">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'noRunInFirst')">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'noRunInFirst')">
               {{action.noRunInFirst}}
             </a>
           </div>
@@ -178,17 +178,17 @@
 
           <div class="row border-bottom mb-1 pb-1 pt-1" *ngIf="action.awayTeamML != null || action.homeTeamML != null || action.drawOdds != null">
             <div class="col border-right">
-              <a class="btn btn-primary btn-block text-light" (click)="placeBet(action, 'awayTeamML')" *ngIf="action.awayTeamML != null && action.awayTeamML != 0">
+              <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'awayTeamML')" *ngIf="action.awayTeamML != null && action.awayTeamML != 0">
                 {{action.awayTeamML}}
               </a>
             </div>
             <div class="col border-right">
-              <a class="btn btn-primary btn-block text-light" (click)="placeBet(action, 'draw')" *ngIf="action.drawOdds != null && action.drawOdds != 0">
+              <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'draw')" *ngIf="action.drawOdds != null && action.drawOdds != 0">
                 {{action.drawOdds}}
               </a>
             </div>
             <div class="col border-right">
-              <a class="btn btn-primary btn-block text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != null && action.homeTeamML != 0">
+              <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != null && action.homeTeamML != 0">
                 {{action.homeTeamML}}
               </a>
             </div>
@@ -196,12 +196,12 @@
 
           <div class="row border-bottom mb-1 pb-1" *ngIf="action.awayTeamRL!=0 || action.homeTeamRL!=0">
             <div class="col w-50 border-right">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamRL')" *ngIf="action.awayTeamRL!=0">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamRL')" *ngIf="action.awayTeamRL!=0">
                 {{action.awayTeamRL}}  {{action.awayTeamRLOdds}}
               </a>
             </div>
             <div class="col w-50">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamRL')" *ngIf="action.homeTeamRL!=0">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamRL')" *ngIf="action.homeTeamRL!=0">
                 {{action.homeTeamRL}}  {{action.homeTeamRLOdds}}
               </a>
             </div>
@@ -218,12 +218,12 @@
 
           <div class="row border-bottom mb-1 pb-1" *ngIf="action.over.number!=0 || action.under.number!=0">
             <div class="col w-50 border-right">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'over')" *ngIf="action.over.length!=0">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'over')" *ngIf="action.over.length!=0">
                 {{action.over.number}}  {{action.over.odds}}
               </a>
             </div>
             <div class="col w-50">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'under')" *ngIf="action.under.length!=0">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'under')" *ngIf="action.under.length!=0">
                 {{action.under.number}}  {{action.under.odds}}
               </a>
             </div>
@@ -237,12 +237,12 @@
 
           <div class="row border-bottom mb-1 pb-1" *ngIf="action.bothScoreYes!=0 || action.bothScoreNo!=0">
             <div class="col w-50 border-right">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'bothScoreYes')" *ngIf="action.bothScoreYes!=0">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'bothScoreYes')" *ngIf="action.bothScoreYes!=0">
                 Yes {{action.bothScoreYes}}
               </a>
             </div>
             <div class="col w-50">
-              <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'bothScoreNo')" *ngIf="action.bothScoreNo!=0">
+              <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'bothScoreNo')" *ngIf="action.bothScoreNo!=0">
                 No {{action.bothScoreNo}}
               </a>
             </div>
@@ -300,12 +300,12 @@
 
         <div class="row border-bottom mb-1 pb-1" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
           <div class="col w-50 border-right">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamFirstHalfFB')" *ngIf="action.awayTeamFirstHalf != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamFirstHalfFB')" *ngIf="action.awayTeamFirstHalf != 0">
               {{action.awayTeamFirstHalf}}
             </a>
           </div>
           <div class="col w-50">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamFirstHalfFB')" *ngIf="action.homeTeamFirstHalf != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamFirstHalfFB')" *ngIf="action.homeTeamFirstHalf != 0">
               {{action.homeTeamFirstHalf}}
             </a>
           </div>
@@ -313,12 +313,12 @@
 
         <div class="row border-bottom mb-1 pb-1" *ngIf="action.homeTeamRLFirstHalf != 0 || action.awayTeamRLFirstHalf != 0">
           <div class="col w-50 border-right">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamFirstHalfSpread')" *ngIf="action.awayTeamRLFirstHalf != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamFirstHalfSpread')" *ngIf="action.awayTeamRLFirstHalf != 0">
               {{action.awayTeamRLFirstHalf}}  {{action.awayTeamRLOddsFirstHalf}}
             </a>
           </div>
           <div class="col w-50">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamFirstHalfSpread')" *ngIf="action.homeTeamRLFirstHalf!= 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamFirstHalfSpread')" *ngIf="action.homeTeamRLFirstHalf!= 0">
               {{action.homeTeamRLFirstHalf}}  {{action.homeTeamRLOddsFirstHalf}}
             </a>
           </div>
@@ -336,12 +336,12 @@
 
         <div class="row border-bottom mb-1 pb-1" *ngIf="action.firstHalfOver != 0 || action.firstHalfOver != 0">
           <div class="col w-50 border-right">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'firstHalfOverFB')" *ngIf="action.firstHalfOver != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'firstHalfOverFB')" *ngIf="action.firstHalfOver != 0">
               {{action.firstHalfOver}}  {{action.firstHalfOverOdds}}
             </a>
           </div>
           <div class="col w-50">
-            <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'firstHalfUnderFB')" *ngIf="action.firstHalfUnder != 0">
+            <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'firstHalfUnderFB')" *ngIf="action.firstHalfUnder != 0">
               {{action.firstHalfUnder}}  {{action.firstHalfUnderOdds}}
             </a>
           </div>

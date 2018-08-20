@@ -52,15 +52,15 @@ router.get('/all', cache('5 minutes'), function(req, res, next){
 router.get('/events', cache(1000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
+  if(leagueId == 0){
+    leagueId = '';
+  }
   var apiKey = '10744-6nAVE6st6PH0mD';
   var eventsUrl = 'https://api.betsapi.com/v1/bet365/inplay_filter?token='
   + apiKey + '&sport_id=' + sportId + '&league_id=' + leagueId;
   var options = {
     url:eventsUrl,
     method: 'GET'
-  }
-  if(leagueId == 0){
-    leagueId = '';
   }
   var tempEventsArray = [];
   request(options, function (error, response, body) {
@@ -76,7 +76,8 @@ router.get('/events', cache(1000), function(req, res, next){
             awayTeam: events.results[i].away.name,
             awayTeamImage: events.results[i].away.image_id,
             epoch: events.results[i].time,
-            sport: sportId
+            sport: sportId,
+            league: parseInt(events.results[i].league.id)
           });
         }
       }
