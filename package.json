@@ -15,6 +15,7 @@
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "*",
+    "ng4-loading-spinner": "^1.2.3",
     "ngx-order-pipe": "^2.0.1",
     "passport": "*",
     "passport-jwt": "*",
@@ -23,6 +24,6 @@
     "startbootstrap-grayscale": "^5.0.1",
     "then-request": "^6.0.0"
   },
-  "author": "Sal Scrudato",
+  "author": "Matt",
   "license": "ISC"
 }

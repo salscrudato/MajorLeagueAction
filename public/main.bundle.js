@@ -663,6 +663,7 @@ var ConfirmComponent = (function () {
         this.flashMessage = flashMessage;
         this.router = router;
         this.bet = [];
+        this.clickedSubmit = false;
     }
     ConfirmComponent.prototype.ngOnInit = function () {
         this.bet = this.dataService.getBet();
@@ -673,6 +674,7 @@ var ConfirmComponent = (function () {
     };
     ConfirmComponent.prototype.clickPlaceBet = function () {
         var _this = this;
+        this.clickedSubmit = true;
         if (this.betAmount > 0) {
             var profile = this.dataService.getProfile();
             var winAmount = this.calcWinAmount(this.odds, this.betAmount);
@@ -682,9 +684,14 @@ var ConfirmComponent = (function () {
                 if (data.success) {
                     _this.router.navigate(['profile']);
                 }
+                else {
+                    _this.flashMessage.show('Error placing bet - odds are expired', { cssClass: 'alert-warning' });
+                    _this.router.navigate(['menu']);
+                }
             });
         }
         else {
+            this.clickedSubmit = false;
             this.flashMessage.show('You must enter a number greater than 0', { cssClass: 'alert-warning' });
         }
     };
@@ -769,14 +776,14 @@ var ConfirmComponent = (function () {
                 var awayTeamFirstHalfSpread = bet.awayTeamRLFirstHalf;
                 var awayTeamFirstHalfSpreadOdds = bet.awayTeamRLOddsFirstHalf;
                 bet.betDetails = awayTeam + " Spread " + awayTeamFirstHalfSpread + " " + awayTeamFirstHalfSpreadOdds;
-                bet.odds = bet.awayTeamRLFirstHalfOdds;
+                bet.odds = awayTeamFirstHalfSpreadOdds;
                 bet.line = bet.awayTeamRLFirstHalf;
                 break;
             case 'homeTeamFirstHalfSpread':
                 var homeTeamFirstHalfSpread = bet.homeTeamRLFirstHalf;
                 var homeTeamFirstHalfSpreadOdds = bet.homeTeamRLOddsFirstHalf;
                 bet.betDetails = homeTeam + " Spread " + homeTeamFirstHalfSpread + " " + homeTeamFirstHalfSpreadOdds;
-                bet.odds = bet.homeTeamRLFirstHalfOdds;
+                bet.odds = homeTeamFirstHalfSpreadOdds;
                 bet.line = bet.homeTeamRLFirstHalf;
                 break;
             case 'firstHalfOverFB':
@@ -2092,7 +2099,7 @@ module.exports = ""
 /***/ 693:
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".loader {\n    border: 16px solid #f3f3f3; /* Light grey */\n    border-top: 16px solid #3498db; /* Blue */\n    border-radius: 50%;\n    width: 120px;\n    height: 120px;\n    animation: spin 2s linear infinite;\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n"
 
 /***/ }),
 
@@ -2183,7 +2190,7 @@ module.exports = "<div class=\"container\">\n  <div>\n    <h2 class=\"page-heade
 /***/ 706:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n  <p>{{betType}} BET</p>\n  <form (submit)=\"clickPlaceBet()\">\n    <ul class=\"list-group mb-2\">\n      <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n    </ul>\n    <div class=\"row p-0 m-0\">\n      <div class=\"form-group\">\n        <label for=\"amount\">Bet Amount</label>\n        <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n      </div>\n      <div class=\"form-group row ml-0\" *ngIf=\"betAmount>0\">\n        <label class=\"mr-2\">To Win:</label>\n        <p class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</p>\n        <p class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</p>\n      </div>\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n  </form>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n\n  <div class = \"col\" align = \"center\">\n  <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n  <p>{{betType}} BET</p>\n  <form (submit)=\"clickPlaceBet()\">\n    <ul class=\"list-group mb-2\">\n      <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n    </ul>\n    <div class=\"row p-0 m-0\">\n      <div class=\"form-group\">\n        <label for=\"amount\">Bet Amount</label>\n        <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n      </div>\n      <div class=\"form-group row ml-0\" *ngIf=\"betAmount>0\">\n        <label class=\"mr-2\">To Win:</label>\n        <p class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</p>\n        <p class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</p>\n      </div>\n    </div>\n    <div *ngIf=\"clickedSubmit==false\">\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n  </div>\n  <div *ngIf=\"clickedSubmit==true\">\n    <div class=\"loader\"></div>\n  </div>\n\n  </form>\n  </div>\n</div>\n"
 
 /***/ }),
 

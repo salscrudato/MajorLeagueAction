@@ -16,6 +16,7 @@ export class ConfirmComponent implements OnInit{
   betType:string;
   betAmount:number;
   odds:number;
+  clickedSubmit:boolean = false;
 
   constructor(
     private dataService: DataService,
@@ -33,6 +34,7 @@ export class ConfirmComponent implements OnInit{
   }
 
   clickPlaceBet(){
+    this.clickedSubmit = true;
     if(this.betAmount > 0){
       var profile = this.dataService.getProfile();
       var winAmount = this.calcWinAmount(this.odds, this.betAmount);
@@ -41,9 +43,13 @@ export class ConfirmComponent implements OnInit{
       this.betService.placeBet(confirmedBet).subscribe(data => {
         if(data.success){
           this.router.navigate(['profile']);
+        } else {
+          this.flashMessage.show('Error placing bet - odds are expired', {cssClass: 'alert-warning'});
+          this.router.navigate(['menu']);
         }
       });
     } else {
+      this.clickedSubmit = false;
       this.flashMessage.show('You must enter a number greater than 0', {cssClass: 'alert-warning'});
     }
   }
@@ -128,14 +134,14 @@ export class ConfirmComponent implements OnInit{
       const awayTeamFirstHalfSpread = bet.awayTeamRLFirstHalf;
       const awayTeamFirstHalfSpreadOdds = bet.awayTeamRLOddsFirstHalf;
       bet.betDetails = awayTeam + " Spread " + awayTeamFirstHalfSpread + " " + awayTeamFirstHalfSpreadOdds;
-      bet.odds = bet.awayTeamRLFirstHalfOdds;
+      bet.odds = awayTeamFirstHalfSpreadOdds;
       bet.line = bet.awayTeamRLFirstHalf;
       break;
       case 'homeTeamFirstHalfSpread':
       const homeTeamFirstHalfSpread = bet.homeTeamRLFirstHalf;
       const homeTeamFirstHalfSpreadOdds = bet.homeTeamRLOddsFirstHalf;
       bet.betDetails = homeTeam + " Spread " + homeTeamFirstHalfSpread + " " + homeTeamFirstHalfSpreadOdds;
-      bet.odds = bet.homeTeamRLFirstHalfOdds;
+      bet.odds = homeTeamFirstHalfSpreadOdds;
       bet.line = bet.homeTeamRLFirstHalf;
       break;
       case 'firstHalfOverFB':

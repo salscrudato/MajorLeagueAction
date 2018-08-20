@@ -1,4 +1,6 @@
 <div class="container pt-5">
+
+  <div class = "col" align = "center">
   <h2 class="page-header pt-2">Place Bet - Bet Slip</h2>
   <p>{{betType}} BET</p>
   <form (submit)="clickPlaceBet()">
@@ -16,6 +18,13 @@
         <p class="m-0" *ngIf="odds<0">{{round(betAmount / (odds * -1) * 100)}}</p>
       </div>
     </div>
+    <div *ngIf="clickedSubmit==false">
     <input type="submit" class="btn btn-primary" value="Place Bet">
+  </div>
+  <div *ngIf="clickedSubmit==true">
+    <div class="loader"></div>
+  </div>
+
   </form>
+  </div>
 </div>
