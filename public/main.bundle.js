@@ -767,14 +767,14 @@ var ConfirmComponent = (function () {
                 break;
             case 'awayTeamFirstHalfSpread':
                 var awayTeamFirstHalfSpread = bet.awayTeamRLFirstHalf;
-                var awayTeamFirstHalfSpreadOdds = bet.awayTeamRLFirstHalfOdds;
+                var awayTeamFirstHalfSpreadOdds = bet.awayTeamRLOddsFirstHalf;
                 bet.betDetails = awayTeam + " Spread " + awayTeamFirstHalfSpread + " " + awayTeamFirstHalfSpreadOdds;
                 bet.odds = bet.awayTeamRLFirstHalfOdds;
                 bet.line = bet.awayTeamRLFirstHalf;
                 break;
             case 'homeTeamFirstHalfSpread':
                 var homeTeamFirstHalfSpread = bet.homeTeamRLFirstHalf;
-                var homeTeamFirstHalfSpreadOdds = bet.homeTeamRLFirstHalfOdds;
+                var homeTeamFirstHalfSpreadOdds = bet.homeTeamRLOddsFirstHalf;
                 bet.betDetails = homeTeam + " Spread " + homeTeamFirstHalfSpread + " " + homeTeamFirstHalfSpreadOdds;
                 bet.odds = bet.homeTeamRLFirstHalfOdds;
                 bet.line = bet.homeTeamRLFirstHalf;

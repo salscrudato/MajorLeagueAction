@@ -126,14 +126,14 @@ export class ConfirmComponent implements OnInit{
       break;
       case 'awayTeamFirstHalfSpread':
       const awayTeamFirstHalfSpread = bet.awayTeamRLFirstHalf;
-      const awayTeamFirstHalfSpreadOdds = bet.awayTeamRLFirstHalfOdds;
+      const awayTeamFirstHalfSpreadOdds = bet.awayTeamRLOddsFirstHalf;
       bet.betDetails = awayTeam + " Spread " + awayTeamFirstHalfSpread + " " + awayTeamFirstHalfSpreadOdds;
       bet.odds = bet.awayTeamRLFirstHalfOdds;
       bet.line = bet.awayTeamRLFirstHalf;
       break;
       case 'homeTeamFirstHalfSpread':
       const homeTeamFirstHalfSpread = bet.homeTeamRLFirstHalf;
-      const homeTeamFirstHalfSpreadOdds = bet.homeTeamRLFirstHalfOdds;
+      const homeTeamFirstHalfSpreadOdds = bet.homeTeamRLOddsFirstHalf;
       bet.betDetails = homeTeam + " Spread " + homeTeamFirstHalfSpread + " " + homeTeamFirstHalfSpreadOdds;
       bet.odds = bet.homeTeamRLFirstHalfOdds;
       bet.line = bet.homeTeamRLFirstHalf;
