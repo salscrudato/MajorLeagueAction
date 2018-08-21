@@ -5,6 +5,7 @@ import {DataService} from '../../services/data.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Bet} from '../../../../../classes/bet';
 import {OddsService} from '../../services/odds.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-confirm',
@@ -18,21 +19,46 @@ export class ConfirmComponent implements OnInit{
   betAmount:number;
   odds:number;
   clickedSubmit:boolean = false;
+  user:any;
+  amountPending:number = 0;
 
   constructor(
     private dataService: DataService,
     private betService: BetService,
     private flashMessage: FlashMessagesService,
     private router: Router,
-    private oddsService: OddsService
+    private oddsService: OddsService,
+    private authService: AuthService
   ){}
 
   ngOnInit(){
     this.bet = this.dataService.getBet();
-    this.flashMessage.grayOut(true);
     this.betType = this.dataService.getBetType().toUpperCase();
+    this.getProfileAndAllBets();
     this.setBetDetailsAndOdds(this.bet);
     this.odds = this.calculateOdds(this.bet);
+  }
+
+  //Gets current logged in user and then gets corresponding bets for that user
+  getProfileAndAllBets(){
+    this.authService.getProfile().subscribe(profile => {
+      this.user = profile.user;
+      this.betService.getBets(profile, 'all').subscribe(bets => {
+        for(var i = 0; i < bets.length; i++){
+          if(bets[i].status == 'open'){
+            this.amountPending = this.amountPending + bets[i].betAmount;
+          }
+        }
+        console.log(this.user + ' Amount Pending ' + this.amountPending);
+      }, error =>{
+        console.log(error);
+        return false;
+      });
+    },
+    error =>{
+      console.log(error);
+      return false;
+    });
   }
 
   placeStraightBet(){

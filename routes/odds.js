@@ -71,10 +71,10 @@ router.get('/events', cache(1000), function(req, res, next){
           tempEventsArray.push({
             id: events.results[i].id,
             time: events.results[i].time,
-            homeTeam: events.results[i].home.name,
-            homeTeamImage: events.results[i].home.image_id,
-            awayTeam: events.results[i].away.name,
-            awayTeamImage: events.results[i].away.image_id,
+            homeTeam: events.results[i].away.name,
+            homeTeamImage: events.results[i].away.image_id,
+            awayTeam: events.results[i].home.name,
+            awayTeamImage: events.results[i].home.image_id,
             epoch: events.results[i].time,
             sport: sportId,
             league: parseInt(events.results[i].league.id)
