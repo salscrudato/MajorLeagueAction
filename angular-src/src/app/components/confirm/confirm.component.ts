@@ -140,10 +140,10 @@ placeLiveBet(){
 clickPlaceBet(){
   var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
   if(this.betAmount < curAvail){
-    if(this.betType=='STRAIGHT'){
-      this.placeStraightBet();
-    } else if(this.betType=='LIVE'){
+    if(this.betType=='LIVE'){
       this.placeLiveBet();
+    } else {
+      this.placeStraightBet();
     }
   } else {
     this.flashMessage.show('Insufficient Funds', {cssClass: 'alert-warning'});

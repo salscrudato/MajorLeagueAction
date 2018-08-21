@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container pt-5 mb-5">
 <div class="row" align="center">
   <div *ngFor="let odd of odds" class="card col-sm-4 mt-3 pl-0 pr-0">
     <div class="row pl-0 pr-0 ml-0 mr-0">
@@ -35,7 +35,7 @@
       </div>
       <div align="left">
         <div class="row pl-3">{{odd.homeTeam}}</div>
-        <div class="row pb-1 pt-1 mb-5">
+        <div class="row pb-1 pt-1">
           <div class="col">
             <label class="btn btn-primary btn-sm float-left"><input class="mr-2" type="checkbox" (click)="parlayCheckboxClick($event, odd, 'homeTeamML')">{{odd.homeTeamML}}</label>
           </div>
@@ -50,5 +50,5 @@
     </div>
   </div>
 </div>
-<div class="btn btn-success btn-lg inside mb-2" *ngIf="parlay.length>1" (click)="placeBet()">Continue</div>
 </div>
+<div class="btn btn-success btn-lg inside mb-2" *ngIf="parlay.length>1" (click)="placeBet()">Continue</div>
