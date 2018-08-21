@@ -1,6 +1,7 @@
 <div class="container mt-5 pt-4 pl-0 pr-0">
   <div *ngIf="user">
 
+    <div class="bg-light">
     <div class="row border-bottom">
       <div class="col" align="center">
         <h3>{{user.name.toUpperCase()}} Account Info</h3>
@@ -18,6 +19,7 @@
         <p>Available Balance:  {{user.credit + user.currentBalance}}</p>
       </div>
     </div>
+  </div>
 
     <div class="col bg-dark block text-light p-0 m-0 h-100">
       <div class="row pt-2 border-bottom" (click)="showHidePending()">
