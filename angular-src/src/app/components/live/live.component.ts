@@ -33,7 +33,7 @@ export class LiveComponent implements OnInit {
     this.getLiveEvents(this.sport, league);
     this.interval = setInterval(() => {
       this.refreshLiveEventOdds(this.eventsArray);
-    }, 10000);
+    }, 8000);
   }
 
   getLiveEvents(sportId, leagueId){
@@ -53,6 +53,7 @@ export class LiveComponent implements OnInit {
       this.oddsService.getLiveEventOdds(events[i].id, events[i].homeTeam, events[i].homeTeamImage, events[i].awayTeam, events[i].awayTeamImage, events[i].sport, events[i].epoch).subscribe(data =>{
         this.eventOddsArray.push(data);
         this.eventOddsArray = this.sortEventOdds(this.eventOddsArray);
+        console.log(this.eventOddsArray);
       });
     }
   }
@@ -124,6 +125,15 @@ export class LiveComponent implements OnInit {
       return '+';
     }else{
       return '';
+    }
+  }
+
+  showOdds(odds){
+    odds = parseFloat(odds);
+    if(odds != 0 && odds != null && odds != undefined && odds > -400 && odds < 400){
+      return true;
+    } else {
+      return false;
     }
   }
 

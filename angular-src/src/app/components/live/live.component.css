@@ -10,3 +10,8 @@
 .container{
   height: 100%;
 }
+
+.btn-sm {
+  transition: opacity 1s;
+  opacity: 1;
+}

@@ -19,6 +19,8 @@ class Bet365Live {
     this.awayTeamRLArray = [];
     this.homeTeamML = 0;
     this.awayTeamML = 0;
+    this.homeTeamRL = 0;
+    this.awayTeamRL = 0;
     this.sport = sport;
 
     //Initialize varants
@@ -151,6 +153,9 @@ class Bet365Live {
     }
 
     static setRL(team, start, length, oddsArray){
+      if(start==length){
+        return 0;
+      }
       for(var i = start; i < length + 1; i++){
         if(oddsArray[i].NA == team){
           return oddsArray[i].HA;
