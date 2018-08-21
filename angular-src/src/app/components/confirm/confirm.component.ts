@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {DataService} from '../../services/data.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Bet} from '../../../../../classes/bet';
+import {OddsService} from '../../services/odds.service';
 
 @Component({
   selector: 'app-confirm',
@@ -22,23 +23,23 @@ export class ConfirmComponent implements OnInit{
     private dataService: DataService,
     private betService: BetService,
     private flashMessage: FlashMessagesService,
-    private router: Router
+    private router: Router,
+    private oddsService: OddsService
   ){}
 
   ngOnInit(){
     this.bet = this.dataService.getBet();
-    console.log(this.bet);
+    this.flashMessage.grayOut(true);
     this.betType = this.dataService.getBetType().toUpperCase();
     this.setBetDetailsAndOdds(this.bet);
     this.odds = this.calculateOdds(this.bet);
   }
 
-  clickPlaceBet(){
+  placeStraightBet(){
     this.clickedSubmit = true;
     if(this.betAmount > 0){
       var profile = this.dataService.getProfile();
       var winAmount = this.calcWinAmount(this.odds, this.betAmount);
-      // console.log(this.bet);
       var confirmedBet = new Bet(profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
       this.betService.placeBet(confirmedBet).subscribe(data => {
         if(data.success){
@@ -51,6 +52,71 @@ export class ConfirmComponent implements OnInit{
     } else {
       this.clickedSubmit = false;
       this.flashMessage.show('You must enter a number greater than 0', {cssClass: 'alert-warning'});
+    }
+  }
+
+  placeLiveBet(){
+    this.clickedSubmit = true;
+    this.flashMessage.show('Bet submitted, please allow 8 seconds to confirm', {cssClass: 'alert-success', timeout: 8000});
+    setTimeout(() => {
+      var betIsStillGood = true;
+      var tmpBet = this.bet[0];
+      this.oddsService.getLiveEventOdds(tmpBet.id, tmpBet.homeTeam, tmpBet.homeTeamImage, tmpBet.awayTeam, tmpBet.awayTeamImage, tmpBet.sport, tmpBet.epoch).subscribe(data =>{
+        data.betType = tmpBet.betType;
+
+        for(var prop in data){
+          if(prop == 'homeTeamML'){
+            var tmpData = data[prop];
+            if (tmpData < 0){
+              tmpData = tmpData * -1;
+            }
+            //Change this back
+            var tmpLow = tmpData * 0.95;
+            var tmpHigh = tmpData * 1.05;
+            if(tmpData < tmpLow || tmpData > tmpHigh){
+              betIsStillGood = false;
+            }
+          } else if (prop == 'awayTeamML'){
+            var tmpData = data[prop];
+            if (tmpData < 0){
+              tmpData = tmpData * -1;
+            }
+            var tmpLow = tmpData * .95;
+            var tmpHigh = tmpData * 1.05;
+            if(tmpData < tmpLow || tmpData > tmpHigh){
+              betIsStillGood = false;
+            }
+          }
+        }
+        if(betIsStillGood){
+          var profile = this.dataService.getProfile();
+          var winAmount = this.calcWinAmount(this.odds, this.betAmount);
+          var confirmedBet = new Bet(profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
+          this.betService.placeBet(confirmedBet).subscribe(data => {
+            if(data.success){
+              this.router.navigate(['profile']);
+            } else {
+              this.flashMessage.show('Error placing bet', {cssClass: 'alert-warning'});
+              this.router.navigate(['menu']);
+            }
+          });
+        } else {
+          this.flashMessage.show('Error placing bet - odds are no longer valid', {cssClass: 'alert-warning'});
+          this.bet[0] = data;
+          this.setBetDetailsAndOdds(this.bet);
+          this.odds = this.calculateOdds(this.bet);
+          this.clickedSubmit = false;
+        }
+
+      });
+    }, 8000);
+  }
+
+  clickPlaceBet(){
+    if(this.betType=='STRAIGHT'){
+      this.placeStraightBet();
+    } else if(this.betType=='LIVE'){
+      this.placeLiveBet();
     }
   }
 
@@ -89,7 +155,7 @@ export class ConfirmComponent implements OnInit{
       bet.odds = homeTeamML;
       break;
       case 'over':
-      if(bet.sport !='1'){
+      if(bet.overLine != undefined){
         bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber + ' ' + bet.overLine;
         bet.odds = bet.overLine;
         bet.line = bet.totalNumber;

@@ -89,7 +89,7 @@ export class LiveComponent implements OnInit {
   placeBet(action,type){
     action.betType = type;
     this.authService.getProfile().subscribe(profile => {
-      this.dataService.addStraightBet(action, profile, 'straight');
+      this.dataService.addStraightBet(action, profile, 'live');
       this.router.navigate(['confirm']);
     },
     err =>{
