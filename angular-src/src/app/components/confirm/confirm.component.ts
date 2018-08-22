@@ -21,6 +21,7 @@ export class ConfirmComponent implements OnInit{
   clickedSubmit:boolean = false;
   user:any;
   amountPending:number = 0;
+  timer:any;
 
   constructor(
     private dataService: DataService,
@@ -39,7 +40,7 @@ export class ConfirmComponent implements OnInit{
     this.odds = this.calculateOdds(this.bet);
 
     //Redirect after a minutes
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
         this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
         this.router.navigate(['menu']);
     }, 60000);
@@ -75,9 +76,11 @@ placeStraightBet(){
     var confirmedBet = new Bet(profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
     this.betService.placeBet(confirmedBet).subscribe(data => {
       if(data.success){
+        clearTimeout(this.timer);
         this.router.navigate(['menu']);
         this.flashMessage.show('Bet Placed', {cssClass: 'alert-success'});
       } else {
+        clearTimeout(this.timer);
         this.flashMessage.show('Error placing bet - odds are expired', {cssClass: 'alert-warning'});
         this.router.navigate(['menu']);
       }
@@ -89,6 +92,7 @@ placeStraightBet(){
 }
 
 placeLiveBet(){
+  clearTimeout(this.timer);
   this.clickedSubmit = true;
   this.flashMessage.show('Bet submitted, please allow 8 seconds to confirm', {cssClass: 'alert-success', timeout: 8000});
   setTimeout(() => {

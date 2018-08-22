@@ -689,7 +689,7 @@ var ConfirmComponent = (function () {
         this.setBetDetailsAndOdds(this.bet);
         this.odds = this.calculateOdds(this.bet);
         //Redirect after a minutes
-        setTimeout(function () {
+        this.timer = setTimeout(function () {
             _this.flashMessage.show('You have been re-directed due to inactivity, please try again', { cssClass: 'alert-warning' });
             _this.router.navigate(['menu']);
         }, 60000);
@@ -723,10 +723,12 @@ var ConfirmComponent = (function () {
             var confirmedBet = new __WEBPACK_IMPORTED_MODULE_5__classes_bet__["a" /* Bet */](profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
             this.betService.placeBet(confirmedBet).subscribe(function (data) {
                 if (data.success) {
+                    clearTimeout(_this.timer);
                     _this.router.navigate(['menu']);
                     _this.flashMessage.show('Bet Placed', { cssClass: 'alert-success' });
                 }
                 else {
+                    clearTimeout(_this.timer);
                     _this.flashMessage.show('Error placing bet - odds are expired', { cssClass: 'alert-warning' });
                     _this.router.navigate(['menu']);
                 }
@@ -739,6 +741,7 @@ var ConfirmComponent = (function () {
     };
     ConfirmComponent.prototype.placeLiveBet = function () {
         var _this = this;
+        clearTimeout(this.timer);
         this.clickedSubmit = true;
         this.flashMessage.show('Bet submitted, please allow 8 seconds to confirm', { cssClass: 'alert-success', timeout: 8000 });
         setTimeout(function () {
