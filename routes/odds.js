@@ -11,7 +11,6 @@ const Bet365Football = require('../classes/Bet365Football.js');
 
 let cache = apicache.middleware;
 
-//router.get('/all', cache('2 minutes'), function(req, res, next){
 router.get('/all', cache('5 minutes'), function(req, res, next){
   //router.get('/all', function(req, res, next){
   var headers = {
@@ -49,7 +48,7 @@ router.get('/all', cache('5 minutes'), function(req, res, next){
 });
 
 //Live Events
-router.get('/events', cache(1000), function(req, res, next){
+router.get('/events', cache(5000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   if(leagueId == 0){
@@ -68,17 +67,33 @@ router.get('/events', cache(1000), function(req, res, next){
       var events = JSON.parse(body);
       if(events != undefined && events.results != undefined){
         for(var i = 0; i < events.results.length; i++){
-          tempEventsArray.push({
-            id: events.results[i].id,
-            time: events.results[i].time,
-            homeTeam: events.results[i].away.name,
-            homeTeamImage: events.results[i].away.image_id,
-            awayTeam: events.results[i].home.name,
-            awayTeamImage: events.results[i].home.image_id,
-            epoch: events.results[i].time,
-            sport: sportId,
-            league: parseInt(events.results[i].league.id)
-          });
+
+          if(sportId!=1){
+            tempEventsArray.push({
+              id: events.results[i].id,
+              time: events.results[i].time,
+              homeTeam: events.results[i].away.name,
+              homeTeamImage: events.results[i].away.image_id,
+              awayTeam: events.results[i].home.name,
+              awayTeamImage: events.results[i].home.image_id,
+              epoch: events.results[i].time,
+              sport: sportId,
+              league: parseInt(events.results[i].league.id)
+            });
+          } else{
+            tempEventsArray.push({
+              id: events.results[i].id,
+              time: events.results[i].time,
+              homeTeam: events.results[i].home.name,
+              homeTeamImage: events.results[i].home.image_id,
+              awayTeam: events.results[i].away.name,
+              awayTeamImage: events.results[i].away.image_id,
+              epoch: events.results[i].time,
+              sport: sportId,
+              league: parseInt(events.results[i].league.id)
+            });
+          }
+
         }
       }
       res.send(tempEventsArray);
@@ -120,7 +135,7 @@ router.get('/eventOdds', cache(1000), function(req, res, next){
 });
 
 //Upcoming Events
-router.get('/upcomingEvents', cache(1000), function(req, res, next){
+router.get('/upcomingEvents', cache(5000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   var apiKey = '10744-6nAVE6st6PH0mD';
@@ -157,7 +172,7 @@ router.get('/upcomingEvents', cache(1000), function(req, res, next){
 });
 
 //Upcoming Odds by Event
-router.get('/upcomingEventOdds', cache(1000), function(req, res, next){
+router.get('/upcomingEventOdds', cache(5000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   console.log('Getting Live Odds ' + homeTeam);

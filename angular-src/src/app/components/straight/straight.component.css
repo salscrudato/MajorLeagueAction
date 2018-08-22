@@ -15,3 +15,11 @@
 .font-small{
   font-size: 80%;
 }
+
+td {
+  font-size: 60%;
+}
+
+th {
+  font-size: 80%;
+}

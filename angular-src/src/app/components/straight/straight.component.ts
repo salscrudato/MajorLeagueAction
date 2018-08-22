@@ -32,6 +32,7 @@ export class StraightComponent implements OnInit {
     } else {
       this.getOdds();
     }
+    console.log(this.actions);
   }
 
   getOdds(){
@@ -45,7 +46,7 @@ export class StraightComponent implements OnInit {
       }
     });
   }
-  
+
   sortEventOdds(odds){
     if(odds.length == 1){
       return odds;
@@ -75,6 +76,19 @@ export class StraightComponent implements OnInit {
     action.betType = type;
     this.authService.getProfile().subscribe(profile => {
       this.dataService.addStraightBet(action, profile, 'straight');
+      this.router.navigate(['confirm']);
+    },
+    err =>{
+      this.flashMessage.show('You must be logged in to place a bet.', {cssClass: 'alert-danger'});
+      return false;
+    });
+  }
+
+  placeGolf(tourn, part){
+    tourn.betType = 'golf';
+    tourn.participant = part;
+    this.authService.getProfile().subscribe(profile => {
+      this.dataService.addStraightBet(tourn, profile, 'straight');
       this.router.navigate(['confirm']);
     },
     err =>{

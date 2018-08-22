@@ -46,6 +46,25 @@ class Bet365Football {
       }
     }
 
+    this.homeTeamFirstHalf = this.addPlus(this.homeTeamFirstHalf);
+    this.awayTeamFirstHalf = this.addPlus(this.awayTeamFirstHalf);
+    this.firstHalfOver = this.addPlus(this.firstHalfOver);
+    this.firstHalfOverOdds = this.addPlus(this.firstHalfOverOdds);
+    this.firstHalfUnder = this.addPlus(this.firstHalfUnder);
+    this.firstHalfUnderOdds = this.addPlus(this.firstHalfUnderOdds);
+    this.homeTeamRLOddsFirstHalf = this.addPlus(this.homeTeamRLOddsFirstHalf);
+    this.homeTeamRLFirstHalf = this.addPlus(this.homeTeamRLFirstHalf);
+    this.awayTeamRLOddsFirstHalf = this.addPlus(this.awayTeamRLOddsFirstHalf);
+    this.awayTeamRLFirstHalf = this.addPlus(this.awayTeamRLFirstHalf);
+
+  }
+
+  static addPlus(odds){
+    if (odds > 0){
+      return '+' + odds;
+    } else {
+      return odds;
+    }
   }
 
   static formatRunLine(str){

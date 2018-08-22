@@ -129,7 +129,9 @@ export class LiveComponent implements OnInit {
   }
 
   showOdds(odds){
+    console.log(odds);
     odds = parseFloat(odds);
+
     if(odds != 0 && odds != null && odds != undefined && odds > -400 && odds < 400){
       return true;
     } else {

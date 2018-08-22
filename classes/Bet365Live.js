@@ -39,8 +39,8 @@ class Bet365Live {
     this.constructor.setDescription(oddsArray[0]);
     var score = this.constructor.setScore(oddsArray[0]);
     score = score.split('-');
-    this.homeScore = parseFloat(score[0]);
-    this.awayScore = parseFloat(score[1]);
+    this.homeScore = parseFloat(score[1]);
+    this.awayScore = parseFloat(score[0]);
     this.details = this.constructor.setDetails(oddsArray[0], sport);
 
     //==========For Baseball==========
@@ -119,9 +119,27 @@ class Bet365Live {
           odd[1] = parseInt(odd[1]);
           var decOdd = (odd[0]/odd[1]) + 1.00;
           if(decOdd >= 2){
-            return Math.round((decOdd - 1)*100);
+            var tmpOdd = Math.round((decOdd - 1)*100);
+            if(tmpOdd > 500){
+              return 0;
+            } else if(tmpOdd > 0){
+              return '+' + tmpOdd;
+            } else if(tmpOdd < -500){
+              return 0;
+            } else {
+              return tmpOdd;
+            }
           }else{
-            return Math.round((-100)/(decOdd-1));
+            var tmpOdd = Math.round((-100)/(decOdd-1));
+            if(tmpOdd > 500){
+              return 0;
+            } else if(tmpOdd > 0){
+              return '+' + tmpOdd;
+            } else if(tmpOdd < -500){
+              return 0;
+            } else {
+              return tmpOdd;
+            }
           }
         }
       }

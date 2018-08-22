@@ -78,22 +78,40 @@ class Bet365LiveFootball {
 
   }
 
-    static convertOdds(odd){
-      if(odd != null && odd != undefined && typeof odd == 'string'){
-        odd = odd.split('/');
-        if(odd.length>0){
-          odd[0] = parseInt(odd[0]);
-          odd[1] = parseInt(odd[1]);
-          var decOdd = (odd[0]/odd[1]) + 1.00;
-          if(decOdd >= 2){
-            return Math.round((decOdd - 1)*100);
-          }else{
-            return Math.round((-100)/(decOdd-1));
+  static convertOdds(odd){
+    if(odd != null && odd != undefined && typeof odd == 'string'){
+      odd = odd.split('/');
+      if(odd.length>0){
+        odd[0] = parseInt(odd[0]);
+        odd[1] = parseInt(odd[1]);
+        var decOdd = (odd[0]/odd[1]) + 1.00;
+        if(decOdd >= 2){
+          var tmpOdd = Math.round((decOdd - 1)*100);
+          if(tmpOdd > 500){
+            return 0;
+          } else if(tmpOdd > 0){
+            return '+' + tmpOdd;
+          } else if(tmpOdd < -500){
+            return 0;
+          } else {
+            return tmpOdd;
+          }
+        }else{
+          var tmpOdd = Math.round((-100)/(decOdd-1));
+          if(tmpOdd > 500){
+            return 0;
+          } else if(tmpOdd > 0){
+            return '+' + tmpOdd;
+          } else if(tmpOdd < -500){
+            return 0;
+          } else {
+            return tmpOdd;
           }
         }
       }
-      return odd;
     }
+    return odd;
+  }
 
     static setScore(event){
       return event.SS;

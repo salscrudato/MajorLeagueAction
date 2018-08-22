@@ -36,10 +36,13 @@ export class ParlayComponent implements OnInit {
   }
 
   getOdds(){
+    console.log('Getting Odds');
+    var tempArrId = [];
     var tempArr = [];
     this.oddsService.getOdds().subscribe(data =>{
       for (var i = 0; i < data.length; i++) {
-        if(data[i].sport == this.sport){
+        if(data[i].sport == this.sport && tempArrId.indexOf(data[i].id) < 0){
+          tempArrId.push(data[i].id);
           tempArr.push(data[i]);
           tempArr = this.dataService.sortBets(tempArr);
           this.setUpActions(tempArr, this.sport);

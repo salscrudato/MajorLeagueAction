@@ -9,7 +9,6 @@ const config = require('./config/database');
 //Connect to mongodb, assume I can change the config file to connect
 //to hosted db
 mongoose.connect(config.database);
-console.log(config.database);
 
 //On connect to db
 mongoose.connection.on('connected', function(){
@@ -59,5 +58,5 @@ app.get('*', (req,res) => {
 });
 
 app.listen(port, function(){
-	console.log('Server started on port '+port);
+	console.log('Server started on port '+ port);
 });

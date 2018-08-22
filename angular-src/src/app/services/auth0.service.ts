@@ -64,6 +64,15 @@ export class AuthService {
     return tokenNotExpired('id_token');
   }
 
+  loggedInAdmin(){
+    if(tokenNotExpired('id_token')){
+      var user = JSON.parse(localStorage.getItem('user'));
+      return user.username == 'actionplusadmin';
+    } else {
+      return false;
+    }
+  }
+
   logout(){
     this.authToken = null;
     this.user = null;

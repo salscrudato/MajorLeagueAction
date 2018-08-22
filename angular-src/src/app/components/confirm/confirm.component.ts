@@ -37,6 +37,13 @@ export class ConfirmComponent implements OnInit{
     this.getProfileAndAllBets();
     this.setBetDetailsAndOdds(this.bet);
     this.odds = this.calculateOdds(this.bet);
+
+    //Redirect after a minutes
+    setTimeout(() => {
+        this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
+        this.router.navigate(['menu']);
+    }, 60000);
+
   }
 
   //Gets current logged in user and then gets corresponding bets for that user
@@ -68,7 +75,8 @@ placeStraightBet(){
     var confirmedBet = new Bet(profile, this.bet, this.bet[0].source, this.odds, this.betAmount, winAmount, this.betType);
     this.betService.placeBet(confirmedBet).subscribe(data => {
       if(data.success){
-        this.router.navigate(['profile']);
+        this.router.navigate(['menu']);
+        this.flashMessage.show('Bet Placed', {cssClass: 'alert-success'});
       } else {
         this.flashMessage.show('Error placing bet - odds are expired', {cssClass: 'alert-warning'});
         this.router.navigate(['menu']);
@@ -146,7 +154,7 @@ clickPlaceBet(){
       this.placeStraightBet();
     }
   } else {
-    this.flashMessage.show('Insufficient Funds', {cssClass: 'alert-warning'});
+    this.flashMessage.show('Insufficient funds, available balance: $' + curAvail, {cssClass: 'alert-warning'});
   }
 }
 
@@ -185,7 +193,7 @@ setBetDescription(bet){
     bet.odds = homeTeamML;
     break;
     case 'over':
-    if(bet.overLine != undefined){
+    if(bet.overLine != undefined && bet.overLine != null){
       bet.betDetails = awayTeam + " @ " + homeTeam + " Over " + bet.totalNumber + ' ' + bet.overLine;
       bet.odds = bet.overLine;
       bet.line = bet.totalNumber;
@@ -196,7 +204,7 @@ setBetDescription(bet){
     }
     break;
     case 'under':
-    if(bet.sport != '1'){
+    if(bet.underLine != undefined && bet.underLine != null){
       bet.betDetails = awayTeam + " @ " + homeTeam + " Under " + bet.totalNumber + ' ' + bet.underLine;
       bet.odds = bet.underLine;
       bet.line = bet.underLine;
@@ -285,6 +293,10 @@ setBetDescription(bet){
     case 'bothScoreNo':
     bet.betDetails = awayTeam + ' @ ' + homeTeam + ' Both Score - No ' + bet.bothScoreNo;
     bet.odds = bet.bothScoreNo;
+    break;
+    case 'golf':
+    bet.betDetails = bet.participant.name + ' (' + bet.participant.odds + ')' + ' To win the ' + bet.eventName;
+    bet.odds = bet.participant.odds;
     break;
     default:
     break;
