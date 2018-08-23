@@ -48,7 +48,7 @@
                 </a>
               </div>
               <div class="col w-50">
-                <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != 0 action.homeTeamML != undefined">
+                <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != 0 && action.homeTeamML != undefined">
                   {{action.homeTeamML}}
                 </a>
               </div>
@@ -75,7 +75,7 @@
                 </a>
               </div>
               <div class="col border-right">
-                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'draw')" *ngIf="action.drawOdds != 0 action.drawOdds != undefined">
+                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'draw')" *ngIf="action.drawOdds != 0 && action.drawOdds != undefined">
                   {{action.drawOdds}}
                 </a>
               </div>
