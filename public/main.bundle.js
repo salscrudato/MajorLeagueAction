@@ -1211,6 +1211,7 @@ var LiveComponent = (function () {
         this.getLiveEvents(this.sport, league);
         this.interval = setInterval(function () {
             _this.refreshLiveEventOdds(_this.eventsArray);
+            console.log('Getting Live Odds');
         }, 8000);
     };
     LiveComponent.prototype.getLiveEvents = function (sportId, leagueId) {
