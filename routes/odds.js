@@ -54,7 +54,7 @@ router.get('/events', cache(5000), function(req, res, next){
   if(leagueId == 0){
     leagueId = '';
   }
-  var apiKey = '10744-6nAVE6st6PH0mD';
+  var apiKey = '11194-fFJWf4UUW1tZhK';
   var eventsUrl = 'https://api.betsapi.com/v1/bet365/inplay_filter?token='
   + apiKey + '&sport_id=' + sportId + '&league_id=' + leagueId;
   var options = {
@@ -112,7 +112,7 @@ router.get('/eventOdds', cache(1000), function(req, res, next){
   var awayTeamImage = req.query.awayTeamImage;
   var sportId = req.query.sportId;
   var epoch = req.query.epoch;
-  var apiKey = '10744-6nAVE6st6PH0mD';
+  var apiKey = '11194-fFJWf4UUW1tZhK';
   var oddsUrl = 'https://api.betsapi.com/v1/bet365/event?token=' + apiKey + '&FI=' + eventId;
   var oddsOptions = {
     url: oddsUrl,
@@ -138,7 +138,7 @@ router.get('/eventOdds', cache(1000), function(req, res, next){
 router.get('/upcomingEvents', cache(5000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
-  var apiKey = '10744-6nAVE6st6PH0mD';
+  var apiKey = '11194-fFJWf4UUW1tZhK';
   var eventsUrl = 'https://api.betsapi.com/v1/bet365/upcoming?token='
   + apiKey + '&sport_id=' + sportId + '&league_id=' + leagueId;
   var options = {
@@ -174,7 +174,7 @@ router.get('/upcomingEvents', cache(5000), function(req, res, next){
 //Get all upcoming leagues (Tennis)
 router.get('/upcomingEventLeagues', cache(5000), function(req, res, next){
   var sportId = 13;
-  var apiKey = '10744-6nAVE6st6PH0mD';
+  var apiKey = '11194-fFJWf4UUW1tZhK';
   var baseUrl = 'https://api.betsapi.com/v1/bet365/upcoming?token='
   + apiKey + '&sport_id=' + sportId;
   var options = {
@@ -212,7 +212,7 @@ router.get('/upcomingEventOdds', cache(5000), function(req, res, next){
   var awayTeam = req.query.awayTeam;
   var gameTime = req.query.gameTime;
   var sport = req.query.sport;
-  var apiKey = '10744-6nAVE6st6PH0mD';
+  var apiKey = '11194-fFJWf4UUW1tZhK';
   var oddsUrl = 'https://api.betsapi.com/v1/bet365/start_sp?token=' + apiKey + '&FI=' + eventId;
   var oddsOptions = {
     url: oddsUrl,
