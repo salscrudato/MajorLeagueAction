@@ -14,7 +14,7 @@ var bet365Calls = 0;
 
 let cache = apicache.middleware;
 
-router.get('/all', cache(60000), function(req, res, next){
+router.get('/all', cache('20 minutes'), function(req, res, next){
   //router.get('/all', function(req, res, next){
   var headers = {
     'x-api-key':'c3eeb8e5-339c-4c38-9cf5-9aa6255969e5'
@@ -51,7 +51,7 @@ router.get('/all', cache(60000), function(req, res, next){
 });
 
 //Live Events
-router.get('/events', cache(10000), function(req, res, next){
+router.get('/events', cache('2 minutes'), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   if(leagueId == 0){
@@ -258,7 +258,7 @@ var getNumberOfEvents = function(options, callback){
 
 //Upcoming Odds by Event
 //Add cache back in
-router.get('/upcomingEventOdds', function(req, res, next){
+router.get('/upcomingEventOdds', cache(10000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   var awayTeam = req.query.awayTeam;
