@@ -53,8 +53,7 @@ app.get('/', function(req, res){
 });
 
 app.get('*', (req,res) => {
-	console.log('Here');
-	res.send({message: 'Cannot refresh, please navigate to the homepage'});
+	res.send(__dirname + '/angular-src/src/index.html');
 });
 
 app.listen(port, function(){

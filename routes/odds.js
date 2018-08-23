@@ -171,11 +171,44 @@ router.get('/upcomingEvents', cache(5000), function(req, res, next){
   });
 });
 
+//Get all upcoming leagues (Tennis)
+router.get('/upcomingEventLeagues', cache(5000), function(req, res, next){
+  var sportId = 13;
+  var apiKey = '10744-6nAVE6st6PH0mD';
+  var baseUrl = 'https://api.betsapi.com/v1/bet365/upcoming?token='
+  + apiKey + '&sport_id=' + sportId;
+  var options = {
+    url:baseUrl,
+    method: 'GET'
+  }
+
+  getNumberOfEvents(options, function(numEvents){
+    console.log(numEvents);
+  });
+
+});
+
+var getNumberOfEvents = function(options, callback){
+
+  request(options, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var events = JSON.parse(body);
+      if(events.pager.total != undefined){
+        var numCalls = Math.round(parseFloat(events.pager.total)/50);
+        callback(numCalls);
+      }
+    } else {
+      callback(false);
+    }
+  });
+
+}
+
+
 //Upcoming Odds by Event
 router.get('/upcomingEventOdds', cache(5000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
-  console.log('Getting Live Odds ' + homeTeam);
   var awayTeam = req.query.awayTeam;
   var gameTime = req.query.gameTime;
   var sport = req.query.sport;
