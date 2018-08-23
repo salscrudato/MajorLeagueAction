@@ -54,8 +54,8 @@ app.get('/', function(req, res){
 
 app.get('*',function(req,res){
 	//res.sendfile('./angular-src/src/app/app.component.html')
-	res.send(path.join(__dirname, 'public')));
-})
+	res.send(path.join(__dirname, 'public'));
+});
 
 
 app.listen(port, function(){
