@@ -38,6 +38,7 @@ export class ConfirmComponent implements OnInit{
     this.getProfileAndAllBets();
     this.setBetDetailsAndOdds(this.bet);
     this.odds = this.calculateOdds(this.bet);
+    console.log(this.bet);
 
     //Redirect after a minutes
     this.timer = setTimeout(() => {

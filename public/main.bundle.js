@@ -688,6 +688,7 @@ var ConfirmComponent = (function () {
         this.getProfileAndAllBets();
         this.setBetDetailsAndOdds(this.bet);
         this.odds = this.calculateOdds(this.bet);
+        console.log(this.bet);
         //Redirect after a minutes
         this.timer = setTimeout(function () {
             _this.flashMessage.show('You have been re-directed due to inactivity, please try again', { cssClass: 'alert-warning' });
