@@ -28,68 +28,69 @@ class Bet365Upcoming {
     this.awayTeamUnderOdds = 0;
 
     if(oddsArr != undefined){
-    for(var key in oddsArr.sp){
-      if(key == 'a_run_in_the_1st_innings' && this.sport == 16){
-        //Run in first lines
-        if(oddsArr.sp.a_run_in_the_1st_innings[0].opp == 'Yes'){
-          this.runInFirst = this.constructor.convertOdds(oddsArr.sp.a_run_in_the_1st_innings[0].odds);
+      for(var key in oddsArr.sp){
+        if(key == 'a_run_in_the_1st_innings' && this.sport == 16){
+          //Run in first lines
+          if(oddsArr.sp.a_run_in_the_1st_innings[0].opp == 'Yes'){
+            this.runInFirst = this.constructor.convertOdds(oddsArr.sp.a_run_in_the_1st_innings[0].odds);
+          }
+          if(oddsArr.sp.a_run_in_the_1st_innings[1].opp == 'No'){
+            this.noRunInFirst = this.constructor.convertOdds(oddsArr.sp.a_run_in_the_1st_innings[1].odds);
+          }
         }
-        if(oddsArr.sp.a_run_in_the_1st_innings[1].opp == 'No'){
-          this.noRunInFirst = this.constructor.convertOdds(oddsArr.sp.a_run_in_the_1st_innings[1].odds);
+        if(key == '5_innings_line' && this.sport == 16){
+          //First 5 innings line
+          var fiveInnArr = oddsArr.sp["5_innings_line"];
+          if(fiveInnArr[0].opp.includes(this.homeTeam)){
+            this.homeTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[0].odds);
+          } else if(fiveInnArr[0].opp.includes(this.awayTeam)){
+            this.awayTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[0].odds);
+          }
+          if(fiveInnArr[1].opp.includes(this.homeTeam)){
+            this.homeTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[1].odds);
+          } else if(fiveInnArr[1].opp.includes(this.awayTeam)){
+            this.awayTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[1].odds);
+          }
         }
-      }
-      if(key == '5_innings_line' && this.sport == 16){
-        //First 5 innings line
-        var fiveInnArr = oddsArr.sp["5_innings_line"];
-        if(fiveInnArr[0].opp.includes(this.homeTeam)){
-          this.homeTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[0].odds);
-        } else if(fiveInnArr[0].opp.includes(this.awayTeam)){
-          this.awayTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[0].odds);
-        }
-        if(fiveInnArr[1].opp.includes(this.homeTeam)){
-          this.homeTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[1].odds);
-        } else if(fiveInnArr[1].opp.includes(this.awayTeam)){
-          this.awayTeamFirstHalf = this.constructor.convertOdds(fiveInnArr[1].odds);
-        }
-      }
-      if(key == 'alternative_run_line' && this.sport == 16){
-        //Alternate Run lines
-        var altLines = oddsArr.sp["alternative_run_line"];
-        for(var i = 0; i < altLines.length; i++){
-          var line = parseFloat(altLines[i].opp);
-          var team = altLines[i].header;
-          var odds = this.constructor.convertOdds(parseFloat(altLines[i].odds));
-          if (line > -3 && line < 3){
-            if(team == this.homeTeam){
-              this.homeTeamRL.push({number: line, odds: odds});
-            } else if(team == this.awayTeam){
-              this.awayTeamRL.push({number: line, odds: odds});
+        if(key == 'alternative_run_line' && this.sport == 16){
+          //Alternate Run lines
+          var altLines = oddsArr.sp["alternative_run_line"];
+          for(var i = 0; i < altLines.length; i++){
+            var line = parseFloat(altLines[i].opp);
+            var team = altLines[i].header;
+            var odds = this.constructor.convertOdds(parseFloat(altLines[i].odds));
+            if (line > -3 && line < 3){
+              if(team == this.homeTeam){
+                this.homeTeamRL.push({number: line, odds: odds});
+              } else if(team == this.awayTeam){
+                this.awayTeamRL.push({number: line, odds: odds});
+              }
             }
           }
         }
-      }
-      if(key == 'team_totals' && this.sport == 16){
-        //Set Team Totals
-        var teamTotals = oddsArr.sp["team_totals"];
-        for(var i = 0; i < teamTotals.length; i++){
-          if(teamTotals[i].opp.length > 3){
-            var team = teamTotals[i].header;
-            var type = teamTotals[i].opp.substring(0,1);
-            var number = teamTotals[i].opp.substring(2);
-            var odds = this.constructor.convertOdds(teamTotals[i].odds);
-            if(this.homeTeam == team){
-              if(type == 'O'){
-                this.homeTeamTotalLine = number;
-                this.homeTeamOverOdds = odds;
-              } else {
-                this.homeTeamUnderOdds = odds;
-              }
-            } else if(this.awayTeam == team){
-              if(type == 'O'){
-                this.awayTeamTotalLine = number;
-                this.awayTeamOverOdds = odds;
-              } else {
-                this.awayTeamUnderOdds = odds;
+        if(key == 'team_totals' && this.sport == 16){
+          //Set Team Totals
+          var teamTotals = oddsArr.sp["team_totals"];
+          for(var i = 0; i < teamTotals.length; i++){
+            if(teamTotals[i].opp.length > 3){
+              var team = teamTotals[i].header;
+              var type = teamTotals[i].opp.substring(0,1);
+              var number = teamTotals[i].opp.substring(2);
+              var odds = this.constructor.convertOdds(teamTotals[i].odds);
+              if(this.homeTeam == team){
+                if(type == 'O'){
+                  this.homeTeamTotalLine = number;
+                  this.homeTeamOverOdds = odds;
+                } else {
+                  this.homeTeamUnderOdds = odds;
+                }
+              } else if(this.awayTeam == team){
+                if(type == 'O'){
+                  this.awayTeamTotalLine = number;
+                  this.awayTeamOverOdds = odds;
+                } else {
+                  this.awayTeamUnderOdds = odds;
+                }
               }
             }
           }
@@ -97,13 +98,27 @@ class Bet365Upcoming {
       }
     }
   }
-  }
 
   static convertOdds(odd){
+    odd = parseFloat(odd);
     if(odd >= 2){
-      return Math.round((odd - 1)*100);
+      var tmpOdd = Math.round((odd - 1)*100);
     }else{
-      return Math.round((-100)/(odd-1));
+      var tmpOdd = Math.round((-100)/(odd-1));
+    }
+    if(tmpOdd > 0){
+      return '+' + tmpOdd;
+    } else {
+      return tmpOdd;
+    }
+  }
+
+  static addPlus(odd){
+    odd = parseFloat(odd);
+    if(odd > 0){
+      return '+' + odd;
+    } else {
+      return odd;
     }
   }
 

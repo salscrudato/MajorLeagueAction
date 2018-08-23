@@ -257,7 +257,8 @@ var getNumberOfEvents = function(options, callback){
 }
 
 //Upcoming Odds by Event
-router.get('/upcomingEventOdds', cache('2 minutes'), function(req, res, next){
+//Add cache back in
+router.get('/upcomingEventOdds', function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   var awayTeam = req.query.awayTeam;

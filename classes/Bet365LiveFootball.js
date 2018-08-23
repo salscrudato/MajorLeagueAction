@@ -44,40 +44,40 @@ class Bet365LiveFootball {
     this.awayScore = parseFloat(score[1]);
     this.details = this.constructor.setDetails(oddsArray[0]);
 
-      //=====Set indexes=====
-      for(var i = 0; i < oddsArray.length; i++){
-        if(oddsArray[i].type == 'MA'){
-          if(oddsArray[i].NA == 'Match Winner 2-Way'){
-            mlStartIndex = i + 2;
-            mlEndIndex = this.constructor.findEnd(mlStartIndex, oddsArray);
-          } else if(oddsArray[i].NA == 'Handicap 2-Way'){
-            rlStartIndex = i + 2;
-            rlEndIndex = this.constructor.findEnd(rlStartIndex, oddsArray);
-          } else if(oddsArray[i].NA == 'Total 2-Way'){
-            totalStartIndex = i + 2;
-            totalEndIndex = this.constructor.findEnd(totalStartIndex, oddsArray);
-          }
+    //=====Set indexes=====
+    for(var i = 0; i < oddsArray.length; i++){
+      if(oddsArray[i].type == 'MA'){
+        if(oddsArray[i].NA == 'Match Winner 2-Way'){
+          mlStartIndex = i + 2;
+          mlEndIndex = this.constructor.findEnd(mlStartIndex, oddsArray);
+        } else if(oddsArray[i].NA == 'Handicap 2-Way'){
+          rlStartIndex = i + 2;
+          rlEndIndex = this.constructor.findEnd(rlStartIndex, oddsArray);
+        } else if(oddsArray[i].NA == 'Total 2-Way'){
+          totalStartIndex = i + 2;
+          totalEndIndex = this.constructor.findEnd(totalStartIndex, oddsArray);
         }
       }
+    }
 
-      //=====Set Values from Index=====
-      this.homeTeamML = this.constructor.setML(homeTeam, mlStartIndex, mlEndIndex, oddsArray);
-      this.homeTeamML = this.constructor.convertOdds(this.homeTeamML);
-      this.awayTeamML = this.constructor.setML(awayTeam, mlStartIndex, mlEndIndex, oddsArray);
-      this.awayTeamML = this.constructor.convertOdds(this.awayTeamML);
+    //=====Set Values from Index=====
+    this.homeTeamML = this.constructor.setML(homeTeam, mlStartIndex, mlEndIndex, oddsArray);
+    this.homeTeamML = this.constructor.convertOdds(this.homeTeamML);
+    this.awayTeamML = this.constructor.setML(awayTeam, mlStartIndex, mlEndIndex, oddsArray);
+    this.awayTeamML = this.constructor.convertOdds(this.awayTeamML);
 
-      this.homeTeamRL = this.constructor.setRL(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
-      this.awayTeamRL = this.constructor.setRL(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
-      this.homeTeamRLOdds = this.constructor.setRLOdds(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
-      this.homeTeamRLOdds = this.constructor.convertOdds(this.homeTeamRLOdds);
-      this.awayTeamRLOdds = this.constructor.setRLOdds(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
-      this.awayTeamRLOdds = this.constructor.convertOdds(this.awayTeamRLOdds);
+    this.homeTeamRL = this.constructor.setRL(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
+    this.awayTeamRL = this.constructor.setRL(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
+    this.homeTeamRLOdds = this.constructor.setRLOdds(homeTeam, rlStartIndex, rlEndIndex, oddsArray);
+    this.homeTeamRLOdds = this.constructor.convertOdds(this.homeTeamRLOdds);
+    this.awayTeamRLOdds = this.constructor.setRLOdds(awayTeam, rlStartIndex, rlEndIndex, oddsArray);
+    this.awayTeamRLOdds = this.constructor.convertOdds(this.awayTeamRLOdds);
 
-      this.under = this.constructor.setTotal('Under', totalStartIndex, totalEndIndex, oddsArray);
-      this.over = this.constructor.setTotal('Over', totalStartIndex, totalEndIndex, oddsArray);
+    this.under = this.constructor.setTotal('Under', totalStartIndex, totalEndIndex, oddsArray);
+    this.over = this.constructor.setTotal('Over', totalStartIndex, totalEndIndex, oddsArray);
 
   }
-
+  
   static convertOdds(odd){
     if(odd != null && odd != undefined && typeof odd == 'string'){
       odd = odd.split('/');
@@ -113,72 +113,72 @@ class Bet365LiveFootball {
     return odd;
   }
 
-    static setScore(event){
-      return event.SS;
-    }
-
-    static setDetails(event){
-        return event.CT + ' - ' + event.UC;
-    }
-
-    static setML(team, start, length, oddsArray){
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA == team){
-          return oddsArray[i].OD;
-        }
-      }
-    }
-
-    static setRL(team, start, length, oddsArray){
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA == team){
-          return oddsArray[i].HA;
-        }
-      }
-    }
-
-    static setRLOdds(team, start, length, oddsArray){
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA == team){
-          return oddsArray[i].OD;
-        }
-      }
-    }
-
-    static setTotal(type, start, length, oddsArray){
-      var tempArr = [];
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA.trim() == type){
-          return {number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)};
-        }
-      }
-      return tempArr;
-    }
-
-    static findEnd(start, oddsArr){
-      var found = 0;
-      var count = start;
-      while(found == 0){
-        if(oddsArr[count].type != 'PA' || count == oddsArr.length){
-          found = 1;
-        } else {
-          count = count + 1;
-        }
-      }
-      return count - 1;
-    }
-
-    static formatAMPM(date) {
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var ampm = hours >= 12 ? 'pm' : 'am';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      minutes = minutes < 10 ? '0'+minutes : minutes;
-      var strTime = hours + ':' + minutes + ' ' + ampm;
-      return strTime;
-    }
-
+  static setScore(event){
+    return event.SS;
   }
 
-  module.exports = Bet365LiveFootball;
+  static setDetails(event){
+    return event.CT + ' - ' + event.UC;
+  }
+
+  static setML(team, start, length, oddsArray){
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA == team){
+        return oddsArray[i].OD;
+      }
+    }
+  }
+
+  static setRL(team, start, length, oddsArray){
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA == team){
+        return oddsArray[i].HA;
+      }
+    }
+  }
+
+  static setRLOdds(team, start, length, oddsArray){
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA == team){
+        return oddsArray[i].OD;
+      }
+    }
+  }
+
+  static setTotal(type, start, length, oddsArray){
+    var tempArr = [];
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA.trim() == type){
+        return {number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)};
+      }
+    }
+    return tempArr;
+  }
+
+  static findEnd(start, oddsArr){
+    var found = 0;
+    var count = start;
+    while(found == 0){
+      if(oddsArr[count].type != 'PA' || count == oddsArr.length){
+        found = 1;
+      } else {
+        count = count + 1;
+      }
+    }
+    return count - 1;
+  }
+
+  static formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
+
+}
+
+module.exports = Bet365LiveFootball;

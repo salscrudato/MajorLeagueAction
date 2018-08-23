@@ -66,10 +66,16 @@ class Bet365Soccer {
   }
 
   static convertOdds(odd){
+    odd = parseFloat(odd);
     if(odd >= 2){
-      return Math.round((odd - 1)*100);
+      var tmpOdd = Math.round((odd - 1)*100);
     }else{
-      return Math.round((-100)/(odd-1));
+      var tmpOdd = Math.round((-100)/(odd-1));
+    }
+    if(tmpOdd > 0){
+      return '+' + tmpOdd;
+    } else {
+      return tmpOdd;
     }
   }
 

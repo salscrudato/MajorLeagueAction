@@ -11,8 +11,9 @@ import {Router} from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  user:any;
-  allPendings:any;
+  users:any;
+  showUsers:boolean = false;
+  totalBalance:number = 0;
 
   constructor(
     private authService:AuthService,
@@ -22,53 +23,59 @@ export class AdminComponent implements OnInit {
   ){}
 
   ngOnInit() {
-
-    //Gets current logged in user profile
-    this.authService.getProfile().subscribe(profile => {
-    this.user = profile.user;
-  },
-  err =>{
-    return false;
-  });
-
-  this.getAllPendings();
-}
-
-getAllPendings(){
-  this.betService.getAllPendings().subscribe(pendings => {
-    this.allPendings = pendings;
-  },
-  err =>{
-    return false;
-  });
-}
-
-closePendingBet(pendingBet, result){
-  var amount;
-  if(result=='win'){
-    amount = pendingBet.winAmount;
-  } else {
-    amount = pendingBet.betAmount * -1;
+    this.getAllUsers();
   }
-  const updatedAmount = {
-    userId: pendingBet.userId,
-    amount: amount
+
+  getAllUsers(){
+    this.userService.getAllUsers().subscribe(users => {
+      this.users = users;
+      this.getCurrentBalance();
+    },
+    err =>{
+      return false;
+    });
   }
-  this.userService.updateBalance(updatedAmount).subscribe(data => {
-    if(data.success) {
-      this.betService.closeBet(pendingBet._id, result).subscribe(data => {
-        this.getAllPendings();
-        return true;
-      },
-      err =>{
-        console.log(err);
-        return false;
-      });
-    } else {
-      //whatever action if we can't update balance
+
+  getCurrentBalance(){
+    for(var i = 0; i < this.users.length; i++){
+      this.totalBalance = this.totalBalance + this.users[i].currentBalance;
     }
-  });
+  }
+
+  showHideUsers(){
+    if (this.showUsers){
+      this.showUsers = false;
+    } else {
+      this.showUsers = true;
+    }
+  }
 
 }
 
-}
+
+// closePendingBet(pendingBet, result){
+//   var amount;
+//   if(result=='win'){
+//     amount = pendingBet.winAmount;
+//   } else {
+//     amount = pendingBet.betAmount * -1;
+//   }
+//   const updatedAmount = {
+//     userId: pendingBet.userId,
+//     amount: amount
+//   }
+//   this.userService.updateBalance(updatedAmount).subscribe(data => {
+//     if(data.success) {
+//       this.betService.closeBet(pendingBet._id, result).subscribe(data => {
+//         this.getAllPendings();
+//         return true;
+//       },
+//       err =>{
+//         console.log(err);
+//         return false;
+//       });
+//     } else {
+//       //whatever action if we can't update balance
+//     }
+//   });
+// }

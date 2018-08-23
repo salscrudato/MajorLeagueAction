@@ -84,7 +84,7 @@ export class DataService {
     } else {
       for(var i = 0; i < bets.length; i++){
         for(var j = 0; j < bets.length - 1 - i; j++){
-          if(bets[j].epoch < bets[j+1].epoch){
+          if(bets[j].subBets[0].epoch < bets[j+1].subBets[0].epoch){
             var tmpBet = bets[j];
             bets[j] = bets[j+1];
             bets[j+1] = tmpBet;
@@ -94,5 +94,23 @@ export class DataService {
       return bets;
     }
   }
+
+  sortBetsReverse(bets){
+    if(bets.length == 1){
+      return bets;
+    } else {
+      for(var i = 0; i < bets.length; i++){
+        for(var j = 0; j < bets.length - 1 - i; j++){
+          if(bets[j].subBets[0].epoch > bets[j+1].subBets[0].epoch){
+            var tmpBet = bets[j];
+            bets[j] = bets[j+1];
+            bets[j+1] = tmpBet;
+          }
+        }
+      }
+      return bets;
+    }
+  }
+
 
 }

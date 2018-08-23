@@ -340,7 +340,24 @@ var DataService = (function () {
         else {
             for (var i = 0; i < bets.length; i++) {
                 for (var j = 0; j < bets.length - 1 - i; j++) {
-                    if (bets[j].epoch < bets[j + 1].epoch) {
+                    if (bets[j].subBets[0].epoch < bets[j + 1].subBets[0].epoch) {
+                        var tmpBet = bets[j];
+                        bets[j] = bets[j + 1];
+                        bets[j + 1] = tmpBet;
+                    }
+                }
+            }
+            return bets;
+        }
+    };
+    DataService.prototype.sortBetsReverse = function (bets) {
+        if (bets.length == 1) {
+            return bets;
+        }
+        else {
+            for (var i = 0; i < bets.length; i++) {
+                for (var j = 0; j < bets.length - 1 - i; j++) {
+                    if (bets[j].subBets[0].epoch > bets[j + 1].subBets[0].epoch) {
                         var tmpBet = bets[j];
                         bets[j] = bets[j + 1];
                         bets[j + 1] = tmpBet;
@@ -577,51 +594,33 @@ var AdminComponent = (function () {
         this.router = router;
         this.betService = betService;
         this.userService = userService;
+        this.showUsers = false;
+        this.totalBalance = 0;
     }
     AdminComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        //Gets current logged in user profile
-        this.authService.getProfile().subscribe(function (profile) {
-            _this.user = profile.user;
-        }, function (err) {
-            return false;
-        });
-        this.getAllPendings();
+        this.getAllUsers();
     };
-    AdminComponent.prototype.getAllPendings = function () {
+    AdminComponent.prototype.getAllUsers = function () {
         var _this = this;
-        this.betService.getAllPendings().subscribe(function (pendings) {
-            _this.allPendings = pendings;
+        this.userService.getAllUsers().subscribe(function (users) {
+            _this.users = users;
+            _this.getCurrentBalance();
         }, function (err) {
             return false;
         });
     };
-    AdminComponent.prototype.closePendingBet = function (pendingBet, result) {
-        var _this = this;
-        var amount;
-        if (result == 'win') {
-            amount = pendingBet.winAmount;
+    AdminComponent.prototype.getCurrentBalance = function () {
+        for (var i = 0; i < this.users.length; i++) {
+            this.totalBalance = this.totalBalance + this.users[i].currentBalance;
+        }
+    };
+    AdminComponent.prototype.showHideUsers = function () {
+        if (this.showUsers) {
+            this.showUsers = false;
         }
         else {
-            amount = pendingBet.betAmount * -1;
+            this.showUsers = true;
         }
-        var updatedAmount = {
-            userId: pendingBet.userId,
-            amount: amount
-        };
-        this.userService.updateBalance(updatedAmount).subscribe(function (data) {
-            if (data.success) {
-                _this.betService.closeBet(pendingBet._id, result).subscribe(function (data) {
-                    _this.getAllPendings();
-                    return true;
-                }, function (err) {
-                    console.log(err);
-                    return false;
-                });
-            }
-            else {
-            }
-        });
     };
     AdminComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -634,6 +633,32 @@ var AdminComponent = (function () {
     return AdminComponent;
     var _a, _b, _c, _d;
 }());
+// closePendingBet(pendingBet, result){
+//   var amount;
+//   if(result=='win'){
+//     amount = pendingBet.winAmount;
+//   } else {
+//     amount = pendingBet.betAmount * -1;
+//   }
+//   const updatedAmount = {
+//     userId: pendingBet.userId,
+//     amount: amount
+//   }
+//   this.userService.updateBalance(updatedAmount).subscribe(data => {
+//     if(data.success) {
+//       this.betService.closeBet(pendingBet._id, result).subscribe(data => {
+//         this.getAllPendings();
+//         return true;
+//       },
+//       err =>{
+//         console.log(err);
+//         return false;
+//       });
+//     } else {
+//       //whatever action if we can't update balance
+//     }
+//   });
+// }
 //# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/admin.component.js.map
 
 /***/ }),
@@ -689,6 +714,7 @@ var ConfirmComponent = (function () {
         this.setBetDetailsAndOdds(this.bet);
         this.odds = this.calculateOdds(this.bet);
         console.log(this.bet);
+        console.log(this.odds);
         //Redirect after a minutes
         this.timer = setTimeout(function () {
             _this.flashMessage.show('You have been re-directed due to inactivity, please try again', { cssClass: 'alert-warning' });
@@ -802,16 +828,24 @@ var ConfirmComponent = (function () {
     ConfirmComponent.prototype.clickPlaceBet = function () {
         var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
         if (this.betAmount < curAvail) {
-            if (this.betType == 'LIVE') {
-                this.placeLiveBet();
+            if ((this.odds) / 100 < 35) {
+                if (this.betType == 'LIVE') {
+                    this.placeLiveBet();
+                }
+                else {
+                    this.placeStraightBet();
+                }
             }
             else {
-                this.placeStraightBet();
+                this.flashMessage.show('Bet exceeds maximum payout ratio', { cssClass: 'alert-warning' });
             }
         }
         else {
             this.flashMessage.show('Insufficient funds, available balance: $' + curAvail, { cssClass: 'alert-warning' });
         }
+    };
+    ConfirmComponent.prototype.cancelBet = function () {
+        this.router.navigate(['menu']);
     };
     ConfirmComponent.prototype.setBetDetailsAndOdds = function (bets) {
         for (var i = 0; i < bets.length; i++) {
@@ -1057,6 +1091,9 @@ var HomeComponent = (function () {
         this.flashMessage = flashMessage;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        if (this.authService.loggedIn()) {
+            this.router.navigate(['profile']);
+        }
     };
     HomeComponent.prototype.onLoginSubmit = function () {
         var _this = this;
@@ -1839,14 +1876,14 @@ var ProfileComponent = (function () {
                 for (var i = 0; i < bets.length; i++) {
                     if (bets[i].status == 'open') {
                         _this.pendingBets.push(bets[i]);
+                        _this.pendingBets = _this.dataService.sortBets(_this.pendingBets);
                         _this.amountPending = _this.amountPending + bets[i].betAmount;
                     }
                     else {
                         _this.closedBets.push(bets[i]);
+                        _this.closedBets = _this.dataService.sortBets(_this.closedBets);
                     }
                 }
-                _this.pendingBets = _this.dataService.sortBets(_this.pendingBets);
-                _this.closedBets = _this.dataService.sortBets(_this.closedBets);
             }, function (error) {
                 console.log(error);
                 return false;
@@ -2380,21 +2417,21 @@ module.exports = "<app-navbar class=\"fixed-top\"></app-navbar>\n<div>\n\t<flash
 /***/ 705:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div>\n    <h2 class=\"page-header\">All Pending Bets</h2>\n    <ul *ngFor=\"let pending of allPendings\" class=\"list-group\">\n      <li class=\"list-group-item\">Username: {{pending.username}} Description: {{pending.description}}</li>\n      <div class=\"row\">\n      <a class=\"btn btn-primary btn-sm text-light w-50\"(click)=\"closePendingBet(pending, 'win')\">Win</a>\n      <a class=\"btn btn-danger btn-sm text-light w-50\"(click)=\"closePendingBet(pending, 'loss')\">Loss</a>\n    </div>\n    </ul>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container bg-dark m-0 p-0 text-light\">\n  <div class=\"row mt-5\" align=\"center\">\n    <div class=\"col mt-2\">\n      <h3>Welcome</h3>\n\n\n      <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n        <div class=\"row pt-2 border-bottom\">\n          <div class=\"col\" align=\"center\">\n            <h5 *ngIf=\"showUsers==false\" (click)=\"showHideUsers()\">Show All Users: {{totalBalance}}</h5>\n            <h5 *ngIf=\"showUsers\" (click)=\"showHideUsers()\">Hide All Users: {{totalBalance}}</h5>\n          </div>\n        </div>\n        <div *ngIf=\"showUsers\">\n        <table class=\"table table-dark table-hover w-100\">\n          <thead>\n            <tr>\n              <th style=\"width:50%\">Username</th>\n              <th style=\"width:50%\">Current Balance</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let user of users\">\n              <td>{{user.username}}</td>\n              <td>{{user.currentBalance}}</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n      </div>\n\n\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 706:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n\n  <div class = \"col\" align = \"center\">\n    <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n    <p>{{betType}} BET</p>\n    <form (submit)=\"clickPlaceBet()\">\n      <ul class=\"list-group mb-2\">\n        <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n      </ul>\n      <div class=\"row p-0 m-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <label for=\"amount\">Bet Amount:</label>\n          <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n        </div>\n        <div class=\"col w-50\" *ngIf=\"betAmount>0\">\n          <label for=\"winamount\">Win Amount:</label>\n          <p class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</p>\n          <p class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</p>\n        </div>\n      </div>\n      <div class=\"mt-2\" *ngIf=\"clickedSubmit==false\">\n        <input type=\"submit\" class=\"btn btn-primary\" value=\"Place Bet\">\n      </div>\n      <div class=\"mt-2\" *ngIf=\"clickedSubmit==true\">\n        <div class=\"loader\"></div>\n      </div>\n\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n\n  <div class = \"col\" align = \"center\">\n    <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n    <p>{{betType}} BET</p>\n    <form (submit)=\"clickPlaceBet()\">\n      <ul class=\"list-group mb-2\">\n        <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n      </ul>\n      <div class=\"row p-0 m-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <label for=\"amount\">Bet Amount:</label>\n          <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n        </div>\n        <div class=\"col w-50\" *ngIf=\"betAmount>0\">\n          <label for=\"winamount\">Win Amount:</label>\n          <h3 class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</h3>\n          <h3 class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</h3>\n        </div>\n      </div>\n      <div class=\"row mt-2 ml-0 mr-0\" *ngIf=\"clickedSubmit==false\">\n        <div class=\"col w-50\" align=\"left\">\n          <a class=\"btn btn-block btn-warning\" (click)=\"cancelBet()\">Cancel</a>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <input type=\"submit\" class=\"btn btn-primary btn-block\" value=\"Place Bet\">\n        </div>\n      </div>\n      <div class=\"mt-2\" *ngIf=\"clickedSubmit==true\">\n        <div class=\"loader\"></div>\n      </div>\n\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 707:
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"masthead\">\n\t<div class=\"container d-flex h-100 align-items-center\">\n\t\t<div class=\"mx-auto text-center\">\n\t\t\t<h1 class=\"mx-auto text-uppercase mb-5\">Action+</h1>\n\t\t\t<form (submit)=\"onLoginSubmit()\" class=\"form-inline d-flex\" autocomplete=\"off\">\n\t\t\t\t<div class=\"col\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<input type=\"username\" [(ngModel)]=\"username\" name=\"username\" class=\"in-test form-control mb-2 mx-auto\" id=\"username\" placeholder=\"Username\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t<input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"in-test form-control flex-fill mb-2 mx-auto\" id=\"password\" placeholder=\"Password\">\n\t\t\t</div>\n\t\t\t<div class=\"row\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary mx-auto mt-3\">Login</button>\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</header>\n<footer class=\"bg-black small text-center text-white-50\">\n\t<div class=\"container\">\n\t\tContact Us\n\t</div>\n</footer>\n"
+module.exports = "<header class=\"masthead\">\n\t<div class=\"container d-flex h-100 align-items-center\">\n\t\t<div class=\"mx-auto text-center\">\n\t\t\t<h1 class=\"mx-auto text-uppercase mb-5\">Action+</h1>\n\t\t\t<form (submit)=\"onLoginSubmit()\" class=\"form-inline d-flex\" autocomplete=\"off\" *ngIf=\"!authService.loggedIn()\">\n\t\t\t\t<div class=\"col\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<input type=\"username\" [(ngModel)]=\"username\" name=\"username\" class=\"in-test form-control mb-2 mx-auto\" id=\"username\" placeholder=\"Username\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t<input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"in-test form-control flex-fill mb-2 mx-auto\" id=\"password\" placeholder=\"Password\">\n\t\t\t</div>\n\t\t\t<div class=\"row\">\n\t\t\t\t<button type=\"submit\" class=\"btn btn-primary mx-auto mt-3\">Login</button>\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</header>\n<footer class=\"bg-black small text-center text-white-50\">\n\t<div class=\"container\">\n\t\tContact Us\n\t</div>\n</footer>\n"
 
 /***/ }),
 
@@ -2415,7 +2452,7 @@ module.exports = "<div class=\"container pt-5\" *ngIf=\"sport==1 || sport==16\">
 /***/ 710:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-sm btn-secondary btn-block text-light\" (click)=\"navigate(0)\">Game Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-sm btn-secondary btn-block text-light\" (click)=\"moreOdds(16,225)\">More Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-sm btn-secondary btn-block text-light\" (click)=\"parlay(0)\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(4)\">Game Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,271)\">More Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(4)\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ncaaf.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(3)\">Game Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,474)\">More Odds</a>\n          </div>\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(3)\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/soccer.jpg\">\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"!showTennis\">Show Soccer Leagues</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"showTennis\">Hide Soccer Leagues</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let soccer of soccer\">\n          <div class=\"col\" align=\"center\" *ngIf=\"showSoccer\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(1,soccer.id)\">{{soccer.league}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ufc.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(11)\">Fights</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/tennis.jpg\">\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"!showTennis\">Show Tennis Events</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"showTennis\">Hide Tennis Events</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let tennis of tennis\">\n          <div class=\"col\" align=\"center\" *ngIf=\"showTennis\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(13, tennis.id)\">{{tennis.league}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/golf.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(21)\">Tournament</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"navigate(0)\">Game Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"moreOdds(16,225)\">More Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"parlay(0)\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(4)\">Game Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,271)\">More Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(4)\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ncaaf.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(3)\">Game Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,474)\">More Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(3)\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/soccer.jpg\">\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"!showTennis\">Show Soccer Leagues</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"showTennis\">Hide Soccer Leagues</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let soccer of soccer\">\n          <div class=\"col\" align=\"center\" *ngIf=\"showSoccer\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(1,soccer.id)\">{{soccer.league}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ufc.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(11)\">Fights</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/tennis.jpg\">\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"!showTennis\">Show Tennis Events</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"showTennis\">Hide Tennis Events</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let tennis of tennis\">\n          <div class=\"col\" align=\"center\" *ngIf=\"showTennis\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(13, tennis.id)\">{{tennis.league}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/golf.png\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(21)\">Tournament</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n"
 
 /***/ }),
 

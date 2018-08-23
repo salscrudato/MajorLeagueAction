@@ -111,129 +111,129 @@ class Bet365Live {
     }
   }
 
-    static convertOdds(odd){
-      if(odd != null && odd != undefined && typeof odd == 'string'){
-        odd = odd.split('/');
-        if(odd.length>0){
-          odd[0] = parseInt(odd[0]);
-          odd[1] = parseInt(odd[1]);
-          var decOdd = (odd[0]/odd[1]) + 1.00;
-          if(decOdd >= 2){
-            var tmpOdd = Math.round((decOdd - 1)*100);
-            if(tmpOdd > 500){
-              return 0;
-            } else if(tmpOdd > 0){
-              return '+' + tmpOdd;
-            } else if(tmpOdd < -500){
-              return 0;
-            } else {
-              return tmpOdd;
-            }
-          }else{
-            var tmpOdd = Math.round((-100)/(decOdd-1));
-            if(tmpOdd > 500){
-              return 0;
-            } else if(tmpOdd > 0){
-              return '+' + tmpOdd;
-            } else if(tmpOdd < -500){
-              return 0;
-            } else {
-              return tmpOdd;
-            }
+  static convertOdds(odd){
+    if(odd != null && odd != undefined && typeof odd == 'string'){
+      odd = odd.split('/');
+      if(odd.length>0){
+        odd[0] = parseInt(odd[0]);
+        odd[1] = parseInt(odd[1]);
+        var decOdd = (odd[0]/odd[1]) + 1.00;
+        if(decOdd >= 2){
+          var tmpOdd = Math.round((decOdd - 1)*100);
+          if(tmpOdd > 500){
+            return 0;
+          } else if(tmpOdd > 0){
+            return '+' + tmpOdd;
+          } else if(tmpOdd < -500){
+            return 0;
+          } else {
+            return tmpOdd;
+          }
+        }else{
+          var tmpOdd = Math.round((-100)/(decOdd-1));
+          if(tmpOdd > 500){
+            return 0;
+          } else if(tmpOdd > 0){
+            return '+' + tmpOdd;
+          } else if(tmpOdd < -500){
+            return 0;
+          } else {
+            return tmpOdd;
           }
         }
       }
-      return odd;
     }
-
-    static setDescription(event){
-      return event.NA;
-    }
-
-    static setScore(event){
-      return event.SS;
-    }
-
-    static setDetails(event, sport){
-      if(sport==16){
-        return event.ED;
-      } else if(sport==1){
-        return event.CT;
-      }
-    }
-
-    static setML(team, start, length, oddsArray){
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA == team){
-          return oddsArray[i].OD;
-        }
-      }
-    }
-
-    static setRL(team, start, length, oddsArray){
-      if(start==length){
-        return 0;
-      }
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA == team){
-          return oddsArray[i].HA;
-        }
-      }
-    }
-
-    static setRLOdds(team, start, length, oddsArray){
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA == team){
-          return oddsArray[i].OD;
-        }
-      }
-    }
-
-
-    static setAltLines(team, start, length, oddsArray){
-      var tempArr = [];
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA == team){
-          tempArr.push({number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)});
-        }
-      }
-      return tempArr;
-    }
-
-    static setTotal(type, start, length, oddsArray){
-      var tempArr = [];
-      for(var i = start; i < length + 1; i++){
-        if(oddsArray[i].NA.trim() == type){
-          return {number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)};
-        }
-      }
-      return tempArr;
-    }
-
-    static findEnd(start, oddsArr){
-      var found = 0;
-      var count = start;
-      while(found == 0){
-        if(oddsArr[count].type != 'PA' || count == oddsArr.length){
-          found = 1;
-        } else {
-          count = count + 1;
-        }
-      }
-      return count - 1;
-    }
-
-    static formatAMPM(date) {
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var ampm = hours >= 12 ? 'pm' : 'am';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      minutes = minutes < 10 ? '0'+minutes : minutes;
-      var strTime = hours + ':' + minutes + ' ' + ampm;
-      return strTime;
-    }
-
+    return odd;
   }
 
-  module.exports = Bet365Live;
+  static setDescription(event){
+    return event.NA;
+  }
+
+  static setScore(event){
+    return event.SS;
+  }
+
+  static setDetails(event, sport){
+    if(sport==16){
+      return event.ED;
+    } else if(sport==1){
+      return event.CT;
+    }
+  }
+
+  static setML(team, start, length, oddsArray){
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA == team){
+        return oddsArray[i].OD;
+      }
+    }
+  }
+
+  static setRL(team, start, length, oddsArray){
+    if(start==length){
+      return 0;
+    }
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA == team){
+        return oddsArray[i].HA;
+      }
+    }
+  }
+
+  static setRLOdds(team, start, length, oddsArray){
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA == team){
+        return oddsArray[i].OD;
+      }
+    }
+  }
+
+
+  static setAltLines(team, start, length, oddsArray){
+    var tempArr = [];
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA == team){
+        tempArr.push({number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)});
+      }
+    }
+    return tempArr;
+  }
+
+  static setTotal(type, start, length, oddsArray){
+    var tempArr = [];
+    for(var i = start; i < length + 1; i++){
+      if(oddsArray[i].NA.trim() == type){
+        return {number: oddsArray[i].HA, odds: this.convertOdds(oddsArray[i].OD)};
+      }
+    }
+    return tempArr;
+  }
+
+  static findEnd(start, oddsArr){
+    var found = 0;
+    var count = start;
+    while(found == 0){
+      if(oddsArr[count].type != 'PA' || count == oddsArr.length){
+        found = 1;
+      } else {
+        count = count + 1;
+      }
+    }
+    return count - 1;
+  }
+
+  static formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
+
+}
+
+module.exports = Bet365Live;

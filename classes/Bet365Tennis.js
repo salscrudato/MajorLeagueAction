@@ -48,12 +48,14 @@ class Bet365Tennis {
 
     this.homeTeamML = this.constructor.convertOdds(this.homeTeamML);
     this.awayTeamML = this.constructor.convertOdds(this.awayTeamML);
-    this.under.odds = this.constructor.convertOdds(this.under.odds);
-    this.over.odds = this.constructor.convertOdds(this.over.odds);
+    if(this.over != 0 && this.over.odds !=undefined && this.under != 0 && this.under.odds !=undefined){
+      this.under.odds = this.constructor.convertOdds(this.under.odds);
+      this.over.odds = this.constructor.convertOdds(this.over.odds);
+    }
 
   }
 
-
+  
   static convertOdds(odd){
     var tmpOdd;
     if(odd >= 2 && odd != 0){

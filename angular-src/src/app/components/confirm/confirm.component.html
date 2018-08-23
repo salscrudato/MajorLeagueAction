@@ -14,12 +14,17 @@
         </div>
         <div class="col w-50" *ngIf="betAmount>0">
           <label for="winamount">Win Amount:</label>
-          <p class="m-0" *ngIf="odds>0">{{round(betAmount * odds/100)}}</p>
-          <p class="m-0" *ngIf="odds<0">{{round(betAmount / (odds * -1) * 100)}}</p>
+          <h3 class="m-0" *ngIf="odds>0">{{round(betAmount * odds/100)}}</h3>
+          <h3 class="m-0" *ngIf="odds<0">{{round(betAmount / (odds * -1) * 100)}}</h3>
         </div>
       </div>
-      <div class="mt-2" *ngIf="clickedSubmit==false">
-        <input type="submit" class="btn btn-primary" value="Place Bet">
+      <div class="row mt-2 ml-0 mr-0" *ngIf="clickedSubmit==false">
+        <div class="col w-50" align="left">
+          <a class="btn btn-block btn-warning" (click)="cancelBet()">Cancel</a>
+        </div>
+        <div class="col w-50" align="right">
+          <input type="submit" class="btn btn-primary btn-block" value="Place Bet">
+        </div>
       </div>
       <div class="mt-2" *ngIf="clickedSubmit==true">
         <div class="loader"></div>

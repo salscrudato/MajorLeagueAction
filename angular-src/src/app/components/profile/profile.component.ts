@@ -38,13 +38,13 @@ export class ProfileComponent implements OnInit {
         for(var i = 0; i < bets.length; i++){
           if(bets[i].status == 'open'){
             this.pendingBets.push(bets[i]);
+            this.pendingBets = this.dataService.sortBets(this.pendingBets);
             this.amountPending = this.amountPending + bets[i].betAmount;
           } else {
             this.closedBets.push(bets[i]);
+            this.closedBets = this.dataService.sortBets(this.closedBets);
           }
         }
-        this.pendingBets = this.dataService.sortBets(this.pendingBets);
-        this.closedBets = this.dataService.sortBets(this.closedBets);
       }, error =>{
         console.log(error);
         return false;

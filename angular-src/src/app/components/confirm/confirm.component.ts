@@ -39,6 +39,7 @@ export class ConfirmComponent implements OnInit{
     this.setBetDetailsAndOdds(this.bet);
     this.odds = this.calculateOdds(this.bet);
     console.log(this.bet);
+    console.log(this.odds);
 
     //Redirect after a minutes
     this.timer = setTimeout(() => {
@@ -153,14 +154,22 @@ placeLiveBet(){
 clickPlaceBet(){
   var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
   if(this.betAmount < curAvail){
+    if((this.odds)/100 < 35){
     if(this.betType=='LIVE'){
       this.placeLiveBet();
     } else {
       this.placeStraightBet();
     }
   } else {
+    this.flashMessage.show('Bet exceeds maximum payout ratio', {cssClass: 'alert-warning'});
+  }
+  } else {
     this.flashMessage.show('Insufficient funds, available balance: $' + curAvail, {cssClass: 'alert-warning'});
   }
+}
+
+cancelBet(){
+  this.router.navigate(['menu']);
 }
 
 setBetDetailsAndOdds(bets){
