@@ -53,8 +53,7 @@ app.get('/', function(req, res){
 });
 
 app.get('*',function(req,res){
-	//res.sendfile('./angular-src/src/app/app.component.html')
-	res.send(path.join(__dirname, 'public'));
+	res.send("Please navigate back to the homepage");
 });
 
 
