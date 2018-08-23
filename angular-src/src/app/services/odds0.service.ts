@@ -63,7 +63,7 @@ export class OddsService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:8080/odds/upcomingTennisLeagues')
-    //return this.http.get('odds/odds/upcomingTennisLeagues')
+    //return this.http.get('odds/upcomingTennisLeagues')
     .map(res => res.json());
   }
 

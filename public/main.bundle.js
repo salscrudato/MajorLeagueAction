@@ -2265,7 +2265,7 @@ var OddsService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         //return this.http.get('http://localhost:8080/odds/upcomingTennisLeagues')
-        return this.http.get('odds/odds/upcomingTennisLeagues')
+        return this.http.get('odds/upcomingTennisLeagues')
             .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
