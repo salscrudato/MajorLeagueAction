@@ -9,7 +9,7 @@ const Bet365LiveFootball = require('../classes/Bet365LiveFootball.js');
 const Bet365Soccer = require('../classes/Bet365Soccer.js');
 const Bet365Football = require('../classes/Bet365Football.js');
 
-var bet365Calls;
+var bet365Calls = 0;
 
 let cache = apicache.middleware;
 
