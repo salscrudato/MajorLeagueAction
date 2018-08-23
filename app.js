@@ -52,9 +52,9 @@ app.get('/', function(req, res){
 	res.send('invalid endpoints');
 });
 
-http.get('*',function(req,res){
+app.get('*',function(req,res){
 		console.log(req.url);
-    res.redirect('http://fathomless-beyond-22207.herokuapp.com'+req.url)
+    // res.redirect('http://fathomless-beyond-22207.herokuapp.com'+req.url)
 })
 
 app.listen(port, function(){
