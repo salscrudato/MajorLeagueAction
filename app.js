@@ -53,7 +53,7 @@ app.get('/', function(req, res){
 });
 
 app.get('*',function(req,res){
-	res.send("Please navigate back to the homepage");
+	res.sendFile(path.resolve('app/index.html'));
 });
 
 
