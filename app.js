@@ -5,7 +5,6 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-var router = express.Router();
 
 //Connect to mongodb, assume I can change the config file to connect
 //to hosted db
@@ -55,16 +54,9 @@ app.get('/', function(req, res){
 
 app.get('*',function(req,res){
 	//res.sendfile('./angular-src/src/app/app.component.html')
-	res.send('Please reload');
+	res.send(path.join(__dirname, 'public')));
 })
 
-// serve angular front end files from root path
-router.use('/', express.static('app', { redirect: false }));
-
-// rewrite virtual urls to angular app to enable refreshing of internal pages
-router.get('*', function (req, res, next) {
-    res.sendFile(path.resolve('app/index.html'));
-});
 
 app.listen(port, function(){
 	console.log('Server started on port '+ port);
