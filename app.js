@@ -5,6 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+var router = express.Router();
 
 //Connect to mongodb, assume I can change the config file to connect
 //to hosted db
@@ -53,8 +54,13 @@ app.get('/', function(req, res){
 });
 
 app.get('*',function(req,res){
-	res.sendfile('./angular-src/src/app/app.component.html')
+	//res.sendfile('./angular-src/src/app/app.component.html')
+	res.send('Please reload');
 })
+
+router.get('*', function (req, res, next) {
+    res.sendFile(path.resolve('app/index.html'));
+});
 
 app.listen(port, function(){
 	console.log('Server started on port '+ port);
