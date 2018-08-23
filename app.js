@@ -53,6 +53,7 @@ app.get('/', function(req, res){
 });
 
 app.get('*',function(req,res){
+	console.log(req.url);
     res.redirect(req.url);
 })
 
