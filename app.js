@@ -52,11 +52,10 @@ app.get('/', function(req, res){
 	res.send('invalid endpoints');
 });
 
-app.get('*', (req,res) => {
-	console.log(__dirname);
-	console.log(port);
-	res.sendFile('/app.component.html');
-});
+http.get('*',function(req,res){
+		console.log(req.url);
+    res.redirect('http://fathomless-beyond-22207.herokuapp.com'+req.url)
+})
 
 app.listen(port, function(){
 	console.log('Server started on port '+ port);
