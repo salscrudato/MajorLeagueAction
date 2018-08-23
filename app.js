@@ -53,7 +53,7 @@ app.get('/', function(req, res){
 });
 
 app.get('*', (req,res) => {
-	res.sendFile(path.join(__dirname, '/angular-src/src/app/index.html/menu'));
+	res.sendFile(path.join(__dirname, '/angular-src/src/app/index.html'));
 });
 
 app.listen(port, function(){
