@@ -53,7 +53,8 @@ app.get('/', function(req, res){
 });
 
 app.get('*', (req,res) => {
-	res.sendFile(path.join(__dirname, '/menu'));
+	console.log(__dirname);
+	res.sendFile(path.join(__dirname, '/'));
 });
 
 app.listen(port, function(){
