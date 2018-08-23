@@ -54,7 +54,8 @@ app.get('/', function(req, res){
 
 app.get('*', (req,res) => {
 	console.log(__dirname);
-	res.sendFile(path.join(__dirname, '/app.component.html'));
+	console.log(port);
+	res.sendFile('/app.component.html');
 });
 
 app.listen(port, function(){
