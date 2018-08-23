@@ -43,12 +43,12 @@
 
             <div class="row border-bottom mb-1 pb-1" *ngIf="action.awayTeamML != 0 || action.homeTeamML !=0">
               <div class="col w-50 border-right">
-                <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamML')" *ngIf="action.awayTeamML != 0">
+                <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'awayTeamML')" *ngIf="action.awayTeamML != 0 && action.awayTeamML != undefined">
                   {{action.awayTeamML}}
                 </a>
               </div>
               <div class="col w-50">
-                <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != 0">
+                <a class="btn btn-block btn-primary btn-sm text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != 0 action.homeTeamML != undefined">
                   {{action.homeTeamML}}
                 </a>
               </div>
@@ -70,17 +70,17 @@
 
             <div class="row border-bottom mb-1 pb-1 pt-1" *ngIf="action.awayTeamML != 0 || action.homeTeamML !=0 || action.drawOdds != 0">
               <div class="col border-right">
-                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'awayTeamML')" *ngIf="action.awayTeamML != 0">
+                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'awayTeamML')" *ngIf="action.awayTeamML != 0 && action.awayTeamML != undefined">
                   {{action.awayTeamML}}
                 </a>
               </div>
               <div class="col border-right">
-                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'draw')" *ngIf="action.drawOdds != 0">
+                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'draw')" *ngIf="action.drawOdds != 0 action.drawOdds != undefined">
                   {{action.drawOdds}}
                 </a>
               </div>
               <div class="col border-right">
-                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != 0">
+                <a class="btn btn-primary btn-sm btn-block text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.homeTeamML != 0 && action.homeTeamML != undefined">
                   {{action.homeTeamML}}
                 </a>
               </div>

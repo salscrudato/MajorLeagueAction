@@ -53,8 +53,7 @@ app.get('/', function(req, res){
 });
 
 app.get('*',function(req,res){
-	console.log(req.url);
-    res.redirect(req.url);
+	res.sendfile('./angular-src/src/index.html')
 })
 
 app.listen(port, function(){
