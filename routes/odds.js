@@ -9,6 +9,8 @@ const Bet365LiveFootball = require('../classes/Bet365LiveFootball.js');
 const Bet365Soccer = require('../classes/Bet365Soccer.js');
 const Bet365Football = require('../classes/Bet365Football.js');
 
+var bet365Calls;
+
 let cache = apicache.middleware;
 
 router.get('/all', cache('5 minutes'), function(req, res, next){
@@ -48,7 +50,7 @@ router.get('/all', cache('5 minutes'), function(req, res, next){
 });
 
 //Live Events
-router.get('/events', cache(5000), function(req, res, next){
+router.get('/events', cache(60000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   if(leagueId == 0){
@@ -63,6 +65,8 @@ router.get('/events', cache(5000), function(req, res, next){
   }
   var tempEventsArray = [];
   request(options, function (error, response, body) {
+    bet365Calls = bet365Calls + 1;
+    console.log('Bet 365: ' + bet365Calls);
     if (!error && response.statusCode == 200) {
       var events = JSON.parse(body);
       if(events != undefined && events.results != undefined){
@@ -104,7 +108,7 @@ router.get('/events', cache(5000), function(req, res, next){
 });
 
 //Live Odds by Event
-router.get('/eventOdds', cache(1000), function(req, res, next){
+router.get('/eventOdds', cache(10000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   var homeTeamImage = req.query.homeTeamImage;
@@ -119,6 +123,8 @@ router.get('/eventOdds', cache(1000), function(req, res, next){
     method: 'GET'
   }
   request(oddsOptions, function (error, response, body){
+    bet365Calls = bet365Calls + 1;
+    console.log('Bet 365: ' + bet365Calls);
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
       if(data != undefined && data.results != undefined){
@@ -135,7 +141,7 @@ router.get('/eventOdds', cache(1000), function(req, res, next){
 });
 
 //Upcoming Events
-router.get('/upcomingEvents', cache(5000), function(req, res, next){
+router.get('/upcomingEvents', cache(60000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   var apiKey = '11194-fFJWf4UUW1tZhK';
@@ -147,6 +153,8 @@ router.get('/upcomingEvents', cache(5000), function(req, res, next){
   }
   var tempEventsArray = [];
   request(options, function (error, response, body) {
+    bet365Calls = bet365Calls + 1;
+    console.log('Bet 365: ' + bet365Calls);
     if (!error && response.statusCode == 200) {
       var events = JSON.parse(body);
       if(events.results != undefined){
@@ -206,7 +214,7 @@ var getNumberOfEvents = function(options, callback){
 
 
 //Upcoming Odds by Event
-router.get('/upcomingEventOdds', cache(5000), function(req, res, next){
+router.get('/upcomingEventOdds', cache(60000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   var awayTeam = req.query.awayTeam;
@@ -222,6 +230,8 @@ router.get('/upcomingEventOdds', cache(5000), function(req, res, next){
     if (!error && response.statusCode == 200) {
       var data = JSON.parse(body);
       if(data.results != undefined && data.success){
+        bet365Calls = bet365Calls + 1;
+        console.log('Bet 365: ' + bet365Calls);
         var oddsArr = data.results[0].main;
         if(sport==16){
           var eventOdds = new Bet365Upcoming(eventId, gameTime, oddsArr, sport, homeTeam, awayTeam);
