@@ -108,7 +108,7 @@ router.get('/events', cache(10000), function(req, res, next){
 });
 
 //Live Odds by Event
-router.get('/eventOdds', cache(1000), function(req, res, next){
+router.get('/eventOdds', cache(10000), function(req, res, next){
   var eventId = req.query.eventId;
   var homeTeam = req.query.homeTeam;
   var homeTeamImage = req.query.homeTeamImage;
