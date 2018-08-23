@@ -31,10 +31,22 @@ export class LiveComponent implements OnInit {
     this.sport = this.dataService.getSports();
     var league = this.dataService.getLeague();
     this.getLiveEvents(this.sport, league);
+
     this.interval = setInterval(() => {
       this.refreshLiveEventOdds(this.eventsArray);
       console.log('Getting Live Odds');
-    }, 8000);
+    }, 4000);
+
+    // this.page.on('navigatingFrom', (data) => {
+    //     console.log('Navigating from page');
+    //   }
+    // );
+
+  }
+
+  ngOnDestroy(){
+    clearInterval(this.interval);
+    console.log('Destroyed');
   }
 
   getLiveEvents(sportId, leagueId){

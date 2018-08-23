@@ -6,7 +6,7 @@ const request = require('request');
 
 var getAllOddsIds = function(callback){
 	var headers = {
-		'x-api-key':'d3e32b4c-80f4-4522-8054-2992b1177805'
+		'x-api-key':'c3eeb8e5-339c-4c38-9cf5-9aa6255969e5'
 	}
 	var tempActionIds = [];
 	var options = {
@@ -50,8 +50,10 @@ router.post('/placeBet', function(req, res, next){
 		var containsExpiredBet = false;
 		getAllOddsIds(function(oddsIds){
 			for(var i = 0; i < bet.subBets.length; i++){
-				if(oddsIds.indexOf(bet.subBets[i].id) < 0){
-					containsExpiredBet = true;
+				if (oddsIds.length != undefined || oddsIds.length != 0){
+					if(oddsIds.indexOf(bet.subBets[i].id) < 0){
+						containsExpiredBet = true;
+					}
 				}
 			}
 			if(!containsExpiredBet){

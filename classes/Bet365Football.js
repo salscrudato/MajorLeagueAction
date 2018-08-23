@@ -46,16 +46,16 @@ class Bet365Football {
       }
     }
 
-    this.homeTeamFirstHalf = this.addPlus(this.homeTeamFirstHalf);
-    this.awayTeamFirstHalf = this.addPlus(this.awayTeamFirstHalf);
-    this.firstHalfOver = this.addPlus(this.firstHalfOver);
-    this.firstHalfOverOdds = this.addPlus(this.firstHalfOverOdds);
-    this.firstHalfUnder = this.addPlus(this.firstHalfUnder);
-    this.firstHalfUnderOdds = this.addPlus(this.firstHalfUnderOdds);
-    this.homeTeamRLOddsFirstHalf = this.addPlus(this.homeTeamRLOddsFirstHalf);
-    this.homeTeamRLFirstHalf = this.addPlus(this.homeTeamRLFirstHalf);
-    this.awayTeamRLOddsFirstHalf = this.addPlus(this.awayTeamRLOddsFirstHalf);
-    this.awayTeamRLFirstHalf = this.addPlus(this.awayTeamRLFirstHalf);
+    this.homeTeamFirstHalf = this.constructor.addPlus(this.homeTeamFirstHalf);
+    this.awayTeamFirstHalf = this.constructor.addPlus(this.awayTeamFirstHalf);
+    this.firstHalfOver = this.constructor.addPlus(this.firstHalfOver);
+    this.firstHalfOverOdds = this.constructor.addPlus(this.firstHalfOverOdds);
+    this.firstHalfUnder = this.constructor.addPlus(this.firstHalfUnder);
+    this.firstHalfUnderOdds = this.constructor.addPlus(this.firstHalfUnderOdds);
+    this.homeTeamRLOddsFirstHalf = this.constructor.addPlus(this.homeTeamRLOddsFirstHalf);
+    this.homeTeamRLFirstHalf = this.constructor.addPlus(this.homeTeamRLFirstHalf);
+    this.awayTeamRLOddsFirstHalf = this.constructor.addPlus(this.awayTeamRLOddsFirstHalf);
+    this.awayTeamRLFirstHalf = this.constructor.addPlus(this.awayTeamRLFirstHalf);
 
   }
 

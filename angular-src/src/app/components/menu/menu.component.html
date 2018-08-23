@@ -53,6 +53,23 @@
     </div>
 
     <div class="card col-sm-4 pl-0 pr-0">
+      <img class="card-img-top" src="/assets/images/soccer.jpg">
+      <div class="card-header">
+        <div class="col mb-1" align="center">
+          <a class="btn btn-secondary btn-block text-light" (click)="clickShowSoccer()" *ngIf="!showTennis">Show Soccer Leagues</a>
+        </div>
+        <div class="col mb-1" align="center">
+          <a class="btn btn-secondary btn-block text-light" (click)="clickShowSoccer()" *ngIf="showTennis">Hide Soccer Leagues</a>
+        </div>
+        <div class="row mb-1" *ngFor="let soccer of soccer">
+          <div class="col" align="center" *ngIf="showSoccer">
+            <a class="btn btn-secondary btn-block text-light" (click)="moreOdds(1,soccer.id)">{{soccer.league}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card col-sm-4 pl-0 pr-0">
       <img class="card-img-top" src="/assets/images/ufc.jpg">
       <div class="card-header">
         <div class="row">
@@ -64,11 +81,17 @@
     </div>
 
     <div class="card col-sm-4 pl-0 pr-0">
-      <img class="card-img-top" src="/assets/images/soccer.jpg">
+      <img class="card-img-top" src="/assets/images/tennis.jpg">
       <div class="card-header">
-        <div class="row mb-1" *ngFor="let soccer of soccer">
-          <div class="col" align="center">
-            <a class="btn btn-secondary btn-block text-light" (click)="moreOdds(1,soccer.id)">{{soccer.league}}</a>
+        <div class="col mb-1" align="center">
+          <a class="btn btn-secondary btn-block text-light" (click)="clickShowTennis()" *ngIf="!showTennis">Show Tennis Events</a>
+        </div>
+        <div class="col mb-1" align="center">
+          <a class="btn btn-secondary btn-block text-light" (click)="clickShowTennis()" *ngIf="showTennis">Hide Tennis Events</a>
+        </div>
+        <div class="row mb-1" *ngFor="let tennis of tennis">
+          <div class="col" align="center" *ngIf="showTennis">
+            <a class="btn btn-secondary btn-block text-light" (click)="moreOdds(13, tennis.id)">{{tennis.league}}</a>
           </div>
         </div>
       </div>

@@ -85,7 +85,7 @@
 </div>
 
 
-<div class="row" align="center" *ngIf="sport==11">
+<div class="row" align="center" *ngIf="sport==11 || sport==13">
   <div *ngFor="let action of actions" class="card col-sm-4 mt-3 pl-0 pr-0">
 
     <div class="row pl-0 pr-0">
@@ -132,18 +132,35 @@
         </div>
       </div>
 
+      <div *ngIf="sport==11">
       <div class="row border-bottom mb-1 pb-1 pt-1" *ngIf="action.totalNumber != 0 || action.totalNumber !=0">
         <div class="col w-50 border-right">
-          <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'awayTeamML')" *ngIf="action.totalNumber != 0">
+          <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'overUFC')" *ngIf="action.totalNumber != 0">
             o{{action.totalNumber}}  {{action.overLine}}
           </a>
         </div>
         <div class="col w-50">
-          <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'homeTeamML')" *ngIf="action.totalNumber != 0">
+          <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'underUFC')" *ngIf="action.totalNumber != 0">
             u{{action.totalNumber}}  {{action.underLine}}
           </a>
         </div>
       </div>
+    </div>
+
+    <div *ngIf="sport==13">
+    <div class="row border-bottom mb-1 pb-1 pt-1" *ngIf="action.over.number != 0 || action.under.number !=0">
+      <div class="col w-50 border-right">
+        <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'overTennis')" *ngIf="action.totalNumber != 0">
+          o{{action.over.number}}  {{action.over.odds}}
+        </a>
+      </div>
+      <div class="col w-50">
+        <a class="btn btn-block btn-primary text-light" (click)="placeBet(action, 'underTennis')" *ngIf="action.totalNumber != 0">
+          u{{action.under.number}}  {{action.under.odds}}
+        </a>
+      </div>
+    </div>
+  </div>
 
     </div>
 
