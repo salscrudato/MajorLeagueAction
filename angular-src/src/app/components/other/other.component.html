@@ -6,9 +6,9 @@
       <!-- Date -->
       <div class="row pl-0 pr-0 ml-0 mr-0">
         <div class="col w-50" align="left">
-          <p class="m-0 pl-3">{{action.matchDate}}</p>
+          <p class="m-0 pl-3 text-muted">{{action.matchDate}}</p>
         </div>
-        <div class="col w-50" align="right">
+        <div class="col w-50 text-muted" align="right">
           <p class="m-0 pr-3">{{action.matchTime}}</p>
         </div>
       </div>
@@ -23,10 +23,10 @@
       <div class="card-header p-1 w-100">
         <!-- Away Team, Home Team Headers -->
         <div class="row border-bottom">
-          <div class="col w-50 border-right" align="center">
+          <div class="col w-50 border-right smallFont" align="center">
             {{action.awayTeam}}
           </div>
-          <div class="col w-50" align="center">
+          <div class="col w-50 smallFont" align="center">
             {{action.homeTeam}}
           </div>
         </div>
@@ -36,7 +36,7 @@
         </div>
 
         <!-- 1st Half Money Line -->
-        <div class="row" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
+        <div class="row smallFont" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
           <div class="col" align="center" *ngIf="action.sport==16">
             First 5 Innings
           </div>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Team Total -->
-        <div class="row" *ngIf="action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0">
+        <div class="row smallFont" *ngIf="action.awayTeamTotalLine != 0 || action.homeTeamTotalLine != 0">
           <div class="col" align="center">
             Team Total
           </div>
@@ -89,7 +89,7 @@
 
 
         <!-- Alternative Lines -->
-        <div class="row" *ngIf="action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0">
+        <div class="row smallFont" *ngIf="action.awayTeamRL.length > 0 || action.homeTeamRL.length > 0">
           <div class="col" align="center">
             Alternative Lines
           </div>
@@ -117,7 +117,7 @@
           <div class="col w-50 border-right" align="center">
             Score in 1st
           </div>
-          <div class="col w-50" align="center">
+          <div class="col w-50 smallFont" align="center">
             No Score in 1st
           </div>
         </div>
@@ -148,16 +148,16 @@
       <!-- Date -->
       <div class="row pl-0 pr-0 ml-0 mr-0">
         <div class="col w-50" align="left">
-          <p class="m-0 pl-3">{{action.matchDate}}</p>
+          <p class="m-0 pl-3 text-muted">{{action.matchDate}}</p>
         </div>
-        <div class="col w-50" align="right">
+        <div class="col w-50 text-muted" align="right">
           <p class="m-0 pr-3">{{action.matchTime}}</p>
         </div>
       </div>
 
       <!-- Away Team @ Home Team -->
       <div class="row pl-0 pr-0" align="center">
-        <div class="col" align="center">
+        <div class="col font-weight-bold" align="center">
           {{action.awayTeam}} @ {{action.homeTeam}}
         </div>
       </div>
@@ -166,7 +166,7 @@
 
         <!-- Away Team, Home Team, Draw Headers -->
         <div *ngIf="sport == 1">
-          <div class="row border-bottom">
+          <div class="row border-bottom smallFont">
             <div class="col soc border-right" align="center">
               {{action.awayTeam}}
             </div>
@@ -209,7 +209,7 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="action.over.number!=0 || action.under.number!=0">
+          <div class="row smallFont" *ngIf="action.over.number!=0 || action.under.number!=0">
             <div class="col w-50 border-right" align="center">
               OVER
             </div>
@@ -231,7 +231,7 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="action.bothScoreYes!=0 || action.bothScoreNo!=0">
+          <div class="row smallFont" *ngIf="action.bothScoreYes!=0 || action.bothScoreNo!=0">
             <div class="col w-100 border-right" align="center">
               BOTH TEAMS SCORE
             </div>
@@ -261,7 +261,7 @@
   <div class="row">
     <div *ngFor="let action of eventOddsArray" class="card col-sm-4 mt-3 pl-0 pr-0">
 
-      <div class="row pl-0 pr-0 ml-0 mr-0">
+      <div class="row pl-0 pr-0 ml-0 mr-0 text-muted">
         <div class="col w-50" align="left">
           <p class="m-0 pl-3">{{action.matchDate}}</p>
         </div>
@@ -294,7 +294,7 @@
         </div>
 
         <!-- 1st Half Money Line -->
-        <div class="row" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
+        <div class="row smallFont" *ngIf="action.awayTeamFirstHalf != 0 || action.homeTeamFirstHalf != 0">
           <div class="col" align="center" *ngIf="action.sport==12">
             First Half
           </div>
@@ -327,7 +327,7 @@
         </div>
 
         <!-- Over/Under -->
-        <div class="row border-bottom" *ngIf="action.firstHalfOver != 0 || action.firstHalfOver != 0">
+        <div class="row border-bottom smallFont" *ngIf="action.firstHalfOver != 0 || action.firstHalfOver != 0">
           <div class="col w-50 border-right" align="center">
             1H Over
           </div>
@@ -371,7 +371,7 @@
       <div class="row">
         <div class="col">
           <div class="row justify-content-center mt-0 pt-0">
-            <p class="mb-0 pb-0">{{action.homeTeam}} V {{action.awayTeam}}</p>
+            <p class="mb-0 pb-0 font-weight-bold">{{action.homeTeam}} V {{action.awayTeam}}</p>
           </div>
         </div>
       </div>
@@ -401,14 +401,14 @@
         </div>
 
         <div>
-          <div class="row border-bottom mb-1 pb-1 pt-1" *ngIf="action.over.number != 0 || action.under.number !=0">
+          <div class="row border-bottom mb-1 pb-1 pt-1" *ngIf="action.over.number != 0 && action.under.number !=0 && action.over.number != undefined && action.under.number != undefined">
             <div class="col w-50 border-right">
-              <a class="btn btn-block btn-sm btn-primary text-light" (click)="placeBet(action, 'over')" *ngIf="action.totalNumber != 0">
+              <a class="btn btn-block btn-sm btn-primary text-light" (click)="placeBet(action, 'over')" *ngIf="action.totalNumber != 0 && action.totalNumber != undefined">
                 o{{action.over.number}}  {{action.over.odds}}
               </a>
             </div>
             <div class="col w-50">
-              <a class="btn btn-block btn-sm btn-primary text-light" (click)="placeBet(action, 'under')" *ngIf="action.totalNumber != 0">
+              <a class="btn btn-block btn-sm btn-primary text-light" (click)="placeBet(action, 'under')" *ngIf="action.totalNumber != 0 && action.totalNumber != undefined">
                 u{{action.under.number}}  {{action.under.odds}}
               </a>
             </div>
