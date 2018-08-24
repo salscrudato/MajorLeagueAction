@@ -56,10 +56,11 @@ class Bet365Football {
     this.homeTeamRLFirstHalf = this.constructor.addPlus(this.homeTeamRLFirstHalf);
     this.awayTeamRLOddsFirstHalf = this.constructor.addPlus(this.awayTeamRLOddsFirstHalf);
     this.awayTeamRLFirstHalf = this.constructor.addPlus(this.awayTeamRLFirstHalf);
-    
+
   }
 
   static addPlus(odds){
+    odds = parseFloat(odds);
     if (odds > 0){
       return '+' + odds;
     } else {
