@@ -40,8 +40,8 @@ class Bet365LiveFootball {
     //Set event details
     var score = this.constructor.setScore(oddsArray[0]);
     score = score.split('-');
-    this.homeScore = parseFloat(score[0]);
-    this.awayScore = parseFloat(score[1]);
+    this.homeScore = parseFloat(score[1]);
+    this.awayScore = parseFloat(score[0]);
     this.details = this.constructor.setDetails(oddsArray[0]);
 
     //=====Set indexes=====
@@ -77,7 +77,7 @@ class Bet365LiveFootball {
     this.over = this.constructor.setTotal('Over', totalStartIndex, totalEndIndex, oddsArray);
 
   }
-  
+
   static convertOdds(odd){
     if(odd != null && odd != undefined && typeof odd == 'string'){
       odd = odd.split('/');

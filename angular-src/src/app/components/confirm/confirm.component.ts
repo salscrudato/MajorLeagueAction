@@ -39,35 +39,32 @@ export class ConfirmComponent implements OnInit{
     this.setBetDetailsAndOdds(this.bet);
     this.odds = this.calculateOdds(this.bet);
     console.log(this.bet);
-    console.log(this.odds);
-
-    //Redirect after a minutes
     this.timer = setTimeout(() => {
-        this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
-        this.router.navigate(['menu']);
-    }, 60000);
+    this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
+    this.router.navigate(['menu']);
+  }, 60000);
 
-  }
+}
 
-  //Gets current logged in user and then gets corresponding bets for that user
-  getProfileAndAllBets(){
-  this.authService.getProfile().subscribe(profile => {
-    this.user = profile.user;
-    this.betService.getBets(profile, 'all').subscribe(bets => {
-      for(var i = 0; i < bets.length; i++){
-        if(bets[i].status == 'open'){
-          this.amountPending = this.amountPending + bets[i].betAmount;
-        }
+//Gets current logged in user and then gets corresponding bets for that user
+getProfileAndAllBets(){
+this.authService.getProfile().subscribe(profile => {
+  this.user = profile.user;
+  this.betService.getBets(profile, 'all').subscribe(bets => {
+    for(var i = 0; i < bets.length; i++){
+      if(bets[i].status == 'open'){
+        this.amountPending = this.amountPending + bets[i].betAmount;
       }
-    }, error =>{
-      console.log(error);
-      return false;
-    });
-  },
-  error =>{
+    }
+  }, error =>{
     console.log(error);
     return false;
   });
+},
+error =>{
+  console.log(error);
+  return false;
+});
 }
 
 placeStraightBet(){
@@ -96,7 +93,7 @@ placeStraightBet(){
 placeLiveBet(){
   clearTimeout(this.timer);
   this.clickedSubmit = true;
-  this.flashMessage.show('Bet submitted, please allow 8 seconds to confirm', {cssClass: 'alert-success', timeout: 8000});
+  this.flashMessage.show('To provide the best user experience, we never take lines down.  Please allow 12 seconds to confirm this bet.', {cssClass: 'alert-success', timeout: 15000});
   setTimeout(() => {
     var betIsStillGood = true;
     var tmpBet = this.bet[0];
@@ -105,18 +102,21 @@ placeLiveBet(){
 
       for(var prop in data){
         if(prop == 'homeTeamML'){
-          var tmpData = data[prop];
+          var tmpData = parseInt(data[prop]);
           if (tmpData < 0){
             tmpData = tmpData * -1;
           }
-          //Change this back
           var tmpLow = tmpData * 0.95;
           var tmpHigh = tmpData * 1.05;
+          console.log(tmpLow);
+          console.log(tmpData);
+          console.log(tmpHigh);
+
           if(tmpData < tmpLow || tmpData > tmpHigh){
             betIsStillGood = false;
           }
         } else if (prop == 'awayTeamML'){
-          var tmpData = data[prop];
+          var tmpData = parseInt(data[prop]);
           if (tmpData < 0){
             tmpData = tmpData * -1;
           }
@@ -154,21 +154,22 @@ placeLiveBet(){
 clickPlaceBet(){
   var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
   if(this.betAmount < curAvail){
-    if((this.odds)/100 < 35){
-    if(this.betType=='LIVE'){
-      this.placeLiveBet();
+    if(((this.odds)/100 < 35) && this.odds != 0){
+      if(this.betType=='LIVE'){
+        this.placeLiveBet();
+      } else {
+        this.placeStraightBet();
+      }
     } else {
-      this.placeStraightBet();
+      this.flashMessage.show('Bet exceeds maximum payout ratio', {cssClass: 'alert-warning'});
     }
-  } else {
-    this.flashMessage.show('Bet exceeds maximum payout ratio', {cssClass: 'alert-warning'});
-  }
   } else {
     this.flashMessage.show('Insufficient funds, available balance: $' + curAvail, {cssClass: 'alert-warning'});
   }
 }
 
 cancelBet(){
+  clearTimeout(this.timer);
   this.router.navigate(['menu']);
 }
 
@@ -311,6 +312,14 @@ setBetDescription(bet){
     case 'golf':
     bet.betDetails = bet.participant.name + ' (' + bet.participant.odds + ')' + ' To win the ' + bet.eventName;
     bet.odds = bet.participant.odds;
+    break;
+    case 'overUFC':
+    bet.betDetails = bet.awayTeam + ' @ ' + bet.homeTeam + ' Over ' + bet.totalNumber + ' ' + bet.overLine;
+    bet.odds = bet.overLine;
+    break;
+    case 'underUFC':
+    bet.betDetails = bet.awayTeam + ' @ ' + bet.homeTeam + ' Under ' + bet.totalNumber + ' ' + bet.underLine;
+    bet.odds = bet.underLine;
     break;
     default:
     break;
