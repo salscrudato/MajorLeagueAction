@@ -2307,6 +2307,7 @@ var TeaserComponent = (function () {
         this.teaser = [];
     }
     TeaserComponent.prototype.ngOnInit = function () {
+        this.teaserNum = this.dataService.getTeaser();
         this.sport = this.dataService.getSports();
         var tmpOdds = this.dataService.getJsonOddsEvents();
         if (tmpOdds.length > 0) {
@@ -2315,7 +2316,6 @@ var TeaserComponent = (function () {
         else {
             this.getOdds();
         }
-        this.teaserNum = this.dataService.getTeaser();
     };
     TeaserComponent.prototype.setUpActions = function (tempActions, sport) {
         for (var i = 0; i < tempActions.length; i++) {

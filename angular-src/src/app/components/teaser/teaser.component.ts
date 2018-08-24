@@ -26,6 +26,7 @@ export class TeaserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.teaserNum = this.dataService.getTeaser();
     this.sport = this.dataService.getSports();
     var tmpOdds = this.dataService.getJsonOddsEvents();
     if(tmpOdds.length>0){
@@ -33,7 +34,6 @@ export class TeaserComponent implements OnInit {
     } else {
       this.getOdds();
     }
-    this.teaserNum = this.dataService.getTeaser();
   }
 
   setUpActions(tempActions, sport){
