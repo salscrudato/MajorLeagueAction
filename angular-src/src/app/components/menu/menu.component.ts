@@ -62,6 +62,13 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/parlay']);
   }
 
+  teaser(sport, teaser){
+    this.dataService.addSport(sport);
+    this.dataService.setJsonOddsEvents(this.actions);
+    this.dataService.setTeaser(teaser);
+    this.router.navigate(['/teaser']);
+  }
+
   getOdds(){
     var tempArr = [];
     this.oddsService.getOdds().subscribe(data =>{

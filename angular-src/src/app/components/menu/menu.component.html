@@ -22,14 +22,22 @@
       <img class="card-img-top" src="/assets/images/nfl.png">
       <div class="card-header">
         <div class="row">
-          <div class="col mb-1" align="center">
+          <div class="col w-50 mb-1" align="center">
             <a class="btn btn-secondary btn-block text-light" (click)="navigate(4)">Game Odds</a>
           </div>
-          <div class="col mb-1" align="center">
+          <div class="col w-50 mb-1" align="center">
             <a class="btn btn-secondary btn-block text-light" (click)="moreOdds(12,271)">More Odds</a>
           </div>
+        </div>
+        <div class="row">
           <div class="col mb-1" align="center">
             <a class="btn btn-secondary btn-block text-light" (click)="parlay(4)">Parlay</a>
+          </div>
+          <div class="col mb-1" align="center">
+            <a class="btn btn-secondary btn-block text-light" (click)="teaser(4, 2)">Teaser (2)</a>
+          </div>
+          <div class="col mb-1" align="center">
+            <a class="btn btn-secondary btn-block text-light" (click)="teaser(4, 3)">Teaser (3)</a>
           </div>
         </div>
       </div>
@@ -39,14 +47,22 @@
       <img class="card-img-top" src="/assets/images/ncaaf.jpg">
       <div class="card-header">
         <div class="row">
-          <div class="col mb-1" align="center">
+          <div class="col w-50 mb-1" align="center">
             <a class="btn btn-secondary btn-block text-light" (click)="navigate(3)">Game Odds</a>
           </div>
-          <div class="col mb-1" align="center">
+          <div class="col w-50 mb-1" align="center">
             <a class="btn btn-secondary btn-block text-light" (click)="moreOdds(12,474)">More Odds</a>
           </div>
+        </div>
+        <div class="row">
           <div class="col mb-1" align="center">
             <a class="btn btn-secondary btn-block text-light" (click)="parlay(3)">Parlay</a>
+          </div>
+          <div class="col mb-1" align="center">
+            <a class="btn btn-secondary btn-block text-light" (click)="teaser(3, 2)">Teaser (2)</a>
+          </div>
+          <div class="col mb-1" align="center">
+            <a class="btn btn-secondary btn-block text-light" (click)="teaser(3, 3)">Teaser (3)</a>
           </div>
         </div>
       </div>

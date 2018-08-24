@@ -9,6 +9,7 @@ export class DataService {
   sport:number;
   league:number;
   jsonOddsEvents = [];
+  teaserNum:number;
 
   constructor() { }
 
@@ -30,6 +31,14 @@ export class DataService {
     var tempLeague = this.league;
     this.league = null;
     return tempLeague;
+  }
+
+  setTeaser(teaser){
+    this.teaserNum = teaser;
+  }
+
+  getTeaser(){
+    return this.teaserNum;
   }
 
   setJsonOddsEvents(events){
@@ -79,6 +88,9 @@ export class DataService {
   // }
 
   sortBets(bets){
+    if(bets == undefined || bets.length == undefined){
+      return bets;
+    }
     if(bets.length == 1){
       return bets;
     } else {

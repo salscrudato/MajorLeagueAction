@@ -40,31 +40,31 @@ export class ConfirmComponent implements OnInit{
     this.odds = this.calculateOdds(this.bet);
     console.log(this.bet);
     this.timer = setTimeout(() => {
-    this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
-    this.router.navigate(['menu']);
-  }, 60000);
+      this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
+      this.router.navigate(['menu']);
+    }, 45000);
 
-}
+  }
 
-//Gets current logged in user and then gets corresponding bets for that user
-getProfileAndAllBets(){
-this.authService.getProfile().subscribe(profile => {
-  this.user = profile.user;
-  this.betService.getBets(profile, 'all').subscribe(bets => {
-    for(var i = 0; i < bets.length; i++){
-      if(bets[i].status == 'open'){
-        this.amountPending = this.amountPending + bets[i].betAmount;
+  //Gets current logged in user and then gets corresponding bets for that user
+  getProfileAndAllBets(){
+  this.authService.getProfile().subscribe(profile => {
+    this.user = profile.user;
+    this.betService.getBets(profile, 'all').subscribe(bets => {
+      for(var i = 0; i < bets.length; i++){
+        if(bets[i].status == 'open'){
+          this.amountPending = this.amountPending + bets[i].betAmount;
+        }
       }
-    }
-  }, error =>{
+    }, error =>{
+      console.log(error);
+      return false;
+    });
+  },
+  error =>{
     console.log(error);
     return false;
   });
-},
-error =>{
-  console.log(error);
-  return false;
-});
 }
 
 placeStraightBet(){
@@ -197,6 +197,16 @@ setBetDescription(bet){
     bet.odds = homeTeamRLOdds;
     bet.line = homeTeamRL;
     break;
+    case 'awayTeamRLTeaser':
+    const awayTeamRLTeaser = bet.awayTeamRL;
+    bet.betDetails = awayTeam + " Spread " + awayTeamRLTeaser;
+    bet.betType = 'awayTeamRL';
+    break;
+    case 'homeTeamRLTeaser':
+    const homeTeamRLTeaser = bet.homeTeamRL;
+    bet.betDetails = homeTeam + " Spread " + homeTeamRLTeaser;
+    bet.betType = 'homeTeamRL';
+    break;
     case 'awayTeamML':
     const awayTeamML = bet.awayTeamML;
     bet.betDetails = awayTeam + " Money Line " + awayTeamML;
@@ -321,6 +331,16 @@ setBetDescription(bet){
     bet.betDetails = bet.awayTeam + ' @ ' + bet.homeTeam + ' Under ' + bet.totalNumber + ' ' + bet.underLine;
     bet.odds = bet.underLine;
     break;
+    case 'underTeaser':
+    bet.betDetails = bet.awayTeam + ' @ ' + bet.homeTeam + ' Under ' + bet.totalNumberTeaserUnder;
+    bet.totalNumber = bet.totalNumberTeaserUnder;
+    bet.betType = 'under';
+    break;
+    case 'overTeaser':
+    bet.betDetails = bet.awayTeam + ' @ ' + bet.homeTeam + ' Over ' + bet.totalNumberTeaserOver;
+    bet.totalNumber = bet.totalNumberTeaserOver;
+    bet.betType = 'over'
+    break;
     default:
     break;
   }
@@ -362,6 +382,8 @@ addPlus(odd){
 calculateOdds(bets){
   if(bets.length == 1){
     return parseInt(bets[0].odds);
+  } else if (this.betType == 'TEASER'){
+    return -120;
   } else {
     var oddsArray = [];
     for(var i = 0; i < bets.length; i++){
