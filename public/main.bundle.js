@@ -28,7 +28,8 @@ var BetService = (function () {
     BetService.prototype.placeBet = function (bet) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/bets/placeBet', bet, { headers: headers })
+        //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
+        return this.http.post('bets/placeBet', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.closeBet = function (betId, result) {
@@ -38,7 +39,8 @@ var BetService = (function () {
             status: result
         };
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/bets/closePending', bet, { headers: headers })
+        //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
+        return this.http.post('bets/closePending', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getBets = function (profile, status) {
@@ -47,13 +49,15 @@ var BetService = (function () {
         var url = 'bets/getBets?userId=' + userId + '&status=' + status;
         var url2 = 'http://localhost:8080/bets/getBets?userId=' + userId + '&status=' + status;
         headers.append('Content-Type', 'application/json');
-        return this.http.get(url2, { headers: headers })
+        //return this.http.get(url2, {headers: headers})
+        return this.http.get(url, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getAllPendings = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/bets/getAllPendings', { headers: headers })
+        //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
+        return this.http.get('bets/getAllPendings', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService = __decorate([
@@ -95,13 +99,15 @@ var UserService = (function () {
     UserService.prototype.getAllUsers = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/users/allProfiles', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/allProfiles', {headers: headers})
+        return this.http.get('users/allProfiles', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService.prototype.updateBalance = function (updatedAmount) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/updateBalance', updatedAmount, {headers: headers})
+        return this.http.post('users/updateBalance', updatedAmount, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     UserService = __decorate([
@@ -148,14 +154,16 @@ var AuthService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/register';
-        return this.http.post('http://localhost:8080/users/register', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/register', user, {headers: headers})
+        return this.http.post(url, user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/authenticate';
-        return this.http.post('http://localhost:8080/users/authenticate', user, { headers: headers })
+        //return this.http.post('http://localhost:8080/users/authenticate', user, {headers: headers})
+        return this.http.post(url, user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
@@ -164,7 +172,8 @@ var AuthService = (function () {
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         var url = this.urlPrefix + 'users/profile';
-        return this.http.get('http://localhost:8080/users/profile', { headers: headers })
+        //return this.http.get('http://localhost:8080/users/profile', {headers: headers})
+        return this.http.get(url, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
@@ -2260,14 +2269,16 @@ var OddsService = (function () {
     OddsService.prototype.getOdds = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/all')
+        //return this.http.get('http://localhost:8080/odds/all')
+        return this.http.get('odds/all')
             .map(function (res) { return res.json(); });
     };
     //==========Live Events from Bet365==========
     OddsService.prototype.getLiveEvents = function (sportId, leagueId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
+        //return this.http.get('http://localhost:8080/odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
+        return this.http.get('odds/events?sportId=' + sportId + '&leagueId=' + leagueId)
             .map(function (res) { return res.json(); })
             .toPromise();
     };
@@ -2275,14 +2286,16 @@ var OddsService = (function () {
     OddsService.prototype.getLiveEventOdds = function (eventId, homeTeam, homeTeamImage, awayTeam, awayTeamImage, sportId, epoch) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId + '&epoch=' + epoch)
+        //return this.http.get('http://localhost:8080/odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId + '&epoch=' + epoch)
+        return this.http.get('odds/eventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + "&awayTeamImage=" + awayTeamImage + '&homeTeamImage=' + homeTeamImage + '&sportId=' + sportId + '&epoch=' + epoch)
             .map(function (res) { return res.json(); });
     };
     //==========Upcoming Events from Bet365==========
     OddsService.prototype.getUpcomingEvents = function (sportId, leagueId) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
+        //return this.http.get('http://localhost:8080/odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
+        return this.http.get('odds/upcomingEvents?sportId=' + sportId + '&leagueId=' + leagueId)
             .map(function (res) { return res.json(); })
             .toPromise();
     };
@@ -2290,14 +2303,16 @@ var OddsService = (function () {
     OddsService.prototype.getUpcomingEventOdds = function (eventId, homeTeam, awayTeam, time, sport) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
+        //return this.http.get('http://localhost:8080/odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
+        return this.http.get('odds/upcomingEventOdds?eventId=' + eventId + '&homeTeam=' + homeTeam + '&awayTeam=' + awayTeam + '&gameTime=' + time + '&sport=' + sport)
             .map(function (res) { return res.json(); });
     };
     //==========Upcoming Tennis Events from Bet365==========
     OddsService.prototype.getUpcomingTennisEvents = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:8080/odds/upcomingTennisLeagues')
+        //return this.http.get('http://localhost:8080/odds/upcomingTennisLeagues')
+        return this.http.get('odds/upcomingTennisLeagues')
             .map(function (res) { return res.json(); });
     };
     OddsService = __decorate([
