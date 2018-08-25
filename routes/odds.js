@@ -142,7 +142,7 @@ router.get('/eventOdds', cache(6000), function(req, res, next){
 });
 
 //Upcoming Events
-router.get('/upcomingEvents', cache('10 minutes'), function(req, res, next){
+router.get('/upcomingEvents', cache('2 minutes'), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   var apiKey = '11194-fFJWf4UUW1tZhK';
