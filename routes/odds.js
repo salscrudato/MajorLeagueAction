@@ -51,7 +51,7 @@ router.get('/all', cache('10 minutes'), function(req, res, next){
 });
 
 //Live Events
-router.get('/events', cache('10 minutes'), function(req, res, next){
+router.get('/events', cache(10000), function(req, res, next){
   var sportId = req.query.sportId;
   var leagueId = req.query.leagueId;
   if(leagueId == 0){
