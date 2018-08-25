@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   username:String;
   password:String;
+  termsOfServiceClicked:boolean = false;
 
   constructor(
     private authService:AuthService,

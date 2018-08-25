@@ -1,5 +1,7 @@
+<div class="text-muted topNav" *ngIf="eventOddsArray.length < 1" align="center"><p>Trying to get odds data</p></div>
+<div class="loader" *ngIf="eventOddsArray.length < 1"></div>
 <!-- Baseball -->
-<div class="container pt-5" *ngIf="sport==16">
+<div class="container pt-5 bg-dark" *ngIf="sport==16 && eventOddsArray.length > 0">
   <div class="row">
 
     <div *ngFor="let action of eventOddsArray" class="card col-sm-4 mt-3 pl-0 pr-0">
@@ -32,7 +34,7 @@
         </div>
 
         <div align="center" *ngIf="!showBaseballDetails(action)">
-          <h4 class="col w-100 text-muted">Check back later</h4>
+          <h5 class="col w-100 text-muted">Check back later</h5>
         </div>
 
         <!-- 1st Half Money Line -->
@@ -113,11 +115,11 @@
         </div>
 
         <!-- Run In First -->
-        <div class="row" *ngIf="action.runInFirst != 0">
+        <div class="row smallFont" *ngIf="action.runInFirst != 0">
           <div class="col w-50 border-right" align="center">
             Score in 1st
           </div>
-          <div class="col w-50 smallFont" align="center">
+          <div class="col w-50" align="center">
             No Score in 1st
           </div>
         </div>
@@ -141,7 +143,7 @@
 </div>
 
 <!-- Soccer -->
-<div class="container pt-5" *ngIf="sport==1">
+<div class="container pt-5 bg-dark" *ngIf="sport==1 && eventOddsArray.length > 0">
   <div class="row">
 
     <div *ngFor="let action of eventOddsArray" class="card col-sm-4 mt-3 pl-0 pr-0">
@@ -257,7 +259,7 @@
 </div>
 
 <!-- NFL -->
-<div class="container pt-5" *ngIf="sport==12">
+<div class="container pt-5 bg-dark" *ngIf="sport==12 && eventOddsArray.length > 0">
   <div class="row">
     <div *ngFor="let action of eventOddsArray" class="card col-sm-4 mt-3 pl-0 pr-0">
 
@@ -355,7 +357,7 @@
 </div>
 
 <!-- Tennis -->
-<div class="container pt-5" *ngIf="sport==13">
+<div class="container pt-5 bg-dark" *ngIf="sport==13 && eventOddsArray.length > 0">
   <div class="row" align="center">
     <div *ngFor="let action of eventOddsArray" class="card col-sm-4 mt-3 pl-0 pr-0">
 

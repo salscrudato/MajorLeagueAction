@@ -69,13 +69,13 @@
     </div>
 
     <div class="card col-sm-4 pl-0 pr-0">
-      <img class="card-img-top" src="/assets/images/soccer.jpg">
+      <img src="https://www.seeklogo.net/wp-content/uploads/2013/01/bassano-virtus-55-soccer-team-logo-vector-400x400.png"  alt="Soccer" />
       <div class="card-header">
         <div class="col mb-1" align="center">
-          <a class="btn btn-secondary btn-block text-light" (click)="clickShowSoccer()" *ngIf="!showTennis">Show Soccer Leagues</a>
+          <a class="btn btn-secondary btn-block text-light" (click)="clickShowSoccer()" *ngIf="!showSoccer">Show Soccer Leagues</a>
         </div>
         <div class="col mb-1" align="center">
-          <a class="btn btn-secondary btn-block text-light" (click)="clickShowSoccer()" *ngIf="showTennis">Hide Soccer Leagues</a>
+          <a class="btn btn-secondary btn-block text-light" (click)="clickShowSoccer()" *ngIf="showSoccer">Hide Soccer Leagues</a>
         </div>
         <div class="row mb-1" *ngFor="let soccer of soccer">
           <div class="col" align="center" *ngIf="showSoccer">
@@ -97,7 +97,7 @@
     </div>
 
     <div class="card col-sm-4 pl-0 pr-0">
-      <img class="card-img-top" src="/assets/images/tennis.jpg">
+      <img src="https://www.seeklogo.net/wp-content/uploads/2015/07/atp-logo-vector-download.jpg"  alt="Tennis" />
       <div class="card-header">
         <div class="col mb-1" align="center">
           <a class="btn btn-secondary btn-block text-light" (click)="clickShowTennis()" *ngIf="!showTennis">Show Tennis Events</a>
@@ -114,7 +114,8 @@
     </div>
 
     <div class="card col-sm-4 pl-0 pr-0">
-      <img class="card-img-top" src="/assets/images/golf.png">
+      <img src="https://www.seeklogo.net/wp-content/uploads/2013/06/vw-golf-vector-logo-400x400.png"  alt="Golf" />
+      <!-- <img class="card-img-top" src="/assets/images/golf.png"> -->
       <div class="card-header">
         <div class="row">
           <div class="col" align="center">

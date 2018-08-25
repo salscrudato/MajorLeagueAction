@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   {path: 'parlay', component: ParlayComponent},
   {path: 'straight', component: StraightComponent},
   {path: 'other', component: OtherComponent},
-  {path: 'teaser', component: TeaserComponent}
+  {path: 'teaser', component:TeaserComponent}
 ]
 
 @NgModule({

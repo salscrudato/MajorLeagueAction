@@ -1,4 +1,7 @@
-<div class="container pt-5 bg-dark">
+<div class="text-muted topNav" *ngIf="actions.length < 1" align="center"><p>Trying to get odds data</p></div>
+<div class="loader" *ngIf="actions.length < 1"></div>
+
+<div class="container pt-5 bg-dark" *ngIf="actions.length > 0">
   <div class="row" align="center" *ngIf="sport==0 || sport==3 || sport==4">
     <div *ngFor="let action of actions" class="card col-sm-4 mt-3 pl-0 pr-0">
 
@@ -11,13 +14,13 @@
         </div>
       </div>
 
-      <div class ="row w-100" style="height:100px" *ngIf="action.sport==0 || action.sport==4 || action.sport==3">
+      <div class ="row w-100" *ngIf="action.sport==0 || action.sport==4 || action.sport==3">
         <div class ="col p-0 float-left">
-          <img class="w-75 h-100" src="{{action.awayImagePath}}" alt="Card image cap">
+          <img class="w-75 h-75" src="{{action.awayImagePath}}" alt="Card image cap">
         </div>
         <h2 class="mt-4">@</h2>
         <div class ="col p-0 float-right">
-          <img class="w-75 h-100" src="{{action.homeImagePath}}" alt="Card image cap">
+          <img class="w-75 h-75" src="{{action.homeImagePath}}" alt="Card image cap">
         </div>
       </div>
 
@@ -80,8 +83,6 @@
       </table>
     </div>
     </div>
-</div>
-
 </div>
 
 
@@ -150,4 +151,5 @@
     </div>
 
   </div>
+</div>
 </div>
