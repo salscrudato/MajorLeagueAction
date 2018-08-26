@@ -14,6 +14,7 @@ export class AdminComponent implements OnInit {
   users:any;
   showUsers:boolean = false;
   totalBalance:number = 0;
+  userBalArray:any = [];
 
   constructor(
     private authService:AuthService,
@@ -39,6 +40,7 @@ export class AdminComponent implements OnInit {
   getCurrentBalance(){
     for(var i = 0; i < this.users.length; i++){
       this.totalBalance = this.totalBalance + this.users[i].currentBalance;
+      this.userBalArray.push({id:this.users[i]._id, curBal:this.users[i].currentBalance});
     }
   }
 
@@ -47,6 +49,29 @@ export class AdminComponent implements OnInit {
       this.showUsers = false;
     } else {
       this.showUsers = true;
+    }
+  }
+
+  clickMethod() {
+  if(confirm("Are you sure you want to clear all balances?")) {
+    this.clearAllBalances();
+  }
+}
+
+  clearAllBalances(){
+    for(var i = 0; i < this.userBalArray.length; i++){
+      const updatedAmount = {
+        userId: this.userBalArray[i].id,
+        amount: this.userBalArray[i].curBal * -1
+      }
+      console.log(updatedAmount);
+      this.userService.updateBalance(updatedAmount).subscribe(data => {
+        if(data){
+          console.log(data);
+        }else {
+          // console.log(err);
+        }
+      });
     }
   }
 
