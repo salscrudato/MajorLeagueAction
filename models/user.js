@@ -20,6 +20,9 @@ const UserSchema = mongoose.Schema({
 	},
 	currentBalance:{
 		type: Number
+	},
+	playerPoints:{
+		type: Number
 	}
 });
 
