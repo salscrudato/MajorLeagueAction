@@ -16,6 +16,8 @@ export class ParlayComponent implements OnInit {
   testOdds:any = [];
   parlay:any = [];
   sport:number;
+  league:number;
+  events:any = [];
 
   constructor(
     private flashMessage: FlashMessagesService,
@@ -27,11 +29,59 @@ export class ParlayComponent implements OnInit {
 
   ngOnInit() {
     this.sport = this.dataService.getSports();
-    var tmpOdds = this.dataService.getJsonOddsEvents();
-    if(tmpOdds.length>0){
-      this.setUpActions(tmpOdds, this.sport);
+    if(this.sport != 1){
+      var tmpOdds = this.dataService.getJsonOddsEvents();
+      if(tmpOdds.length>0){
+        this.setUpActions(tmpOdds, this.sport);
+      } else {
+        this.getOdds();
+      }
     } else {
-      this.getOdds();
+      this.league = this.dataService.getLeague();
+      this.getEvents(this.sport, this.league);
+    }
+  }
+
+  getEvents(sportId, leagueId){
+    this.oddsService.getUpcomingEvents(sportId, leagueId).then(
+      (events) => {
+        for(var i = 0; i < events.length; i++){
+          this.events.push(events[i]);
+        }
+        this.getUpcomingEventOdds(this.events);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getUpcomingEventOdds(events){
+    for(var i = 0; i < events.length; i++){
+      this.oddsService.getUpcomingEventOdds(events[i].id, events[i].homeTeam, events[i].awayTeam, events[i].time, events[i].sport).subscribe(data =>{
+        if(data.id != undefined){
+          this.odds.push(data);
+          this.odds = this.sortEventOdds(this.odds);
+        }
+        console.log(this.odds);
+      });
+    }
+  }
+
+  sortEventOdds(odds){
+    if(odds.length == 1){
+      return odds;
+    } else {
+      for(var i = 0; i < odds.length; i++){
+        for(var j = 0; j < odds.length - 1 - i; j++){
+          if(odds[j].epoch > odds[j+1].epoch){
+            var tmpOdds = odds[j];
+            odds[j] = odds[j+1];
+            odds[j+1] = tmpOdds;
+          }
+        }
+      }
+      return odds;
     }
   }
 

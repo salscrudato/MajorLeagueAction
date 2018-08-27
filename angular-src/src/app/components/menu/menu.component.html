@@ -78,8 +78,11 @@
           <a class="btn btn-secondary btn-block text-light" (click)="clickShowSoccer()" *ngIf="showSoccer">Hide Soccer Leagues</a>
         </div>
         <div class="row mb-1" *ngFor="let soccer of soccer">
-          <div class="col" align="center" *ngIf="showSoccer">
+          <div class="col w-75" align="center" *ngIf="showSoccer">
             <a class="btn btn-secondary btn-block text-light" (click)="moreOdds(1,soccer.id)">{{soccer.league}}</a>
+          </div>
+          <div class="col w-25" align="center" *ngIf="showSoccer">
+            <a class="btn btn-secondary btn-block text-light" (click)="moreOddsParlay(1,soccer.id)">parlay</a>
           </div>
         </div>
       </div>

@@ -30,7 +30,6 @@ export class OtherComponent implements OnInit {
     this.sport = this.dataService.getSports();
     var league = this.dataService.getLeague();
     this.getEvents(this.sport, league);
-    console.log('Sport= ' + this.sport);
   }
 
   getEvents(sportId, leagueId){

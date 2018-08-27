@@ -56,6 +56,12 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/other']);
   }
 
+  moreOddsParlay(sport, league){
+    this.dataService.addSport(sport);
+    this.dataService.setLeague(league);
+    this.router.navigate(['/parlay']);
+  }
+
   parlay(sport){
     this.dataService.addSport(sport);
     this.dataService.setJsonOddsEvents(this.actions);
