@@ -215,7 +215,7 @@ class Action {
         return '/assets/images/Vikings.png';
         break;
         case 'Chicago Bears':
-        return '/assets/images/eagles.png';
+        return '/assets/images/bears.png';
         break;
         case 'Detroit Lions':
         return '/assets/images/Lions.png';
