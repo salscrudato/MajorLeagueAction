@@ -106,8 +106,8 @@ placeLiveBet(){
           if (tmpData < 0){
             tmpData = tmpData * -1;
           }
-          var tmpLow = tmpData * 0.95;
-          var tmpHigh = tmpData * 1.05;
+          var tmpLow = tmpData * 0.96;
+          var tmpHigh = tmpData * 1.04;
           console.log(tmpLow);
           console.log(tmpData);
           console.log(tmpHigh);
@@ -120,8 +120,8 @@ placeLiveBet(){
           if (tmpData < 0){
             tmpData = tmpData * -1;
           }
-          var tmpLow = tmpData * .95;
-          var tmpHigh = tmpData * 1.05;
+          var tmpLow = tmpData * 0.96;
+          var tmpHigh = tmpData * 1.04;
           if(tmpData < tmpLow || tmpData > tmpHigh){
             betIsStillGood = false;
           }
@@ -148,7 +148,7 @@ placeLiveBet(){
       }
 
     });
-  }, 15000);
+  }, 16000);
 }
 
 clickPlaceBet(){

@@ -11,7 +11,8 @@ router.post('/register', function(req, res, next){
 		username: req.body.username,
 		password: req.body.password,
 		credit: req.body.credit,
-		currentBalance: 0
+		currentBalance: 0,
+		playerPoints: 0
 	});
 
 	User.addUser(newUser, function(err,user){
