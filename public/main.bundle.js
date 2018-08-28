@@ -64,7 +64,7 @@ var BetService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
         //return this.http.post('http://localhost:8080/bets/createCustom', bet, {headers: headers})
-        return this.http.post('bets/placeBet', bet, { headers: headers })
+        return this.http.post('bets/createCustom', bet, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BetService.prototype.getAllCustomBets = function () {
