@@ -89,6 +89,11 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  props(sport){
+    this.dataService.addPropSport(sport);
+    this.router.navigate(['/props']);
+  }
+
   sortEventOdds(odds){
     if(odds.length == 1){
       return odds;

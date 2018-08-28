@@ -10,11 +10,32 @@ export class DataService {
   league:number;
   jsonOddsEvents = [];
   teaserNum:number;
+  propSport:string;
+  propBet:any;
 
   constructor() { }
 
   addSport(sport){
     this.sport = sport;
+  }
+
+  addPropSport(sport){
+    this.propSport = sport;
+  }
+
+  addCustomBet(bet){
+    this.type = bet.type;
+    this.propBet = bet;
+  }
+
+  getPropBet(){
+    return this.propBet;
+  }
+
+  getPropSport(){
+    var tmp = this.propSport
+    this.propSport = null;
+    return tmp;
   }
 
   getSports(){

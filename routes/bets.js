@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Bet = require('../models/bet');
+const CustomBet = require('../models/customBet');
+const PropBet = require('../models/propBet');
 const config = require('../config/database');
 const request = require('request');
 
@@ -126,6 +128,57 @@ router.get('/getAllPendings', function(req, res, next){
 			res.send(pendingBets);
 		}
 	});
+});
+
+router.post('/createCustom', function(req, res, next){
+	let newBet = new CustomBet({
+		source: 'custom',
+		details: req.body.details,
+		odds: req.body.odds,
+		sport: req.body.sport,
+		type: 'prop',
+		expired: false
+	});
+
+	CustomBet.createBet(newBet, function(err,user){
+		if(err){
+			res.json({success: false, msg: 'Failed to create bet'});
+		} else {
+			res.json({success: true, msg: 'Created'});
+		}
+	});
+});
+
+router.get('/allCustomBets', function(req, res){
+	CustomBet.find(function(err, bet) {
+		var betMap = [];
+		bet.forEach(function(oneBet) {
+			betMap.push(oneBet);
+		});
+		res.send(betMap);
+	});
+});
+
+
+router.post('/placePropBet', function(req, res, next){
+
+	let propBet = new PropBet({
+		userId: req.body.userId,
+		username: req.body.username,
+		description: req.body.description,
+		odds: req.body.odds,
+		betAmount: req.body.betAmount,
+		winAmount: req.body.winAmount,
+		status: req.body.status
+	});
+
+		CustomBet.placeBet(propBet, function(err, placedBet){
+			if(err){
+				res.json({success: false, msg: 'Failed to place bet'});
+			} else {
+				res.json({success: true, msg: 'Bet placed'});
+			}
+		});
 });
 
 module.exports = router;

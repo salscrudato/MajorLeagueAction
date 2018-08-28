@@ -12,21 +12,41 @@
           </div>
         </div>
         <div *ngIf="showUsers">
-        <table class="table table-dark table-hover w-100">
-          <thead>
-            <tr>
-              <th style="width:50%">Username</th>
-              <th style="width:50%">Current Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of users">
-              <td>{{user.username}}</td>
-              <td>{{user.currentBalance}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+          <table class="table table-dark table-hover w-100">
+            <thead>
+              <tr>
+                <th style="width:50%">Username</th>
+                <th style="width:50%">Current Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{user.username}}</td>
+                <td>{{user.currentBalance}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5>Create a Bet</h5>
+
+        <form class="form-horizontal mt-3" (submit)="createBet()">
+          <div class="form-group w-75">
+            <input type="text" [(ngModel)]="details" name="details" class="form-control" id="details" placeholder="Enter Bet Details">
+          </div>
+          <div class="form-group w-75">
+            <input type="number" [(ngModel)]="odds" name="odds" class="form-control" id="odds" placeholder="Enter Bet Odds">
+          </div>
+          <div class="form-group w-75">
+            <input type="text" [(ngModel)]="sport" name="sport" class="form-control" id="sport" placeholder="Sport">
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Create</button>
+            </div>
+          </div>
+        </form>
+
       </div>
 
 
@@ -34,4 +54,4 @@
   </div>
 </div>
 
-<div class="btn btn-success btn-lg inside mb-2" (click)="clickMethod()">Clear Balances</div>
+<!-- <div class="btn btn-success btn-lg inside mb-2" (click)="clickMethod()">Clear Balances</div> -->

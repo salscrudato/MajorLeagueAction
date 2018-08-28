@@ -33,17 +33,24 @@ export class ConfirmComponent implements OnInit{
   ){}
 
   ngOnInit(){
-    this.bet = this.dataService.getBet();
     this.betType = this.dataService.getBetType().toUpperCase();
-    this.getProfileAndAllBets();
-    this.setBetDetailsAndOdds(this.bet);
-    this.odds = this.calculateOdds(this.bet);
-    console.log(this.bet);
-    this.timer = setTimeout(() => {
-      this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
-      this.router.navigate(['menu']);
-    }, 45000);
-
+    console.log(this.betType);
+    if(this.betType != 'PROP'){
+      this.bet = this.dataService.getBet();
+      this.getProfileAndAllBets();
+      this.setBetDetailsAndOdds(this.bet);
+      this.odds = this.calculateOdds(this.bet);
+      console.log(this.bet);
+      this.timer = setTimeout(() => {
+        this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
+        this.router.navigate(['menu']);
+      }, 45000);
+    } else {
+      this.bet = this.dataService.getPropBet();
+      this.odds = this.bet.odds;
+      this.bet.betDetails = this.bet.details;
+      this.getProfileAndAllBets();
+    }
   }
 
   //Gets current logged in user and then gets corresponding bets for that user
@@ -152,19 +159,35 @@ placeLiveBet(){
 }
 
 clickPlaceBet(){
-  var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
-  if(this.betAmount < curAvail){
-    if(((this.odds)/100 < 35) && this.odds != 0){
-      if(this.betType=='LIVE'){
-        this.placeLiveBet();
+  if(this.betType != 'PROP'){
+    var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
+    if(this.betAmount < curAvail){
+      if(((this.odds)/100 < 35) && this.odds != 0){
+        if(this.betType=='LIVE'){
+          this.placeLiveBet();
+        } else {
+          this.placeStraightBet();
+        }
       } else {
-        this.placeStraightBet();
+        this.flashMessage.show('Bet exceeds maximum payout ratio', {cssClass: 'alert-warning'});
       }
     } else {
-      this.flashMessage.show('Bet exceeds maximum payout ratio', {cssClass: 'alert-warning'});
+      this.flashMessage.show('Insufficient funds, available balance: $' + curAvail, {cssClass: 'alert-warning'});
     }
-  } else {
-    this.flashMessage.show('Insufficient funds, available balance: $' + curAvail, {cssClass: 'alert-warning'});
+  }else{
+    let customBet = {
+      userId: this.user._id,
+      username: this.user.username,
+      description: this.bet.details,
+      odds: this.bet.odds,
+      betAmount: this.betAmount,
+      winAmount: this.calcWinAmount(this.bet.odds, this.betAmount),
+      status: 'open'
+    }
+    this.betService.placePropBet(customBet).subscribe(data => {
+      // console.log(data);
+      console.log('Done');
+    });
   }
 }
 

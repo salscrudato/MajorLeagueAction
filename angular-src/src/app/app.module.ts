@@ -27,6 +27,7 @@ import { StraightComponent } from './components/straight/straight.component';
 import { OtherComponent } from './components/other/other.component';
 import { LiveMenuComponent } from './components/live-menu/live-menu.component';
 import { TeaserComponent } from './components/teaser/teaser.component';
+import { PropsComponent } from './components/props/props.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
   {path: 'parlay', component: ParlayComponent},
   {path: 'straight', component: StraightComponent},
   {path: 'other', component: OtherComponent},
-  {path: 'teaser', component:TeaserComponent}
+  {path: 'teaser', component:TeaserComponent},
+  {path: 'props', component:PropsComponent}
 ]
 
 @NgModule({
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     StraightComponent,
     OtherComponent,
     LiveMenuComponent,
-    TeaserComponent
+    TeaserComponent,
+    PropsComponent
   ],
   imports: [
     BrowserModule,

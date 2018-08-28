@@ -4,9 +4,16 @@
     <h2 class="page-header pt-2">Place Bet - Bet Slip</h2>
     <p>{{betType}} BET</p>
     <form (submit)="clickPlaceBet()">
+
       <ul class="list-group mb-2">
+        <div *ngIf="betType != 'PROP'">
         <li class="list-group-item" *ngFor="let bet of bet">{{bet.betDetails}}</li>
+        </div>
+        <div *ngIf="betType == 'PROP'">
+        <li class="list-group-item">{{bet.betDetails}}  {{bet.odds}}</li>
+        </div>
       </ul>
+
       <div class="row p-0 m-0">
         <div class="col w-50" align="left">
           <label for="amount">Bet Amount:</label>

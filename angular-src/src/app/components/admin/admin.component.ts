@@ -16,6 +16,12 @@ export class AdminComponent implements OnInit {
   totalBalance:number = 0;
   userBalArray:any = [];
 
+  //for custom bets
+  details:string;
+  odds:number;
+  sport:string;
+  type:string;
+
   constructor(
     private authService:AuthService,
     private router:Router,
@@ -74,6 +80,24 @@ export class AdminComponent implements OnInit {
       });
     }
   }
+
+  createBet(){
+
+    var customBet = {
+      details:this.details,
+      odds:this.odds,
+      sport:this.sport
+    }
+
+    this.betService.createCustom(customBet).subscribe(res => {
+      this.details = null;
+      this.odds = null;
+      this.sport = null;
+      this.type = null;
+    });
+
+  }
+
 
 }
 

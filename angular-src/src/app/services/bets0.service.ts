@@ -50,4 +50,28 @@ export class BetService {
         .map(res => res.json());
   }
 
+  createCustom(bet) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+      return this.http.post('http://localhost:8080/bets/createCustom', bet, {headers: headers})
+      //return this.http.post('bets/placeBet', bet, {headers: headers})
+        .map(res => res.json());
+  }
+
+  getAllCustomBets() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+      return this.http.get('http://localhost:8080/bets/allCustomBets', {headers: headers})
+      //return this.http.get('bets/allCustomBets', {headers: headers})
+        .map(res => res.json());
+  }
+
+  placePropBet(bet) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+      return this.http.post('http://localhost:8080/bets/placePropBet', bet, {headers: headers})
+      //return this.http.post('bets/placePropBet', bet, {headers: headers})
+        .map(res => res.json());
+  }
+
 }
