@@ -33,7 +33,7 @@ class Bet365Soccer {
           this.drawOdds = this.constructor.convertOdds(oddsArr.sp[key][1].odds);
           this.awayTeamML = this.constructor.convertOdds(oddsArr.sp[key][0].odds);
         }
-        if(key=='goals_over_under'){
+        if(key=='goal_line'){
           this.over = {number: oddsArr.sp[key][0].goals, odds: this.constructor.convertOdds(oddsArr.sp[key][0].odds)};
           this.under = {number: oddsArr.sp[key][1].goals, odds: this.constructor.convertOdds(oddsArr.sp[key][1].odds)};
         }
