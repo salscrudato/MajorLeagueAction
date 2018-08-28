@@ -86,7 +86,8 @@ export class AdminComponent implements OnInit {
     var customBet = {
       details:this.details,
       odds:this.odds,
-      sport:this.sport
+      sport:this.sport,
+      type: this.type
     }
 
     this.betService.createCustom(customBet).subscribe(res => {

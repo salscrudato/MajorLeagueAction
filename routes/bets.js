@@ -136,7 +136,7 @@ router.post('/createCustom', function(req, res, next){
 		details: req.body.details,
 		odds: req.body.odds,
 		sport: req.body.sport,
-		type: 'prop',
+		type: req.body.type,
 		expired: false
 	});
 
