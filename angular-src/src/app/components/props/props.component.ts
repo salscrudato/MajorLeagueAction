@@ -14,6 +14,7 @@ export class PropsComponent implements OnInit {
 
   sport:string;
   propArr:any = [];
+  futureArr:any =[];
 
   constructor(
     private dataService:DataService,
@@ -31,7 +32,9 @@ export class PropsComponent implements OnInit {
   getProps(){
     this.betService.getAllCustomBets().subscribe(bets => {
       for (var i = 0; i < bets.length; i++){
-        if(bets[i].sport==this.sport){
+        if(bets[i].sport==this.sport && bets[i].type == 'future' && bets[i].expired == false){
+          this.futureArr.push(bets[i]);
+        } else if (bets[i].sport==this.sport && bets[i].type == 'prop' && bets[i].expired == false){
           this.propArr.push(bets[i]);
         }
       }

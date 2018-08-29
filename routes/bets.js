@@ -169,14 +169,45 @@ router.post('/placePropBet', function(req, res, next){
 		odds: req.body.odds,
 		betAmount: req.body.betAmount,
 		winAmount: req.body.winAmount,
-		status: req.body.status
+		status: 'open'
 	});
 
-		CustomBet.placeBet(propBet, function(err, placedBet){
+		PropBet.placeBet(propBet, function(err, placedBet){
 			if(err){
 				res.json({success: false, msg: 'Failed to place bet'});
 			} else {
 				res.json({success: true, msg: 'Bet placed'});
+			}
+		});
+});
+
+router.get('/getPropBets', function(req, res, next){
+	const userId = req.query.userId;
+	const status = req.query.status;
+	if(status=='all'){
+		var query = {userId: userId};
+	} else {
+		var query = {userId: userId, status: status};
+	}
+	PropBet.find(query, function(err, bet) {
+		if(err){
+			res.json({sucess:false, msg: 'Could not retrieve bets'});
+		} else {
+			var bets = [];
+			bet.forEach(function(oneBet){
+				bets.push(oneBet);
+			});
+			res.send(bets);
+		}
+	});
+});
+
+router.post('/closeCustomBet', function(req, res, next){
+		CustomBet.expireBet(req.body._id, function(err, placedBet){
+			if(err){
+				res.json({success: false, msg: 'Failed to remove'});
+			} else {
+				res.json({success: true, msg: 'Bet removed'});
 			}
 		});
 });

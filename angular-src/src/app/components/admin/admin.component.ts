@@ -15,6 +15,9 @@ export class AdminComponent implements OnInit {
   showUsers:boolean = false;
   totalBalance:number = 0;
   userBalArray:any = [];
+  showCreateBet:boolean = false;
+  showCustom:boolean = false;
+  propArray:any = [];
 
   //for custom bets
   details:string;
@@ -31,6 +34,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.getAllUsers();
+    this.getProps();
   }
 
   getAllUsers(){
@@ -58,11 +62,29 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  clickMethod() {
-  if(confirm("Are you sure you want to clear all balances?")) {
-    this.clearAllBalances();
+  showHideCustom(){
+    if (this.showCustom){
+      this.showCustom = false;
+    } else {
+      this.showCustom = true;
+    }
   }
-}
+
+  clickMethod() {
+    if(confirm("Are you sure you want to clear all balances?")) {
+      this.clearAllBalances();
+    }
+  }
+
+  getProps(){
+    this.betService.getAllCustomBets().subscribe(bets => {
+      for(var i = 0; i < bets.length; i++){
+        if(bets[i].expired == false){
+          this.propArray.push(bets[i]);
+        }
+      }
+    });
+  }
 
   clearAllBalances(){
     for(var i = 0; i < this.userBalArray.length; i++){
@@ -81,22 +103,33 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  createBet(){
+  showHideCreateBet(){
+    if(this.showCreateBet == false){
+      this.showCreateBet = true;
+    } else {
+      this.showCreateBet = false;
+    }
+  }
 
+  createBet(){
     var customBet = {
       details:this.details,
       odds:this.odds,
       sport:this.sport,
       type: this.type
     }
-
     this.betService.createCustom(customBet).subscribe(res => {
       this.details = null;
       this.odds = null;
       this.sport = null;
       this.type = null;
     });
+  }
 
+  expireCustomBet(bet){
+    this.betService.expireCustomBet(bet).subscribe(res => {
+      console.log(res);
+    });
   }
 
 

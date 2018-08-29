@@ -1,97 +1,5 @@
 webpackJsonp([1,4],{
 
-/***/ 111:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BetService; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var BetService = (function () {
-    function BetService(http) {
-        this.http = http;
-    }
-    BetService.prototype.placeBet = function (bet) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
-        return this.http.post('bets/placeBet', bet, { headers: headers })
-            .map(function (res) { return res.json(); });
-    };
-    BetService.prototype.closeBet = function (betId, result) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        var bet = {
-            betId: betId,
-            status: result
-        };
-        headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
-        return this.http.post('bets/closePending', bet, { headers: headers })
-            .map(function (res) { return res.json(); });
-    };
-    BetService.prototype.getBets = function (profile, status) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        var userId = profile.user._id;
-        var url = 'bets/getBets?userId=' + userId + '&status=' + status;
-        var url2 = 'http://localhost:8080/bets/getBets?userId=' + userId + '&status=' + status;
-        headers.append('Content-Type', 'application/json');
-        //return this.http.get(url2, {headers: headers})
-        return this.http.get(url, { headers: headers })
-            .map(function (res) { return res.json(); });
-    };
-    BetService.prototype.getAllPendings = function () {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
-        return this.http.get('bets/getAllPendings', { headers: headers })
-            .map(function (res) { return res.json(); });
-    };
-    BetService.prototype.createCustom = function (bet) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/createCustom', bet, {headers: headers})
-        return this.http.post('bets/createCustom', bet, { headers: headers })
-            .map(function (res) { return res.json(); });
-    };
-    BetService.prototype.getAllCustomBets = function () {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        headers.append('Content-Type', 'application/json');
-        //return this.http.get('http://localhost:8080/bets/allCustomBets', {headers: headers})
-        return this.http.get('bets/allCustomBets', { headers: headers })
-            .map(function (res) { return res.json(); });
-    };
-    BetService.prototype.placePropBet = function (bet) {
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
-        headers.append('Content-Type', 'application/json');
-        //return this.http.post('http://localhost:8080/bets/placePropBet', bet, {headers: headers})
-        return this.http.post('bets/placePropBet', bet, { headers: headers })
-            .map(function (res) { return res.json(); });
-    };
-    BetService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === 'function' && _a) || Object])
-    ], BetService);
-    return BetService;
-    var _a;
-}());
-//# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/bets.service.js.map
-
-/***/ }),
-
 /***/ 159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -594,7 +502,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_user_service__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_odds_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_data_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_bets_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_bets_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__guards_app_guards__ = __webpack_require__(531);
@@ -712,7 +620,7 @@ var AppModule = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(18);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminComponent; });
@@ -739,9 +647,13 @@ var AdminComponent = (function () {
         this.showUsers = false;
         this.totalBalance = 0;
         this.userBalArray = [];
+        this.showCreateBet = false;
+        this.showCustom = false;
+        this.propArray = [];
     }
     AdminComponent.prototype.ngOnInit = function () {
         this.getAllUsers();
+        this.getProps();
     };
     AdminComponent.prototype.getAllUsers = function () {
         var _this = this;
@@ -766,10 +678,28 @@ var AdminComponent = (function () {
             this.showUsers = true;
         }
     };
+    AdminComponent.prototype.showHideCustom = function () {
+        if (this.showCustom) {
+            this.showCustom = false;
+        }
+        else {
+            this.showCustom = true;
+        }
+    };
     AdminComponent.prototype.clickMethod = function () {
         if (confirm("Are you sure you want to clear all balances?")) {
             this.clearAllBalances();
         }
+    };
+    AdminComponent.prototype.getProps = function () {
+        var _this = this;
+        this.betService.getAllCustomBets().subscribe(function (bets) {
+            for (var i = 0; i < bets.length; i++) {
+                if (bets[i].expired == false) {
+                    _this.propArray.push(bets[i]);
+                }
+            }
+        });
     };
     AdminComponent.prototype.clearAllBalances = function () {
         for (var i = 0; i < this.userBalArray.length; i++) {
@@ -787,6 +717,14 @@ var AdminComponent = (function () {
             });
         }
     };
+    AdminComponent.prototype.showHideCreateBet = function () {
+        if (this.showCreateBet == false) {
+            this.showCreateBet = true;
+        }
+        else {
+            this.showCreateBet = false;
+        }
+    };
     AdminComponent.prototype.createBet = function () {
         var _this = this;
         var customBet = {
@@ -800,6 +738,11 @@ var AdminComponent = (function () {
             _this.odds = null;
             _this.sport = null;
             _this.type = null;
+        });
+    };
+    AdminComponent.prototype.expireCustomBet = function (bet) {
+        this.betService.expireCustomBet(bet).subscribe(function (res) {
+            console.log(res);
         });
     };
     AdminComponent = __decorate([
@@ -848,7 +791,7 @@ var AdminComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_bets_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_bets_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__(40);
@@ -889,13 +832,11 @@ var ConfirmComponent = (function () {
     ConfirmComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.betType = this.dataService.getBetType().toUpperCase();
-        console.log(this.betType);
-        if (this.betType != 'PROP') {
+        if (this.betType != 'PROP' && this.betType != 'FUTURE') {
             this.bet = this.dataService.getBet();
             this.getProfileAndAllBets();
             this.setBetDetailsAndOdds(this.bet);
             this.odds = this.calculateOdds(this.bet);
-            console.log(this.bet);
             this.timer = setTimeout(function () {
                 _this.flashMessage.show('You have been re-directed due to inactivity, please try again', { cssClass: 'alert-warning' });
                 _this.router.navigate(['menu']);
@@ -927,6 +868,31 @@ var ConfirmComponent = (function () {
             console.log(error);
             return false;
         });
+    };
+    ConfirmComponent.prototype.placePropBet = function () {
+        var _this = this;
+        this.clickedSubmit = true;
+        if (this.betAmount > 0) {
+            var customBet = {
+                userId: this.user._id,
+                username: this.user.username,
+                description: this.bet.details,
+                odds: this.bet.odds,
+                betAmount: this.betAmount,
+                winAmount: this.calcWinAmount(this.bet.odds, this.betAmount),
+                status: 'open'
+            };
+            this.betService.placePropBet(customBet).subscribe(function (data) {
+                if (data) {
+                    _this.router.navigate(['menu']);
+                    _this.flashMessage.show('Bet Placed', { cssClass: 'alert-success' });
+                }
+            });
+        }
+        else {
+            this.clickedSubmit = false;
+            this.flashMessage.show('You must enter a number greater than 0', { cssClass: 'alert-warning' });
+        }
     };
     ConfirmComponent.prototype.placeStraightBet = function () {
         var _this = this;
@@ -971,9 +937,6 @@ var ConfirmComponent = (function () {
                         }
                         var tmpLow = tmpData * 0.96;
                         var tmpHigh = tmpData * 1.04;
-                        console.log(tmpLow);
-                        console.log(tmpData);
-                        console.log(tmpHigh);
                         if (tmpData < tmpLow || tmpData > tmpHigh) {
                             betIsStillGood = false;
                         }
@@ -1015,7 +978,7 @@ var ConfirmComponent = (function () {
         }, 16000);
     };
     ConfirmComponent.prototype.clickPlaceBet = function () {
-        if (this.betType != 'PROP') {
+        if (this.betType != 'PROP' && this.betType != 'FUTURE') {
             var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
             if (this.betAmount < curAvail) {
                 if (((this.odds) / 100 < 35) && this.odds != 0) {
@@ -1035,19 +998,7 @@ var ConfirmComponent = (function () {
             }
         }
         else {
-            var customBet = {
-                userId: this.user._id,
-                username: this.user.username,
-                description: this.bet.details,
-                odds: this.bet.odds,
-                betAmount: this.betAmount,
-                winAmount: this.calcWinAmount(this.bet.odds, this.betAmount),
-                status: 'open'
-            };
-            this.betService.placePropBet(customBet).subscribe(function (data) {
-                // console.log(data);
-                console.log('Done');
-            });
+            this.placePropBet();
         }
     };
     ConfirmComponent.prototype.cancelBet = function () {
@@ -1616,6 +1567,7 @@ var LiveComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_odds_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_bets_service__ = __webpack_require__(84);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1630,18 +1582,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MenuComponent = (function () {
-    function MenuComponent(router, dataService, oddsService) {
+    function MenuComponent(router, dataService, oddsService, betService) {
         this.router = router;
         this.dataService = dataService;
         this.oddsService = oddsService;
+        this.betService = betService;
         this.actions = [];
         this.soccer = [];
         this.tennis = [];
         this.showTennis = false;
         this.showSoccer = false;
+        this.nflProps = [];
+        this.mlbProps = [];
+        this.cfbProps = [];
     }
     MenuComponent.prototype.ngOnInit = function () {
+        this.getProps();
         this.setUpTennis();
         this.getOdds();
         this.soccer = [{ league: 'England Premier League', id: 94 }, { league: 'England League 1', id: 587 }, { league: 'UEFA', id: 6542 }, { league: 'UEFA Europe League Qualifying', id: 5823 },
@@ -1702,6 +1660,22 @@ var MenuComponent = (function () {
             console.log(tempArr);
         });
     };
+    MenuComponent.prototype.getProps = function () {
+        var _this = this;
+        this.betService.getAllCustomBets().subscribe(function (bets) {
+            for (var i = 0; i < bets.length; i++) {
+                if (bets[i].sport == 'nfl') {
+                    _this.nflProps.push(bets[i]);
+                }
+                else if (bets[i].sport == 'cfb') {
+                    _this.cfbProps.push(bets[i]);
+                }
+                else if (bets[i].sport == 'mlb') {
+                    _this.mlbProps.push(bets[i]);
+                }
+            }
+        });
+    };
     MenuComponent.prototype.props = function (sport) {
         this.dataService.addPropSport(sport);
         this.router.navigate(['/props']);
@@ -1745,10 +1719,10 @@ var MenuComponent = (function () {
             template: __webpack_require__(714),
             styles: [__webpack_require__(699)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */]) === 'function' && _c) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__services_odds_service__["a" /* OddsService */]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_bets_service__["a" /* BetService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__services_bets_service__["a" /* BetService */]) === 'function' && _d) || Object])
     ], MenuComponent);
     return MenuComponent;
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
 }());
 //# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/menu.component.js.map
 
@@ -2134,7 +2108,7 @@ var ParlayComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(25);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2157,7 +2131,9 @@ var ProfileComponent = (function () {
         this.dataService = dataService;
         this.pendingBets = [];
         this.closedBets = [];
+        this.propAndFutures = [];
         this.showPending = false;
+        this.showPendingProp = false;
         this.showClosed = false;
         this.amountPending = 0;
     }
@@ -2185,6 +2161,14 @@ var ProfileComponent = (function () {
                 console.log(error);
                 return false;
             });
+            _this.betService.getPropBets(profile, 'all').subscribe(function (bets) {
+                for (var i = 0; i < bets.length; i++) {
+                    _this.propAndFutures.push(bets[i]);
+                }
+            }, function (error) {
+                console.log(error);
+                return false;
+            });
         }, function (error) {
             console.log(error);
             return false;
@@ -2204,6 +2188,14 @@ var ProfileComponent = (function () {
         }
         else {
             this.showClosed = false;
+        }
+    };
+    ProfileComponent.prototype.showHidePendingProp = function () {
+        if (this.showPendingProp == false) {
+            this.showPendingProp = true;
+        }
+        else {
+            this.showPendingProp = false;
         }
     };
     ProfileComponent = __decorate([
@@ -2227,7 +2219,7 @@ var ProfileComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_bets_service__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(40);
@@ -2256,6 +2248,7 @@ var PropsComponent = (function () {
         this.router = router;
         this.flashMessage = flashMessage;
         this.propArr = [];
+        this.futureArr = [];
     }
     PropsComponent.prototype.ngOnInit = function () {
         this.sport = this.dataService.getPropSport();
@@ -2265,7 +2258,10 @@ var PropsComponent = (function () {
         var _this = this;
         this.betService.getAllCustomBets().subscribe(function (bets) {
             for (var i = 0; i < bets.length; i++) {
-                if (bets[i].sport == _this.sport) {
+                if (bets[i].sport == _this.sport && bets[i].type == 'future' && bets[i].expired == false) {
+                    _this.futureArr.push(bets[i]);
+                }
+                else if (bets[i].sport == _this.sport && bets[i].type == 'prop' && bets[i].expired == false) {
                     _this.propArr.push(bets[i]);
                 }
             }
@@ -2760,7 +2756,7 @@ module.exports = ".alert-fixed {\n    position:fixed;\n    top: 0px;\n    left: 
 /***/ 694:
 /***/ (function(module, exports) {
 
-module.exports = ".inside {\n    display: inline-block;\n    position: fixed;\n    bottom: 10px;\n    left: 50%;\n    margin-left: -50px;\n}\n"
+module.exports = ".inside {\n    display: inline-block;\n    position: fixed;\n    bottom: 10px;\n    left: 50%;\n    margin-left: -50px;\n}\n\n.smallFont {\n  font-size: 65%;\n}\n"
 
 /***/ }),
 
@@ -2865,14 +2861,14 @@ module.exports = "<app-navbar class=\"fixed-top\"></app-navbar>\n<div>\n\t<flash
 /***/ 709:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container bg-dark m-0 p-0 text-light\">\n  <div class=\"row mt-5\" align=\"center\">\n    <div class=\"col mt-2\">\n      <h3>Welcome</h3>\n\n\n      <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n        <div class=\"row pt-2 border-bottom\">\n          <div class=\"col\" align=\"center\">\n            <h5 *ngIf=\"showUsers==false\" (click)=\"showHideUsers()\">Show All Users: {{totalBalance}}</h5>\n            <h5 *ngIf=\"showUsers\" (click)=\"showHideUsers()\">Hide All Users: {{totalBalance}}</h5>\n          </div>\n        </div>\n        <div *ngIf=\"showUsers\">\n          <table class=\"table table-dark table-hover w-100\">\n            <thead>\n              <tr>\n                <th style=\"width:50%\">Username</th>\n                <th style=\"width:50%\">Current Balance</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let user of users\">\n                <td>{{user.username}}</td>\n                <td>{{user.currentBalance}}</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n\n        <h5>Create a Bet</h5>\n\n        <form class=\"form-horizontal mt-3\" (submit)=\"createBet()\">\n          <div class=\"form-group w-75\">\n            <input type=\"text\" [(ngModel)]=\"details\" name=\"details\" class=\"form-control\" id=\"details\" placeholder=\"Enter Bet Details\">\n          </div>\n          <div class=\"form-group w-75\">\n            <input type=\"number\" [(ngModel)]=\"odds\" name=\"odds\" class=\"form-control\" id=\"odds\" placeholder=\"Enter Bet Odds\">\n          </div>\n          <div class=\"form-group w-75\">\n            <input type=\"text\" [(ngModel)]=\"sport\" name=\"sport\" class=\"form-control\" id=\"sport\" placeholder=\"Sport\">\n          </div>\n          <div class=\"form-group w-75\">\n            <input type=\"text\" [(ngModel)]=\"type\" name=\"type\" class=\"form-control\" id=\"type\" placeholder=\"Bet Type\">\n          </div>\n          <div class=\"form-group\">\n            <div class=\"col-sm-offset-2 col-sm-10\">\n              <button type=\"submit\" class=\"btn btn-default\">Create</button>\n            </div>\n          </div>\n        </form>\n\n      </div>\n\n\n    </div>\n  </div>\n</div>\n\n<!-- <div class=\"btn btn-success btn-lg inside mb-2\" (click)=\"clickMethod()\">Clear Balances</div> -->\n"
+module.exports = "<div class=\"container bg-dark m-0 p-0 text-light\">\n  <div class=\"row mt-5\" align=\"center\">\n    <div class=\"col mt-2\">\n      <h3>Welcome</h3>\n\n\n      <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n\n        <div class=\"row pt-2 border-bottom\">\n          <div class=\"col\" align=\"center\">\n            <h5 *ngIf=\"showUsers==false\" (click)=\"showHideUsers()\">Show All Users: {{totalBalance}}</h5>\n            <h5 *ngIf=\"showUsers\" (click)=\"showHideUsers()\">Hide All Users: {{totalBalance}}</h5>\n          </div>\n        </div>\n        <div *ngIf=\"showUsers\">\n          <table class=\"table table-dark table-hover w-100\">\n            <thead>\n              <tr>\n                <th style=\"width:50%\">Username</th>\n                <th style=\"width:50%\">Current Balance</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let user of users\">\n                <td>{{user.username}}</td>\n                <td>{{user.currentBalance}}</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n\n        <div class=\"row border-bottom\">\n          <div class=\"col\" align=\"center\">\n        <h5 class=\"mt-2\" (click)=\"showHideCreateBet()\">Create a Bet</h5>\n      </div>\n      </div>\n\n        <form class=\"form-horizontal mt-3 mb-3\" (submit)=\"createBet()\" *ngIf=\"showCreateBet\">\n          <div class=\"form-group w-75\">\n            <input type=\"text\" [(ngModel)]=\"details\" name=\"details\" class=\"form-control\" id=\"details\" placeholder=\"Enter Bet Details\">\n          </div>\n          <div class=\"form-group w-75\">\n            <input type=\"number\" [(ngModel)]=\"odds\" name=\"odds\" class=\"form-control\" id=\"odds\" placeholder=\"Enter Bet Odds\">\n          </div>\n          <div class=\"form-group w-75\">\n            <input type=\"text\" [(ngModel)]=\"sport\" name=\"sport\" class=\"form-control\" id=\"sport\" placeholder=\"Sport\">\n          </div>\n          <div class=\"form-group w-75\">\n            <input type=\"text\" [(ngModel)]=\"type\" name=\"type\" class=\"form-control\" id=\"type\" placeholder=\"Bet Type\">\n          </div>\n          <div class=\"form-group\">\n            <div class=\"col-sm-offset-2 col-sm-10\">\n              <button type=\"submit\" class=\"btn btn-default\">Create</button>\n            </div>\n          </div>\n        </form>\n\n        <div class=\"row pt-2 border-bottom\">\n          <div class=\"col\" align=\"center\">\n            <h5 *ngIf=\"showCustom==false\" (click)=\"showHideCustom()\">Show All Custom Bets</h5>\n            <h5 *ngIf=\"showCustom\" (click)=\"showHideCustom()\">Hide All Custom Bets</h5>\n          </div>\n        </div>\n        <div *ngIf=\"showCustom\">\n          <table class=\"table table-dark table-hover w-100\">\n            <thead>\n              <tr>\n                <th style=\"width:75%\">Description</th>\n                <th style=\"width:25%\">Remove</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let prop of propArray\">\n                <td class=\"smallFont\">{{prop.sport.toUpperCase()}} - {{prop.details}} {{prop.odds}}</td>\n                <td (click)=\"expireCustomBet(prop)\">Remove</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- <div class=\"btn btn-success btn-lg inside mb-2\" (click)=\"clickMethod()\">Clear Balances</div> -->\n"
 
 /***/ }),
 
 /***/ 710:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n\n  <div class = \"col\" align = \"center\">\n    <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n    <p>{{betType}} BET</p>\n    <form (submit)=\"clickPlaceBet()\">\n\n      <ul class=\"list-group mb-2\">\n        <div *ngIf=\"betType != 'PROP'\">\n        <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n        </div>\n        <div *ngIf=\"betType == 'PROP'\">\n        <li class=\"list-group-item\">{{bet.betDetails}}  {{bet.odds}}</li>\n        </div>\n      </ul>\n\n      <div class=\"row p-0 m-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <label for=\"amount\">Bet Amount:</label>\n          <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n        </div>\n        <div class=\"col w-50\" *ngIf=\"betAmount>0\">\n          <label for=\"winamount\">Win Amount:</label>\n          <h3 class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</h3>\n          <h3 class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</h3>\n        </div>\n      </div>\n      <div class=\"row mt-2 ml-0 mr-0\" *ngIf=\"clickedSubmit==false\">\n        <div class=\"col w-50\" align=\"left\">\n          <a class=\"btn btn-block btn-warning\" (click)=\"cancelBet()\">Cancel</a>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <input type=\"submit\" class=\"btn btn-primary btn-block\" value=\"Place Bet\">\n        </div>\n      </div>\n      <div class=\"mt-2\" *ngIf=\"clickedSubmit==true\">\n        <div class=\"loader\"></div>\n      </div>\n\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n\n  <div class = \"col\" align = \"center\">\n    <h2 class=\"page-header pt-2\">Place Bet - Bet Slip</h2>\n    <p>{{betType}} BET</p>\n    <form (submit)=\"clickPlaceBet()\">\n\n      <ul class=\"list-group mb-2\">\n        <div *ngIf=\"betType != 'PROP' && betType != 'FUTURE'\">\n        <li class=\"list-group-item\" *ngFor=\"let bet of bet\">{{bet.betDetails}}</li>\n        </div>\n        <div *ngIf=\"betType == 'PROP' || betType == 'FUTURE'\">\n        <li class=\"list-group-item\">{{bet.betDetails}}  {{bet.odds}}</li>\n        </div>\n      </ul>\n\n      <div class=\"row p-0 m-0\">\n        <div class=\"col w-50\" align=\"left\">\n          <label for=\"amount\">Bet Amount:</label>\n          <input autocomplete=\"off\" type=\"number\" style=\"width:150px\" [(ngModel)]=\"betAmount\" name=\"betAmount\" class=\"form-control mr-2\" id=\"amount\">\n        </div>\n        <div class=\"col w-50\" *ngIf=\"betAmount>0\">\n          <label for=\"winamount\">Win Amount:</label>\n          <h3 class=\"m-0\" *ngIf=\"odds>0\">{{round(betAmount * odds/100)}}</h3>\n          <h3 class=\"m-0\" *ngIf=\"odds<0\">{{round(betAmount / (odds * -1) * 100)}}</h3>\n        </div>\n      </div>\n      <div class=\"row mt-2 ml-0 mr-0\" *ngIf=\"clickedSubmit==false\">\n        <div class=\"col w-50\" align=\"left\">\n          <a class=\"btn btn-block btn-warning\" (click)=\"cancelBet()\">Cancel</a>\n        </div>\n        <div class=\"col w-50\" align=\"right\">\n          <input type=\"submit\" class=\"btn btn-primary btn-block\" value=\"Place Bet\">\n        </div>\n      </div>\n      <div class=\"mt-2\" *ngIf=\"clickedSubmit==true\">\n        <div class=\"loader\"></div>\n      </div>\n\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2900,7 +2896,7 @@ module.exports = "<div class=\"text-muted topNav\" *ngIf=\"eventOddsArray.length
 /***/ 714:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\" alt=\"MLB\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"navigate(0)\">Game Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"moreOdds(16,225)\">More Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"parlay(0)\">Parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\" alt=\"NFL\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(4)\">Game Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,271)\">More Odds</a>\n          </div>\n          <!-- <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"props('nfl')\">Props</a>\n          </div> -->\n        </div>\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(4)\">Parlay</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(4, 2)\">Teaser (2)</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(4, 3)\">Teaser (3)</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ncaaf.jpg\" alt=\"College Football\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50 mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(3)\">Game Odds</a>\n          </div>\n          <div class=\"col w-50 mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,474)\">More Odds</a>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(3)\">Parlay</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(3, 2)\">Teaser (2)</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(3, 3)\">Teaser (3)</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img src=\"https://www.seeklogo.net/wp-content/uploads/2011/05/major-league-soccer-vector-logo-400x400.png\"  alt=\"Soccer\" />\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"!showSoccer\">Show Soccer Leagues</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"showSoccer\">Hide Soccer Leagues</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let soccer of soccer\">\n          <div class=\"col w-75\" align=\"center\" *ngIf=\"showSoccer\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(1,soccer.id)\">{{soccer.league}}</a>\n          </div>\n          <div class=\"col w-25\" align=\"center\" *ngIf=\"showSoccer\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOddsParlay(1,soccer.id)\">parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ufc.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(11)\">Fights</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img src=\"https://www.seeklogo.net/wp-content/uploads/2015/07/atp-logo-vector-download.jpg\"  alt=\"Tennis\" />\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"!showTennis\">Show Tennis Events</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"showTennis\">Hide Tennis Events</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let tennis of tennis\">\n          <div class=\"col\" align=\"center\" *ngIf=\"showTennis\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(13, tennis.id)\">{{tennis.league}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img src=\"https://www.seeklogo.net/wp-content/uploads/2013/06/vw-golf-vector-logo-400x400.png\"  alt=\"Golf\" />\n      <!-- <img class=\"card-img-top\" src=\"/assets/images/golf.png\"> -->\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(21)\">Tournament</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n"
+module.exports = "<div class=\"container pt-5\">\n  <div class=\"row\">\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/nfl.png\" alt=\"NFL\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(4)\">Game Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,271)\">More Odds</a>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(4)\">Parlay</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(4, 2)\">Teaser (2)</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(4, 3)\">Teaser (3)</a>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"props('nfl')\" *ngIf=\"nflProps.length > 0\">Futures and Props</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ncaaf.jpg\" alt=\"College Football\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col w-50 mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(3)\">Game Odds</a>\n          </div>\n          <div class=\"col w-50 mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(12,474)\">More Odds</a>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"parlay(3)\">Parlay</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(3, 2)\">Teaser (2)</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"teaser(3, 3)\">Teaser (3)</a>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"props('cfb')\" *ngIf=\"cfbProps.length > 0\">Futures and Props</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/mlb.png\" alt=\"MLB\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"navigate(0)\">Game Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"moreOdds(16,225)\">More Odds</a>\n          </div>\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-sm btn-block btn-secondary text-light\" (click)=\"parlay(0)\">Parlay</a>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col mb-1\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"props('mlb')\" *ngIf=\"mlbProps.length > 0\">Futures and Props</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img src=\"https://www.seeklogo.net/wp-content/uploads/2011/05/major-league-soccer-vector-logo-400x400.png\"  alt=\"Soccer\" />\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"!showSoccer\">Show Soccer Leagues</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowSoccer()\" *ngIf=\"showSoccer\">Hide Soccer Leagues</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let soccer of soccer\">\n          <div class=\"col w-75\" align=\"center\" *ngIf=\"showSoccer\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(1,soccer.id)\">{{soccer.league}}</a>\n          </div>\n          <div class=\"col w-25\" align=\"center\" *ngIf=\"showSoccer\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOddsParlay(1,soccer.id)\">parlay</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img class=\"card-img-top\" src=\"/assets/images/ufc.jpg\">\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(11)\">Fights</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img src=\"https://www.seeklogo.net/wp-content/uploads/2015/07/atp-logo-vector-download.jpg\"  alt=\"Tennis\" />\n      <div class=\"card-header\">\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"!showTennis\">Show Tennis Events</a>\n        </div>\n        <div class=\"col mb-1\" align=\"center\">\n          <a class=\"btn btn-secondary btn-block text-light\" (click)=\"clickShowTennis()\" *ngIf=\"showTennis\">Hide Tennis Events</a>\n        </div>\n        <div class=\"row mb-1\" *ngFor=\"let tennis of tennis\">\n          <div class=\"col\" align=\"center\" *ngIf=\"showTennis\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"moreOdds(13, tennis.id)\">{{tennis.league}}</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card col-sm-4 pl-0 pr-0\">\n      <img src=\"https://www.seeklogo.net/wp-content/uploads/2013/06/vw-golf-vector-logo-400x400.png\"  alt=\"Golf\" />\n      <!-- <img class=\"card-img-top\" src=\"/assets/images/golf.png\"> -->\n      <div class=\"card-header\">\n        <div class=\"row\">\n          <div class=\"col\" align=\"center\">\n            <a class=\"btn btn-secondary btn-block text-light\" (click)=\"navigate(21)\">Tournament</a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2928,14 +2924,14 @@ module.exports = "<div class=\"text-muted topNav\" *ngIf=\"odds.length < 1\" ali
 /***/ 718:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container mt-5 pt-4 pl-0 pr-0\">\n  <div *ngIf=\"user\">\n\n    <div>\n    <div class=\"row border-bottom\">\n      <div class=\"col\" align=\"center\">\n        <h3>{{user.name.toUpperCase()}} Account Info</h3>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Current Balance:  {{user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Available Balance:  {{user.credit + user.currentBalance - amountPending}}</p>\n      </div>\n    </div>\n  </div>\n\n    <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHidePending()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showPending==false\">Show Pendings (${{amountPending}})</h5>\n          <h5 *ngIf=\"showPending==true\">Hide Pendings (${{amountPending}})</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showPending==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Risk</th>\n            <th style=\"width:5%\">To Win</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of pendingBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.betAmount}}</td>\n            <td>{{bet.winAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n\n    <div class=\"row m-0 p-0\">\n    <div class=\"col bg-dark block text-light p-0 m-0\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHideClosed()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showClosed==false\">Show Bet History</h5>\n          <h5 *ngIf=\"showClosed==true\">Hide Bet History</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showClosed==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Result</th>\n            <th style=\"width:5%\">Amount</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of closedBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.status}}</td>\n            <td *ngIf=\"bet.status=='win'\">{{bet.winAmount}}</td>\n            <td *ngIf=\"bet.status=='loss'\">-{{bet.betAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n    </div>\n\n  </div>\n  <div *ngIf=\"!user\">Error Loading Profile</div>\n</div>\n"
+module.exports = "<div class=\"container mt-5 pt-4 pl-0 pr-0\">\n  <div *ngIf=\"user\">\n\n    <div>\n    <div class=\"row border-bottom\">\n      <div class=\"col\" align=\"center\">\n        <h3>{{user.name.toUpperCase()}} Account Info</h3>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Current Balance:  {{user.currentBalance}}</p>\n      </div>\n    </div>\n\n    <div class=\"row mt-2\">\n      <div class=\"col border-bottom\" align=\"center\">\n        <p>Available Balance:  {{user.credit + user.currentBalance - amountPending}}</p>\n      </div>\n    </div>\n  </div>\n\n    <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHidePending()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showPending==false\">Show Pendings (${{amountPending}})</h5>\n          <h5 *ngIf=\"showPending==true\">Hide Pendings (${{amountPending}})</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showPending==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Risk</th>\n            <th style=\"width:5%\">To Win</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of pendingBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.betAmount}}</td>\n            <td>{{bet.winAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n\n    <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHidePendingProp()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showPendingProp==false\">Show Pending Props</h5>\n          <h5 *ngIf=\"showPendingProp==true\">Hide Pending Props</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showPendingProp==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:70%\">Description</th>\n            <th style=\"width:15%\">Bet</th>\n            <th style=\"width:15%\">To Win</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let prop of propAndFutures\">\n            <td>{{prop.description}} {{prop.odds}}</td>\n            <td>{{prop.betAmount}}</td>\n            <td>{{prop.winAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n\n    <div class=\"row m-0 p-0\">\n    <div class=\"col bg-dark block text-light p-0 m-0\">\n      <div class=\"row pt-2 border-bottom\" (click)=\"showHideClosed()\">\n        <div class=\"col\" align=\"center\">\n          <h5 *ngIf=\"showClosed==false\">Show Bet History</h5>\n          <h5 *ngIf=\"showClosed==true\">Hide Bet History</h5>\n        </div>\n      </div>\n      <div *ngIf=\"showClosed==true\">\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:15%\">Date</th>\n            <th>Description</th>\n            <th style=\"width:5%\">Result</th>\n            <th style=\"width:5%\">Amount</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let bet of closedBets\">\n            <td>{{bet.gameDate}} {{bet.gameTime}}</td>\n            <td>{{bet.description}}</td>\n            <td>{{bet.status}}</td>\n            <td *ngIf=\"bet.status=='win'\">{{bet.winAmount}}</td>\n            <td *ngIf=\"bet.status=='loss'\">-{{bet.betAmount}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    </div>\n    </div>\n\n  </div>\n  <div *ngIf=\"!user\">Error Loading Profile</div>\n</div>\n"
 
 /***/ }),
 
 /***/ 719:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row mt-5 ml-0 mr-0\">\n  <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n\n  <div>\n    <table class=\"table table-dark table-hover w-100\">\n      <thead>\n        <tr>\n          <th style=\"width:80%\">Description</th>\n          <th style=\"width:20%\">Odds</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let prop of propArr\" (click)=\"placeBet(prop)\">\n          <td>{{prop.details}}</td>\n          <td>{{prop.odds}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row mt-5 ml-0 mr-0\">\n  <div class=\"col bg-dark block text-light p-0 m-0 h-100\">\n\n    <h5 class=\"mt-2\" align=\"center\"> Futures </h5>\n    <div>\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:80%\">Description</th>\n            <th style=\"width:20%\">Odds</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let future of futureArr\" (click)=\"placeBet(future)\">\n            <td>{{future.details}}</td>\n            <td>{{future.odds}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n    <h5 class=\"mt-2\" align=\"center\"> Props </h5>\n    <div>\n      <table class=\"table table-dark table-hover w-100\">\n        <thead>\n          <tr>\n            <th style=\"width:80%\">Description</th>\n            <th style=\"width:20%\">Odds</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let prop of propArr\" (click)=\"placeBet(prop)\">\n            <td>{{prop.details}}</td>\n            <td>{{prop.odds}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2965,6 +2961,113 @@ module.exports = "<div class=\"container pt-5 mb-5 bg-dark\">\n<div class=\"row\
 
 module.exports = __webpack_require__(398);
 
+
+/***/ }),
+
+/***/ 84:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BetService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BetService = (function () {
+    function BetService(http) {
+        this.http = http;
+    }
+    BetService.prototype.placeBet = function (bet) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //return this.http.post('http://localhost:8080/bets/placeBet', bet, {headers: headers})
+        return this.http.post('bets/placeBet', bet, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.closeBet = function (betId, result) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        var bet = {
+            betId: betId,
+            status: result
+        };
+        headers.append('Content-Type', 'application/json');
+        //return this.http.post('http://localhost:8080/bets/closePending', bet, {headers: headers})
+        return this.http.post('bets/closePending', bet, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.getBets = function (profile, status) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        var userId = profile.user._id;
+        var url = 'bets/getBets?userId=' + userId + '&status=' + status;
+        var url2 = 'http://localhost:8080/bets/getBets?userId=' + userId + '&status=' + status;
+        headers.append('Content-Type', 'application/json');
+        //return this.http.get(url2, {headers: headers})
+        return this.http.get(url, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.getAllPendings = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //return this.http.get('http://localhost:8080/bets/getAllPendings', {headers: headers})
+        return this.http.get('bets/getAllPendings', { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.createCustom = function (bet) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //return this.http.post('http://localhost:8080/bets/createCustom', bet, {headers: headers})
+        return this.http.post('bets/createCustom', bet, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.getAllCustomBets = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //return this.http.get('http://localhost:8080/bets/allCustomBets', {headers: headers})
+        return this.http.get('bets/allCustomBets', { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.placePropBet = function (bet) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //return this.http.post('http://localhost:8080/bets/placePropBet', bet, {headers: headers})
+        return this.http.post('bets/placePropBet', bet, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.getPropBets = function (profile, status) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        var userId = profile.user._id;
+        var url = 'bets/getPropBets?userId=' + userId + '&status=' + status;
+        headers.append('Content-Type', 'application/json');
+        return this.http.get(url, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService.prototype.expireCustomBet = function (bet) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        //return this.http.post('http://localhost:8080/bets/closeCustomBet', bet, {headers: headers})
+        return this.http.post('bets/closeCustomBet', bet, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BetService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === 'function' && _a) || Object])
+    ], BetService);
+    return BetService;
+    var _a;
+}());
+//# sourceMappingURL=/Users/salscrudato/MEAN/meanauthapp/angular-src/src/bets.service.js.map
 
 /***/ })
 

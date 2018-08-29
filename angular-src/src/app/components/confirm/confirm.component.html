@@ -6,10 +6,10 @@
     <form (submit)="clickPlaceBet()">
 
       <ul class="list-group mb-2">
-        <div *ngIf="betType != 'PROP'">
+        <div *ngIf="betType != 'PROP' && betType != 'FUTURE'">
         <li class="list-group-item" *ngFor="let bet of bet">{{bet.betDetails}}</li>
         </div>
-        <div *ngIf="betType == 'PROP'">
+        <div *ngIf="betType == 'PROP' || betType == 'FUTURE'">
         <li class="list-group-item">{{bet.betDetails}}  {{bet.odds}}</li>
         </div>
       </ul>

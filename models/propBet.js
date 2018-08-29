@@ -23,7 +23,7 @@ const BetSchema = mongoose.Schema({
     type: Number
   },
   status: {
-    type: Boolean
+    type: String
   }
 });
 

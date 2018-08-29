@@ -74,4 +74,21 @@ export class BetService {
         .map(res => res.json());
   }
 
+  getPropBets(profile, status) {
+    let headers = new Headers();
+    const userId = profile.user._id;
+    const url = 'bets/getPropBets?userId=' + userId + '&status=' + status;
+    headers.append('Content-Type', 'application/json');
+      return this.http.get(url, {headers: headers})
+        .map(res => res.json());
+  }
+
+  expireCustomBet(bet) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+      //return this.http.post('http://localhost:8080/bets/closeCustomBet', bet, {headers: headers})
+      return this.http.post('bets/closeCustomBet', bet, {headers: headers})
+        .map(res => res.json());
+  }
+
 }

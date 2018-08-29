@@ -5,3 +5,7 @@
     left: 50%;
     margin-left: -50px;
 }
+
+.smallFont {
+  font-size: 65%;
+}

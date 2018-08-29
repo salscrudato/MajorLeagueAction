@@ -34,13 +34,11 @@ export class ConfirmComponent implements OnInit{
 
   ngOnInit(){
     this.betType = this.dataService.getBetType().toUpperCase();
-    console.log(this.betType);
-    if(this.betType != 'PROP'){
+    if(this.betType != 'PROP' && this.betType != 'FUTURE'){
       this.bet = this.dataService.getBet();
       this.getProfileAndAllBets();
       this.setBetDetailsAndOdds(this.bet);
       this.odds = this.calculateOdds(this.bet);
-      console.log(this.bet);
       this.timer = setTimeout(() => {
         this.flashMessage.show('You have been re-directed due to inactivity, please try again', {cssClass: 'alert-warning'});
         this.router.navigate(['menu']);
@@ -72,6 +70,30 @@ export class ConfirmComponent implements OnInit{
     console.log(error);
     return false;
   });
+}
+
+placePropBet(){
+  this.clickedSubmit = true;
+  if(this.betAmount > 0){
+    let customBet = {
+      userId: this.user._id,
+      username: this.user.username,
+      description: this.bet.details,
+      odds: this.bet.odds,
+      betAmount: this.betAmount,
+      winAmount: this.calcWinAmount(this.bet.odds, this.betAmount),
+      status: 'open'
+    }
+    this.betService.placePropBet(customBet).subscribe(data => {
+      if(data){
+        this.router.navigate(['menu']);
+        this.flashMessage.show('Bet Placed', {cssClass: 'alert-success'});
+      }
+    });
+  } else {
+    this.clickedSubmit = false;
+    this.flashMessage.show('You must enter a number greater than 0', {cssClass: 'alert-warning'});
+  }
 }
 
 placeStraightBet(){
@@ -115,9 +137,6 @@ placeLiveBet(){
           }
           var tmpLow = tmpData * 0.96;
           var tmpHigh = tmpData * 1.04;
-          console.log(tmpLow);
-          console.log(tmpData);
-          console.log(tmpHigh);
 
           if(tmpData < tmpLow || tmpData > tmpHigh){
             betIsStillGood = false;
@@ -159,7 +178,7 @@ placeLiveBet(){
 }
 
 clickPlaceBet(){
-  if(this.betType != 'PROP'){
+  if(this.betType != 'PROP' && this.betType != 'FUTURE'){
     var curAvail = this.user.credit + this.user.currentBalance - this.amountPending;
     if(this.betAmount < curAvail){
       if(((this.odds)/100 < 35) && this.odds != 0){
@@ -175,19 +194,7 @@ clickPlaceBet(){
       this.flashMessage.show('Insufficient funds, available balance: $' + curAvail, {cssClass: 'alert-warning'});
     }
   }else{
-    let customBet = {
-      userId: this.user._id,
-      username: this.user.username,
-      description: this.bet.details,
-      odds: this.bet.odds,
-      betAmount: this.betAmount,
-      winAmount: this.calcWinAmount(this.bet.odds, this.betAmount),
-      status: 'open'
-    }
-    this.betService.placePropBet(customBet).subscribe(data => {
-      // console.log(data);
-      console.log('Done');
-    });
+    this.placePropBet();
   }
 }
 

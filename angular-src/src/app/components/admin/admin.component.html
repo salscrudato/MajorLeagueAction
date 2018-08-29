@@ -5,6 +5,7 @@
 
 
       <div class="col bg-dark block text-light p-0 m-0 h-100">
+
         <div class="row pt-2 border-bottom">
           <div class="col" align="center">
             <h5 *ngIf="showUsers==false" (click)="showHideUsers()">Show All Users: {{totalBalance}}</h5>
@@ -28,9 +29,13 @@
           </table>
         </div>
 
-        <h5>Create a Bet</h5>
+        <div class="row border-bottom">
+          <div class="col" align="center">
+        <h5 class="mt-2" (click)="showHideCreateBet()">Create a Bet</h5>
+      </div>
+      </div>
 
-        <form class="form-horizontal mt-3" (submit)="createBet()">
+        <form class="form-horizontal mt-3 mb-3" (submit)="createBet()" *ngIf="showCreateBet">
           <div class="form-group w-75">
             <input type="text" [(ngModel)]="details" name="details" class="form-control" id="details" placeholder="Enter Bet Details">
           </div>
@@ -50,9 +55,30 @@
           </div>
         </form>
 
+        <div class="row pt-2 border-bottom">
+          <div class="col" align="center">
+            <h5 *ngIf="showCustom==false" (click)="showHideCustom()">Show All Custom Bets</h5>
+            <h5 *ngIf="showCustom" (click)="showHideCustom()">Hide All Custom Bets</h5>
+          </div>
+        </div>
+        <div *ngIf="showCustom">
+          <table class="table table-dark table-hover w-100">
+            <thead>
+              <tr>
+                <th style="width:75%">Description</th>
+                <th style="width:25%">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prop of propArray">
+                <td class="smallFont">{{prop.sport.toUpperCase()}} - {{prop.details}} {{prop.odds}}</td>
+                <td (click)="expireCustomBet(prop)">Remove</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
-
-
     </div>
   </div>
 </div>

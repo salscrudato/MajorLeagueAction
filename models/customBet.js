@@ -25,7 +25,10 @@ const BetSchema = mongoose.Schema({
 const CustomBet = module.exports = mongoose.model('CustomBet', BetSchema);
 
 module.exports.createBet = function(customBet, callback){
-  console.log('Saving Custom');
-  console.log(customBet);
   customBet.save(callback);
+}
+
+module.exports.expireBet = function(betId, callback){
+	const updatedStatus = {expired: true};
+	CustomBet.findByIdAndUpdate(betId, updatedStatus, callback);
 }

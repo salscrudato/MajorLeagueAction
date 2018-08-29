@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {OddsService} from '../../services/odds.service';
 import {Router} from '@angular/router';
+import {BetService} from '../../services/bets.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,14 +16,19 @@ export class MenuComponent implements OnInit {
   tennis:any = [];
   showTennis:boolean = false;
   showSoccer:boolean = false;
+  nflProps:any = [];
+  mlbProps:any = [];
+  cfbProps:any = [];
 
   constructor(
     private router:Router,
     private dataService:DataService,
-    private oddsService:OddsService
+    private oddsService:OddsService,
+    private betService:BetService
   ) {}
 
   ngOnInit() {
+    this.getProps();
     this.setUpTennis();
     this.getOdds();
     this.soccer = [{league:'England Premier League', id:94}, {league:'England League 1', id:587}, {league:'UEFA', id:6542}, {league:'UEFA Europe League Qualifying', id:5823},
@@ -86,6 +92,20 @@ export class MenuComponent implements OnInit {
         }
       }
       console.log(tempArr);
+    });
+  }
+
+  getProps(){
+    this.betService.getAllCustomBets().subscribe(bets => {
+      for (var i = 0; i < bets.length; i++){
+        if(bets[i].sport=='nfl'){
+          this.nflProps.push(bets[i]);
+        } else if (bets[i].sport=='cfb'){
+          this.cfbProps.push(bets[i]);
+        } else if (bets[i].sport=='mlb'){
+          this.mlbProps.push(bets[i]);
+        }
+      }
     });
   }
 
