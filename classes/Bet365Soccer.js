@@ -33,9 +33,20 @@ class Bet365Soccer {
           this.drawOdds = this.constructor.convertOdds(oddsArr.sp[key][1].odds);
           this.awayTeamML = this.constructor.convertOdds(oddsArr.sp[key][0].odds);
         }
-        if(key=='goals_over_under'){
-          this.over = {number: oddsArr.sp[key][0].goals, odds: this.constructor.convertOdds(oddsArr.sp[key][0].odds)};
-          this.under = {number: oddsArr.sp[key][1].goals, odds: this.constructor.convertOdds(oddsArr.sp[key][1].odds)};
+        // if(key=='goals_over_under'){
+        //   this.over = {number: oddsArr.sp[key][0].goals, odds: this.constructor.convertOdds(oddsArr.sp[key][0].odds)};
+        //   this.under = {number: oddsArr.sp[key][1].goals, odds: this.constructor.convertOdds(oddsArr.sp[key][1].odds)};
+        // }
+        if(key=='goal_line'){
+          var tmpGoalLine = oddsArr.sp[key][0].goals.split(', ');
+          if(tmpGoalLine.length > 1){
+            tmpGoalLine = tmpGoalLine[1];
+          } else {
+            tmpGoalLine = tmpGoalLine[0];
+          }
+          tmpGoalLine = parseFloat(tmpGoalLine);
+          this.over = {number: tmpGoalLine, odds: this.constructor.convertOdds(oddsArr.sp[key][0].odds)};
+          this.under = {number: tmpGoalLine, odds: this.constructor.convertOdds(oddsArr.sp[key][1].odds)};
         }
         if(key=='handicap_result'){
           var tmpAway = oddsArr.sp[key][0].opp;
