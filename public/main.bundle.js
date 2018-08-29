@@ -745,8 +745,10 @@ var AdminComponent = (function () {
         });
     };
     AdminComponent.prototype.expireCustomBet = function (bet) {
+        var _this = this;
         this.betService.expireCustomBet(bet).subscribe(function (res) {
-            console.log(res);
+            _this.propArray = [];
+            _this.getProps();
         });
     };
     AdminComponent = __decorate([

@@ -128,7 +128,8 @@ export class AdminComponent implements OnInit {
 
   expireCustomBet(bet){
     this.betService.expireCustomBet(bet).subscribe(res => {
-      console.log(res);
+      this.propArray = [];
+      this.getProps();
     });
   }
 
