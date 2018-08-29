@@ -28,6 +28,7 @@ import { OtherComponent } from './components/other/other.component';
 import { LiveMenuComponent } from './components/live-menu/live-menu.component';
 import { TeaserComponent } from './components/teaser/teaser.component';
 import { PropsComponent } from './components/props/props.component';
+import { SlatechampComponent } from './components/slatechamp/slatechamp.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
   {path: 'straight', component: StraightComponent},
   {path: 'other', component: OtherComponent},
   {path: 'teaser', component:TeaserComponent},
-  {path: 'props', component:PropsComponent}
+  {path: 'props', component:PropsComponent},
+  {path: 'slatechamp', component:SlatechampComponent}
 ]
 
 @NgModule({
@@ -61,7 +63,8 @@ const appRoutes: Routes = [
     OtherComponent,
     LiveMenuComponent,
     TeaserComponent,
-    PropsComponent
+    PropsComponent,
+    SlatechampComponent
   ],
   imports: [
     BrowserModule,
